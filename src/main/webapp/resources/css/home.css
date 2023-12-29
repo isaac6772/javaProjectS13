@@ -1,0 +1,106 @@
+.leftSide {
+	float : left;
+	width : 80%;
+}
+.rightSide {
+	float : right;
+	width : 20%;
+}
+.wordCloudBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px;
+}
+.boardBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px;
+}
+.debateBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px 
+}
+.loginBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px;
+}
+.loginBox a {
+	color : black;
+	text-decoration: none;
+}
+.loginBox #mid {
+	width : 100%;
+	height : 30px;
+	font-family: 'Nanum Gothic';	
+	border-radius: 5px;
+	border : 1px solid rgb(175, 175, 175);
+	padding-left : 7px;
+}
+.loginBox #pwd {
+	width : 100%;
+	height : 30px;	
+	margin-top: 5px;		
+	margin-bottom: 10px;
+	font-family: 'Nanum Gothic';
+	border-radius: 5px;
+	border : 1px solid rgb(175, 175, 175);
+	padding-left : 7px;
+}
+.loginBox .idSaveBox {
+	margin-bottom: 10px;
+	font-size : 15px;		
+}
+.loginBox #login {
+	width : 100%;
+	height : 35px;
+	background-color: rgb(36, 128, 214);;
+	color : white;
+	border-radius: 5px;
+	font-family: 'Nanum Gothic';
+	text-align: center;
+	font-size: 17px;
+	line-height: 35px;
+	margin-bottom: 10px;
+	cursor : pointer;
+}
+.loginBox #login:hover {
+	background-color: rgb(78, 78, 78);			
+	color : lightgray;
+}
+.loginBox .joinFind {
+	text-align: center;
+	margin-bottom: 10px;
+	color : gray;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.loginBox .joinFind a {
+	font-size: 13px;
+	color : gray;
+}
+.loginBox .line {
+	border-top : 1px solid rgb(211, 211, 211);
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.loginBox .kakaoLogin {
+	border : 1px solid rgb(231, 231, 231);
+	border-radius : 5px;
+	text-align: center;
+	height : 35px;
+	line-height: 35px;
+	font-size: 15px;
+	background-color: yellow;
+}
+.adBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px;
+}
+.comunityBox {
+	border: 1px solid black;
+	padding : 20px;
+	height : 300px;
+}

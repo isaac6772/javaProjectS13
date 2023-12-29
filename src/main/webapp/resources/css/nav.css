@@ -1,0 +1,27 @@
+.navContainer {
+	height : 65px;
+	background-color: rgb(36, 128, 214);
+}
+.navMenu {
+	width : 80%;
+	height : 100%;
+	margin : 0 auto;
+	display : flex;
+	justify-content: space-around;
+	font-size: 24px;
+	color : white;
+	font-weight: 400;
+}
+.navMenu > a {
+	width : 200px;
+	height : 100%;
+	text-align: center;
+	line-height: 65px;
+}
+.navMenu > a:hover {
+	background-color : rgb(78, 78, 78);
+}
+.navMenu a {
+	color : white;
+	text-decoration: none;
+}

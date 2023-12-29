@@ -1,0 +1,118 @@
+.joinTitle {
+	margin-top : 30px;
+	text-align : center;
+	font-size : 30px;
+	font-weight : bolder;
+}
+#joinForm {
+	width : 30%;
+	margin : 20px auto;
+	border-top : 1px solid gray;
+}
+#joinForm .row {
+	display : flex;
+	height : 59px;
+	border-bottom : 1px solid gray;
+}
+#joinForm .column1 {
+	flex-shrink : 0;
+	width : 80px;
+	background-color: rgb(181, 217, 252);
+	font-size : 13px;
+	padding : 16px;
+	font-weight: bolder;
+}
+#joinForm .column2 {
+	width : 85%;
+	padding : 15px;
+}
+#joinForm .buttonBox {
+	text-align: center;
+}
+#joinForm .buttonBox .joinButton {
+	display : inline-block;
+	width : 140px;
+	background-color: rgb(36, 128, 214);
+	text-align: center;
+	margin-top : 50px;
+	margin-bottom : 40px;
+	border-radius: 5px;
+	border : 1px solid rgb(233, 233, 233);
+	height : 35px;
+	line-height: 35px;
+	color : white;
+	cursor : pointer;
+}
+#mid, #pwd, #pwd2, #nickName, #name {
+	height : 25px;
+	border : 1px solid rgb(203, 203, 203);
+	border-radius: 5px;
+	outline: none;
+	width : 95%;
+	padding-left : 7px;
+}
+#joinForm .mailBox {
+	position: relative;
+	border : 1px solid rgb(203, 203, 203);
+	border-radius: 5px;
+	width : 95%;
+}
+#joinForm .mailBox input {
+	height : 25px;
+	border-radius: 5px;
+	outline: none;
+	width : 100%;
+	border : 0;
+	padding-left : 7px;
+}
+#joinForm .mailCodeBox {
+	position: relative;
+	display : inline-block;
+	border : 1px solid rgb(203, 203, 203);
+	border-radius: 5px;
+	width : 80%;
+}
+#joinForm .mailCodeBox input {
+	height : 25px;
+	border-radius: 5px;
+	outline: none;
+	width : 100%;
+	border : 0;
+	padding-left : 7px;
+}
+#joinForm .mailSend, #joinForm .mailCode {
+	cursor : pointer;
+}
+#joinForm #timer {
+	line-height : 27px;
+	margin-left : 15px;
+	text-align: right;
+	width : 57px;
+	font-size : 14px;
+}
+#joinForm .mail {
+	display : flex;
+}
+#joinForm .mailCodeBtn {
+	position: absolute;
+	right : -9px;
+	top : 0px;
+	background-color: rgb(36, 128, 214);
+	color : white;
+	height : 27px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	box-sizing: border-box;
+	padding : 8px;
+	font-size : 11px;
+}
+#joinForm .valid {
+	border : 1px solid green;		
+}
+#joinForm .inValid {
+	border : 1px solid red;		
+}
+#joinForm .msg {
+	color : red;
+	font-size : 12px;
+}
