@@ -13,7 +13,7 @@
 	<div class = "headerContainer">
 		<div>
 			<a href = "${ctp}/">
-				<img src = "${ctp}/util/logo.png" width = "75px" />
+				<img src = "${ctp}/util/logo.png" width = "64px" height = "56px" />
 				<span>TALK HUB</span>
 			</a>
 		</div>

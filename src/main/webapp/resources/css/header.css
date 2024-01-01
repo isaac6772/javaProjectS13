@@ -12,7 +12,8 @@ body {
 	height : 100px;
 }
 .headerContainer span {
-	vertical-align: top;				
+	vertical-align: top;
+	margin-left : -22px;			
 }
 .headerContainer a {
 	text-decoration: none;
