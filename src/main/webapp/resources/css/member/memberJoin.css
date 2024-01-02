@@ -17,10 +17,8 @@
 #joinForm .column1 {
 	flex-shrink : 0;
 	width : 80px;
-	background-color: rgb(181, 217, 252);
 	font-size : 13px;
 	padding : 16px;
-	font-weight: bolder;
 }
 #joinForm .column2 {
 	width : 85%;

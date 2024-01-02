@@ -13,17 +13,27 @@
 		<div class = "submenu1">
 			<div class = "row1 row">
 				<div class = "col1">
-					<img src = "${ctp}/icon/info.png" />
-					<span class = "text1">내정보</span>
+					<img src = "${ctp}/icon/folder.png" width = 22px />
+					<span class = "text1">마이페이지</span>
+				</div>
+				<div class = "col2">
+					<div class = "btn" onclick = "location.href='memberUpdate'">보기</div>
+				</div>
+			</div>
+			<div class = "line"></div>
+			<div class = "row2 row">
+				<div class = "col1">
+					<img src = "${ctp}/icon/info.png" width = 22px />
+					<span class = "text1">개인정보</span>
 				</div>
 				<div class = "col2">
 					<div class = "btn" onclick = "location.href='memberUpdate'">수정</div>
 				</div>
 			</div>
 			<div class = "line"></div>
-			<div class = "row2 row">
+			<div class = "row3 row">
 				<div class = "col1">
-					<img src = "${ctp}/icon/password.png" />
+					<img src = "${ctp}/icon/password.png" width = 22px />
 					<span class = "text1">비밀번호</span>
 				</div>
 				<div class = "col2">
@@ -31,9 +41,9 @@
 				</div>
 			</div>
 			<div class = "line"></div>
-			<div class = "row3 row">
+			<div class = "row4 row">
 				<div class = "col1">
-					<img src = "${ctp}/icon/leave.png" />
+					<img src = "${ctp}/icon/leave.png" width = 23px />
 					<span class = "text1">회원탈퇴</span>
 				</div>
 				<div class = "col2">

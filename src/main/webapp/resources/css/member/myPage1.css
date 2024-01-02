@@ -40,15 +40,6 @@ body {
 	color: #777676;
 	cursor : pointer;
 }
-.rightSide .submenu1 .row1 img {
-	width : 27px;
-}
-.rightSide .submenu1 .row2 img {
-	width : 22px;
-}
-.rightSide .submenu1 .row3 img {
-	width : 23px;
-}
 .rightSide .submenu1 .row2 .text1 {
 	margin-left : 4px;
 }

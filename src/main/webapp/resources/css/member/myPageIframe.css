@@ -63,7 +63,8 @@ body {
 .leftSide .mainMenu {
 	text-align : center;
 	margin-top : 70px;
-	margin-bottom : 370px;
+	margin-bottom : 350px;
+	user-select : none;
 }
 .leftSide .mainMenu > div {
 	margin : 53px 0px;
@@ -99,10 +100,17 @@ body {
 	padding : 20px 30px 20px 70px;
 	flex : 1;
 }
+.rightSide .header {
+	display : flex;
+	justify-content: space-between;
+	width : 93%;
+	margin : 0 auto;
+}
 .rightSide .myInfo {
 	display : flex;
 	justify-content: flex-end;
-	margin-right : 26px;
+	width : 93%;
+	margin : 0 auto;
 }
 .rightSide .myInfo .col {
 	margin-left : 14px;
@@ -128,6 +136,6 @@ body {
 }
 iframe {
 	width : 100%;
-	height : 100%;
+	height : 90%;
 	border : none;
 }
