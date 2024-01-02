@@ -102,8 +102,19 @@ public class MemberController {
 		return "redirect:/message/member/memberLogoutOk";
 	}
 	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPageGet() {
-		return "member/myPage";
+	@RequestMapping(value = "/myPageIframe", method = RequestMethod.GET)
+	public String myPageGet(String flag) {
+		
+		return "member/myPageIframe";
+	}
+	
+	@RequestMapping(value = "/myPage1", method = RequestMethod.GET)
+	public String myPage1Get() {
+		return "member/myPage1";
+	}
+	
+	@RequestMapping(value = "/memberUpdate", method = RequestMethod.GET)
+	public String memberUpdateGet() {
+		return "member/memberUpdate";
 	}
 }

@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+body {
+	margin : 0px;
+	padding : 0px;
+	font-family: 'Nanum Gothic';
+}
+.line {
+	border-top : 1px solid rgb(226, 226, 226);
+}
+.myPageContainer {
+	width : 65%;
+	height : 100vh;
+	margin : 0 auto;
+	display : flex;
+}
+.leftSide {
+	width : 300px;
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
+	padding : 20px;
+}
+.leftSide a {
+	color : black;
+	text-decoration: none;
+}
+.leftSide .logo {
+	text-align: center;
+}
+.leftSide .logo .text1 {
+	font-weight: bolder;
+	font-size : 22px;
+	vertical-align: top;
+	margin-left : -3px;
+	color : #4a4a4a;
+}
+.leftSide .profile {
+	text-align : center;
+	margin-top : 30px;			
+}
+.leftSide .profile .imgBox {
+	width : 100px;
+	height : 100px;
+	border-radius: 50px;
+	display : inline-block;
+}
+.leftSide .profile .imgBox img {
+	background-color: #7db4f5;
+	width : 100px;
+	height : 100px;
+	border-radius: 50px;
+}
+.leftSide .profile .userInfo {
+	margin-top : 5px;
+}
+.leftSide .profile .userInfo .text1{
+	font-weight: bolder;
+	font-size : 26px;
+	margin-bottom : 5px;
+}
+.leftSide .profile .userInfo .text2{
+	color : darkgray;
+	font-size : 15px;
+}
+.leftSide .mainMenu {
+	text-align : center;
+	margin-top : 70px;
+	margin-bottom : 370px;
+}
+.leftSide .mainMenu > div {
+	margin : 53px 0px;
+	font-size : 20px;
+}
+.leftSide .mainMenu a {
+	color : #424242;
+}
+.leftSide .footer {
+	display : flex;
+	justify-content: center;
+	margin-top : 20px;
+	font-size : 15px;
+	color : gray;
+}
+.leftSide .footer .item2 {
+	margin-left: 10px;
+	margin-right : 10px;
+}
+.leftSide .footer a {
+	color : gray;
+}
+.leftSide .footerLogo {
+	text-align : center;
+	font-size : 15px;
+	margin-top : 24px;
+}
+.leftSide .footerLogo .text1 {
+	font-weight: bolder;
+	color : gray;
+}
+.rightSide {
+	padding : 20px 30px 20px 70px;
+	flex : 1;
+}
+.rightSide .myInfo {
+	display : flex;
+	justify-content: flex-end;
+	margin-right : 26px;
+}
+.rightSide .myInfo .col {
+	margin-left : 14px;
+	cursor : pointer;
+}
+.rightSide .myInfo .col1 img {
+	background-color: #7db4f5;
+	width : 25px;
+	border-radius: 13px;
+}
+.rightSide .myInfo .col2 {
+	margin-left : 3px;
+}
+.rightSide .myInfo .col2:hover .text1 {
+	text-decoration: underline;
+}
+.rightSide .myInfo .col2 .text1 {
+	line-height : 23px;
+}
+.rightSide .myInfo .col2 .text2 {
+	font-size : 10px;
+	color : gray;
+}
+iframe {
+	width : 100%;
+	height : 100%;
+	border : none;
+}

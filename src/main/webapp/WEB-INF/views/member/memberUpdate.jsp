@@ -5,12 +5,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>footer.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/footer.css" />
+	<title>memberUpdate.jsp</title>
 </head>
 <body>
-	<div class = "footerContainer">
-		
-	</div>
 </body>
 </html>

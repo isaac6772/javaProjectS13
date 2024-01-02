@@ -74,6 +74,7 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("sMid", mid);
 			session.setAttribute("sNickName", vo.getNickName());
 			session.setAttribute("sProfile", vo.getProfile());
+			session.setAttribute("sEmail", vo.getEmail());
 			
 			Cookie cookie = new Cookie("cMid", mid);
 			cookie.setPath("/");

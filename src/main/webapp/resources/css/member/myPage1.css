@@ -1,0 +1,57 @@
+body {
+	margin : 0px;
+	padding : 0px;
+	font-family: 'Nanum Gothic';
+}
+.line {
+	border-top : 1px solid rgb(226, 226, 226);
+}
+.rightSide .submenu1 {
+	border-radius: 10px;
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
+	box-sizing: border-box;
+	width : 93%;
+	margin : 30px auto;
+	padding : 20px;
+	font-size : 16px;
+}
+.rightSide .submenu1 > .line {
+	margin-top : 12px;
+	margin-bottom : 12px;
+}
+.rightSide .submenu1 img {
+	vertical-align: middle;
+}
+.rightSide .submenu1 .row {
+	display : flex;
+	justify-content: space-between;
+}
+.rightSide .submenu1 .row .text1 {
+	vertical-align: middle;
+}
+.rightSide .submenu1 .row .col2 .btn {
+	width : 28px;
+	height : 20px;
+	background-color : #eeecec;
+	font-size : 14px;
+	padding : 2px 10px 1px 10px;
+	border : 1px solid lightgray;
+	border-radius: 3px;
+	color: #777676;
+	cursor : pointer;
+}
+.rightSide .submenu1 .row1 img {
+	width : 27px;
+}
+.rightSide .submenu1 .row2 img {
+	width : 22px;
+}
+.rightSide .submenu1 .row3 img {
+	width : 23px;
+}
+.rightSide .submenu1 .row2 .text1 {
+	margin-left : 4px;
+}
+.rightSide .submenu1 .row3 .text1 {
+	margin-left : 3px;
+}

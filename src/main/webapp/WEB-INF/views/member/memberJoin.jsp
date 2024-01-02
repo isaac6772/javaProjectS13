@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>memberJoin.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/memberJoin.css" />
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/member/memberJoin.css" />
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		'use strict'

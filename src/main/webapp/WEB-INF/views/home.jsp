@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Home.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home.css" />
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/home.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://kit.fontawesome.com/0989d78570.js" crossorigin="anonymous"></script>
 	<script>
@@ -35,7 +35,7 @@
 				}
 			});
 			$('#myPage').click(function() {
-				location.href = "${ctp}/member/myPage";
+				location.href = "${ctp}/member/myPageIframe?myPage=myPage1";
 			});
 			
 			

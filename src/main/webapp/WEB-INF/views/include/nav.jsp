@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>nav.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/nav.css" />
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/nav.css" />
 </head>
 <body>
 	<div class = "navContainer">
@@ -16,6 +16,7 @@
 			<a href = "#">게시판</a>
 			<a href = "#">커뮤니티</a>
 			<a href = "#">고객센터</a>
+			<%-- <a href = "${ctp}/errorPage/errorMain">에러페이지 연습</a> --%>
 		</div>
 	</div>
 </body>

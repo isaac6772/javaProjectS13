@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>header.jsp</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/header.css" />
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/header.css" />
 </head>
 <body>
 	<div class = "headerContainer">
