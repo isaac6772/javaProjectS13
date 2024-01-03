@@ -95,4 +95,21 @@ public class MemberServiceImpl implements MemberService {
 		session.removeAttribute("sMid");
 		session.removeAttribute("sProfile");
 	}
+
+	@Override
+	public MemberVO memberUpdate(HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		MemberVO vo = memberDAO.memberMidCheck(mid);
+		return vo;
+	}
+
+	@Override
+	public int nickNameUpdate(String nickName, String mid) {
+		return memberDAO.nickNameUpdate(nickName, mid);
+	}
+
+	@Override
+	public int memnberNameUpdate(String name, String mid) {
+		return memberDAO.memnberNameUpdate(name, mid);
+	}
 }

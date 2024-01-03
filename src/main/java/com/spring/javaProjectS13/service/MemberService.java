@@ -20,4 +20,10 @@ public interface MemberService {
 	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response, Model model);
 
 	public void memberLogout(HttpSession session);
+
+	public MemberVO memberUpdate(HttpSession session);
+
+	public int nickNameUpdate(String nickName, String mid);
+
+	public int memnberNameUpdate(String name, String mid);
 }

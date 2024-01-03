@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+body {
+	margin : 0px;
+	padding : 0px;
+	font-family: 'Nanum Gothic';
+}
+.line {
+	border-top : 1px solid #d9d8d8;
+}
+.memberUpdateContainer {
+	margin-top : 20px;
+}
+.memberUpdateContainer .box{
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
+	/* border : 1px solid #cfcccc; */
+	border-radius : 5px;
+	box-sizing: border-box;
+	width : 93%;
+	margin : 0px auto;
+	margin-bottom : 30px;
+	padding : 15px 20px;
+}
+.memberUpdateContainer .title {
+	width : 93%;
+	margin : 0px auto;
+	margin-bottom : 12px;
+	font-size : 22px;
+	font-weight : bolder;
+	color: #424242;
+}
+.box .row {
+	display : flex;
+	padding : 0px 15px;
+	box-sizing: border-box;
+	height : 50px;
+	line-height : 50px;
+}
+.box .row .col1 {
+	width : 150px;
+	font-size : 13px;
+	color : #5b5b5b;
+}
+.box .row .col2 {
+	font-size : 16px;
+}
+.box .row .col3 {
+	flex : 1;
+	text-align : right;
+}
+.box .row .col3 img {
+	cursor : pointer;
+}
+.box .row .update input {
+	height: 27px;
+    border-radius: 5px;
+    border: 1px solid #bfbebe;
+    display : none;
+    outline : none;
+}
+.box .row .save {
+	flex : 1;
+	text-align : right;
+	display : none;
+}
+.box .row .save img {
+	cursor : pointer;
+}
+.update .inValidMsg {
+	color : red;
+	font-size : 14px;
+}
+.mailBox {
+	position : relative;
+}
+.mailBox input {
+	width : 200px;
+}
+.mailBox .mailCodeBtn {
+	position: absolute;
+	right : -54px;
+	top : 10px;
+	background-color: rgb(36, 128, 214);
+	color : white;
+	height : 31px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	box-sizing: border-box;
+	padding : 8px;
+	font-size : 11px;
+	display : none;
+	line-height : 15px;
+	cursor : pointer;
+}
+.row .mailSend {
+	display : none;
+	margin-left : 67px;
+}
+.row .mailSend input {
+	width : 110px;
+}
+.row .mailSend .mailCodeBtn {
+	right : -33px;
+}

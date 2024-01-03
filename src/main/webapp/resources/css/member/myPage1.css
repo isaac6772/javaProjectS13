@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
 body {
 	margin : 0px;
 	padding : 0px;
@@ -39,10 +40,4 @@ body {
 	border-radius: 3px;
 	color: #777676;
 	cursor : pointer;
-}
-.rightSide .submenu1 .row2 .text1 {
-	margin-left : 4px;
-}
-.rightSide .submenu1 .row3 .text1 {
-	margin-left : 3px;
 }

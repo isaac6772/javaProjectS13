@@ -13,4 +13,11 @@
 		insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.email},#{vo.gender}
 		,default,default,null,default,default,default,default,default,default);
 	</insert>
+	
+	<update id="nickNameUpdate">
+		update member set nickName = #{nickName} where mid = #{mid};
+	</update>
+	<update id="memnberNameUpdate">
+		update member set name = #{name} where mid = #{mid};
+	</update>
 </mapper>

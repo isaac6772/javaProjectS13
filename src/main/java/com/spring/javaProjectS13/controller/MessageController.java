@@ -34,6 +34,22 @@ public class MessageController {
 			model.addAttribute("msg","로그아웃 되었습니다.");
 			model.addAttribute("url","home");
 		}
+		else if(msgFlag.equals("nickNameUpdateOk")) {
+			model.addAttribute("msg","닉네임이 변경되었습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
+		else if(msgFlag.equals("nickNameUpdateNo")) {
+			model.addAttribute("msg","닉네임 변경에 실패하였습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
+		else if(msgFlag.equals("memnberNameUpdateOk")) {
+			model.addAttribute("msg","이름이 변경되었습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
+		else if(msgFlag.equals("memnberNameUpdateNo")) {
+			model.addAttribute("msg","이름 변경에 실패하였습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
 		
 		return "include/message";
 	}

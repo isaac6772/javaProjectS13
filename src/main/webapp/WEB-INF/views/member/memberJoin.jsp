@@ -78,8 +78,8 @@
 			<div class = "row">
 				<div class = "column1"><span>성별</span></div>
 				<div class = "column2">
-					<input type = "radio" class = "radio" value = "남" name = "gender" id = "gender1" checked /><span>남자</span>
-					<input type = "radio" class = "radio" value = "여" name = "gender" id = "gender2" /><span>여자</span>
+					<input type = "radio" class = "radio" value = "남자" name = "gender" id = "gender1" checked /><span>남자</span>
+					<input type = "radio" class = "radio" value = "여자" name = "gender" id = "gender2" /><span>여자</span>
 				</div>
 			</div>
 			<div class = "buttonBox">

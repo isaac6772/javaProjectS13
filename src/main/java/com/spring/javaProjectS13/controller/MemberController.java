@@ -114,7 +114,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberUpdate", method = RequestMethod.GET)
-	public String memberUpdateGet() {
+	public String memberUpdateGet(HttpSession session, Model model) {
+		MemberVO vo = memberService.memberUpdate(session);
+		
+		model.addAttribute("vo",vo);
+		
 		return "member/memberUpdate";
+	}
+	
+	@RequestMapping(value = "/nickNameUpdate", method = RequestMethod.GET)
+	public String nickNameUpdateGet(String nickName, HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		int res = memberService.nickNameUpdate(nickName, mid);
+		
+		if(res==1) return "redirect:/message/member/nickNameUpdateOk";
+		else return "redirect:/message/member/nickNameUpdateNo";
+	}
+	
+	@RequestMapping(value = "/memnberNameUpdate", method = RequestMethod.GET)
+	public String memnberNameUpdateGet(String name, HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		int res = memberService.memnberNameUpdate(name, mid);
+		
+		if(res==1) return "redirect:/message/member/memnberNameUpdateOk";
+		else return "redirect:/message/member/memnberNameUpdateOk";
 	}
 }

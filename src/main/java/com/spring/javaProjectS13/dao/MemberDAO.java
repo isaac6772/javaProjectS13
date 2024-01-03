@@ -11,4 +11,8 @@ public interface MemberDAO {
 	MemberVO memberNickCheck(@Param("nickName") String nickName);
 
 	int memberJoin(@Param("vo") MemberVO vo);
+
+	int nickNameUpdate(@Param("nickName") String nickName, @Param("mid") String mid);
+
+	int memnberNameUpdate(@Param("name") String name, @Param("mid") String mid);
 }
