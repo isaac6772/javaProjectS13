@@ -20,4 +20,7 @@
 	<update id="memnberNameUpdate">
 		update member set name = #{name} where mid = #{mid};
 	</update>
+	<update id="emailUpdate">
+		update member set email = #{email} where mid = #{mid};
+	</update>
 </mapper>

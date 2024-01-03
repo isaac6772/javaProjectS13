@@ -12,7 +12,7 @@
 		'use strict'
 		let contextPath = "${ctp}";
 	</script>
-	<script src = "${ctp}/js/memberJoin.js"></script>
+	<script src = "${ctp}/js/member/memberJoin.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />

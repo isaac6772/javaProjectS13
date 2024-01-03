@@ -32,7 +32,7 @@
 		$(function() {
 			let myPage = document.getElementById("myPage").src;
 			let strSrc = myPage.substring(myPage.lastIndexOf('/')+1);
-			if(strSrc=='myPage1') $('#myPage1').css('font-weight','bolder');
+			if(strSrc=='myPage1'||strSrc=='memberUpdate') $('#myPage1').css('font-weight','bolder');
 			else if(strSrc=='myPage2') $('#myPage2').css('font-weight','bolder');
 			else if(strSrc=='myPage3') $('#myPage3').css('font-weight','bolder');
 		});

@@ -112,4 +112,9 @@ public class MemberServiceImpl implements MemberService {
 	public int memnberNameUpdate(String name, String mid) {
 		return memberDAO.memnberNameUpdate(name, mid);
 	}
+
+	@Override
+	public int emailUpdate(String email, String mid) {
+		return memberDAO.emailUpdate(email, mid);
+	}
 }

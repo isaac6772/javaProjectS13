@@ -15,7 +15,7 @@
 		let name = '${vo.name}';
 		let email = '${vo.email}';
 	</script>
-	<script src = "${ctp}/js/memberUpdate.js"></script>
+	<script src = "${ctp}/js/member/memberUpdate.js"></script>
 </head>
 <body>
 	<div class = "memberUpdateContainer">
@@ -36,7 +36,9 @@
 					<span class = "inValidMsg"></span>
 				</div>
 				<div class = "col3"><img src = "${ctp}/icon/gt.png" width = "16px" onclick = "updateNickName(this)" /></div>
-				<div class = "save"><img src = "${ctp}/icon/check.png" width = "20px" id = "saveNick" onclick = "saveNickName(this)" /></div>
+				<div class = "save">
+					<img src = "${ctp}/icon/check.png" width = "20px" id = "saveNick" onclick = "saveNickName()" />
+				</div>
 			</div>
 			<div class = "line"></div>
 			<div class = "row">
@@ -47,7 +49,7 @@
 					<span class = "inValidMsg"></span>
 				</div>
 				<div class = "col3"><img src = "${ctp}/icon/gt.png" width = "16px" onclick = "updateName(this)" /></div>
-				<div class = "save"><img src = "${ctp}/icon/check.png" width = "20px" id = "saveName" onclick = "saveName(this)" /></div>
+				<div class = "save"><img src = "${ctp}/icon/check.png" width = "20px" id = "saveName" onclick = "saveName()" /></div>
 			</div>
 			<div class = "line"></div>
 			<div class = "row">
@@ -62,12 +64,14 @@
 					<input type = "text" name = "email" id = "email" />
 					<div class = "mailCodeBtn" id = "mailCodeBtn1">인증코드</div>
 				</div>
+				<div id = "loading"><img src = "${ctp}/util/loading.gif" width = "20px" /></div>
 				<div class = "update mailBox mailSend">
-					<input type = "text" name = "emailSend" id = "emailSend" />
+					<input type = "text" name = "codeSend" id = "codeSend" />
 					<div class = "mailCodeBtn" id = "mailCodeBtn2">확인</div>
 				</div>
+				<div id = "timer"></div>
 				<div class = "col3"><img src = "${ctp}/icon/gt.png" width = "16px" onclick = "updateEmail(this)" /></div>
-				<div class = "save"><img src = "${ctp}/icon/check.png" width = "20px" id = "saveEmail" onclick = "saveEmail(this)" /></div>
+				<div class = "save"><img src = "${ctp}/icon/check.png" width = "20px" id = "saveEmail" onclick = "saveEmail()" /></div>
 			</div>
 		</div>
 		<div class = "title">

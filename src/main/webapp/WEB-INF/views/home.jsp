@@ -9,46 +9,11 @@
 	<script src="https://kit.fontawesome.com/0989d78570.js" crossorigin="anonymous"></script>
 	<script>
 		'use strict';
-		
-		$(function() {
-			$('#login').on('click',function() {
-				let mid = $('#mid').val().trim();
-				let pwd = $('#pwd').val().trim();
-				
-				if(mid==''||pwd=='') {
-					alert("아이디 또는 비밀번호를 입력해주세요");
-					return false;
-				}
-				loginForm.submit();
-			});
-			$('#logout').click(function() {
-				location.href = "${ctp}/member/memberLogout";
-			});
-			$('.loginToggleBox').click(function() {
-				if($('.loginToggleBox').hasClass('checked')) {
-					$('.loginToggleBox').removeClass('checked');
-					idSave.value = "n";
-				}
-				else {
-					$('.loginToggleBox').addClass('checked');
-					idSave.value = "y";
-				}
-			});
-			$('#myPage').click(function() {
-				location.href = "${ctp}/member/myPageIframe?myPage=myPage1";
-			});
-			
-			
-			// 레벨 진행도 계산
-			let exp = '${vo.exp}';
-			let maxExp = '${maxExp}';
-			let progress = '0';
-			
-			if(exp!='') progress = exp/maxExp*100 + '%';
-			
-			$('.progressBar').css('width',progress);
-		});
+		let contextPath = '${ctp}';
+		let exp = '${vo.exp}';
+		let maxExp = '${maxExp}';
 	</script>
+	<script src = "${ctp}/js/home.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -100,7 +65,7 @@
 						<div class = "info">
 							<div class = "row1">
 								<div>${sNickName}</div>
-								<div class = "col2"><i class="fa-solid fa-gear" style="color: #bdc4d1;"></i></div>
+								<div class = "col2" id = "myPage1"><i class="fa-solid fa-gear" style="color: #bdc4d1;"></i></div>
 							</div>
 							<div class = "row2">
 								<span class = "text1">레벨 : ${vo.level}</span>
@@ -123,7 +88,7 @@
 							<span class = "text2">${vo.point}</span>
 						</div>
 						<div class = "col2">
-							<span class = "text1" id = "myPage">마이페이지</span>
+							<span class = "text1" id = "myPage2">마이페이지</span>
 						</div>
 					</div>
 					<div class = "row6">

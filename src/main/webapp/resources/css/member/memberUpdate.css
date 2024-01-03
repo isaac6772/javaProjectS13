@@ -101,3 +101,12 @@ body {
 .row .mailSend .mailCodeBtn {
 	right : -33px;
 }
+.row #loading {
+	display : none;
+    line-height: 58px;
+    margin-left: 65px;
+}
+.row #timer {
+	margin-left: 45px;
+	font-size : 14px;
+}

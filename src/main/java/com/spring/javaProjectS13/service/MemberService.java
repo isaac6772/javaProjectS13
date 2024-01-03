@@ -26,4 +26,6 @@ public interface MemberService {
 	public int nickNameUpdate(String nickName, String mid);
 
 	public int memnberNameUpdate(String name, String mid);
+
+	public int emailUpdate(String email, String mid);
 }

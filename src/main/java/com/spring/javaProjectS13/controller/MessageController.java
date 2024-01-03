@@ -50,6 +50,14 @@ public class MessageController {
 			model.addAttribute("msg","이름 변경에 실패하였습니다.");
 			model.addAttribute("url","member/memberUpdate");
 		}
+		else if(msgFlag.equals("emailUpdateOk")) {
+			model.addAttribute("msg","메일이 변경되었습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
+		else if(msgFlag.equals("emailUpdateNo")) {
+			model.addAttribute("msg","메일 변경에 실패하였습니다.");
+			model.addAttribute("url","member/memberUpdate");
+		}
 		
 		return "include/message";
 	}

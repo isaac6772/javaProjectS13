@@ -139,4 +139,13 @@ public class MemberController {
 		if(res==1) return "redirect:/message/member/memnberNameUpdateOk";
 		else return "redirect:/message/member/memnberNameUpdateOk";
 	}
+	
+	@RequestMapping(value = "/emailUpdate", method = RequestMethod.GET)
+	public String emailUpdateGet(String email, HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		int res = memberService.emailUpdate(email, mid);
+		
+		if(res==1) return "redirect:/message/member/emailUpdateOk";
+		else return "redirect:/message/member/emailUpdateNo";
+	}
 }

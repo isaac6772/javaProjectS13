@@ -15,4 +15,6 @@ public interface MemberDAO {
 	int nickNameUpdate(@Param("nickName") String nickName, @Param("mid") String mid);
 
 	int memnberNameUpdate(@Param("name") String name, @Param("mid") String mid);
+
+	int emailUpdate(@Param("email") String email, @Param("mid") String mid);
 }
