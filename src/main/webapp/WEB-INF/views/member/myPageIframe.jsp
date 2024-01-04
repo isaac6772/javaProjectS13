@@ -29,14 +29,43 @@
 			}
 		}
 		
-		// 추후 확장성을 고려한 코드 설계(다른 페이지 경로에서 마이페이지의 특정 페이지로 들어오는 경우)
+		
 		$(function() {
+			// 추후 확장성을 고려한 코드 설계(다른 페이지 경로에서 마이페이지의 특정 페이지로 들어오는 경우)
 			let myPage = document.getElementById("myPage").src;
 			let strSrc = myPage.substring(myPage.lastIndexOf('/')+1);
 			if(strSrc=='myPage1'||strSrc=='memberUpdate') $('#myPage1').css('font-weight','bolder');
 			else if(strSrc=='myPage2') $('#myPage2').css('font-weight','bolder');
 			else if(strSrc=='myPage3') $('#myPage3').css('font-weight','bolder');
+			
+			// 프로필 사진 등록하기
+			$('#profile').change(function() {
+				let file = document.getElementById("profile");
+				let fName = file.value;
+				let ext = fName.substring(fName.lastIndexOf('.')+1).toLowerCase();
+				let maxSize = 1024 * 1024 * 10;
+				
+				if(fName.trim()=='') return false;
+				if(file.files[0].size > maxSize) alert("10MB이하의 사진만 가능합니다.");
+				else if(ext != 'jpg' && ext != 'png') alert("jpg, png 형식의 사진만 가능합니다");
+				else profileForm.submit();
+			})
 		});
+		
+		function profileChangeFormShow() {
+			if($('#profileChange').is(':visible')) $('#profileChange').hide()
+			else $('#profileChange').show();
+		}
+		
+		// 기본 프로필 사진으로 바꾸기
+		function basicProfile() {
+			
+		}
+		
+		// 사용자 설정 프로필 사진 바꾸기
+		function customProfile() {
+			$('#profile').click();
+		}
 	</script>
 </head>
 <body>
@@ -49,7 +78,15 @@
 			</div>
 			<div class = "profile">
 				<div class = "imgBox">
-					<img src = "${ctp}/profile/${sProfile}" />
+					<img src = "${ctp}/profile/${sProfile}" onclick = "profileChangeFormShow()" />
+					<div class = "profileChange" id = "profileChange">
+						<div class = "text" onclick = "basicProfile()">기본이미지</div>
+						<div class = "line"></div>
+						<div class = "text" onclick = "customProfile()">사진선택</div>
+					</div>
+					<form name = "profileForm" id = "profileForm" method = "post" action = "${ctp}/member/profileChange" enctype = "multipart/form-data">
+						<input type = "file" name = "file" id = "profile" />
+					</form>
 				</div>
 				<div class = "userInfo">
 					<div class = "text1">${sNickName}</div>

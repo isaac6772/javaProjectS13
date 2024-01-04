@@ -74,6 +74,14 @@ public class MessageController {
 			model.addAttribute("msg","회원탈퇴에 실패하였습니다.");
 			model.addAttribute("url","member/myPageIframe?myPage=memberDelete");
 		}
+		else if(msgFlag.equals("profileChangeOk")) {
+			model.addAttribute("msg","프로필 사진이 변경되었습니다.");
+			model.addAttribute("url","member/myPageIframe?myPage=myPage1");
+		}
+		else if(msgFlag.equals("profileChangeNo")) {
+			model.addAttribute("msg","프로필 사진 변경에 실패하였습니다.");
+			model.addAttribute("url","member/myPageIframe?myPage=myPage1");
+		}
 		
 		return "include/message";
 	}

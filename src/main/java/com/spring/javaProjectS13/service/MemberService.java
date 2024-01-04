@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.vo.MemberVO;
 
@@ -34,4 +35,6 @@ public interface MemberService {
 	public int memberPwdChange(HttpSession session, String oldPwd, String pwd);
 
 	public int memberDelete(HttpSession session, String why);
+
+	public int profileChange(MultipartFile file, HttpSession session);
 }

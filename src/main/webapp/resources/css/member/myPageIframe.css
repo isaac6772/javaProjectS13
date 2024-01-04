@@ -5,7 +5,7 @@ body {
 	font-family: 'Nanum Gothic';
 }
 .line {
-	border-top : 1px solid rgb(226, 226, 226);
+	border-top : 1px solid rgb(243 243 243);
 }
 .myPageContainer {
 	width : 65%;
@@ -41,12 +41,39 @@ body {
 	height : 100px;
 	border-radius: 50px;
 	display : inline-block;
+	position : relative;
+}
+.leftSide .profile #profileForm {
+	display : none;
 }
 .leftSide .profile .imgBox img {
 	background-color: #7db4f5;
 	width : 100px;
 	height : 100px;
 	border-radius: 50px;
+	cursor : pointer;
+}
+.leftSide .profile .imgBox img:hover {
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
+}
+.leftSide .profile .imgBox .profileChange {
+	position : absolute;
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
+	border-radius: 5px;
+	background-color: white;
+	left : 1px;
+	box-sizing: border-box;
+	width : 100px;
+    font-size: 14px;
+    color: #3e3e3e;
+    display : none;
+}
+.leftSide .profile .imgBox .profileChange .text {
+	padding : 7px;
+	cursor : pointer;
+}
+.leftSide .profile .imgBox .profileChange .text:hover {
+	background-color : rgb(240,240,240);
 }
 .leftSide .profile .userInfo {
 	margin-top : 5px;
@@ -100,6 +127,6 @@ body {
 }
 iframe {
 	width : 100%;
-	height : 100%;
+	height : 99%;
 	border : none;
 }

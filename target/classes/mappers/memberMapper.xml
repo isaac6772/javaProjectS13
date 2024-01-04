@@ -38,4 +38,7 @@
 	<update id="memberDelete">
 		update member set level = 0, userDel = #{why} where mid = #{mid};
 	</update>
+	<update id="profileChange">
+		update member set profile = #{profile} where mid = #{mid};
+	</update>
 </mapper>

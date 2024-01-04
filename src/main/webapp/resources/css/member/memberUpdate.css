@@ -5,7 +5,7 @@ body {
 	font-family: 'Nanum Gothic';
 }
 .line {
-	border-top : 1px solid #d9d8d8;
+	border-top : 1px solid rgb(241 241 241);
 }
 .memberUpdateContainer {
 	padding : 20px;
@@ -43,6 +43,7 @@ body {
 .header .myInfo .col1 img {
 	background-color: #7db4f5;
 	width : 25px;
+	height : 25px;
 	border-radius: 13px;
 }
 .header .myInfo .col2 {

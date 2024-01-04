@@ -27,4 +27,6 @@ public interface MemberDAO {
 	int memberPwdChange(@Param("mid") String mid, @Param("pwd") String pwd);
 
 	int memberDelete(@Param("mid") String mid, @Param("why") String why);
+
+	int profileChange(@Param("mid") String mid, @Param("profile") String profile);
 }

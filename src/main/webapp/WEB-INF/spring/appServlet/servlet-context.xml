@@ -30,4 +30,9 @@
 	
 	<beans:bean id = "bCryptPasswordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
+	<beans:bean id = "multipartResolver" class = "org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value = "20971520" />
+		<beans:property name="defaultEncoding" value = "utf-8" />
+	</beans:bean>
+	
 </beans:beans>

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.service.MemberService;
 import com.spring.javaProjectS13.vo.MemberVO;
@@ -183,5 +184,13 @@ public class MemberController {
 		
 		if(res==1) return "redirect:/message/member/memberDeleteOk";
 		else return "redirect:/message/member/memberDeleteNo";
+	}
+	
+	@RequestMapping(value = "/profileChange", method = RequestMethod.POST)
+	public String profileChangeGet(MultipartFile file, HttpSession session) {
+		int res = memberService.profileChange(file, session);
+		
+		if(res==1) return "redirect:/message/member/profileChangeOk";
+		else return "redirect:/message/member/profileChangeNo";
 	}
 }

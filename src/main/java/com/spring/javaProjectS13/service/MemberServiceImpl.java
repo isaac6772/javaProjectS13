@@ -1,7 +1,11 @@
 package com.spring.javaProjectS13.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -14,7 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.vo.MemberVO;
@@ -158,5 +162,37 @@ public class MemberServiceImpl implements MemberService {
 			return 1;
 		}
 		else return 0;
+	}
+
+	@Override
+	public int profileChange(MultipartFile file, HttpSession session) {
+		int res = 0;
+		
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		String fileName = file.getOriginalFilename();
+		String ext = fileName.substring(fileName.lastIndexOf(".")+1);
+		String profile = UUID.randomUUID().toString().substring(0,12) + "_" + fileName;
+		String realPath = session.getServletContext().getRealPath("/resources/profile/");
+		MemberVO vo = memberDAO.memberMidCheck(mid);
+		
+		int maxSize = 1024 * 1024 * 10;
+		if(file.getSize() > maxSize || (!ext.equals("jpg")&&!ext.equals("png"))) return res;
+		
+		try {
+			FileOutputStream fos = new FileOutputStream(realPath + profile);
+			if(file.getBytes().length != -1) {
+				fos.write(file.getBytes());
+				int res2 = memberDAO.profileChange(mid,profile);
+				// db에서 프로필 수정 후 기존 프로필 사진 서버에서 삭제시키기
+				if(res2==1 && !vo.getProfile().equals("noImage.jpg")) {
+					new File(realPath + vo.getProfile()).delete();
+					session.setAttribute("sProfile", profile);
+				}
+				res = 1;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 }
