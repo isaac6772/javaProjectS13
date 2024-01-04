@@ -17,4 +17,14 @@ public interface MemberDAO {
 	int memnberNameUpdate(@Param("name") String name, @Param("mid") String mid);
 
 	int emailUpdate(@Param("email") String email, @Param("mid") String mid);
+
+	void memberVisitUpdate(@Param("idx") int idx);
+
+	void memberLastDateUpdate(@Param("idx") int idx);
+
+	MemberVO memberEmailCheck(@Param("email") String email);
+
+	int memberPwdChange(@Param("mid") String mid, @Param("pwd") String pwd);
+
+	int memberDelete(@Param("mid") String mid, @Param("why") String why);
 }

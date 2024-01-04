@@ -8,10 +8,13 @@
 	<select id="memberNickCheck" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select * from member where nickName = #{nickName};
 	</select>
+	<select id="memberEmailCheck" resultType = "com.spring.javaProjectS13.vo.MemberVO">
+		select * from member where email = #{email};
+	</select>
 	
 	<insert id="memberJoin">
 		insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.email},#{vo.gender}
-		,default,default,null,default,default,default,default,default,default);
+		,default,default,null,default,default,default,default,default,default,null);
 	</insert>
 	
 	<update id="nickNameUpdate">
@@ -22,5 +25,17 @@
 	</update>
 	<update id="emailUpdate">
 		update member set email = #{email} where mid = #{mid};
+	</update>
+	<update id="memberVisitUpdate">
+		update member set visitCnt = visitCnt + 1, point = point + 1, exp = exp + 1 where idx = #{idx};
+	</update>
+	<update id="memberLastDateUpdate">
+		update member set lastDate = now() where idx = #{idx};
+	</update>
+	<update id="memberPwdChange">
+		update member set pwd = #{pwd} where mid = #{mid};
+	</update>
+	<update id="memberDelete">
+		update member set level = 0, userDel = #{why} where mid = #{mid};
 	</update>
 </mapper>

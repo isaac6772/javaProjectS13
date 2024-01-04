@@ -196,7 +196,8 @@
 	margin-bottom : 20px;
 }
 .memberBox .row5 .col1 .text2 {
-	color : red;
+	color: #ffa600;
+    font-size: 13px;
 	font-weight : bolder;
 }
 .memberBox .row5 .col2 .text1 {

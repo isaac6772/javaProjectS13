@@ -33,8 +33,14 @@ $(function() {
 	
 	// 레벨 진행도 계산
 	let progress = '0';
-	
 	if(exp!='') progress = exp/maxExp*100 + '%';
 	
 	$('.progressBar').css('width',progress);
+	
+	// 비밀번호 입력창에서 엔터키 누르면 로그인 되는 기능
+	$('#pwd').keyup(function(e) {
+		if(e.keyCode == 13) {
+			$('#login').click();
+		}
+	})
 });

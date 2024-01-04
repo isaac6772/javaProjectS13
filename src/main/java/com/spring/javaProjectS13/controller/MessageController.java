@@ -58,6 +58,22 @@ public class MessageController {
 			model.addAttribute("msg","메일 변경에 실패하였습니다.");
 			model.addAttribute("url","member/memberUpdate");
 		}
+		else if(msgFlag.equals("memberPwdChangeOk")) {
+			model.addAttribute("msg","비밀번호가 변경되었습니다.");
+			model.addAttribute("url","home");
+		}
+		else if(msgFlag.equals("memberPwdChangeNo")) {
+			model.addAttribute("msg","비밀번호가 틀렸습니다.");
+			model.addAttribute("url","member/myPageIframe?myPage=memberPwdChange");
+		}
+		else if(msgFlag.equals("memberDeleteOk")) {
+			model.addAttribute("msg","회원탈퇴가 성공적으로 처리되었습니다.");
+			model.addAttribute("url","home");
+		}
+		else if(msgFlag.equals("memberDeleteNo")) {
+			model.addAttribute("msg","회원탈퇴에 실패하였습니다.");
+			model.addAttribute("url","member/myPageIframe?myPage=memberDelete");
+		}
 		
 		return "include/message";
 	}

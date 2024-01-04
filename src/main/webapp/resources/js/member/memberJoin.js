@@ -10,6 +10,7 @@ let regMid = /^[a-zA-Z0-9]{4,15}$/;
 let regPwd = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_\-+=\|\]\[}{;:/?.>,<"'])[\w"'`~!@#$%^&*()_\-+=\|\]\[}{;:/?.>,<]{4,15}$/;
 let regNickName = /^[\w가-힣]{2,7}$/;
 let regName = /^[가-힣]{1,20}$/;
+let regEmail = /[\w]+@[\w]+[.][\w]+$/;
 
 let totalTime;
 let intervalId;
@@ -64,7 +65,7 @@ $(function() {
 		}
 	});
 	$('#pwd2').keyup(function() {
-		if($('#pwd').val()==$('#pwd2').val()) {
+		if($('#pwd').val().trim()==$('#pwd2').val().trim()) {
 			pwd2Flag = true;
 			$('#pwd2').removeClass("inValid");
 			$('#pwd2').addClass("valid");
@@ -123,31 +124,84 @@ $(function() {
 			$('#name').next().html("이름이 형식에 맞지 않습니다.");
 		}
 	});
-	$('.mailSend').click(function() {
-		if($('#email').val().trim()=='') {
-			alert("이메일을 입력해주세요");
-			return false;
-		}
-		$('#timer').html('<img src = "'+contextPath+'/util/loading.gif" width = "27px" height = "27px" />')
-		$('#email').prop('readonly',true);
-		$('#email').css('background-color','lightgray');
-		totalTime = 30;
-		
-		$.ajax({
-			url : contextPath + "/member/mailCodeSend",
-			type : "post",
-			data : {email : $('#email').val()},
-			success : function(res) {
-				if(res==1) {
-					clearInterval(intervalId);
-					intervalId = setInterval(updateTime,1000);
+	$('#email').keyup(function() {
+		if(regEmail.test($('#email').val().trim())) {
+			$.ajax({
+				url : contextPath + "/member/memberEmailCheck",
+				type : "post",
+				data : {email : $('#email').val().trim()},
+				success : function(res) {
+					if(res==1) {
+						$('#email').removeClass("inValid");
+						$('#email').addClass("valid");
+						$('#email').parent().next().html("");
+					}
+					else {
+						$('#email').removeClass("valid");
+						$('#email').addClass("inValid");
+						$('#email').parent().next().html("중복된 이메일이 존재합니다.");
+					}
+				},
+				error : function() {
+					alert("전송오류");
 				}
-				else alert("메일전송실패");
-			},
-			error : function() {
-				alert("전송오류");
-			}
-		});
+			});
+		}
+		else {
+			$('#email').removeClass("valid");
+			$('#email').addClass("inValid");
+			$('#email').parent().next().html("이메일이 형식에 맞지 않습니다.");
+		}
+	});
+	$('.mailSend').click(function() {
+		if(regEmail.test($('#email').val().trim())) {
+			$.ajax({
+				url : contextPath + "/member/memberEmailCheck",
+				type : "post",
+				data : {email : $('#email').val().trim()},
+				success : function(res) {
+					if(res==1) {
+						$('#email').removeClass("inValid");
+						$('#email').addClass("valid");
+						$('#email').parent().next().html("");
+						
+						$('#timer').html('<img src = "'+contextPath+'/util/loading.gif" width = "27px" height = "27px" />')
+						$('#email').prop('readonly',true);
+						$('#email').css('background-color','lightgray');
+						totalTime = 30;
+						
+						$.ajax({
+							url : contextPath + "/member/mailCodeSend",
+							type : "post",
+							data : {email : $('#email').val()},
+							success : function(res) {
+								if(res==1) {
+									clearInterval(intervalId);
+									intervalId = setInterval(updateTime,1000);
+								}
+								else alert("메일전송실패");
+							},
+							error : function() {
+								alert("전송오류");
+							}
+						});
+					}
+					else {
+						$('#email').removeClass("valid");
+						$('#email').addClass("inValid");
+						$('#email').parent().next().html("중복된 이메일이 존재합니다.");
+					}
+				},
+				error : function() {
+					alert("전송오류");
+				}
+			});
+		}
+		else {
+			$('#email').removeClass("valid");
+			$('#email').addClass("inValid");
+			$('#email').parent().next().html("이메일이 형식에 맞지 않습니다.");
+		}
 		
 		function updateTime() {
 			minute = (Math.floor(totalTime/60)+"").length==1 ? '0' + Math.floor(totalTime/60) : Math.floor(totalTime/60);
@@ -203,7 +257,7 @@ $(function() {
 		if(pwd2Flag==false) $('#pwd2').addClass("inValid");
 		if(nickNameFlag==false) $('#nickName').addClass("inValid");
 		if(nameFlag==false) $('#name').addClass("inValid");
-		if(emailFlag==false) alert("메일인증을 해주세요");
+		if(emailFlag==false) $('#email').addClass("inValid");
 		if(midFlag==true&&pwdFlag==true&&pwd2Flag==true&&nickNameFlag==true&&nameFlag==true&&emailFlag==true) {
 			joinForm.submit();
 		}

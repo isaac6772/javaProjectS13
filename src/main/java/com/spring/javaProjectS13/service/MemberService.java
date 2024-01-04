@@ -17,7 +17,7 @@ public interface MemberService {
 
 	public int memberJoin(MemberVO vo);
 
-	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response, Model model);
+	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response);
 
 	public void memberLogout(HttpSession session);
 
@@ -28,4 +28,10 @@ public interface MemberService {
 	public int memnberNameUpdate(String name, String mid);
 
 	public int emailUpdate(String email, String mid);
+
+	public MemberVO memberEmailCheck(String email);
+
+	public int memberPwdChange(HttpSession session, String oldPwd, String pwd);
+
+	public int memberDelete(HttpSession session, String why);
 }

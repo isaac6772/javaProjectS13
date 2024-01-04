@@ -5,8 +5,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>myPage1.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/member/myPage1.css" />
+	<title>memberPwdChange.jsp</title>
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/member/memberPwdChange.css" />
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script>
+		'use strict';
+		let contextPath = '${ctp}';
+	</script>
+	<script src = "${ctp}/js/member/memberPwdChange.js"></script>
 </head>
 <body>
 	<div class = "rightSide">
@@ -18,7 +24,11 @@
 					</a>
 				</div>
 				<div class = "text symbol">></div>
-				<div class = "text">계정관리</div>
+				<div class = "text">
+					<a href = "${ctp}/member/myPage1">계정관리</a>
+				</div>
+				<div class = "text symbol">></div>
+				<div class = "text">비밀번호 변경</div>
 			</div>
 			<div class = "myInfo">
 				<div class = "col1 col">
@@ -63,6 +73,35 @@
 					<div class = "btn" onclick = "location.href='memberDelete'">탈퇴</div>
 				</div>
 			</div>
+		</div>
+		<div class = "pwdChangeContainer">
+			<form class = "pwdChangeForm" name = "pwdChangeForm" method = "post">
+				<div class = "row">
+					<div class = "col1">현재 비밀번호</div>
+					<div class = "col2">
+						<input type = "password" name = "pwd" id = "pwd" placeholder = "기존비밀번호를 입력해주세요" maxlength = 15 />
+					</div>
+				</div>
+				<div class = "row2 row">
+					<div class = "col1">새 비밀번호</div>
+					<div class = "col2">
+						<input type = "password" name = "newPwd" id = "newPwd" placeholder = "영어, 숫자, 특수문자 조합 4~15자" maxlength = 15 />
+						<div id = "newPwdMsg" class = "msg"></div>
+					</div>
+				</div>
+				<div class = "row3 row">
+					<div class = "col1">새 비밀번호 확인</div>
+					<div class = "col2">
+						<input type = "password" name = "newPwd2" id = "newPwd2" placeholder = "영어, 숫자, 특수문자 조합 4~15자" maxlength = 15 />
+						<div id = "newPwd2Msg" class = "msg"></div>
+					</div>
+				</div>
+				<div class = "row4">
+					<div class = "col1">
+						<div class = "pwdChangeBtn" onclick = "pwdChange()">수정</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

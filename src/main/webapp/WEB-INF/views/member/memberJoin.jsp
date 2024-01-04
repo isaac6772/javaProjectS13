@@ -31,14 +31,14 @@
 			<div class = "row">
 				<div class = "column1"><span>비밀번호</span></div>
 				<div class = "column2">
-					<input type = "password" name = "pwd" id = "pwd" />
+					<input type = "password" name = "pwd" id = "pwd" maxlength = 15 />
 					<div class = "msg"></div>
 				</div>
 			</div>
 			<div class = "row">
 				<div class = "column1"><span>비밀번호 확인</span></div>
 				<div class = "column2">
-					<input type = "password" id = "pwd2" />
+					<input type = "password" id = "pwd2" maxlength = 15 />
 					<div class = "msg"></div>
 				</div>
 			</div>
@@ -63,6 +63,7 @@
 						<input type = "text" name = "email" id = "email" />
 						<div class = "mailCodeBtn mailSend">인증코드발송</div>
 					</div>
+					<div class = "msg"></div>
 				</div>
 			</div>
 			<div class = "row">

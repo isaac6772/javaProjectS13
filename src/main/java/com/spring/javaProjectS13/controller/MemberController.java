@@ -86,10 +86,20 @@ public class MemberController {
 		return res;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/memberEmailCheck", method = RequestMethod.POST)
+	public String memberEmailCheckPost(String email) {
+		String res = "0";
+		
+		MemberVO vo = memberService.memberEmailCheck(email);
+		if(vo == null) res = "1";
+		
+		return res;
+	}
+	
 	@RequestMapping(value = "/memberLogin", method = RequestMethod.POST)
-	public String memberLoginPost(String mid, String pwd, String idSave, HttpSession session, 
-			HttpServletResponse response, Model model) {
-		int res = memberService.memberLogin(mid, pwd, idSave, session, response, model);
+	public String memberLoginPost(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response) {
+		int res = memberService.memberLogin(mid, pwd, idSave, session, response);
 		
 		if(res==1) return "redirect:/message/member/memberLoginOk";
 		else return "redirect:/message/member/memberLoginNo";
@@ -147,5 +157,31 @@ public class MemberController {
 		
 		if(res==1) return "redirect:/message/member/emailUpdateOk";
 		else return "redirect:/message/member/emailUpdateNo";
+	}
+	
+	@RequestMapping(value = "/memberPwdChange", method = RequestMethod.GET)
+	public String memberPwdChangeGet() {
+		return "member/memberPwdChange";
+	}
+	
+	@RequestMapping(value = "/memberPwdChange", method = RequestMethod.POST)
+	public String memberPwdChangePost(HttpSession session, String pwd, String newPwd) {
+		int res = memberService.memberPwdChange(session, pwd, newPwd);
+		
+		if(res==1) return "redirect:/message/member/memberPwdChangeOk";
+		else return "redirect:/message/member/memberPwdChangeNo";
+	}
+	
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.GET)
+	public String memberDeleteGet() {
+		return "member/memberDelete";
+	}
+	
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
+	public String memberDeletePost(HttpSession session, String why) {
+		int res = memberService.memberDelete(session, why);
+		
+		if(res==1) return "redirect:/message/member/memberDeleteOk";
+		else return "redirect:/message/member/memberDeleteNo";
 	}
 }

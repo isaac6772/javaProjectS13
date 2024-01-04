@@ -2,6 +2,7 @@
 
 let regNickName = /^[\w가-힣]{2,7}$/;
 let regName = /^[가-힣]{1,20}$/;
+let regEmail = /[\w]+@[\w]+[.][\w]+$/;
 let nickNameFlag = false;
 let nameFlag = false;
 let emailFlag = false;
@@ -103,44 +104,68 @@ $(function() {
 		}
 	});
 	
-	$('#mailCodeBtn1').click(function() {
-		clearInterval(intervalId);
-		$('#email').prop('readonly',true);
-		$('#email').css('backgroundColor','#ebebeb');
-		$('.mailSend').hide();
-		$('#codeSend').hide();
-		$('#mailCodeBtn2').hide();
-		$('#loading').show();
-		$('#timer').html('');
-		$.ajax({
-			url : contextPath + "/member/mailCodeSend",
-			data : {email : $('#email').val().trim()},
-			type : "post",
-			success : function(res) {
-				if(res==1) {
-					$('#loading').hide();
-					totalTime = 30;
-					intervalId = setInterval(count,1000);
-					$('.mailSend').show();
-					$('#codeSend').show();
-					$('#mailCodeBtn2').show();
+	$('#email').keyup(function() {
+		if(regEmail.test($('#email').val().trim())) {
+			$.ajax({
+				url : contextPath + "/member/memberEmailCheck",
+				type : "post",
+				data : {email : $('#email').val().trim()},
+				success : function(res) {
+					if(res==1) $('.mailBox #msg').html("");
+					else $('.mailBox #msg').html("중복된 이메일이 존재합니다.");
+				},
+				error : function() {
+					alert("전송오류");	
 				}
-			},
-			error : function() {
-				alert("전송오류");
-			}
-		});
-		
-		function count() {
-			minute = Math.floor(totalTime/60)<10 ? '0'+ Math.floor(totalTime/60) : Math.floor(totalTime/60);
-			second = totalTime%60<10 ? '0'+ totalTime%60 : totalTime%60;
-			$('#timer').html(minute + " : " + second);
-			totalTime--;
-			if(totalTime<=0) {
-				clearInterval(intervalId);
-				$('#timer').html('<font style = "color:red">시간초과</font>');
-			}
+			});
 		}
+		else $('.mailBox #msg').html("이메일이 형식에 맞지 않습니다.");
+	});
+	
+	$('#mailCodeBtn1').click(function() {
+		if(regEmail.test($('#email').val().trim())) {
+			$.ajax({
+				url : contextPath + "/member/memberEmailCheck",
+				type : "post",
+				data : {email : $('#email').val().trim()},
+				success : function(res) {
+					if(res==1) {
+						$('.mailBox #msg').html("");
+						clearInterval(intervalId);
+						$('#email').prop('readonly',true);
+						$('#email').css('backgroundColor','#ebebeb');
+						$('.mailSend').hide();
+						$('#codeSend').hide();
+						$('#mailCodeBtn2').hide();
+						$('#loading').show();
+						$('#timer').html('');
+						$.ajax({
+							url : contextPath + "/member/mailCodeSend",
+							data : {email : $('#email').val().trim()},
+							type : "post",
+							success : function(res) {
+								if(res==1) {
+									$('#loading').hide();
+									totalTime = 30;
+									intervalId = setInterval(count,1000);
+									$('.mailSend').show();
+									$('#codeSend').show();
+									$('#mailCodeBtn2').show();
+								}
+							},
+							error : function() {
+								alert("전송오류");
+							}
+						});
+					}
+					else $('.mailBox #msg').html("중복된 이메일이 존재합니다.");
+				},
+				error : function() {
+					alert("전송오류");	
+				}
+			});
+		}
+		else $('.mailBox #msg').html("이메일이 형식에 맞지 않습니다.");
 	});
 	
 	$('#mailCodeBtn2').click(function() {
@@ -176,4 +201,15 @@ $(function() {
 			}
 		});
 	});
+	
+	function count() {
+		minute = Math.floor(totalTime/60)<10 ? '0'+ Math.floor(totalTime/60) : Math.floor(totalTime/60);
+		second = totalTime%60<10 ? '0'+ totalTime%60 : totalTime%60;
+		$('#timer').html(minute + " : " + second);
+		totalTime--;
+		if(totalTime<=0) {
+			clearInterval(intervalId);
+			$('#timer').html('<font style = "color:red">시간초과</font>');
+		}
+	}
 });

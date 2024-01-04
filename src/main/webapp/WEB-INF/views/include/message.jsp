@@ -8,6 +8,6 @@
 <title>message.jsp</title>
 <script>
 	if("${msg}"!='') alert("${msg}");
-	location.href = "${ctp}/${url}";
+	window.top.location.href = "${ctp}/${url}";
 </script>
 </html>

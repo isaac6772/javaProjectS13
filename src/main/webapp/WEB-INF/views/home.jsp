@@ -68,23 +68,28 @@
 								<div class = "col2" id = "myPage1"><i class="fa-solid fa-gear" style="color: #bdc4d1;"></i></div>
 							</div>
 							<div class = "row2">
-								<span class = "text1">레벨 : ${vo.level}</span>
-								<span class = "text2">(${vo.exp} / ${maxExp})</span>
+								<c:if test="${vo.level==77}">관리자계정</c:if>
+								<c:if test="${vo.level!=77}">
+									<span class = "text1">레벨 : ${vo.level}</span>
+									<span class = "text2">(${vo.exp} / ${maxExp})</span>
+								</c:if>
 							</div>
 						</div>
 					</div>
-					<div class = "row3">
-						<div class = "progressContainer">
-							<div class = "progressBar"></div>
+					<c:if test="${vo.level!=77}">
+						<div class = "row3">
+							<div class = "progressContainer">
+								<div class = "progressBar"></div>
+							</div>
 						</div>
-					</div>
+					</c:if>
 					<div class = "row4">
 						<span>알림</span> | <span>쪽지</span>
 					</div>
 					<div class = "line"></div>
 					<div class = "row5">
 						<div class = "col1">
-							<span><i class="fa-solid fa-coins" style="color: #eacc0b;"></i> point&nbsp;</span>
+							<span><i class="fa-solid fa-coins" style="color: #eacc0b;"></i> point</span>
 							<span class = "text2">${vo.point}</span>
 						</div>
 						<div class = "col2">

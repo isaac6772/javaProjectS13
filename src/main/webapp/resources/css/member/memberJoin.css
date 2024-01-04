@@ -51,16 +51,16 @@
 }
 #joinForm .mailBox {
 	position: relative;
-	border : 1px solid rgb(203, 203, 203);
 	border-radius: 5px;
 	width : 95%;
 }
 #joinForm .mailBox input {
-	height : 25px;
-	border-radius: 5px;
+	height : 23px;
+	border-top-left-radius : 5px;
+	border-bottom-left-radius : 5px;
 	outline: none;
-	width : 100%;
-	border : 0;
+	width : 81%;
+	border : 1px solid rgb(203, 203, 203);
 	padding-left : 7px;
 }
 #joinForm .mailCodeBox {
@@ -107,7 +107,7 @@
 #joinForm .valid {
 	border : 1px solid green;		
 }
-#joinForm .inValid {
+#joinForm input.inValid {
 	border : 1px solid red;		
 }
 #joinForm .msg {

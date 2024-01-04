@@ -29,6 +29,7 @@
 			}
 		}
 		
+		// 추후 확장성을 고려한 코드 설계(다른 페이지 경로에서 마이페이지의 특정 페이지로 들어오는 경우)
 		$(function() {
 			let myPage = document.getElementById("myPage").src;
 			let strSrc = myPage.substring(myPage.lastIndexOf('/')+1);
@@ -83,18 +84,6 @@
 			</div>
 		</div>
 		<div class = "rightSide">
-			<div class = "myInfo">
-				<div class = "col1 col">
-					<img src = "${ctp}/profile/${sProfile}" />
-				</div>
-				<div class = "col2 col">
-					<span class = "text1">${sNickName}</span>
-					<span class = "text2">▼</span>
-				</div>
-				<div class = "col3 col"><img src = "${ctp}/icon/bell.png" width = 24px height = 22px/></div>
-				<div class = "col4 col"><img src = "${ctp}/icon/message.png" width = 25px height = 20px/></div>
-				<div class = "col5 col"><img src = "${ctp}/icon/menu.png" width = 20px /></div>
-			</div>
 			<iframe src = "${param.myPage}" name = "rightSide" id = "myPage"></iframe>
 		</div>
 	</div>

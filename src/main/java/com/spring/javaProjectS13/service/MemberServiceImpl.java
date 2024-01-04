@@ -1,5 +1,8 @@
 package com.spring.javaProjectS13.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
@@ -54,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 		String regPwd = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_\\-+=\\|\\]\\[}{;:/?.>,<\"'])[\\w\"'`~!@#$%^&*()_\\-+=\\|\\]\\[}{;:/?.>,<]{4,15}$";
 		String regNickName = "^[\\w가-힣]{2,7}$";
 		String regName = "^[가-힣]{1,20}$";
-		String regEmail = "^[\\w]+@[\\w]+.[\\w]+$";
+		String regEmail = "^[\\w]+@[\\w]+[.][\\w]+$";
 		// backend 정규식 유효성 검사, 닉네임, 아이디 중복체크
 		
 		if(!vo.getMid().matches(regMid) || !vo.getPwd().matches(regPwd) || !vo.getNickName().matches(regNickName)
@@ -68,22 +71,32 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response, Model model) {
+	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response) {
 		MemberVO vo = memberDAO.memberMidCheck(mid);
-		if(vo != null && passwordEncoder.matches(pwd, vo.getPwd())) {
+		if(vo != null && vo.getLevel()!= 0 &&passwordEncoder.matches(pwd, vo.getPwd())) {
 			session.setAttribute("sMid", mid);
 			session.setAttribute("sNickName", vo.getNickName());
 			session.setAttribute("sProfile", vo.getProfile());
 			session.setAttribute("sEmail", vo.getEmail());
 			
+			// 아이디 저장 정보 쿠키저장
 			Cookie cookie = new Cookie("cMid", mid);
 			cookie.setPath("/");
 			if(idSave.equals("y")) {
 				cookie.setMaxAge(60*60*24*7);
-				System.out.println("쿠키 : " + cookie.getValue());
 			}
 			else cookie.setMaxAge(0);
 			response.addCookie(cookie);
+			
+			// 방문횟수와 포인트, 경험치 증가시키기(출석포인트는 1포인트)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today = sdf.format(new Date());
+			
+			if(!vo.getLastDate().substring(0,10).equals(today)) {
+				memberDAO.memberVisitUpdate(vo.getIdx());
+			}
+			// 마지막 방문시간 업데이트
+			memberDAO.memberLastDateUpdate(vo.getIdx());
 			
 			return 1;
 		}
@@ -116,5 +129,34 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int emailUpdate(String email, String mid) {
 		return memberDAO.emailUpdate(email, mid);
+	}
+
+	@Override
+	public MemberVO memberEmailCheck(String email) {
+		return memberDAO.memberEmailCheck(email);
+	}
+
+	@Override
+	public int memberPwdChange(HttpSession session, String oldPwd, String pwd) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		MemberVO vo = memberDAO.memberMidCheck(mid);
+		if(passwordEncoder.matches(oldPwd, vo.getPwd())) {
+			pwd = passwordEncoder.encode(pwd);
+			int res = memberDAO.memberPwdChange(mid,pwd);
+			session.invalidate();
+			return res;
+		}
+		else return 0;
+	}
+
+	@Override
+	public int memberDelete(HttpSession session, String why) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		int res = memberDAO.memberDelete(mid,why);
+		if(res==1) {
+			session.invalidate();
+			return 1;
+		}
+		else return 0;
 	}
 }
