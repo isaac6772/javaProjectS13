@@ -1,13 +1,16 @@
 .line {
 	border-top : 1px solid rgb(211, 211, 211);
 }
+.homeContainer {
+	padding : 15px;
+	display : flex;
+}
 .leftSide {
-	float : left;
-	width : 80%;
+	flex : 4.5;
+	margin-right : 28px;
 }
 .rightSide {
-	float : right;
-	width : 20%;
+	flex : 1;
 }
 .wordCloudBox {
 	border: 1px solid black;
@@ -25,10 +28,10 @@
 	height : 300px 
 }
 .loginBox {
-	border: 1px solid black;
+	border: 1px solid #e1e1e1;
+	border-radius : 10px;
 	padding : 20px;
-	height : 300px;
-	margin : 0px;	
+	margin-bottom : 15px;
 }
 .loginBox a {
 	color : black;
@@ -119,8 +122,10 @@
 	color : gray;
 }
 .memberBox {
-	height : 300px;
+	border: 1px solid #e1e1e1;
+	border-radius : 10px;
 	padding : 20px;
+	margin-bottom : 15px;
 }
 .memberBox > .row1 {
 	margin-bottom : 5px;
@@ -221,12 +226,14 @@
 	cursor : pointer;
 }
 .adBox {
-	border: 1px solid black;
+	/* border: 1px solid #e1e1e1;
+	border-radius : 10px; */
 	padding : 20px;
-	height : 300px;
+	margin-bottom : 15px;
 }
-.comunityBox {
-	border: 1px solid black;
-	padding : 20px;
-	height : 300px;
+.adBox .title {
+	margin-bottom : 10px;
+}
+.adBox .adImgBox img {
+	border-radius: 5px;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MessageController {
 	
 	@RequestMapping(value = "/member/{msgFlag}", method = RequestMethod.GET)
-	public String memberJoinOk(Model model, @PathVariable String msgFlag) {
+	public String memberMessage(Model model, @PathVariable String msgFlag) {
 		
 		if(msgFlag.equals("memberJoinOk")) {
 			model.addAttribute("msg","회원가입을 축하드립니다.");
@@ -36,19 +36,19 @@ public class MessageController {
 		}
 		else if(msgFlag.equals("nickNameUpdateOk")) {
 			model.addAttribute("msg","닉네임이 변경되었습니다.");
-			model.addAttribute("url","member/memberUpdate");
+			model.addAttribute("url","member/myPageIframe?myPage=memberUpdate");
 		}
 		else if(msgFlag.equals("nickNameUpdateNo")) {
 			model.addAttribute("msg","닉네임 변경에 실패하였습니다.");
-			model.addAttribute("url","member/memberUpdate");
+			model.addAttribute("url","member/myPageIframe?myPage=memberUpdate");
 		}
 		else if(msgFlag.equals("memnberNameUpdateOk")) {
 			model.addAttribute("msg","이름이 변경되었습니다.");
-			model.addAttribute("url","member/memberUpdate");
+			model.addAttribute("url","member/myPageIframe?myPage=memberUpdate");
 		}
 		else if(msgFlag.equals("memnberNameUpdateNo")) {
 			model.addAttribute("msg","이름 변경에 실패하였습니다.");
-			model.addAttribute("url","member/memberUpdate");
+			model.addAttribute("url","member/myPageIframe?myPage=memberUpdate");
 		}
 		else if(msgFlag.equals("emailUpdateOk")) {
 			model.addAttribute("msg","메일이 변경되었습니다.");
@@ -81,6 +81,20 @@ public class MessageController {
 		else if(msgFlag.equals("profileChangeNo")) {
 			model.addAttribute("msg","프로필 사진 변경에 실패하였습니다.");
 			model.addAttribute("url","member/myPageIframe?myPage=myPage1");
+		}
+		
+		return "include/message";
+	}
+	
+	@RequestMapping("/interceptor/{interceptorFlag}")
+	public String loginNo(Model model, @PathVariable String interceptorFlag) {
+		if(interceptorFlag.equals("loginNo")) {
+			model.addAttribute("msg","로그인 후 이용바랍니다.");
+			model.addAttribute("url","home");
+		}
+		else if(interceptorFlag.equals("adminNo")) {
+			model.addAttribute("msg","관리자 계정만 접근가능합니다.");
+			model.addAttribute("url","home");
 		}
 		
 		return "include/message";

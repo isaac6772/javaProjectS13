@@ -30,6 +30,9 @@ $(function() {
 	$('#myPage2').click(function() {
 		location.href = contextPath + "/member/myPageIframe?myPage=myPage1";
 	});
+	$('#adminPage').click(function() {
+		location.href = contextPath + "/admin/adminMain";
+	});
 	
 	// 레벨 진행도 계산
 	let progress = '0';

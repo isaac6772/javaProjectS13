@@ -67,7 +67,7 @@ body {
 	width : 93%;
 	margin : 0px auto;
 	margin-bottom : 30px;
-	padding : 15px 20px;
+	padding : 15px 0px;
 }
 .memberUpdateContainer .title {
 	width : 93%;
@@ -78,10 +78,13 @@ body {
 }
 .box .row {
 	display : flex;
-	padding : 0px 15px;
+	padding : 0px 25px;
 	box-sizing: border-box;
 	height : 50px;
 	line-height : 50px;
+}
+.box .row:hover {
+	background-color : #f2f0f0;
 }
 .box .row .col1 {
 	width : 150px;

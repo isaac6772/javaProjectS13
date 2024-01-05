@@ -34,7 +34,7 @@ public class HomeController {
 		model.addAttribute("vo",vo);
 		model.addAttribute("maxExp",maxExp);
 		
-		return "home";
+		return "home/home";
 	}
 	
 }

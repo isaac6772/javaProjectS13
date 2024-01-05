@@ -81,7 +81,6 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("sMid", mid);
 			session.setAttribute("sNickName", vo.getNickName());
 			session.setAttribute("sProfile", vo.getProfile());
-			session.setAttribute("sEmail", vo.getEmail());
 			
 			// 아이디 저장 정보 쿠키저장
 			Cookie cookie = new Cookie("cMid", mid);
@@ -134,12 +133,14 @@ public class MemberServiceImpl implements MemberService {
 	public int emailUpdate(String email, String mid) {
 		return memberDAO.emailUpdate(email, mid);
 	}
-
+	
+	// 이메일 중복 확인
 	@Override
 	public MemberVO memberEmailCheck(String email) {
 		return memberDAO.memberEmailCheck(email);
 	}
-
+	
+	// 회원 비밀번호 변경하기
 	@Override
 	public int memberPwdChange(HttpSession session, String oldPwd, String pwd) {
 		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
@@ -152,7 +153,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 		else return 0;
 	}
-
+	
+	// 회원탈퇴처리
 	@Override
 	public int memberDelete(HttpSession session, String why) {
 		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
@@ -163,7 +165,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 		else return 0;
 	}
-
+	
+	// 프로필 사진 변경
 	@Override
 	public int profileChange(MultipartFile file, HttpSession session) {
 		int res = 0;
@@ -186,13 +189,27 @@ public class MemberServiceImpl implements MemberService {
 				// db에서 프로필 수정 후 기존 프로필 사진 서버에서 삭제시키기
 				if(res2==1 && !vo.getProfile().equals("noImage.jpg")) {
 					new File(realPath + vo.getProfile()).delete();
-					session.setAttribute("sProfile", profile);
 				}
 				res = 1;
+				session.setAttribute("sProfile", profile);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	// 기본 프로필 사진으로 변경하기
+	@Override
+	public void basicProfileChange(HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		MemberVO vo = memberDAO.memberMidCheck(mid);
+		String realPath = session.getServletContext().getRealPath("/resources/profile/");
+		
+		if(!vo.getProfile().equals("noImage.jpg")) {
+			new File(realPath + vo.getProfile()).delete();
+			memberDAO.profileChange(mid, "noImage.jpg");
+			session.setAttribute("sProfile", "noImage.jpg");
+		}
 	}
 }

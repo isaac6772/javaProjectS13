@@ -50,7 +50,7 @@
 		<div class = "title">
 			<span>회원정보</span>
 		</div>
-		<div class = "box">
+		<div class = "box box1">
 			<div class = "row">
 				<div class = "col1">아이디</div>
 				<div class = "col2">${vo.mid}</div>
@@ -106,7 +106,7 @@
 		<div class = "title">
 			<span>활동내역</span>
 		</div>
-		<div class = "box">
+		<div class = "box box2">
 			<div class = "row">
 				<div class = "col1">가입일자</div>
 				<div class = "col2">

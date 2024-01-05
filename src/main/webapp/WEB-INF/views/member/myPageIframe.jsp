@@ -50,6 +50,10 @@
 				else if(ext != 'jpg' && ext != 'png') alert("jpg, png 형식의 사진만 가능합니다");
 				else profileForm.submit();
 			})
+			
+			document.click(function(e) {
+				if($(e.target)==$('#profileImg')) alert("이미지를 클릭하셨네요");
+			});
 		});
 		
 		function profileChangeFormShow() {
@@ -57,15 +61,11 @@
 			else $('#profileChange').show();
 		}
 		
-		// 기본 프로필 사진으로 바꾸기
-		function basicProfile() {
-			
-		}
-		
 		// 사용자 설정 프로필 사진 바꾸기
 		function customProfile() {
 			$('#profile').click();
 		}
+		
 	</script>
 </head>
 <body>
@@ -78,9 +78,9 @@
 			</div>
 			<div class = "profile">
 				<div class = "imgBox">
-					<img src = "${ctp}/profile/${sProfile}" onclick = "profileChangeFormShow()" />
+					<img src = "${ctp}/profile/${sProfile}" onclick = "profileChangeFormShow()" id = profileImg />
 					<div class = "profileChange" id = "profileChange">
-						<div class = "text" onclick = "basicProfile()">기본이미지</div>
+						<div class = "text" onclick = "location.href='${ctp}/member/basicProfileChange'">기본이미지</div>
 						<div class = "line"></div>
 						<div class = "text" onclick = "customProfile()">사진선택</div>
 					</div>
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div class = "rightSide">
-			<iframe src = "${param.myPage}" name = "rightSide" id = "myPage"></iframe>
+			<iframe src = "${!empty param.myPage ? param.myPage : 'myPage1'}" name = "rightSide" id = "myPage"></iframe>
 		</div>
 	</div>
 </body>

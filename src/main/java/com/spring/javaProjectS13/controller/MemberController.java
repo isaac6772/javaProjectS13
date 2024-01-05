@@ -40,7 +40,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/mailCodeSend", method = RequestMethod.POST)
+	@RequestMapping(value = {"/memberJoin/mailCodeSend","/mailCodeSend"}, method = RequestMethod.POST)
 	public String mailCodeSendPost(String email, HttpSession session) throws MessagingException {
 		String mailCode = UUID.randomUUID().toString().substring(0,8);
 		String title = "회원가입을 위한 인증코드입니다";
@@ -53,7 +53,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/mailCodeCheck", method = RequestMethod.POST)
+	@RequestMapping(value = {"/memberJoin/mailCodeCheck","/mailCodeCheck"}, method = RequestMethod.POST)
 	public String mailCodeCheckPost(String mailCode, HttpSession session) {
 		String code = session.getAttribute("mailCode")==null ? "" : (String)session.getAttribute("mailCode");
 		String res = "0";
@@ -66,7 +66,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/memberMidCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberJoin/memberMidCheck", method = RequestMethod.POST)
 	public String memberMidCheckPost(String mid) {
 		String res = "0";
 		
@@ -77,7 +77,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/memberNickCheck", method = RequestMethod.POST)
+	@RequestMapping(value = {"/memberJoin/memberNickCheck","/memberNickCheck"}, method = RequestMethod.POST)
 	public String memberNickCheckPost(String nickName) {
 		String res = "0";
 		
@@ -88,7 +88,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/memberEmailCheck", method = RequestMethod.POST)
+	@RequestMapping(value = {"/memberJoin/memberEmailCheck","/memberEmailCheck"}, method = RequestMethod.POST)
 	public String memberEmailCheckPost(String email) {
 		String res = "0";
 		
@@ -114,8 +114,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/myPageIframe", method = RequestMethod.GET)
-	public String myPageGet(String flag) {
-		
+	public String myPageGet() {
 		return "member/myPageIframe";
 	}
 	
@@ -186,11 +185,20 @@ public class MemberController {
 		else return "redirect:/message/member/memberDeleteNo";
 	}
 	
+	// 프로필 사진 변경
 	@RequestMapping(value = "/profileChange", method = RequestMethod.POST)
 	public String profileChangeGet(MultipartFile file, HttpSession session) {
 		int res = memberService.profileChange(file, session);
 		
 		if(res==1) return "redirect:/message/member/profileChangeOk";
 		else return "redirect:/message/member/profileChangeNo";
+	}
+	
+	// 기본 프로필 사진으로 변경
+	@RequestMapping(value = "/basicProfileChange", method = RequestMethod.GET)
+	public String basicProfileChangeGet(HttpSession session) {
+		memberService.basicProfileChange(session);
+		
+		return "member/myPageIframe";
 	}
 }

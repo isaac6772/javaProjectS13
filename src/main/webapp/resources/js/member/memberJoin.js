@@ -21,7 +21,7 @@ $(function() {
 	$('#mid').keyup(function() {
 		if(regMid.test($('#mid').val().trim())) {
 			$.ajax({
-				url : contextPath + "/member/memberMidCheck",
+				url : contextPath + "/member/memberJoin/memberMidCheck",
 				data : {mid : $('#mid').val().trim()},
 				type : "post",
 				success : function(res) {
@@ -81,7 +81,7 @@ $(function() {
 	$('#nickName').keyup(function() {
 		if(regNickName.test($('#nickName').val().trim())) {
 			$.ajax({
-				url : contextPath + "/member/memberNickCheck",
+				url : contextPath + "/member/memberJoin/memberNickCheck",
 				data : {nickName : $('#nickName').val().trim()},
 				type : "post",
 				success : function(res) {
@@ -127,7 +127,7 @@ $(function() {
 	$('#email').keyup(function() {
 		if(regEmail.test($('#email').val().trim())) {
 			$.ajax({
-				url : contextPath + "/member/memberEmailCheck",
+				url : contextPath + "/member/memberJoin/memberEmailCheck",
 				type : "post",
 				data : {email : $('#email').val().trim()},
 				success : function(res) {
@@ -156,7 +156,7 @@ $(function() {
 	$('.mailSend').click(function() {
 		if(regEmail.test($('#email').val().trim())) {
 			$.ajax({
-				url : contextPath + "/member/memberEmailCheck",
+				url : contextPath + "/member/memberJoin/memberEmailCheck",
 				type : "post",
 				data : {email : $('#email').val().trim()},
 				success : function(res) {
@@ -171,7 +171,7 @@ $(function() {
 						totalTime = 30;
 						
 						$.ajax({
-							url : contextPath + "/member/mailCodeSend",
+							url : contextPath + "/member/memberJoin/mailCodeSend",
 							type : "post",
 							data : {email : $('#email').val()},
 							success : function(res) {
@@ -221,7 +221,7 @@ $(function() {
 		}
 		
 		$.ajax({
-			url : contextPath + "/member/mailCodeCheck",
+			url : contextPath + "/member/memberJoin/mailCodeCheck",
 			type : "post",
 			data : {mailCode : $('#emailCode').val().trim()},
 			success : function(res) {

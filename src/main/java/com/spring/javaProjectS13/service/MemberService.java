@@ -37,4 +37,6 @@ public interface MemberService {
 	public int memberDelete(HttpSession session, String why);
 
 	public int profileChange(MultipartFile file, HttpSession session);
+
+	public void basicProfileChange(HttpSession session);
 }
