@@ -1,5 +1,7 @@
 package com.spring.javaProjectS13.service;
 
+import java.util.List;
+
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,4 +41,5 @@ public interface MemberService {
 	public int profileChange(MultipartFile file, HttpSession session);
 
 	public void basicProfileChange(HttpSession session);
+
 }

@@ -40,6 +40,9 @@
 .loginBox .title {
 	margin-bottom : 10px;
 }
+.loginBox .title img {
+	vertical-align: bottom;
+}
 .loginBox #mid {
 	width : 100%;
 	height : 30px;
@@ -124,12 +127,17 @@
 .memberBox {
 	border: 1px solid #e1e1e1;
 	border-radius : 10px;
-	padding : 20px;
+	padding : 12px 20px;
 	margin-bottom : 15px;
 }
 .memberBox > .row1 {
-	margin-bottom : 5px;
+	margin-bottom : 6px;
 	font-size : 15px;
+}
+.memberBox .row1 img {
+	width : 24px;
+	height : 19px;
+	vertical-align: bottom;
 }
 .memberBox > .row2 {
 	display : flex;
@@ -147,6 +155,7 @@
 	width : 50px;
 	height : 50px;
 	background-color: #7db4f5;
+	border : 1px solid #f1f1f1;
 }
 .memberBox .row2 .info {
 	height : 100%;
@@ -226,14 +235,100 @@
 	cursor : pointer;
 }
 .adBox {
-	/* border: 1px solid #e1e1e1;
-	border-radius : 10px; */
-	padding : 20px;
 	margin-bottom : 15px;
+	width : 100%;
+	height : 350px;
+	overflow: hidden;
 }
 .adBox .title {
 	margin-bottom : 10px;
 }
+.adBox .adImgBox {
+	display : flex;
+	width : 100%;
+	height : 100%;
+	transition : transform 0.3s;
+}
+.adBox .adImgBox .item {
+	flex-shrink: 0;
+	width : 100%;
+	height : 100%;
+	padding: 20px;
+    box-sizing: border-box;
+}
 .adBox .adImgBox img {
 	border-radius: 5px;
+}
+.comunityBox {
+	border: 1px solid #e1e1e1;
+	border-radius : 10px;
+	width : 100%;
+	height : 350px;
+	box-sizing: border-box;
+	display : flex;
+	flex-direction: column;
+}
+.comunityBox .title {
+	display : flex;
+	justify-content : space-between;
+	padding : 7px 14px;
+	background-color: #f3f1f1;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.comunityBox .title img {
+	vertical-align: middle;
+	width : 14px;
+	height : 14px;
+}
+.comunityBox .title .text1 {
+	font-size : 14px;
+}
+.comunityBox .title .text2 {
+	font-size: 14px;
+    color: #f77f14;
+    font-weight: bolder;
+}
+.comunityBox .title .text3 {
+	font-size: 13px;
+    color: #676767;
+}
+.comunityBox .friendList {
+	overflow: auto;
+}
+.comunityBox .friendList .friend {
+	display : flex;
+	padding : 8px 12px;
+}
+.comunityBox .friend .profile {
+	position : relative;
+}
+.comunityBox .friend .profile .loginState {
+	position : absolute;
+	top : 24px;
+	right : -2px;
+	width : 12px;
+	height : 12px;
+}
+.comunityBox .friend .profile img {
+	width : 35px;
+	height : 35px;
+	border-radius: 20px;
+	border : 1px solid #f1f1f1;
+	background-color: #7db4f5;
+}
+.comunityBox .friend .info {
+	margin-left: 10px;
+}
+.comunityBox .friend .info .text1 {
+	font-size : 14px;
+	font-weight : bolder;
+}
+.comunityBox .friend .info .text2 {
+	font-size : 12px;
+	color : gray;
+}
+.comunityBox .loginRequired {
+    text-align: center;
+    line-height: 250px;
 }

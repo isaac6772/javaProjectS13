@@ -18,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.dao.MemberDAO;
@@ -31,6 +32,8 @@ public class MemberServiceImpl implements MemberService {
 	JavaMailSender mailSender;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	LevelCalculator levelCalculator;
 
 	@Override
 	public boolean mailSend(String email, String title, String content) throws MessagingException {
@@ -73,12 +76,14 @@ public class MemberServiceImpl implements MemberService {
 			return memberDAO.memberJoin(vo);
 		}
 	}
-
+	
+	@Transactional
 	@Override
 	public int memberLogin(String mid, String pwd, String idSave, HttpSession session, HttpServletResponse response) {
 		MemberVO vo = memberDAO.memberMidCheck(mid);
 		if(vo != null && vo.getLevel()!= 0 &&passwordEncoder.matches(pwd, vo.getPwd())) {
 			session.setAttribute("sMid", mid);
+			session.setAttribute("sIdx", vo.getIdx());
 			session.setAttribute("sNickName", vo.getNickName());
 			session.setAttribute("sProfile", vo.getProfile());
 			
@@ -91,15 +96,21 @@ public class MemberServiceImpl implements MemberService {
 			else cookie.setMaxAge(0);
 			response.addCookie(cookie);
 			
-			// 방문횟수와 포인트, 경험치 증가시키기(출석포인트는 1포인트)
+			// 방문횟수와 포인트, 경험치 증가시키기(마지막방문일자와 오늘날짜가 다를시)
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String today = sdf.format(new Date());
 			
 			if(!vo.getLastDate().substring(0,10).equals(today)) {
-				memberDAO.memberVisitUpdate(vo.getIdx());
+				int maxExp = levelCalculator.calcMaxExp(vo.getLevel());
+				// 로그인시 출석 포인트 증가로 인해 레벨업을 했을때와 그렇지 않을때(maxExp==0은 관리자나 만랩이나 비회원이므로 제외)
+				if(maxExp<=vo.getExp()+1 && maxExp!=0) memberDAO.memberVisitPointExpUpdate(vo.getIdx(),"levelUp");
+				else memberDAO.memberVisitPointExpUpdate(vo.getIdx(),"");
 			}
 			// 마지막 방문시간 업데이트
 			memberDAO.memberLastDateUpdate(vo.getIdx());
+			
+			// 로그인 테이블에 행추가
+			memberDAO.memberLoginOk(vo.getIdx());
 			
 			return 1;
 		}
@@ -108,8 +119,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void memberLogout(HttpSession session) {
-		session.removeAttribute("sMid");
-		session.removeAttribute("sProfile");
+//		session.removeAttribute("sMid");
+//		session.removeAttribute("sProfile");
+		session.invalidate();
 	}
 
 	@Override

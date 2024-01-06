@@ -11,7 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.vo.MemberVO;
 
-public class level0Interceptor extends HandlerInterceptorAdapter{
+public class AdminInterceptor extends HandlerInterceptorAdapter{
 	
 	@Autowired
 	MemberDAO memberDAO;
@@ -22,10 +22,9 @@ public class level0Interceptor extends HandlerInterceptorAdapter{
 		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
 		MemberVO vo = memberDAO.memberMidCheck(mid);
 		int level = 0;
-		if(vo != null) level = vo.getLevel();
-		
-		if(level==0) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/message/interceptor/loginNo");
+		if(vo!=null) level = vo.getLevel();
+		if(level!=77) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/message/interceptor/adminNo");
 			dispatcher.forward(request, response);
 			return false;
 		}

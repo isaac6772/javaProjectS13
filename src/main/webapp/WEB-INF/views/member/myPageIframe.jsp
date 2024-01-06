@@ -51,9 +51,9 @@
 				else profileForm.submit();
 			})
 			
-			document.click(function(e) {
+			/* document.click(function(e) {
 				if($(e.target)==$('#profileImg')) alert("이미지를 클릭하셨네요");
-			});
+			}); */
 		});
 		
 		function profileChangeFormShow() {

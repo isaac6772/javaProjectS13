@@ -36,7 +36,8 @@ $(function() {
 	
 	// 레벨 진행도 계산
 	let progress = '0';
-	if(exp!='') progress = exp/maxExp*100 + '%';
+	if(maxExp!='0') progress = exp/maxExp*100 + '%';
+	else progress = '100%';
 	
 	$('.progressBar').css('width',progress);
 	
@@ -46,4 +47,27 @@ $(function() {
 			$('#login').click();
 		}
 	})
+	
+	// 슬라이드 이미지
+	let slide = document.getElementById("adImgBox");
+	let index = 0;
+	let itemCnt = $('.adImgBox .item').length;
+	
+	setInterval(autoSlide,3000);
+	
+	function autoSlide() {
+		index += 100;
+		if(index==100) slide.style.transition = "transform 0.3s";
+		
+		if(index==100*itemCnt) {
+			slide.style.transition = "none";
+			index = 0;
+			slide.style.transform = "translateX(-"+index+"%)";
+		}
+		else slide.style.transform = "translateX(-"+index+"%)";
+	}
+	
+	// 현재 접속 중인 친구의 수
+	let loginFriendCnt = $('.friendList .friend .login').length;
+	$('#loginFriendCnt').html(loginFriendCnt);
 });

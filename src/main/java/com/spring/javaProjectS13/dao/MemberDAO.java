@@ -1,5 +1,7 @@
 package com.spring.javaProjectS13.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaProjectS13.vo.MemberVO;
@@ -18,7 +20,7 @@ public interface MemberDAO {
 
 	int emailUpdate(@Param("email") String email, @Param("mid") String mid);
 
-	void memberVisitUpdate(@Param("idx") int idx);
+	void memberVisitPointExpUpdate(@Param("idx") int idx, @Param("flag") String flag);
 
 	void memberLastDateUpdate(@Param("idx") int idx);
 
@@ -29,4 +31,12 @@ public interface MemberDAO {
 	int memberDelete(@Param("mid") String mid, @Param("why") String why);
 
 	int profileChange(@Param("mid") String mid, @Param("profile") String profile);
+
+	void memberLoginOk(@Param("idx") int idx);
+
+	void memberLogoutOk(@Param("memberIdx") int memberIdx);
+
+	void deleteAllLogin();
+
+	List<MemberVO> friendList(@Param("idx") int idx);
 }

@@ -7,8 +7,8 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<beans:bean id = "level0Interceptor" class = "com.spring.javaProjectS13.interceptor.level0Interceptor" />
-	<beans:bean id = "adminInterceptor" class = "com.spring.javaProjectS13.interceptor.adminInterceptor" />
+	<beans:bean id = "level0Interceptor" class = "com.spring.javaProjectS13.interceptor.Level0Interceptor" />
+	<beans:bean id = "adminInterceptor" class = "com.spring.javaProjectS13.interceptor.AdminInterceptor" />
 	
 	<interceptors>
 		

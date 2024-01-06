@@ -20,5 +20,8 @@ public class MemberVO {
 	private String lastDate;
 	private String profile;
 	private String userInfo;
-	private String userDel;
+	private String introduce;
+	
+	// 로그인 정보를 저장하는 추가된 vo필드
+	private int login;
 }

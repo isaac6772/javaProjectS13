@@ -3,7 +3,10 @@
 <c:set var = "ctp" value = "${pageContext.request.contextPath}"/>
 <c:if test="${empty sMid}">
 	<form class = "loginBox" name = "loginForm" method = "post" action = "${ctp}/member/memberLogin">
-		<div class = "title">로그인</div>
+		<div class = "title">
+			<span>로그인</span>
+			<img src = "${ctp}/icon/login.png" width = 19px height = 19px />
+		</div>
 		<div class = "line"></div>
 		<input type = "text" name = "mid" id = "mid" value = "${cookie.cMid.value}" placeholder = "아이디" />
 		<input type = "password" name = "pwd" id = "pwd" placeholder = "비밀번호" />
@@ -25,7 +28,10 @@
 </c:if>
 <c:if test="${!empty sMid}">
 	<div class = "memberBox">
-		<div class = "row1">프로필</div>
+		<div class = "row1">
+			<span>프로필</span>
+			<img src = "${ctp}/icon/profile.png" width = 15px height = 17px />
+		</div>
 		<div class = "line"></div>
 		<div class = "row2">
 			<div class = "profile">
