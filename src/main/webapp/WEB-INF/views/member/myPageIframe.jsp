@@ -73,7 +73,7 @@
 		<div class = "leftSide">
 			<div class = "logo">
 				<a href = "${ctp}/home">
-					<span class = "text1">TALK HUB</span>
+					<img src = "${ctp}/icon/homepageLogo.png" />
 				</a>
 			</div>
 			<div class = "profile">

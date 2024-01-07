@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+body {
+	padding : 0px;
+	margin : 0px;
+	font-family: 'Nanum Gothic';
+}
+.adminMainContainer {
+	display : flex;
+	width : 100vw;
+}
+.adminMainContainer a {
+	text-decoration: none;
+}
+.adminMainContainer #mainContent {
+	border : none;
+	flex : 1;
+}
+.adminMainContainer .mainNav {
+	display : flex;
+	flex-direction: column;
+	width : 265px;
+	height : 100vh;
+	background-color: #3f3f3f;
+}
+.adminMainContainer .mainNav .line {
+	border-top: 1px solid #575757;
+	margin-bottom : 10px;
+}
+.mainNav .logo {
+	text-align: center;
+	margin-top : 15px;
+	margin-bottom : 15px;
+}
+.mainNav .logo img {
+	width : 140px;
+	cursor : pointer;
+}
+.mainNav .menu {
+	display : flex;
+	padding : 16px;
+	box-sizing: border-box;
+	width : 100%;
+}
+.mainNav .menu:hover {
+	background-color : #292929;
+}
+.mainNav .menu .col1 img {
+	width : 25px;
+	height : 25px;
+}
+.mainNav .menu .col1 {
+	margin-right: 20px;
+}
+.mainNav .menu .col2 .text1 {
+	color : #d5d4d4;
+	font-size: 17px;
+}
+.mainNav .menu .col2 {
+	line-height: 25px;
+}
+.mainNav .profileBox {
+	flex : 1;
+	display : flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.mainNav .profileBox .profile {
+	background-color : #292929;
+	height : 68px;
+	display : flex;
+}
+.mainNav .profileBox .profile img {
+	width : 40px;
+	height : 40px;
+	border-radius: 20px;
+	border : 1px solid gray;
+	background-color: #7db4f5;
+}
+.mainNav .profileBox .profile .col1 {
+	margin : 12px 8px 0px 8px;
+}
+.mainNav .profileBox .profile .col2 {
+	margin-top : 14px;
+}
+.mainNav .profileBox .profile .col2 .text1 {
+	color : white;
+	font-weight: bolder;
+}
+.mainNav .profileBox .profile .col2 .text2 {
+	color : #c7c7c7;
+	font-size : 14px;
+}

@@ -11,11 +11,20 @@
 </head>
 <body>
 	<div class = "headerContainer">
-		<div>
+		<div class = "logo">
 			<a href = "${ctp}/">
-				<img src = "${ctp}/util/logo.png" width = "64px" height = "56px" />
-				<span>TALK HUB</span>
+				<img src = "${ctp}/icon/homepageLogo.png" />
 			</a>
+		</div>
+		<div class = "searchBarBox">
+			<div class = "searchBar">
+				<div class = "icon">
+					<img src = "${ctp}/icon/search.png" />
+				</div>
+				<div class = "search">
+					<input type = "text" name = "search" id = "search" autofocus />
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

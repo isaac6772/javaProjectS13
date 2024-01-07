@@ -59,7 +59,14 @@
 			</div>
 		</c:if>
 		<div class = "row4">
-			<span>알림</span> | <span>쪽지</span>
+			<div>
+				<span>알림</span> | <span>쪽지</span>
+			</div>
+			<div>
+				<c:if test="${vo.level==77}">
+					<span class = "text1" id = "adminPage">관리자페이지</span>
+				</c:if>
+			</div>
 		</div>
 		<div class = "line"></div>
 		<div class = "row5">
@@ -69,9 +76,6 @@
 			</div>
 			<div class = "col2">
 				<span class = "text1" id = "myPage2">마이페이지</span>
-				<c:if test="${vo.level==77}">
-					<span class = "text1" id = "adminPage"> | 관리자페이지</span>
-				</c:if>
 			</div>
 		</div>
 		<div class = "row6">

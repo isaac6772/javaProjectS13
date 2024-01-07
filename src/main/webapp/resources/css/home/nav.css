@@ -1,27 +1,38 @@
-.navContainer {
-	height : 65px;
-	background-color: rgb(36, 128, 214);
-}
-.navMenu {
-	width : 80%;
-	height : 100%;
-	margin : 0 auto;
+.navContainer .mainMenu {
 	display : flex;
 	justify-content: space-around;
-	font-size: 24px;
-	color : white;
-	font-weight: 400;
+	width : 32%;
+	margin : auto;
 }
-.navMenu > a {
-	width : 200px;
-	height : 100%;
-	text-align: center;
-	line-height: 65px;
+.navContainer .mainMenu .menuItem {
+	cursor : pointer;
+	height : 85px;
+	width : 65px;
 }
-.navMenu > a:hover {
-	background-color : rgb(78, 78, 78);
+.navContainer .mainMenu .menuItem:hover .row1 {
+	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
 }
-.navMenu a {
-	color : white;
-	text-decoration: none;
+.navContainer .mainMenu .menuItem:hover .row2 {
+	font-weight : bolder;
+}
+.navContainer .mainMenu .menuItem .row1 {
+	border : 1px solid #e9e9e9;
+	border-radius: 16px;
+	padding : 5px;
+	width : 52px;
+	height : 56px;
+	box-sizing: border-box;
+	margin : auto;
+	margin-bottom : 6px;
+}
+.navContainer .mainMenu .menuItem .row1 img {
+	width : 40px;
+	height : 40px;
+}
+.navContainer .mainMenu .menuItem .row2 {
+	text-align : center;
+	width : 100%;
+}
+.navContainer .mainMenu .item3 img {
+	margin-left : 2px;
 }

@@ -12,4 +12,14 @@ public class AdminController {
 	public String adminMainGet() {
 		return "admin/adminMain";
 	}
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboardGet() {
+		return "admin/dashboard";
+	}
+	
+	@RequestMapping(value = "/memberManager", method = RequestMethod.GET)
+	public String memberManagerGet() {
+		return "admin/memberManager";
+	}
 }

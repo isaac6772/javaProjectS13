@@ -86,6 +86,7 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("sIdx", vo.getIdx());
 			session.setAttribute("sNickName", vo.getNickName());
 			session.setAttribute("sProfile", vo.getProfile());
+			session.setAttribute("sEmail", vo.getEmail());
 			
 			// 아이디 저장 정보 쿠키저장
 			Cookie cookie = new Cookie("cMid", mid);

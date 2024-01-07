@@ -25,12 +25,8 @@ body {
 .leftSide .logo {
 	text-align: center;
 }
-.leftSide .logo .text1 {
-	font-weight: bolder;
-	font-size : 22px;
-	vertical-align: top;
-	margin-left : -3px;
-	color : #4a4a4a;
+.leftSide .logo img {
+	width : 100px;
 }
 .leftSide .profile {
 	text-align : center;

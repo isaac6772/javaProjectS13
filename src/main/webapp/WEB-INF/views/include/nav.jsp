@@ -10,13 +10,47 @@
 </head>
 <body>
 	<div class = "navContainer">
-		<div class = "navMenu">
-			<a href = "#">뉴스</a>
-			<a href = "#">토론</a>
-			<a href = "#">게시판</a>
-			<a href = "#">커뮤니티</a>
-			<a href = "#">고객센터</a>
-			<%-- <a href = "${ctp}/errorPage/errorMain">에러페이지 연습</a> --%>
+		<div class = "mainMenu">
+			<div class = "menuItem">
+				<div class = "row1">
+					<img src = "${ctp}/icon/news.png" />
+				</div>
+				<div class = "row2">
+					<span>뉴스</span>
+				</div>
+			</div>
+			<div class = "menuItem">
+				<div class = "row1">
+					<img src = "${ctp}/icon/debate.png" />
+				</div>
+				<div class = "row2">
+					<span>토론</span>
+				</div>
+			</div>
+			<div class = "menuItem item3">
+				<div class = "row1">
+					<img src = "${ctp}/icon/board.png" />
+				</div>
+				<div class = "row2">
+					<span>게시판</span>
+				</div>
+			</div>
+			<div class = "menuItem">
+				<div class = "row1">
+					<img src = "${ctp}/icon/comunity.png" />
+				</div>
+				<div class = "row2">
+					<span>커뮤니티</span>
+				</div>
+			</div>
+			<div class = "menuItem">
+				<div class = "row1">
+					<img src = "${ctp}/icon/service.png" />
+				</div>
+				<div class = "row2">
+					<span>고객센터</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
