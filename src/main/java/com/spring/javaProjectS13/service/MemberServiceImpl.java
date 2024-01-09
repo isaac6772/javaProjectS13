@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.vo.MemberVO;
+import com.spring.javaProjectS13.vo.PageVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -224,5 +226,63 @@ public class MemberServiceImpl implements MemberService {
 			memberDAO.profileChange(mid, "noImage.jpg");
 			session.setAttribute("sProfile", "noImage.jpg");
 		}
+	}
+
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		String regMid = "^[a-zA-Z0-9]{4,15}$";
+		String regNickName = "^[\\w가-힣]{2,7}$";
+		String regName = "^[가-힣]{1,20}$";
+		String regEmail = "^[\\w]+@[\\w]+[.][\\w]+$";
+		String regLevel = "^[0-6]$";
+		String regPoint = "^[\\d]+$";
+		
+		String mid = vo.getMid();
+		String nickName = vo.getNickName();
+		String name = vo.getName();
+		String email = vo.getEmail();
+		String level = vo.getLevel() + "";
+		String point = vo.getPoint() + "";
+		int idx = vo.getIdx();
+		
+		String originalMid = memberDAO.memberIdxSearch(idx).getMid();
+		String originalNickName = memberDAO.memberIdxSearch(idx).getNickName();
+		String originalEmail = memberDAO.memberIdxSearch(idx).getEmail();
+		
+		int res = 0;
+		
+		if(!mid.matches(regMid)) res = 2;
+		else if(!originalMid.equals(mid) && memberDAO.memberMidCheck(mid)!=null) res = 3;
+		else if(!nickName.matches(regNickName)) res = 4;
+		else if(!originalNickName.equals(nickName) && memberDAO.memberNickCheck(nickName)!=null) res = 5;
+		else if(!name.matches(regName)) res = 6;
+		else if(!email.matches(regEmail)) res = 7;
+		else if(!originalEmail.equals(email) && memberDAO.memberEmailCheck(email)!=null) res = 8;
+		else if(!level.matches(regLevel)) res = 9;
+		else if(!point.matches(regPoint)) res = 10;
+		else res = memberDAO.memberUpdate(vo);
+		
+		return res;
+	}
+
+	@Override
+	public List<MemberVO> memberList(PageVO vo) {
+		
+		vo.setStartIndexNo(vo.getPageSize() * (vo.getPag() - 1));
+		vo.setTotRecCnt(memberDAO.memberTotRecCnt(vo));
+		vo.setTotPage(vo.getTotRecCnt()%vo.getPageSize()==0 ? vo.getTotRecCnt()/vo.getPageSize() : vo.getTotRecCnt()/vo.getPageSize()+1);
+		vo.setCurBlock((vo.getPag() - 1)/10);
+		vo.setScrStartNo(vo.getTotRecCnt()-vo.getStartIndexNo());
+		
+		List<MemberVO> vos = memberDAO.memberList(vo);
+		
+		return vos;
+	}
+
+	@Override
+	public int selectedMemberDelete(String memberIdxArray) {
+		int res = memberDAO.selectedMemberDelete(memberIdxArray);
+		
+		return res;
 	}
 }

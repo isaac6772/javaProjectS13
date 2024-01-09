@@ -33,7 +33,6 @@ public class MemberController {
 	@RequestMapping(value = "/memberJoin", method = RequestMethod.POST)
 	public String memberJoinPost(MemberVO vo) {
 		int res = memberService.memberJoin(vo);
-		System.out.println(res);
 		
 		if(res==1) return "redirect:/message/member/memberJoinOk";
 		else return "redirect:/message/member/memberJoinNo";

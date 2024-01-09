@@ -6,10 +6,10 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.vo.MemberVO;
+import com.spring.javaProjectS13.vo.PageVO;
 
 public interface MemberService {
 	public boolean mailSend(String email, String title, String content) throws MessagingException;
@@ -41,5 +41,11 @@ public interface MemberService {
 	public int profileChange(MultipartFile file, HttpSession session);
 
 	public void basicProfileChange(HttpSession session);
+
+	public int memberUpdate(MemberVO vo);
+
+	public List<MemberVO> memberList(PageVO vo);
+
+	public int selectedMemberDelete(String memberIdxArray);
 
 }

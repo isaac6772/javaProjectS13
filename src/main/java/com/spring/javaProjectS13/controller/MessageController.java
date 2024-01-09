@@ -99,4 +99,37 @@ public class MessageController {
 		
 		return "include/message";
 	}
+	
+	@RequestMapping("/admin/{adminFlag}")
+	public String adminMessage(Model model, @PathVariable String adminFlag, String msgFlag) {
+		if(adminFlag.equals("memberUpdateOk")) {
+			model.addAttribute("msg","회원정보가 수정되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=memberManager");
+		}
+		else if(adminFlag.equals("memberUpdateNo")) {
+			String msg = "";
+			if(msgFlag.equals("2")) msg = "아이디가 형식에 맞지않습니다.";
+			else if(msgFlag.equals("3")) msg = "중복된 아이디가 존재합니다.";
+			else if(msgFlag.equals("4")) msg = "닉네임이 형식에 맞지 않습니다";
+			else if(msgFlag.equals("5")) msg = "중복된 닉네임이 존재합니다.";
+			else if(msgFlag.equals("6")) msg = "이름이 형식에 맞지 않습니다.";
+			else if(msgFlag.equals("7")) msg = "이메일이 형식에 맞지 않습니다.";
+			else if(msgFlag.equals("8")) msg = "중복된 이메일이 존재합니다.";
+			else if(msgFlag.equals("9")) msg = "레벨이 형식에 맞지 않습니다.";
+			else if(msgFlag.equals("10")) msg = "포인트가 형식에 맞지 않습니다.";
+			
+			model.addAttribute("msg",msg);
+			model.addAttribute("url","/admin/adminMain?src=memberManager");
+		}
+		else if(adminFlag.equals("selectedMemberDeleteOk")) {
+			model.addAttribute("msg","선택한 회원이 삭제되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=memberManager");
+		}
+		else if(adminFlag.equals("selectedMemberDeleteNo")) {
+			model.addAttribute("msg","회원을 삭제하는 동안 오류가 발생했습니다.");
+			model.addAttribute("url","/admin/adminMain?src=memberManager");
+		}
+		
+		return "include/message";
+	}
 }

@@ -31,7 +31,7 @@ $(function() {
 		location.href = contextPath + "/member/myPageIframe?myPage=myPage1";
 	});
 	$('#adminPage').click(function() {
-		location.href = contextPath + "/admin/adminMain";
+		location.href = contextPath + "/admin/adminMain?src=dashboard";
 	});
 	
 	// 레벨 진행도 계산

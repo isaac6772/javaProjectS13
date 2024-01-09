@@ -27,10 +27,12 @@ create table member (
 
 drop table member;
 
-insert into member values(default,'test7',1234,'마포구보안관','테스트7','abc7@naver.com','남자',1,1,null,0,0,default,default,default,default,null);
+insert into member values (default,'test35','1234','테스트35','테스트35','abc35naver.com','남자',3,0,null,0,0,default,default,default,default,null);
 
 -- 멤버idx가 1인 회원의 친구 데이터
 select member.nickName from member where idx in (select member2idx from relation where member1idx = 1);
 
 -- 멤버idx가 1인 회원의 로그인 정보가 포함된 데이터
 select nickName,(select count(*) from login where memberIdx = member.idx) as login from member where idx in (select member2idx from relation where member1idx = 1) order by login desc, nickname;
+
+select * from member where date_format(joinDate,'%Y-%m-%d') >= '';

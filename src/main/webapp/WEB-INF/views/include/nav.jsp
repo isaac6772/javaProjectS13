@@ -43,7 +43,7 @@
 					<span>커뮤니티</span>
 				</div>
 			</div>
-			<div class = "menuItem">
+			<div class = "menuItem" onclick = "location.href = '${ctp}/service/serviceList'">
 				<div class = "row1">
 					<img src = "${ctp}/icon/service.png" />
 				</div>

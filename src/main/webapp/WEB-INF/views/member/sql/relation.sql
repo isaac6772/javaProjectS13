@@ -13,4 +13,4 @@ create table relation(
 
 desc relation;
 
-insert into relation values (default,10,1,2);
+insert into relation values (default,1,2,2);

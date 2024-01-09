@@ -77,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-		<iframe src = "dashboard" name = "mainContent" id = "mainContent"></iframe>
+		<iframe src = "${param.src}" name = "mainContent" id = "mainContent"></iframe>
 	</div>
 </body>
 </html>

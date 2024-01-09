@@ -5,38 +5,50 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaProjectS13.vo.MemberVO;
+import com.spring.javaProjectS13.vo.PageVO;
 
 public interface MemberDAO {
 
-	MemberVO memberMidCheck(@Param("mid") String mid);
+	public MemberVO memberMidCheck(@Param("mid") String mid);
 
-	MemberVO memberNickCheck(@Param("nickName") String nickName);
+	public MemberVO memberNickCheck(@Param("nickName") String nickName);
 
-	int memberJoin(@Param("vo") MemberVO vo);
+	public int memberJoin(@Param("vo") MemberVO vo);
 
-	int nickNameUpdate(@Param("nickName") String nickName, @Param("mid") String mid);
+	public int nickNameUpdate(@Param("nickName") String nickName, @Param("mid") String mid);
 
-	int memnberNameUpdate(@Param("name") String name, @Param("mid") String mid);
+	public int memnberNameUpdate(@Param("name") String name, @Param("mid") String mid);
 
-	int emailUpdate(@Param("email") String email, @Param("mid") String mid);
+	public int emailUpdate(@Param("email") String email, @Param("mid") String mid);
 
-	void memberVisitPointExpUpdate(@Param("idx") int idx, @Param("flag") String flag);
+	public void memberVisitPointExpUpdate(@Param("idx") int idx, @Param("flag") String flag);
 
-	void memberLastDateUpdate(@Param("idx") int idx);
+	public void memberLastDateUpdate(@Param("idx") int idx);
 
-	MemberVO memberEmailCheck(@Param("email") String email);
+	public MemberVO memberEmailCheck(@Param("email") String email);
 
-	int memberPwdChange(@Param("mid") String mid, @Param("pwd") String pwd);
+	public int memberPwdChange(@Param("mid") String mid, @Param("pwd") String pwd);
 
-	int memberDelete(@Param("mid") String mid, @Param("why") String why);
+	public int memberDelete(@Param("mid") String mid, @Param("why") String why);
 
-	int profileChange(@Param("mid") String mid, @Param("profile") String profile);
+	public int profileChange(@Param("mid") String mid, @Param("profile") String profile);
 
-	void memberLoginOk(@Param("idx") int idx);
+	public void memberLoginOk(@Param("idx") int idx);
 
-	void memberLogoutOk(@Param("memberIdx") int memberIdx);
+	public void memberLogoutOk(@Param("memberIdx") int memberIdx);
 
-	void deleteAllLogin();
+	public void deleteAllLogin();
 
-	List<MemberVO> friendList(@Param("idx") int idx);
+	public List<MemberVO> friendList(@Param("idx") int idx);
+
+	public List<MemberVO> memberList(@Param("vo") PageVO vo);
+
+	public int memberUpdate(@Param("vo") MemberVO vo);
+
+	public MemberVO memberIdxSearch(int idx);
+
+	public int memberTotRecCnt(@Param("vo") PageVO vo);
+
+	public int selectedMemberDelete(String idxArray);
+
 }

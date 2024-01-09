@@ -15,7 +15,23 @@
 	<select id="friendList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select *,(select count(*) from login where memberIdx = member.idx) as login from member where idx in (select member2idx from relation where member1idx = #{idx}) order by login desc, nickName;
 	</select>
-	
+	<select id="memberList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
+		select *,(select count(*) from login where memberIdx = member.idx) as login from member where ${vo.searchType} like '%${vo.searchString}%' 
+		<if test="vo.fromDate!=''">and <![CDATA[date_format(joinDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+		<if test="vo.toDate!=''">and <![CDATA[date_format(joinDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+		<if test="vo.level!=-1"> and level = #{vo.level} </if>
+		order by idx desc limit #{vo.startIndexNo},#{vo.pageSize};
+	</select>
+	<select id="memberIdxSearch" resultType = "com.spring.javaProjectS13.vo.MemberVO">
+		select * from member where idx = #{idx};
+	</select>
+	<select id="memberTotRecCnt" resultType = "int">
+		select count(*) from member where ${vo.searchType} like '%${vo.searchString}%' 
+		<if test="vo.fromDate!=''">and <![CDATA[date_format(joinDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+		<if test="vo.toDate!=''">and <![CDATA[date_format(joinDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+		<if test="vo.level!=-1"> and level = #{vo.level}; </if>
+	</select>
+		
 	
 	<insert id="memberJoin">
 		insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.email},#{vo.gender}
@@ -55,13 +71,19 @@
 	<update id="profileChange">
 		update member set profile = #{profile} where mid = #{mid};
 	</update>
-	
+	<update id="memberUpdate">
+		update member set mid = #{vo.mid}, nickName = #{vo.nickName}, name = #{vo.name}, email = #{vo.email}, level = #{vo.level}, point = #{vo.point} where idx = #{vo.idx};
+	</update>
+		
 	
 	<delete id="memberLogoutOk">
 		delete from login where memberIdx = #{memberIdx};
 	</delete>
 	<delete id="deleteAllLogin">
 		delete from login;
+	</delete>
+	<delete id="selectedMemberDelete">
+		delete from member where idx in (${idxArray});
 	</delete>
 	
 	
