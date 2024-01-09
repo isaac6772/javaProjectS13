@@ -28,11 +28,11 @@ body {
 	width : 100%;
 	display : flex;
 	justify-content: flex-end;
-	background-color : #ebe9e9;
+	background-color : #e3f1ff;;
 	padding : 32px 20px;
 	margin-top : 50px;
 	box-sizing: border-box;
-	border : 1px solid #d0d0d0;
+	border : 1px solid #ebebeb;
 }
 .conditionBox .row1 {
 	flex : 1;
@@ -84,13 +84,13 @@ body {
 }
 .serviceList .tableHeader {
 	display : flex;
-	background-color : #ebe9e9;
+	background-color : #e3f1ff;;
 	padding : 7px 0px;
 	box-sizing: border-box;
 	width : 100%;
 	margin-top : 100px;
-	border-top : 1px solid #d0d0d0;
-	border-bottom : 1px solid #d0d0d0;
+	border-top : 1px solid #ebebeb;;
+	border-bottom : 1px solid #ebebeb;;
 }
 .serviceList .col {
 	text-align: center;

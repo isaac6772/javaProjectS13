@@ -8,16 +8,11 @@
 	<title>serviceInput.jsp</title>
 	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/service/serviceInput.css" />
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src = "${ctp}/ckeditor/ckeditor.js"></script>
 	<script>
-		$(function() {
-			CKEDITOR.replace("content",{
-	    		height : 480,
-	    		filebrowserUploadUrl:"${ctp}/imageUpload",
-	    		uploadUrl : "${ctp}/imageUpload"		
-	    	});
-		});
+		'use strict';
+		let contextPath = "${ctp}";
 	</script>
+	<script src = "${ctp}/js/service/serviceInput.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -32,7 +27,54 @@
 			<div class = "line"></div>
 		</div>
 		
-		<textarea rows="6" name="content" id="CKEDITOR" required></textarea>
+		<form name = "myForm" class = "contentContainer" method = "post" enctype = "multipart/form-data">
+			<div class = "row row1">
+				<div class = "col col1">
+					<span>제목</span>
+				</div>
+				<div class = "col col2">
+					<input type = "text" id = "title" />
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col col1">
+					<span>분류</span>
+				</div>
+				<div class = "col col2">
+					<input type = "radio" name = "type" checked />건의사항
+					<input type = "radio" name = "type" />광고문의
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col col1">
+					<span>공개</span>
+				</div>
+				<div class = "col col2">
+					<input type = "radio" name = "open" checked />비공개
+					<input type = "radio" name = "open" />공개
+				</div>
+			</div>
+			<div class = "row row4">
+				<div class = "col col1">
+					<span>문의내용</span>
+				</div>
+				<div class = "col col2">
+					<textarea class = "content" id = "content"></textarea>
+				</div>
+			</div>
+			<div class = "row row5">
+				<div class = "col col1">
+					<span>파일첨부</span>
+				</div>
+				<div class = "col col2">
+					<input type = "file" multiple onchange = "fileValid()" id = "file" />
+				</div>
+			</div>
+		</form>
+		
+		<div class = "btnBox">
+			<div class = "btn" onclick = "formSubmit()">문의하기</div>
+		</div>
 		
 	</div>
 	

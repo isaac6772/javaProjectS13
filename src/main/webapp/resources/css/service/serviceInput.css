@@ -24,4 +24,65 @@ body {
 	height : 3px;
 	margin-top: 10px;
 }
-
+.serviceInputContainer .contentContainer {
+	margin-top : 35px;
+	border-top: 2px solid #2477ff;
+    border-bottom: 2px solid #2477ff;
+}
+.serviceInputContainer .contentContainer .row {
+	display : flex;
+}
+.contentContainer .row {
+	border-bottom : 1px solid #d9d9d9;
+}
+.contentContainer .row .col1 {
+	padding : 15px;
+	box-sizing: border-box;
+}
+.contentContainer .row .col2 {
+	padding : 15px 0px 15px 15px;
+	box-sizing: border-box;
+}
+.contentContainer .row1 .col2 {
+	padding : 0px 0px 0px 15px;
+}
+.contentContainer .row .col1 {
+	width : 157px;
+	background-color : #e3f1ff;
+	text-align : center;
+}
+.contentContainer .row .col2 {
+	flex : 1;
+}
+.contentContainer .row1 .col2 input {
+	width : 100%;
+	height : 30px;
+	box-sizing: border-box;
+	font-size : 16px;
+	padding-left : 5px;
+    border : 1px solid #dfdfdf;
+    outline : none;
+    margin-top: 8px;
+}
+.contentContainer .row4 .col2 .content {
+	box-sizing: border-box;
+	width : 100%;
+	border : 1px solid #dfdfdf;
+	min-height: 350px;
+	outline : none;
+	resize : none;
+}
+.serviceInputContainer .btnBox {
+	margin-top : 25px;
+}
+.serviceInputContainer .btnBox .btn {
+	margin : auto;
+	width : 150px;
+	height : 40px;
+	background-color : #0a893b;
+	color : white;
+	text-align: center;
+	line-height: 40px;
+	font-size: 17px;
+	cursor : pointer;
+}
