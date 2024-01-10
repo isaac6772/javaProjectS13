@@ -132,4 +132,35 @@ public class MessageController {
 		
 		return "include/message";
 	}
+	
+	@RequestMapping("/service/{serviceFlag}")
+	public String serviceMessage(Model model, @PathVariable String serviceFlag, 
+			@RequestParam(name = "idx", defaultValue = "0", required = false) int idx) {
+		if(serviceFlag.equals("serviceInputOk")) {
+			model.addAttribute("msg","글이 등록되었습니다.");
+			model.addAttribute("url","/service/serviceList");
+		}
+		else if(serviceFlag.equals("serviceInputNo")) {
+			model.addAttribute("msg","글 등록에 실패하였습니다");
+			model.addAttribute("url","/service/serviceInput");
+		}
+		else if(serviceFlag.equals("serviceReplyOk")) {
+			model.addAttribute("msg","답변이 등록되었습니다.");
+			model.addAttribute("url","/service/serviceContent?idx=" + idx);
+		}
+		else if(serviceFlag.equals("serviceReplyNo")) {
+			model.addAttribute("msg","답변 등록에 실패하였습니다");
+			model.addAttribute("url","/service/serviceContent?idx=" + idx);
+		}
+		else if(serviceFlag.equals("deleteServiceOk")) {
+			model.addAttribute("msg","게시물이 삭제되었습니다.");
+			model.addAttribute("url","/service/serviceList");
+		}
+		else if(serviceFlag.equals("deleteServiceNo")) {
+			model.addAttribute("msg","게시물 삭제에 실패하였습니다");
+			model.addAttribute("url","/service/serviceList");
+		}
+		
+		return "include/message";
+	}
 }

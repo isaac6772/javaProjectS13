@@ -28,7 +28,6 @@ public class HomeController {
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		
-		
 		int maxExp = 0;
 		String mid = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
 		MemberVO vo = memberService.memberMidCheck(mid);

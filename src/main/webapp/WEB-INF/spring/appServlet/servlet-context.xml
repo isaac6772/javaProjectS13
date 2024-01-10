@@ -19,10 +19,11 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/util/**" location="/resources/util/" />
 	<resources mapping="/js/**" location="/resources/js/" />
-	<resources mapping="/profile/**" location="/resources/profile/" />
+	<resources mapping="/profile/**" location="/resources/data/profile/" />
 	<resources mapping="/icon/**" location="/resources/icon/" />
-	<resources mapping="/ad/**" location="/resources/ad/" />
+	<resources mapping="/ad/**" location="/resources/data/ad/" />
 	<resources mapping="/ckeditor/**" location="/resources/ckeditor/" />
+	<resources mapping="/board/**" location="/resources/data/board/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

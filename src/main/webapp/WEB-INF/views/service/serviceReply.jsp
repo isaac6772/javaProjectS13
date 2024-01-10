@@ -5,14 +5,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>serviceInput.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/service/serviceInput.css" />
+	<title>serviceReply.jsp</title>
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/service/serviceReply.css" />
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		'use strict';
 		let contextPath = "${ctp}";
 	</script>
-	<script src = "${ctp}/js/service/serviceInput.js"></script>
+	<script src = "${ctp}/js/service/serviceReply.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -36,27 +36,9 @@
 					<input type = "text" id = "title" name = "title" />
 				</div>
 			</div>
-			<div class = "row">
-				<div class = "col col1">
-					<span>분류</span>
-				</div>
-				<div class = "col col2">
-					<input type = "radio" name = "part" value = "일반문의" checked />건의사항
-					<input type = "radio" name = "part" value = "광고문의" />광고문의
-				</div>
-			</div>
-			<div class = "row">
-				<div class = "col col1">
-					<span>공개</span>
-				</div>
-				<div class = "col col2">
-					<input type = "radio" value = "비공개" name = "open" checked />비공개
-					<input type = "radio" value = "공개" name = "open" />공개
-				</div>
-			</div>
 			<div class = "row row4">
 				<div class = "col col1">
-					<span>문의내용</span>
+					<span>답변</span>
 				</div>
 				<div class = "col col2">
 					<textarea class = "content" name = "content" id = "content"></textarea>
@@ -72,10 +54,11 @@
 			</div>
 			<input type = "hidden" value = "${sIdx}" name = "memberIdx" />
 			<input type = "hidden" value = "${sNickName}" name = "nickName" />
+			<input type = "hidden" value = "${param.idx}" name = "refIdx" />
 		</form>
 		
 		<div class = "btnBox">
-			<div class = "btn" onclick = "formSubmit()">문의하기</div>
+			<div class = "btn" onclick = "formSubmit()">답변저장</div>
 		</div>
 		
 	</div>

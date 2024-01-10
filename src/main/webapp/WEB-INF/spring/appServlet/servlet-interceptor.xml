@@ -14,14 +14,18 @@
 		
 		<interceptor>
 			<mapping path="/member/**" />
+			<mapping path="/service/**" />
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberJoin/**"/>
 			<exclude-mapping path="/member/memberLogin"/>
+			<exclude-mapping path="/service/serviceList"/>
+			<exclude-mapping path="/service/serviceContent"/>
 			<beans:ref bean = "level0Interceptor"/>
 		</interceptor>
 		
 		<interceptor>
 			<mapping path="/admin/**" />
+			<mapping path="/service/serviceReply" />
 			<beans:ref bean = "adminInterceptor" />
 		</interceptor>
 		
