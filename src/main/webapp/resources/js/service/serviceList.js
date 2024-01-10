@@ -11,3 +11,7 @@ function pageSizeChange() {
 	$('#pageSize').val($('#pageSizeSelect').val());
 	conditionForm.submit();
 }
+
+function goContent(idx) {
+	location.href = "serviceContent?idx=" + idx;
+}

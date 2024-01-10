@@ -74,8 +74,14 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public ServiceVO serviceContent(int idx) {
+	public ServiceVO serviceContent(int idx, HttpSession session) {
 		ServiceVO vo = serviceDAO.serviceContent(idx);
+		int myIdx = session.getAttribute("sIdx")==null ? 0 : (int)session.getAttribute("sIdx");
+		int level = session.getAttribute("sLevel")==null? 0 : (int)session.getAttribute("sLevel");
+		if(vo.getOpen().equals("비공개") && vo.getMemberIdx()!=myIdx && level!=77) {
+			return null;
+		}
+		
 		return vo;
 	}
 

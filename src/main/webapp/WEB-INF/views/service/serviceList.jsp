@@ -11,6 +11,8 @@
 	<script>
 		'use strict';
 		let contextPath = "${ctp}";
+		let myIdx = '${sIdx}';
+		let level = '${sLevel}';
 	</script>
 	<script src = "${ctp}/js/service/serviceList.js"></script>
 </head>
@@ -108,7 +110,7 @@
 						<span>${scrStartNo}</span>
 					</div>
 					<div class = "col col2">
-						<a href = "serviceContent?idx=${vo.idx}">${vo.title}</a>
+						<a href = 'serviceContent?idx=${vo.idx}'>${vo.title}</a>
 						<div>
 							<c:if test="${vo.open=='비공개'}">
 								<img src = "${ctp}/icon/lock.png" />

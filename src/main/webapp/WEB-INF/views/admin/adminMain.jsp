@@ -58,17 +58,19 @@
 					<img src = "${ctp}/icon/adW.png" />
 				</div>
 				<div class = "col2">
-					<span class = "text1">광고관리</span>
+					<a href = "adManager" target = "mainContent">
+						<span class = "text1">광고관리</span>
+					</a>
 				</div>
 			</div>
 			<div class = "profileBox">
 				<div class = "profile">
 					<div class = "col1">
-						<img src = "${ctp}/profile/${sProfile}" />
+						<img src = "${ctp}/profile/${sProfile}" onclick = "location.href='${ctp}/member/myPageIframe?myPage=memberUpdate'" />
 					</div>
 					<div class = "col2">
 						<div>
-							<span class = "text1">${sNickName}</span>
+							<span class = "text1" onclick = "location.href='${ctp}/member/myPageIframe?myPage=memberUpdate'">${sNickName}</span>
 						</div>
 						<div>
 							<span class = "text2">${sEmail}</span>

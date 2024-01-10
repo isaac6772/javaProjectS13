@@ -142,7 +142,7 @@
 				</div>
 				<div class = "row row4">
 					<div class = "col col1">
-						<span>문의내용</span>
+						<span>답변</span>
 					</div>
 					<div class = "col col2">
 						<div class = "content">

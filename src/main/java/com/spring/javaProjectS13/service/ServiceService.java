@@ -15,7 +15,7 @@ public interface ServiceService {
 
 	public List<ServiceVO> serviceList(PageVO vo);
 
-	public ServiceVO serviceContent(int idx);
+	public ServiceVO serviceContent(int idx, HttpSession session);
 
 	public int serviceReply(List<MultipartFile> fileList, ServiceVO vo);
 

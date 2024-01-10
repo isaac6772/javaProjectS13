@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+body {
+	padding : 0px;
+	margin : 0px;
+	font-family: 'Nanum Gothic';
+}
+.adManagerContainer .box1 {
+	display : flex;
+	width : 600px;
+	margin : auto;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+.adManagerContainer .line {
+	border-top : 1px solid #f3eeee;
+	width : 600px;
+	margin : auto;
+}
+.box1 .col1 {
+	flex : 1;
+}
+.box1 .col2 {
+	flex : 0.5;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.box1 .col3 {
+	flex : 1;
+}
+.box1 .col1 .row1 {
+	font-size : 14px;
+	margin-bottom: 6px;
+	font-weight: bolder;
+}
+.box1 .col3 .row1 {
+	font-size : 14px;
+	margin-bottom: 6px;
+	font-weight: bolder;
+}
+.box1 .col1 .row2 {
+	height : 480px;
+	border-style: double;
+}
+.box1 .col3 .row2 {
+	height : 480px;
+	border-style: double;
+}
+.box1 .col1 .row3 {
+	display : flex;
+	justify-content: space-between;
+	font-size : 14px;
+	margin-top: 6px;
+}
+.box1 .col3 .row3 {
+	display : flex;
+	justify-content: space-between;
+	font-size : 14px;
+	margin-top: 6px;
+}
+.box1 .col1 .row3 .btn {
+	background-color: red;
+	border-radius: 4px;
+	color : white;
+	font-size : 12px;
+    padding: 5px 8px;
+    cursor : pointer;
+}
+.box1 .col3 .row3 .btn {
+	background-color: #ff8a00;
+	border-radius: 4px;
+	color : white;
+	font-size : 12px;
+    padding: 5px 8px;
+    cursor : pointer;
+}
+.box1 .relative {
+	position : relative;
+	line-height: 24px;
+}
+.box1 .relative span {
+	margin-left : 21px;
+}
+.box1 .col1 .row3 input {
+	position : absolute;
+	left : 0px;
+	top : 3px;
+}
+.box1 .col3 .row3 input {
+	position : absolute;
+	left : 0px;
+}
+.box1 .col2 .btn {
+	border : 1px solid #999999;
+	border-radius : 3px;
+    width: 35px;
+    font-size: 14px;
+    padding: 2px 6px;
+    margin: auto;
+    position : relative;
+    cursor : pointer;
+    box-shadow: 0px 0px 16px 0 rgba(0,0,0,.07);
+}
+.box1 .col2 .btn:hover {
+	box-shadow: 0px 0px 16px 0 rgba(0,0,0,.11);
+}
+.box1 .col2 .btn .text2 {
+	font-size : 7px;
+	color : green;
+	position : absolute;
+	top : 5px;
+	right : 3px;
+}
+.btnBox {
+	margin-top : 30px;
+	text-align: center;
+}
+.btnBox .btn {
+	display : inline-block;
+	margin : auto;
+	background-color: #32c163;
+	border-radius: 4px;
+	color : white;
+	cursor : pointer;
+	padding : 7px 18px;
+}

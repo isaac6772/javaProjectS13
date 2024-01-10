@@ -57,4 +57,9 @@ public class AdminController {
 		if(res!=0) return "redirect:/message/admin/selectedMemberDeleteOk";
 		else return "redirect:/message/admin/selectedMemberDeleteNo";
 	}
+	
+	@RequestMapping(value = "/adManager", method = RequestMethod.GET)
+	public String adManagerGet() {
+		return "admin/adManager";
+	}
 }

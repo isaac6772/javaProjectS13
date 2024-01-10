@@ -45,14 +45,17 @@ public class ServiceController {
 	}
 	
 	@RequestMapping(value = "/serviceContent", method = RequestMethod.GET)
-	public String serviceContentGet(int idx, Model model) {
-		ServiceVO vo = serviceService.serviceContent(idx);
+	public String serviceContentGet(int idx, Model model, HttpSession session) {
+		ServiceVO vo = serviceService.serviceContent(idx, session);
+		// 비공개 게시물에 접근할 수 없음.
+		if(vo==null) return "redirect:/message/service/accessDeny";
+		
 		if(vo.getFileName()!=null) {
 			String[] images = vo.getFileName().split("/");
 			model.addAttribute("images",images);
 		}
 		if(vo.getReply()!=0) {
-			ServiceVO replyVO = serviceService.serviceContent(vo.getReply());
+			ServiceVO replyVO = serviceService.serviceContent(vo.getReply(), session);
 			model.addAttribute("replyVO",replyVO);
 			
 			if(replyVO.getFileName()!=null) {

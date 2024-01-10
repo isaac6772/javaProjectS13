@@ -160,6 +160,10 @@ public class MessageController {
 			model.addAttribute("msg","게시물 삭제에 실패하였습니다");
 			model.addAttribute("url","/service/serviceList");
 		}
+		else if(serviceFlag.equals("accessDeny")) {
+			model.addAttribute("msg","비공개 게시물은 보실 수 없습니다.");
+			model.addAttribute("url","/service/serviceList");
+		}
 		
 		return "include/message";
 	}

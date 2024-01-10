@@ -28,7 +28,7 @@
 		insert into service values (default,null,#{vo.memberIdx},#{vo.nickName},#{vo.title},#{vo.part},#{vo.content},#{vo.fileName},default,#{vo.open});
 	</insert>	
 	<insert id="serviceReply">
-		insert into service values (default,#{vo.refIdx},#{vo.memberIdx},#{vo.nickName},#{vo.title},'답변',#{vo.content},#{vo.fileName},default,#{vo.open});
+		insert into service values (default,#{vo.refIdx},#{vo.memberIdx},#{vo.nickName},#{vo.title},'답변',#{vo.content},#{vo.fileName},default,'공개');
 	</insert>	
 	
 	
