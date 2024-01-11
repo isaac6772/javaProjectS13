@@ -4,53 +4,81 @@ body {
 	margin : 0px;
 	font-family: 'Nanum Gothic';
 }
-.adManagerContainer .box1 {
+@keyframes fadeInOut {
+	0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.adManagerContainer .flexBox {
+	display : flex;
+	justify-content: space-between;
+}
+.adManagerContainer .box2 {
 	display : flex;
 	width : 600px;
-	margin : auto;
 	margin-top: 100px;
 	margin-bottom: 50px;
 }
 .adManagerContainer .line {
-	border-top : 1px solid #f3eeee;
-	width : 600px;
-	margin : auto;
+	border-top : 1px solid #d5d5d5;
 }
-.box1 .col1 {
+.adManagerContainer .box1 {
 	flex : 1;
 }
-.box1 .col2 {
+.adManagerContainer .imgFrame {
+	width : 300px;
+	height : 488px;
+	margin : auto;
+	box-shadow: 0px 2px 4px 2px rgba(0,0,0,.15);
+	background-color : #f9f9f9;
+	margin-top : 122px;
+	text-align: center;
+}
+.adManagerContainer .imgFrame img {
+	width : 80%;
+	max-height : 250px;
+	margin-top : 30px;
+	box-shadow: 0px 3px 5px 3px rgba(0,0,0,.15);
+	animation : fadeInOut 0.5s;
+}
+.adManagerContainer .box3 {
+	flex : 1;
+}
+.box2 .col1 {
+	flex : 1;
+}
+.box2 .col2 {
 	flex : 0.5;
 	display : flex;
 	flex-direction: column;
 	justify-content: center;
 }
-.box1 .col3 {
+.box2 .col3 {
 	flex : 1;
 }
-.box1 .col1 .row1 {
+.box2 .col1 .row1 {
 	font-size : 14px;
 	margin-bottom: 6px;
 	font-weight: bolder;
 }
-.box1 .col3 .row1 {
+.box2 .col3 .row1 {
 	font-size : 14px;
 	margin-bottom: 6px;
 	font-weight: bolder;
 }
-.box1 .col1 .row2 {
+.box2 .col1 .row2 {
 	height : 480px;
 	padding : 3px;
-	border-style: double;
+	border: 1px solid #e1d0d0;
+    border-radius: 5px;
 }
-.box1 .col1 .row2 .title {
+.box2 .col1 .row2 .title {
 	position : relative;
 }
-.box1 .col1 .row2 .title .text1 {
+.box2 .col1 .row2 .title .text1 {
 	font-size : 14px;
 	vertical-align: text-top;
 }
-.box1 .col1 .row2 .title img {
+.box2 .col1 .row2 .title img {
 	position : absolute;
 	right : 2px;
 	top : 1px;
@@ -58,45 +86,55 @@ body {
 	cursor : pointer;
 	transition : transform 0.3s;
 }
-.box1 .col1 .row2 .imgGroup {
+.box2 .col1 .row2 .imgGroup {
 	display : none;
 	font-size : 13px;
 }
-.box1 .col1 .row2 .imgGroup .imgName img {
+.box2 .col1 .row2 .imgGroup .imgName img {
 	width : 12px;
 	margin-left : 6px;
 }
-.box1 .col3 .row2 {
+.box2 .col3 .row1 img {
+	width : 11px;
+	float:right;
+	border : 1px solid #b7b7b7;
+	border-radius: 3px;
+	margin-left : 2px;
+	padding : 4px;
+	cursor : pointer;
+}
+.box2 .col3 .row2 {
 	height : 480px;
 	padding : 3px;
-	border-style: double;
+	border: 1px solid #e1d0d0;
+    border-radius: 5px;
 	font-size : 14px;
 }
-.box1 .col3 #adList2 .box {
+.box2 .col3 #adList2 .box {
 	position : relative;
 	padding : 1px 0px;
 }
-.box1 .col3 #adList2 .box input[type=checkbox] {
+.box2 .col3 #adList2 .box input[type=checkbox] {
 	position : absolute;
 	top : 0px;
 	left : 0px;
 }
-.box1 .col3 #adList2 .box {
+.box2 .col3 #adList2 .box {
 	padding-left : 23px;
 }
-.box1 .col1 .row3 {
+.box2 .col1 .row3 {
 	display : flex;
 	justify-content: space-between;
 	font-size : 14px;
 	margin-top: 6px;
 }
-.box1 .col3 .row3 {
+.box2 .col3 .row3 {
 	display : flex;
 	justify-content: space-between;
 	font-size : 14px;
 	margin-top: 6px;
 }
-.box1 .col1 .row3 .btn {
+.box2 .col1 .row3 .btn {
 	background-color: #ff4800;
 	border-radius: 4px;
 	color : white;
@@ -104,7 +142,7 @@ body {
     padding: 5px 8px;
     cursor : pointer;
 }
-.box1 .col3 .row3 .btn {
+.box2 .col3 .row3 .btn {
 	background-color: #ff4800;
 	border-radius: 4px;
 	color : white;
@@ -112,23 +150,23 @@ body {
     padding: 5px 8px;
     cursor : pointer;
 }
-.box1 .relative {
+.box2 .relative {
 	position : relative;
 	line-height: 24px;
 }
-.box1 .relative span {
+.box2 .relative span {
 	margin-left : 21px;
 }
-.box1 .col1 .row3 input {
+.box2 .col1 .row3 input {
 	position : absolute;
 	left : 0px;
 	top : 3px;
 }
-.box1 .col3 .row3 input {
+.box2 .col3 .row3 input {
 	position : absolute;
 	left : 0px;
 }
-.box1 .col2 .btn {
+.box2 .col2 .btn {
 	border : 1px solid #999999;
 	border-radius : 3px;
     width: 35px;
@@ -139,10 +177,10 @@ body {
     cursor : pointer;
     box-shadow: 0px 0px 16px 0 rgba(0,0,0,.07);
 }
-.box1 .col2 .btn:hover {
+.box2 .col2 .btn:hover {
 	box-shadow: 0px 0px 16px 0 rgba(0,0,0,.11);
 }
-.box1 .col2 .btn .text2 {
+.box2 .col2 .btn .text2 {
 	font-size : 7px;
 	color : green;
 	position : absolute;
@@ -163,5 +201,5 @@ body {
 	padding : 7px 18px;
 }
 .selected {
-	background-color : #bdbaba;			
+	background-color : #e1e1e1;			
 }

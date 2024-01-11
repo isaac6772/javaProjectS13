@@ -93,3 +93,4 @@ function memberDelete(idx) {
 	memberDeleteForm.action = "selectedMemberDelete";
 	memberDeleteForm.submit();
 }
+

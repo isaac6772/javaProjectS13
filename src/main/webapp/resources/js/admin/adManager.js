@@ -28,7 +28,7 @@ function moveImg() {
 	}
 	
 	for(let img of images) {
-		let str = "<div class = 'box'><input type='checkbox' class = 'postingAd' /><span>"+img.innerHTML+"</span>";
+		let str = "<div class = 'box' onclick = 'selectBox2(this)'><input type='checkbox' class = 'postingAd' /><span>"+img.innerHTML+"</span>";
 		str += '<input type = "hidden" name = "fileName" value = "'+img.innerHTML+'" />';
 		str += '<input type = "hidden" name = "serviceIdx" value = "'+$('img').next().val()+'" /></div>';
 		$('#adList2').append(str);
@@ -76,9 +76,26 @@ function deletePosting() {
 	$('#adList2 input[type=checkbox]:checked').parent().remove();
 }
 
+function selectBox(e) {
+	$('#adList1 div.imgName.selected').removeClass('selected');
+	$(e).addClass('selected');
+	$('#frame1').html('<img src='+contextPath+'/service/'+$(e).find('.name').html()+'/>');
+}
+
+function selectBox2(e) {
+	$('#adList2 .box.selected').removeClass('selected');
+	$(e).addClass('selected');
+	$('#frame2').html('<img src='+contextPath+'/service/'+$(e).find('.fileName').val()+'/>');
+}
+
+function moveDown() {
+	$('#adList2 .box.selected').next().after($('#adList2 .box.selected'));
+}
+
+function moveUp() {
+	$('#adList2 .box.selected').after($('#adList2 .box.selected').prev());
+}
+
 $(function() {
-	$('#adList2 .box').click(function(e) {
-		$('#adList2 .box.selected').removeClass('selected');
-		$(e.target).addClass('selected');
-	});
+	$('#adList2 .box:eq(0)').click();
 });
