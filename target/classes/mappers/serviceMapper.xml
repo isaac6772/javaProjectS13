@@ -22,6 +22,12 @@
 	<select id="serviceContent" resultType = "com.spring.javaProjectS13.vo.ServiceVO">
 		select *,(select s2.idx from service s2 where s1.idx = s2.refIdx) as reply from service s1 where idx = #{idx};
 	</select>
+	<select id="availableAdList" resultType = "com.spring.javaProjectS13.vo.ServiceVO">
+		select * from service where part = '광고문의' and fileName is not null;
+	</select>
+	<select id="adList" resultType = "com.spring.javaProjectS13.vo.AdVO">
+		select * from ad;
+	</select>
 	
 	
 	<insert id="serviceInput">
@@ -30,10 +36,19 @@
 	<insert id="serviceReply">
 		insert into service values (default,#{vo.refIdx},#{vo.memberIdx},#{vo.nickName},#{vo.title},'답변',#{vo.content},#{vo.fileName},default,'공개');
 	</insert>	
+	<insert id="inputAd">
+		insert into ad values (default,#{serviceIdx},#{file},default);
+	</insert>
 	
 	
 	<delete id="deleteService">
 		delete from service where idx = #{idx};
+	</delete>
+	<delete id="adServiceDelete">
+		delete from service where idx in (${idx});
+	</delete>
+	<delete id="deleteAdAll">
+		delete from ad;
 	</delete>
 	
 	

@@ -96,7 +96,7 @@
 				<div class = "col col2">
 					<div class = "content">
 						<c:forEach var = "image" items = "${images}" varStatus = "st">
-							<img src = "${ctp}/board/${image}" />
+							<img src = "${ctp}/service/${image}" />
 						</c:forEach>
 						<span>${vo.content}</span>
 					</div>
@@ -147,7 +147,7 @@
 					<div class = "col col2">
 						<div class = "content">
 							<c:forEach var = "image" items = "${replyImages}" varStatus = "st">
-								<img src = "${ctp}/board/${image}" />
+								<img src = "${ctp}/service/${image}" />
 							</c:forEach>
 							<span>${replyVO.content}</span>
 						</div>

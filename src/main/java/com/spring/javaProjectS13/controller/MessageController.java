@@ -129,6 +129,22 @@ public class MessageController {
 			model.addAttribute("msg","회원을 삭제하는 동안 오류가 발생했습니다.");
 			model.addAttribute("url","/admin/adminMain?src=memberManager");
 		}
+		else if(adminFlag.equals("adServiceDeleteOk")) {
+			model.addAttribute("msg","선택한 광고를 삭제하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=adManager");
+		}
+		else if(adminFlag.equals("adServiceDeleteNo")) {
+			model.addAttribute("msg","광고 삭제에 실패하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=adManager");
+		}
+		else if(adminFlag.equals("adInputOk")) {
+			model.addAttribute("msg","저장되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=adManager");
+		}
+		else if(adminFlag.equals("adInputNo")) {
+			model.addAttribute("msg","저장에 실패하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=adManager");
+		}
 		
 		return "include/message";
 	}

@@ -40,11 +40,49 @@ body {
 }
 .box1 .col1 .row2 {
 	height : 480px;
+	padding : 3px;
 	border-style: double;
+}
+.box1 .col1 .row2 .title {
+	position : relative;
+}
+.box1 .col1 .row2 .title .text1 {
+	font-size : 14px;
+	vertical-align: text-top;
+}
+.box1 .col1 .row2 .title img {
+	position : absolute;
+	right : 2px;
+	top : 1px;
+	width : 13px;
+	cursor : pointer;
+	transition : transform 0.3s;
+}
+.box1 .col1 .row2 .imgGroup {
+	display : none;
+	font-size : 13px;
+}
+.box1 .col1 .row2 .imgGroup .imgName img {
+	width : 12px;
+	margin-left : 6px;
 }
 .box1 .col3 .row2 {
 	height : 480px;
+	padding : 3px;
 	border-style: double;
+	font-size : 14px;
+}
+.box1 .col3 #adList2 .box {
+	position : relative;
+	padding : 1px 0px;
+}
+.box1 .col3 #adList2 .box input[type=checkbox] {
+	position : absolute;
+	top : 0px;
+	left : 0px;
+}
+.box1 .col3 #adList2 .box {
+	padding-left : 23px;
 }
 .box1 .col1 .row3 {
 	display : flex;
@@ -59,7 +97,7 @@ body {
 	margin-top: 6px;
 }
 .box1 .col1 .row3 .btn {
-	background-color: red;
+	background-color: #ff4800;
 	border-radius: 4px;
 	color : white;
 	font-size : 12px;
@@ -67,7 +105,7 @@ body {
     cursor : pointer;
 }
 .box1 .col3 .row3 .btn {
-	background-color: #ff8a00;
+	background-color: #ff4800;
 	border-radius: 4px;
 	color : white;
 	font-size : 12px;
@@ -123,4 +161,7 @@ body {
 	color : white;
 	cursor : pointer;
 	padding : 7px 18px;
+}
+.selected {
+	background-color : #bdbaba;			
 }

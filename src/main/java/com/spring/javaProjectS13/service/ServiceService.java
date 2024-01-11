@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaProjectS13.vo.AdVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.ServiceVO;
 
@@ -20,5 +21,13 @@ public interface ServiceService {
 	public int serviceReply(List<MultipartFile> fileList, ServiceVO vo);
 
 	public int deleteService(int idx, HttpSession session);
-	
+
+	public List<ServiceVO> availableAdList();
+
+	public int adServiceDelete(String idx);
+
+	public List<AdVO> adList();
+
+	public int inputAd(String[] fileName, int[] serviceIdx);
+
 }

@@ -19,4 +19,6 @@ public class ServiceVO {
 	private int reply;
 	// 날짜 차이를 계산하는 필드
 	private int dateDiff;
+	// 이미지 파일을 각각 관리하기 위한 필드
+	private String[] images;
 }

@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.service.MemberService;
+import com.spring.javaProjectS13.service.ServiceService;
+import com.spring.javaProjectS13.vo.AdVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.ServiceVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,6 +24,8 @@ public class AdminController {
 	MemberDAO memberDAO;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	ServiceService serviceService;
 	
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
 	public String adminMainGet() {
@@ -59,7 +64,30 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/adManager", method = RequestMethod.GET)
-	public String adManagerGet() {
+	public String adManagerGet(Model model) {
+		List<ServiceVO> vos = serviceService.availableAdList();
+		List<AdVO> aVos = serviceService.adList();
+		
+		model.addAttribute("aVos",aVos);
+		model.addAttribute("vos",vos);
 		return "admin/adManager";
+	}
+	
+	// 게시할 광고 리스트 저장하기
+	@RequestMapping(value = "/adManager", method = RequestMethod.POST)
+	public String adManagerPost(String[] fileName, int[] serviceIdx) {
+		int res = serviceService.inputAd(fileName, serviceIdx);
+		
+		if(res!=0) return "redirect:/message/admin/adInputOk";
+		else return "redirect:/message/admin/adInputNo";
+	}
+	
+	// 관리자화면에서 광고문의 게시글을 삭제할때(다중 삭제 가능)
+	@RequestMapping(value = "/adServiceDelete", method = RequestMethod.GET)
+	public String adServiceDeleteGet(String idx) {
+		int res = serviceService.adServiceDelete(idx);
+		
+		if(res!=0) return "redirect:/message/admin/adServiceDeleteOk";
+		else return "redirect:/message/admin/adServiceDeleteNo";
 	}
 }
