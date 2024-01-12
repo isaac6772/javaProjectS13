@@ -11,7 +11,6 @@ public class LevelCalculator {
 		else if(level==2) maxExp = 1000;
 		else if(level==3) maxExp = 2000;
 		else if(level==4) maxExp = 5000;
-		else if(level==5) maxExp = 10000;
 		else maxExp = 0;
 		
 		return maxExp;

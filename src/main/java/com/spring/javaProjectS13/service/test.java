@@ -2,8 +2,7 @@ package com.spring.javaProjectS13.service;
 
 public class test {
 	public static void main(String[] args) {
-		String str = "<h1><strong>글자연습<img alt=\"\" src=\"/javaProjectS/data/board/231219163246_1.jpg\" style=\"height:573px; width:800px\" /></strong></h1><h1><strong>연습입니다.</strong></h1>";
-		String reg = "<[^>]+>";
-		System.out.println(str.replaceAll(reg, ""));
+		String str = "<p><img src=\"/javaProjectS13/data/ckeditor/6c428cb4-42d_coffee.jpg\" style=\"height:3000px; width:2400px\" /></p>";
+		System.out.println(str.replace("src=\"/javaProjectS13/data/ckeditor/", "src=\"/javaProjectS13/board/"));
 	}
 }

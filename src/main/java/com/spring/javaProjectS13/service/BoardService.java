@@ -16,4 +16,6 @@ public interface BoardService {
 
 	public List<BoardVO> informList();
 
+	public BoardVO boardContent(int idx);
+
 }

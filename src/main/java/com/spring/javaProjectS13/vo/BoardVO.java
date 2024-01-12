@@ -15,4 +15,8 @@ public class BoardVO {
 	private int good;
 	private int bad;
 	private String writeDate;
+	
+	private int imgCheck;
+	private int dateDiff;
+	private int level;	// 게시물 작성자의 레벨
 }

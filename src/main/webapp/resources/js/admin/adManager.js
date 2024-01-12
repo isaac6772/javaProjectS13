@@ -29,7 +29,7 @@ function moveImg() {
 	
 	for(let img of images) {
 		let str = "<div class = 'box' onclick = 'selectBox2(this)'><input type='checkbox' class = 'postingAd' /><span>"+img.innerHTML+"</span>";
-		str += '<input type = "hidden" name = "fileName" value = "'+img.innerHTML+'" />';
+		str += '<input type = "hidden" name = "fileName" class = "fileName" value = "'+img.innerHTML+'" />';
 		str += '<input type = "hidden" name = "serviceIdx" value = "'+$('img').next().val()+'" /></div>';
 		$('#adList2').append(str);
 	}

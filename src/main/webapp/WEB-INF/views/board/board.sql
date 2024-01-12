@@ -20,3 +20,6 @@ drop table board;
 insert into board values (default,1,'관리맨','첫번째~','안녕하세요~','일반',0,0,0,default);
 
 select REGEXP_REPLACE(content,'<[^>]+>', '') from board;
+
+-- 이미지 파일을 포함하는지 여부를 추가해 제공
+select *,case when content like '%<img src=%' then 1 else 0 end as result from board b;

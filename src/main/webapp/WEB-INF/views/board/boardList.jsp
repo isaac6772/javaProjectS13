@@ -28,17 +28,19 @@
 				<div class = "type ${pageVO.scope=='추천글'?'selected':''}" onclick = "pageScopeChange('추천글')">추천글</div>
 				<div class = "type ${pageVO.scope=='공지'?'selected':''}" onclick = "pageScopeChange('공지')">공지</div>
 				<div class = "partBox">
-					<div class = "part ${pageVO.part=='전체'?'selected':''}">전체</div>
-					<div class = "part ${pageVO.part=='일반'?'selected':''}">일반</div>
-					<div class = "part ${pageVO.part=='일상'?'selected':''}">일상</div>
-					<div class = "part ${pageVO.part=='스포츠'?'selected':''}">스포츠</div>
-					<div class = "part ${pageVO.part=='연예'?'selected':''}">연예</div>
+					<c:if test="${pageVO.scope!='공지'}">
+						<div class = "part ${pageVO.part=='전체'?'selected':''}" onclick = "partChange('전체')" >전체</div>
+						<div class = "part ${pageVO.part=='일반'?'selected':''}" onclick = "partChange('일반')">일반</div>
+						<div class = "part ${pageVO.part=='일상'?'selected':''}" onclick = "partChange('일상')">일상</div>
+						<div class = "part ${pageVO.part=='스포츠'?'selected':''}" onclick = "partChange('스포츠')">스포츠</div>
+						<div class = "part ${pageVO.part=='연예'?'selected':''}" onclick = "partChange('연예')">연예</div>
+					</c:if>
 				</div>
 				<div class = "pageSize">
-					<select>
-						<option>10개</option>
-						<option>20개</option>
-						<option>30개</option>
+					<select onchange = "pageSizeChange(this)">
+						<option value = "10" ${pageVO.pageSize==10?'selected':''}>10개</option>
+						<option value = "20" ${pageVO.pageSize==20?'selected':''}>20개</option>
+						<option value = "30" ${pageVO.pageSize==30?'selected':''}>30개</option>
 					</select>
 				</div>
 				<div class = "write">
@@ -51,21 +53,36 @@
 			
 			<div class = "table tableHeader">
 				<div class = "col col1">번호</div>
-				<div class = "col col2">분류</div>
-				<div class = "col col3">제목</div>
-				<div class = "col col4">작성자</div>
-				<div class = "col col5">작성일</div>
-				<div class = "col col6">조회</div>
-				<div class = "col col7">추천수</div>
+				<div class = "col col2">제목</div>
+				<div class = "col col3">작성자</div>
+				<div class = "col col4">작성일</div>
+				<div class = "col col5">조회</div>
+				<div class = "col col6">추천수</div>
 			</div>
 			
 			<div class = "informList">
 				<c:forEach var = "vo" items = "${iVos}" varStatus = "st">
 					<div class = "table tableContent">
 						<div class = "col col1">공지</div>
-						<div class = "col col2">${vo.title}</div>
-						<div class = "col col3">${vo.nickName}</div>
-						<div class = "col col4">${fn:substring(vo.writeDate,0,10)}</div>
+						<div class = "col col2">
+							<img src = "${ctp}/icon/inform.png" />
+							<span onclick = "location.href='boardContent?idx=${vo.idx}'">${vo.title}</span>
+							<c:if test="${vo.dateDiff==0}">
+								<img src = "${ctp}/icon/new.png" class = "newBoard" />
+							</c:if>
+						</div>
+						<div class = "col col3">
+							<span>${vo.nickName}</span>
+							<img src = "${ctp}/icon/level${vo.level}.png" />
+						</div>
+						<div class = "col col4">
+							<c:if test="${vo.dateDiff==0}">
+								${fn:substring(vo.writeDate,11,16)}
+							</c:if>
+							<c:if test="${vo.dateDiff!=0}">
+								${fn:substring(vo.writeDate,0,10)}
+							</c:if>
+						</div>
 						<div class = "col col5">${vo.viewNum}</div>
 						<div class = "col col6">${vo.good}</div>
 					</div>
@@ -78,9 +95,31 @@
 				<c:forEach var = "vo" items = "${vos}" varStatus = "st">
 					<div class = "table tableContent">
 						<div class = "col col1">${scrStartNo}</div>
-						<div class = "col col2">${vo.title}</div>
-						<div class = "col col3">${vo.nickName}</div>
-						<div class = "col col4">${fn:substring(vo.writeDate,0,10)}</div>
+						<div class = "col col2">
+							<c:if test="${vo.good<10}">
+								<c:if test="${vo.imgCheck==1}"><img src="${ctp}/icon/imgIcon.png" /></c:if>
+								<c:if test="${vo.imgCheck!=1}"><img src="${ctp}/icon/noImgIcon.png" /></c:if>
+							</c:if>
+							<c:if test="${vo.good>=10}">
+								<img src="${ctp}/icon/goodBoard.png" />
+							</c:if>
+							<span onclick = "location.href='boardContent?idx=${vo.idx}'">${vo.title}</span>
+							<c:if test="${vo.dateDiff==0}">
+								<img src = "${ctp}/icon/new.png" class = "newBoard" />
+							</c:if>
+						</div>
+						<div class = "col col3">
+							<span>${vo.nickName}</span>
+							<img src = "${ctp}/icon/level${vo.level}.png" />
+						</div>
+						<div class = "col col4">
+							<c:if test="${vo.dateDiff==0}">
+								${fn:substring(vo.writeDate,11,16)}
+							</c:if>
+							<c:if test="${vo.dateDiff!=0}">
+								${fn:substring(vo.writeDate,0,10)}
+							</c:if>
+						</div>
 						<div class = "col col5">${vo.viewNum}</div>
 						<div class = "col col6">${vo.good}</div>
 					</div>

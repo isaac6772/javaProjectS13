@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
 		String content = vo.getContent();
 		ArrayList<String> files = new ArrayList<String>();
 		while(true) {
-			if(content.indexOf("<img src=\"/") != -1) {
-				content = content.substring(content.indexOf("<img src=\"/")+40);
+			if(content.indexOf("src=\"/") != -1) {
+				content = content.substring(content.indexOf("src=\"/")+35);
 				String img = content.substring(0,content.indexOf("\""));
 				files.add(img);
 			}
@@ -64,7 +64,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		// vo에 저장된 경로명바꾸기(ckeditor -> board)
 		String contextPath = request.getContextPath();
-		vo.getContent().replace("<img src=\"/"+contextPath+"/data/ckeditor/", "<img src=\"/javaProjectS13/board/");
+		vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/board/"));
 		
 		// 태그를 제외한 문자 저장하기
 		String reg = "<[^>]+>";
@@ -90,5 +90,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> informList() {
 		return boardDAO.informList();
+	}
+
+	@Override
+	public BoardVO boardContent(int idx) {
+		return boardDAO.boardContent(idx);
 	}
 }

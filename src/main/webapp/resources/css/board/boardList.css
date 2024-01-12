@@ -85,6 +85,9 @@
     padding: 8px 0px;
     border-bottom : 1px solid #cccccc;
 }
+.listContainer .tableContent:hover {
+	background-color : #f5f5f5;
+}
 .listContainer .tableHeader .col {
 	text-align : center;
 	font-weight : bolder;
@@ -114,6 +117,24 @@
 }
 .tableContent .col.col2 {
 	text-align : left;
+}
+.tableContent .col2 img {
+	width : 20px;
+	vertical-align: bottom;
+}
+.tableContent .col2 img.newBoard {
+	width : 13px;
+	vertical-align: middle;
+}
+.tableContent .col2 span {
+	line-height : 19px;
+}
+.tableContent .col2 span:hover {
+	text-decoration: underline;
+	cursor : pointer;
+}
+.tableContent .col3 img {
+	width : 12px;
 }
 .boardList > div:last-child {
 	border-bottom : 1px solid #1b176b;

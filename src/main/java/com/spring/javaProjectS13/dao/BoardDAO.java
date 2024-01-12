@@ -17,4 +17,6 @@ public interface BoardDAO {
 
 	public List<BoardVO> informList();
 
+	public BoardVO boardContent(@Param("idx") int idx);
+
 }

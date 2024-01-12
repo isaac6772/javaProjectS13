@@ -45,4 +45,12 @@ public class BoardController {
 		if(res==1) return "redirect:/message/board/boardInputOk";
 		else return "redirect:/message/board/boardInputNo";
 	}
+	
+	@RequestMapping(value = "/boardContent", method = RequestMethod.GET)
+	public String boardContentGet(int idx, Model model) {
+		BoardVO vo = boardService.boardContent(idx);
+		
+		model.addAttribute("vo",vo);
+		return "board/boardContent";
+	}
 }
