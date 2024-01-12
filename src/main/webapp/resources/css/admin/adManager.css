@@ -11,6 +11,7 @@ body {
 .adManagerContainer .flexBox {
 	display : flex;
 	justify-content: space-between;
+	background-color: #d5d5d5;
 }
 .adManagerContainer .box2 {
 	display : flex;
@@ -70,6 +71,7 @@ body {
 	padding : 3px;
 	border: 1px solid #e1d0d0;
     border-radius: 5px;
+    background-color: white;
 }
 .box2 .col1 .row2 .title {
 	position : relative;
@@ -102,6 +104,7 @@ body {
 	margin-left : 2px;
 	padding : 4px;
 	cursor : pointer;
+	background-color: white;
 }
 .box2 .col3 .row2 {
 	height : 480px;
@@ -109,6 +112,7 @@ body {
 	border: 1px solid #e1d0d0;
     border-radius: 5px;
 	font-size : 14px;
+	background-color: white;
 }
 .box2 .col3 #adList2 .box {
 	position : relative;
@@ -176,6 +180,7 @@ body {
     position : relative;
     cursor : pointer;
     box-shadow: 0px 0px 16px 0 rgba(0,0,0,.07);
+    background-color: white;
 }
 .box2 .col2 .btn:hover {
 	box-shadow: 0px 0px 16px 0 rgba(0,0,0,.11);

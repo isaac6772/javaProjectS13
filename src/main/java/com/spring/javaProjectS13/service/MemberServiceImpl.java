@@ -191,7 +191,7 @@ public class MemberServiceImpl implements MemberService {
 		String fileName = file.getOriginalFilename();
 		String ext = fileName.substring(fileName.lastIndexOf(".")+1);
 		String profile = UUID.randomUUID().toString().substring(0,12) + "_" + fileName;
-		String realPath = session.getServletContext().getRealPath("/resources/profile/");
+		String realPath = session.getServletContext().getRealPath("/resources/data/profile/");
 		MemberVO vo = memberDAO.memberMidCheck(mid);
 		
 		int maxSize = 1024 * 1024 * 10;

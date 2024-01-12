@@ -183,4 +183,18 @@ public class MessageController {
 		
 		return "include/message";
 	}
+	
+	@RequestMapping("/board/{boardFlag}")
+	public String boardMessage(Model model, @PathVariable String boardFlag) {
+		if(boardFlag.equals("boardInputOk")) {
+			model.addAttribute("msg","글이 등록되었습니다.");
+			model.addAttribute("url","board/boardList");
+		}
+		else if(boardFlag.equals("boardInputNo")) {
+			model.addAttribute("msg","글 등록에 실패하였습니다.");
+			model.addAttribute("url","board/boardInput");
+		}
+		
+		return "include/message";
+	}
 }

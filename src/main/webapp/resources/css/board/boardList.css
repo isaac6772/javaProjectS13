@@ -1,0 +1,151 @@
+.boardListContainer {
+	min-height: 518px;
+}
+.boardListContainer .listContainer {
+	width : 60%;
+	margin : 30px auto;
+}
+.listContainer .line {
+	border-top : 1px solid #dbdada;
+}
+.boardListContainer .optionBox {
+	display : flex;
+	margin-top : 15px;
+}
+.optionBox .type {
+	border : 1px solid #bab8b8;
+	padding: 8px 22px;
+	font-weight : bolder;
+	margin-right : 2px;
+	box-sizing: border-box;
+	width : 92px;
+	text-align: center;
+	color: #3a3a3a;
+	border-radius: 3px;
+	line-height: 22px;
+	cursor : pointer;
+}
+.optionBox .type.selected {
+	color : white;
+	background-color : #1b176b;
+}
+.optionBox .partBox {
+	display : flex;
+	margin-left : 52px;
+}
+.partBox .part {
+	padding-top : 21px;
+	font-size: 15px;
+    margin-right: 25px;
+    cursor : pointer;
+}
+.partBox .part.selected {
+	font-weight : bolder;
+}
+.optionBox .pageSize {
+	padding-top : 15px;
+	flex: 1;
+    text-align: right;
+}
+.optionBox .pageSize select {
+	height : 26px;
+}
+.optionBox .write {
+	padding-top: 15px;
+	margin-left: 6px;
+}
+.optionBox .write .btn {
+	border : 2px solid #1b176b;
+	color : #1b176b;
+	font-weight : bolder;
+	display : inline-block;
+	padding: 1px 7px;
+    height: 26px;
+    box-sizing: border-box;
+    font-size: 15px;
+    border-radius: 2px;
+    cursor : pointer;
+}
+.optionBox .write .btn img {
+	width : 15px;
+	vertical-align: sub;
+}
+.optionBox .write .btn span {
+	vertical-align: middle;
+}
+.listContainer .tableHeader {
+	display : flex;
+	margin-top: 7px;
+	border-top : 2px solid #1b176b;
+	border-bottom : 1px solid #1b176b;
+    padding: 13px 0px;
+}
+.listContainer .tableContent {
+	display : flex;
+    padding: 8px 0px;
+    border-bottom : 1px solid #cccccc;
+}
+.listContainer .tableHeader .col {
+	text-align : center;
+	font-weight : bolder;
+	font-size : 15px;
+}
+.listContainer .table .col {
+	text-align : center;
+	font-size : 14px;
+}
+.table .col1 {
+	width : 50px;
+}
+.table .col2 {
+	flex : 1;
+}
+.table .col3 {
+	width : 120px;
+}
+.table .col4 {
+	width : 110px;
+}
+.table .col5 {
+	width : 80px;
+}
+.table .col6 {
+	width : 50px;
+}
+.tableContent .col.col2 {
+	text-align : left;
+}
+.boardList > div:last-child {
+	border-bottom : 1px solid #1b176b;
+}
+
+
+.pagingContainer {
+	margin-top : 20px;
+}
+.pagingContainer .pagingBox {
+	display : flex;
+	justify-content : center;
+	margin : auto;
+}
+.pagingContainer .pagingBox .item {
+	cursor : pointer;
+	border : 1px solid #8d8989;
+	border-radius : 3px;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    margin-right : 4px;
+    padding : 2px;
+    font-size : 13px;
+    color: #2d2d2d;
+}
+.pagingContainer .pagingBox .item img {
+	width : 50%;
+	height : 50%;
+}
+.pagingContainer .pagingBox .number.selected {
+	background-color: gray;
+	color : white;
+	font-weight : bolder;
+}

@@ -12,6 +12,8 @@ public class PageVO {
 	private String toDate = "";
 	private String searchType = "mid";
 	private String searchString = "";
+	private String part = "전체";
+	private String scope = "전체글";
 	
 	private int startIndexNo;
 	private int totPage;

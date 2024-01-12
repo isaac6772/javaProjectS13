@@ -27,7 +27,7 @@
 					<span>토론</span>
 				</div>
 			</div>
-			<div class = "menuItem item3">
+			<div class = "menuItem item3" onclick = "location.href = '${ctp}/board/boardList'">
 				<div class = "row1">
 					<img src = "${ctp}/icon/board.png" />
 				</div>
