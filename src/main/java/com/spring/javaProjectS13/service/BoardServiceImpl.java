@@ -2,6 +2,7 @@ package com.spring.javaProjectS13.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.spring.javaProjectS13.dao.BoardDAO;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.ReplyVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -95,5 +97,78 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO boardContent(int idx) {
 		return boardDAO.boardContent(idx);
+	}
+
+	@Override
+	public List<ReplyVO> contentReply(int idx) {
+		return boardDAO.contentReply(idx);
+	}
+
+	@Override
+	public int inputReply(ReplyVO vo) {
+		return boardDAO.inputReply(vo);
+	}
+
+	@Override
+	public int boardUpdate(BoardVO vo, HttpSession session, HttpServletRequest request) {
+		// 1. 서버의 board 폴더에 있는 파일을 ckeditor로 옮긴다.
+		String realPath = session.getServletContext().getRealPath("/resources/data/");
+		BoardVO originalVO = boardDAO.boardContent(vo.getIdx());
+		String contextPath = request.getContextPath();
+		
+		try {
+			String oContent = originalVO.getContent();
+			while(true) {
+				if(oContent.indexOf("src=\"")!=-1) {
+					oContent = oContent.substring(oContent.indexOf("src=\"") + 27);
+					String fileName = oContent.substring(0,oContent.indexOf("\""));
+					
+					FileInputStream fis = new FileInputStream(realPath + "board/board/" + fileName);
+					FileOutputStream fos = new FileOutputStream(realPath + "ckeditor/" + fileName);
+					
+					byte[] data = new byte[2048];
+					int cnt = 0;
+					while((cnt=fis.read(data, 0, 2048))!=-1) {
+						fos.write(data);
+					}
+					fos.flush();
+					fos.close();
+					fis.close();
+					
+					new File(realPath + "board/" + fileName).delete();
+				}
+				else break;
+			}
+			
+			// 2. 실제로 업데이트 할 파일을 ckeditor 폴더에서 찾아서 board 폴더로 옮겨준다.
+			String uContent = vo.getContent();
+			uContent = uContent.replace("src=\""+contextPath+"/board/", "src=\""+contextPath+"/data/ckeditor/");
+			while(true) {
+				if(uContent.indexOf("src=\"")!=-1) {
+					uContent = uContent.substring(uContent.indexOf("src=\"") + 35);
+					String fileName = uContent.substring(0,uContent.indexOf("\""));
+					
+					FileInputStream fis = new FileInputStream(realPath + "ckeditor/" + fileName);
+					FileOutputStream fos = new FileOutputStream(realPath + "board/board/" + fileName);
+					
+					byte[] data = new byte[2048];
+					int cnt = 0;
+					while((cnt=fis.read(data, 0, 2048))!=-1) {
+						fos.write(data);
+					}
+					fos.flush();
+					fos.close();
+					fis.close();
+					
+					new File(realPath + "ckeditor/" + fileName).delete();
+				}
+				else break;
+			}
+			vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/board/"));
+			vo.setContentText(vo.getContent().replaceAll("<[^>]+>", ""));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return boardDAO.boardUpdate(vo);
 	}
 }

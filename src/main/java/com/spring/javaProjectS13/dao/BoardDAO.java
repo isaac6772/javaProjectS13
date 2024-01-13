@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.ReplyVO;
 
 public interface BoardDAO {
 
@@ -18,5 +19,11 @@ public interface BoardDAO {
 	public List<BoardVO> informList();
 
 	public BoardVO boardContent(@Param("idx") int idx);
+
+	public List<ReplyVO> contentReply(@Param("idx") int idx);
+
+	public int inputReply(@Param("vo") ReplyVO vo);
+
+	public int boardUpdate(@Param("vo") BoardVO vo);
 
 }

@@ -126,12 +126,15 @@
 	width : 13px;
 	vertical-align: middle;
 }
-.tableContent .col2 span {
+.tableContent .col2 span.boardTitle {
 	line-height : 19px;
 }
-.tableContent .col2 span:hover {
+.tableContent .col2 span.boardTitle:hover {
 	text-decoration: underline;
 	cursor : pointer;
+}
+.tableContent .col2 span.replyCnt {
+	color : red;
 }
 .tableContent .col3 img {
 	width : 12px;

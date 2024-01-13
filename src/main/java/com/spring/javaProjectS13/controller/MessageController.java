@@ -185,7 +185,8 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/board/{boardFlag}")
-	public String boardMessage(Model model, @PathVariable String boardFlag) {
+	public String boardMessage(Model model, @PathVariable String boardFlag,
+			@RequestParam(name = "idx", defaultValue = "0", required = false) int idx) {
 		if(boardFlag.equals("boardInputOk")) {
 			model.addAttribute("msg","글이 등록되었습니다.");
 			model.addAttribute("url","board/boardList");
@@ -193,6 +194,18 @@ public class MessageController {
 		else if(boardFlag.equals("boardInputNo")) {
 			model.addAttribute("msg","글 등록에 실패하였습니다.");
 			model.addAttribute("url","board/boardInput");
+		}
+		else if(boardFlag.equals("inputReplyNo")) {
+			model.addAttribute("msg","댓글 등록에 실패하였습니다.");
+			model.addAttribute("url","board/boardContent");
+		}
+		else if(boardFlag.equals("boardUpdateOk")) {
+			model.addAttribute("msg","게시물이 수정되었습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("boardUpdateNo")) {
+			model.addAttribute("msg","게시물이 수정에 실패하였습니다.");
+			model.addAttribute("url","board/boardUpdate?idx=" + idx);
 		}
 		
 		return "include/message";

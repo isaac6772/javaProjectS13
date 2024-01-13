@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.ReplyVO;
 
 public interface BoardService {
 
@@ -17,5 +18,11 @@ public interface BoardService {
 	public List<BoardVO> informList();
 
 	public BoardVO boardContent(int idx);
+
+	public List<ReplyVO> contentReply(int idx);
+
+	public int inputReply(ReplyVO vo);
+
+	public int boardUpdate(BoardVO vo, HttpSession session, HttpServletRequest request);
 
 }

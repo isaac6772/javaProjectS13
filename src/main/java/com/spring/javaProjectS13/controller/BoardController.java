@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.ReplyVO;
 
 @Controller
 @RequestMapping("/board")
@@ -48,9 +49,34 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardContent", method = RequestMethod.GET)
 	public String boardContentGet(int idx, Model model) {
-		BoardVO vo = boardService.boardContent(idx);
+		BoardVO bVo = boardService.boardContent(idx);
+		List<ReplyVO> replyVos = boardService.contentReply(idx);
 		
-		model.addAttribute("vo",vo);
+		model.addAttribute("replyVos",replyVos);
+		model.addAttribute("bVo",bVo);
 		return "board/boardContent";
+	}
+	
+	@RequestMapping(value = "/inputReply", method = RequestMethod.POST)
+	public String inputReplyPost(ReplyVO vo) {
+		int res = boardService.inputReply(vo);
+		
+		if(res==1) return "redirect:/board/boardContent?idx=" + vo.getBoardIdx();
+		else return "redirect:/message/board/inputReplyNo?idx=" + vo.getBoardIdx();
+	}
+	
+	@RequestMapping(value = "/boardUpdate", method = RequestMethod.GET)
+	public String boardUpdateGet(int idx, Model model) {
+		BoardVO vo = boardService.boardContent(idx);
+		model.addAttribute("vo",vo);
+		return "board/boardUpdate";
+	}
+	
+	@RequestMapping(value = "/boardUpdate", method = RequestMethod.POST)
+	public String boardUpdatePost(BoardVO vo, HttpSession session, HttpServletRequest request) {
+		int res = boardService.boardUpdate(vo, session, request);
+		
+		if(res==1) return "redirect:/message/board/boardUpdateOk?idx=" + vo.getIdx();
+		else return "redirect:/message/board/boardUpdateNo?idx=" + vo.getIdx();
 	}
 }

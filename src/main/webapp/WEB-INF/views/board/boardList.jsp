@@ -66,7 +66,10 @@
 						<div class = "col col1">공지</div>
 						<div class = "col col2">
 							<img src = "${ctp}/icon/inform.png" />
-							<span onclick = "location.href='boardContent?idx=${vo.idx}'">${vo.title}</span>
+							<span onclick = "location.href='boardContent?idx=${vo.idx}'" class = "boardTitle">${vo.title}</span>
+							<c:if test="${vo.replyCnt!=0}">
+								<span class = "replyCnt">[${vo.replyCnt}]</span>
+							</c:if>
 							<c:if test="${vo.dateDiff==0}">
 								<img src = "${ctp}/icon/new.png" class = "newBoard" />
 							</c:if>
@@ -103,7 +106,10 @@
 							<c:if test="${vo.good>=10}">
 								<img src="${ctp}/icon/goodBoard.png" />
 							</c:if>
-							<span onclick = "location.href='boardContent?idx=${vo.idx}'">${vo.title}</span>
+							<span onclick = "location.href='boardContent?idx=${vo.idx}'" class = "boardTitle">${vo.title}</span>
+							<c:if test="${vo.replyCnt!=0}">
+								<span class = "replyCnt">[${vo.replyCnt}]</span>
+							</c:if>
 							<c:if test="${vo.dateDiff==0}">
 								<img src = "${ctp}/icon/new.png" class = "newBoard" />
 							</c:if>

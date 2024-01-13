@@ -5,7 +5,8 @@
 	
 	<select id="boardList" resultType = "com.spring.javaProjectS13.vo.BoardVO">
 		<if test="vo.searchType=='all'">
-			select *,(select level from member where idx = board.memberIdx) as level,dateDiff(now(),writeDate) as dateDiff, case when <![CDATA[content like '%src="%']]> then 1 else 0 end as imgCheck from board 
+			select *,(select count(*) from reply where reply.boardIdx = board.idx) as replyCnt, 
+			(select level from member where idx = board.memberIdx) as level,dateDiff(now(),writeDate) as dateDiff, case when <![CDATA[content like '%src="%']]> then 1 else 0 end as imgCheck from board 
 			where (nickName like '%${vo.searchString}%' or title like '%${vo.searchString}%' or contentText like '%${vo.searchString}%') 
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
@@ -13,7 +14,8 @@
 			order by idx desc limit #{vo.startIndexNo},#{vo.pageSize} 
 		</if>
 		<if test="vo.searchType!='all'">
-			select *,(select level from member where idx = board.memberIdx) as level,dateDiff(now(),writeDate) as dateDiff, case when <![CDATA[content like '%src="%']]> then 1 else 0 end as imgCheck from board 
+			select *,(select count(*) from reply where reply.boardIdx = board.idx) as replyCnt, 
+			(select level from member where idx = board.memberIdx) as level,dateDiff(now(),writeDate) as dateDiff, case when <![CDATA[content like '%src="%']]> then 1 else 0 end as imgCheck from board 
 			where ${vo.searchType} like '%${vo.searchString}%' 
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
@@ -38,16 +40,27 @@
 		</if>
 	</select>
 	<select id="informList" resultType = "com.spring.javaProjectS13.vo.BoardVO">
-		select board.*,member.level from board join member on board.part = '공지' and board.memberIdx = member.idx order by board.idx desc limit 0,5;
+		select board.*,member.level,(select count(*) from reply where reply.boardIdx = board.idx) as replyCnt from board join member on board.part = '공지' and board.memberIdx = member.idx order by board.idx desc limit 0,5;
 	</select>
 	<select id="boardContent" resultType = "com.spring.javaProjectS13.vo.BoardVO">
-		select * from board where idx = #{idx};
+		select board.*, member.profile, member.level from board join member on board.idx = #{idx} and board.memberIdx = member.idx;
+	</select>
+	<select id="contentReply" resultType = "com.spring.javaProjectS13.vo.ReplyVO">
+		select reply.*,member.profile from reply join member on reply.boardType = 'board' and reply.boardIdx = #{idx} and member.idx = reply.memberIdx;
 	</select>
 	
 	
 	<insert id="boardInput">
 		insert into board values (default,#{vo.memberIdx},#{vo.nickName},#{vo.title},#{vo.content},#{vo.contentText},#{vo.part},0,0,0,default);
 	</insert>
+	<insert id="inputReply">
+		insert into reply values (default,#{vo.memberIdx},#{vo.nickName},'board',#{vo.boardIdx},#{vo.content},default,#{vo.replyIdx})
+	</insert>
+	
+	
+	<update id="boardUpdate">
+		update board set nickName = #{vo.nickName}, title = #{vo.title}, content = #{vo.content}, contentText = #{vo.contentText}, part = #{vo.part}, writeDate = now() where idx = #{vo.idx}
+	</update>
 	
 	
 </mapper>

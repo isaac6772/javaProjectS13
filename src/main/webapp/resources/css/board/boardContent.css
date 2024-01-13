@@ -1,6 +1,10 @@
 .boardContentContainer {
 	min-height: 518px;
 	margin-top : 30px;
+	margin-bottom: 30px;
+}
+.boardContentContainer .pointer {
+	cursor : pointer;
 }
 .boardContentContainer .btnContainer {
 	width : 60%;
@@ -32,6 +36,179 @@
 .contentContainer .line {
 	border-top : 1px solid #d9d9d9;
 }
-.contentContainer .content img {
+.contentContainer .title {
+	font-size : 30px;
+	margin-bottom : 7px;
+}
+.contentContainer .part {
+	font-size : 15px;
+	color : #74a4ff;
+	cursor : pointer;
+	font-weight : bolder;
+	margin-bottom : 7px;
+}
+.contentContainer > .profile {
+	display : flex;
+	margin-bottom : 14px;
+}
+.contentContainer .profile .profileImg {
+	margin-right : 8px;
+}
+.contentContainer .profile .profileImg img {
+	width : 36px;
+	height : 36px;
+	border-radius: 18px;
+	border : 1px solid #ededed;
+}
+.contentContainer .profile .profileInfo .level {
+	width : 12px;
+}
+.contentContainer .profile .profileInfo .date {
+	font-size : 13px;
+	color : gray;
+}
+.contentContainer .profile .option {
+	flex : 1;
+	text-align: right;
+	position : relative;
+}
+.contentContainer .profile .option img {
+	width : 17px;
+	cursor : pointer;
+}
+.contentContainer .profile .option .optionForm {
+	position : absolute;
+	right : 0px;
+	padding : 2px 0px;
+	box-shadow: 1px 1px 6px 0 rgba(0,0,0,.16);
+    background-color: white;
+    border-radius: 4px;
+    display : none;
+}
+.contentContainer .profile .option .optionForm div {
+	text-align : center;
+	font-size: 15px;
+    padding: 3px 19px;
+    cursor : pointer;
+}
+.contentContainer .profile .option .optionForm div:hover {
+	background-color : #f1f1f1;
+}
+.contentContainer > .content {
+	min-height: 300px;
+}
+.contentContainer > .content img {
 	max-width: 100%;
+}
+.contentContainer .goodBadinfo {
+	display : flex;
+	font-size : 15px;
+	margin-bottom: 10px;
+}
+.contentContainer .goodBadinfo img {
+	width : 17px;
+	vertical-align: bottom;
+	cursor : pointer;
+}
+.contentContainer .goodBadinfo > div {
+	margin-right : 10px;
+}
+.contentContainer .replTitle {
+	margin-top : 10px;
+	font-size : 18px;
+	font-weight: bolder;
+}
+.contentContainer .inputReply {
+	box-sizing: border-box;
+	padding : 10px;
+	border : 1px solid #dbdbdb;
+	border-radius: 8px;
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+.contentContainer .inputReply .replContent {
+	margin : 10px 0px;
+}
+.contentContainer .inputReply .replContent textarea {
+	box-sizing: border-box;
+	width : 100%;
+	resize : none;
+	overflow-y : hidden;
+	border : none;
+	outline : none;
+}
+.contentContainer .inputReply .btnBox {
+	display : flex;
+	justify-content: flex-end;
+}
+.contentContainer .inputReply .btnBox .btn {
+    font-size: 14px;
+    background-color: #bee2ff;
+    color: #1717a5;
+    border-radius: 5px;
+    padding : 8px 10px;
+    cursor : pointer;
+    border : none;
+}
+.contentContainer .replyGroup .replyBox {
+	border-bottom : 1px solid #d1d1d1;
+	padding: 8px 0px;
+}
+.contentContainer .replyGroup .replyBox.motherReply {
+	display : flex;
+}
+.contentContainer .replyGroup .reReplyForm {
+	display : none;
+}
+.contentContainer .replyGroup .reReplyForm .inputReply {
+	margin-left : 20px;
+}
+.contentContainer .replyGroup .replyBox.reReply {
+	display : flex;
+	padding-left: 20px;
+	background-color : whitesmoke;
+}
+.replyGroup .replyBox .profile {
+	margin-right : 10px;
+}
+.replyGroup .replyBox .profile img {
+	width : 33px;
+	height : 33px;
+	border-radius: 17px;
+    border: 1px solid #ededed;
+}
+.replyGroup .replyBox .replContent {
+	flex : 1;
+}
+.replyGroup .replyBox .replContent .row1 {
+	position : relative;
+	margin-bottom : 8px;
+}
+.replyGroup .replyBox .replContent .row1 img {
+	position : absolute;
+	right : 0px;
+	top : 4px;
+	width : 10px;
+	cursor : pointer;
+}
+.replyGroup .replyBox .replContent .row1 span:first-child {
+	font-weight : bolder;
+}
+.replyGroup .replyBox .replContent .row1 span:nth-child(2) {
+	font-size : 12px;
+	color : gray;
+}
+.replyGroup .replyBox .replContent .row2 {
+	font-size : 14px;
+	margin-bottom : 8px;
+}
+.replyGroup .replyBox .replContent .row3 {
+	font-size : 13px;
+	color : #616161;
+}
+.replyGroup .replyBox .replContent .row3 span {
+	user-select : none;
+}
+.replyGroup .replyBox .replContent .row3 span.reReplyCnt {
+	font-weight : bolder;
 }

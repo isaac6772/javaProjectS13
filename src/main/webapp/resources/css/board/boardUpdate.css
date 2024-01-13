@@ -1,0 +1,58 @@
+.boardUpdateContainer {
+	min-height: 518px;
+}
+.updateContainer {
+	width : 60%;
+	margin : 30px auto;
+	border-top : 1px solid black;
+}
+.updateContainer .titleBox {
+	margin-top : 15px;
+	border : 1px solid #d4d1d1;
+	border-radius: 10px;	
+	padding: 29px 20px;
+}
+.updateContainer .titleBox .row1 {
+	margin-bottom : 15px;
+}
+.updateContainer .titleBox .row1 select {
+	width : 200px;
+	border : none;
+	border-bottom : 1px solid #d4d1d1;
+	font-size: 17px;
+	padding-bottom: 6px;
+}
+.updateContainer .titleBox .row2 input[type=text] {
+	width : 100%;
+	font-size: 19px;
+    padding: 13px 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #d4d1d1;
+    outline: none;
+}
+.updateContainer .infoBox {
+	margin-top: 14px;
+	border : 1px;
+	background-color : #f0eeee;
+	color : gray;
+	padding : 20px;
+}
+.updateContainer .ckeditor {
+	margin-top : 14px;
+}
+.updateContainer .btnBox {
+	display : flex;
+	justify-content: center;
+	margin-top : 20px;
+}
+.btnBox .btn {
+	border-radius: 38px;
+	padding: 10px 20px;
+	color : white;
+	cursor : pointer;
+}
+.btnBox .btn1 {
+	background-color : #3f3fe0;
+	margin-right : 10px;
+}
