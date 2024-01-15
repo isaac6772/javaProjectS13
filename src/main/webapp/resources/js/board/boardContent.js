@@ -95,7 +95,10 @@ function setGood(idx) {
 		data : {idx : idx},
 		type : "post",
 		success : function(res) {
-			if(res==1) {
+			if(res==-1) {
+				alert("자신의 게시물은 추천할 수 없습니다.");
+			}
+			else if(res==1) {
 				alert("추천을 누르셨습니다.");
 				$('.goodBadinfo').load(location.href + ' .goodBadinfo');
 			}
@@ -113,7 +116,10 @@ function setBad(idx) {
 		data : {idx : idx},
 		type : "post",
 		success : function(res) {
-			if(res!=0) {
+			if(res==-1) {
+				alert("자신의 게시물은 비추천할 수 없습니다.");
+			}
+			else if(res!=0) {
 				$('.goodBadinfo').load(location.href + ' .goodBadinfo');
 				alert("비추천을 누르셨습니다.");
 			}

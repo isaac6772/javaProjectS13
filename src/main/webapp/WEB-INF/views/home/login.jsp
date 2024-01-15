@@ -21,7 +21,7 @@
 			<span>로그인</span>
 		</div>
 		<div class = "joinFind">
-			<span><a href = "${ctp}/member/memberJoin">회원가입</a></span> | <span><a href = "#">아이디/비밀번호 찾기</a></span>
+			<span><a href = "${ctp}/member/memberJoin">회원가입</a></span> | <span><a href = "${ctp}/member/memberIdPwdFind">아이디/비밀번호 찾기</a></span>
 		</div>
 		<div class = "line"></div>
 	</form>

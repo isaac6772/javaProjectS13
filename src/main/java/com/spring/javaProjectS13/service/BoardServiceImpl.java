@@ -255,8 +255,12 @@ public class BoardServiceImpl implements BoardService {
 	public int setGood(int idx, HttpSession session) {
 		int memberIdx = session.getAttribute("sIdx")==null ? 0 : (int) session.getAttribute("sIdx");
 		RecommendVO vo = boardDAO.getRecommend(idx, memberIdx);
+		BoardVO bVo = boardDAO.boardContent(idx);
 		
-		if(vo != null && vo.getFlag() == 2) {
+		if(bVo.getMemberIdx()==memberIdx) {
+			return -1;
+		}
+		else if(vo != null && vo.getFlag() == 2) {
 			int res = boardDAO.boardRecommendUpdate(idx,"bad",-1);
 			res *= boardDAO.boardRecommendUpdate(idx,"good",1);
 			res *= boardDAO.updateRecommend(vo.getIdx(), 1);
@@ -274,8 +278,12 @@ public class BoardServiceImpl implements BoardService {
 	public int setBad(int idx, HttpSession session) {
 		int memberIdx = session.getAttribute("sIdx")==null ? 0 : (int) session.getAttribute("sIdx");
 		RecommendVO vo = boardDAO.getRecommend(idx, memberIdx);
+		BoardVO bVo = boardDAO.boardContent(idx);
 		
-		if(vo != null && vo.getFlag() == 1) {
+		if(bVo.getMemberIdx()==memberIdx) {
+			return -1;
+		}
+		else if(vo != null && vo.getFlag() == 1) {
 			int res = boardDAO.boardRecommendUpdate(idx,"bad",1);
 			res *= boardDAO.boardRecommendUpdate(idx,"good",-1);
 			res *= boardDAO.updateRecommend(vo.getIdx(), 2);

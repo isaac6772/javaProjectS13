@@ -18,6 +18,7 @@
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberJoin/**"/>
 			<exclude-mapping path="/member/memberLogin"/>
+			<exclude-mapping path="/member/memberIdPwdFind"/>
 			<exclude-mapping path="/service/serviceList"/>
 			<exclude-mapping path="/service/serviceContent"/>
 			<beans:ref bean = "level0Interceptor"/>

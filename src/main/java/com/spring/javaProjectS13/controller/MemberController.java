@@ -112,6 +112,11 @@ public class MemberController {
 		return "redirect:/message/member/memberLogoutOk";
 	}
 	
+	@RequestMapping(value = "/memberIdPwdFind", method = RequestMethod.GET)
+	public String memberIdPwdFindGet() {
+		return "member/memberIdPwdFind";
+	}
+	
 	@RequestMapping(value = "/myPageIframe", method = RequestMethod.GET)
 	public String myPageGet() {
 		return "member/myPageIframe";
