@@ -195,9 +195,13 @@ public class MessageController {
 			model.addAttribute("msg","글 등록에 실패하였습니다.");
 			model.addAttribute("url","board/boardInput");
 		}
+		else if(boardFlag.equals("inputReplyOk")) {
+			model.addAttribute("msg","댓글이 등록되었습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
 		else if(boardFlag.equals("inputReplyNo")) {
 			model.addAttribute("msg","댓글 등록에 실패하였습니다.");
-			model.addAttribute("url","board/boardContent");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
 		}
 		else if(boardFlag.equals("boardUpdateOk")) {
 			model.addAttribute("msg","게시물이 수정되었습니다.");
@@ -206,6 +210,30 @@ public class MessageController {
 		else if(boardFlag.equals("boardUpdateNo")) {
 			model.addAttribute("msg","게시물이 수정에 실패하였습니다.");
 			model.addAttribute("url","board/boardUpdate?idx=" + idx);
+		}
+		else if(boardFlag.equals("boardDeleteOk")) {
+			model.addAttribute("msg","게시물이 삭제되었습니다.");
+			model.addAttribute("url","board/boardList");
+		}
+		else if(boardFlag.equals("boardDeleteNo")) {
+			model.addAttribute("msg","게시물이 삭제에 실패하였습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("deleteReplyOk")) {
+			model.addAttribute("msg","댓글이 삭제되었습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("deleteReplyNo")) {
+			model.addAttribute("msg","댓글 삭제에 실패하였습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("updateReplyOk")) {
+			model.addAttribute("msg","댓글이 수정되었습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("updateReplyNo")) {
+			model.addAttribute("msg","댓글 수정에 실패하였습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
 		}
 		
 		return "include/message";

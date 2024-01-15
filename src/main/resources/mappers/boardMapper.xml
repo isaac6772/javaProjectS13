@@ -43,10 +43,23 @@
 		select board.*,member.level,(select count(*) from reply where reply.boardIdx = board.idx) as replyCnt from board join member on board.part = '공지' and board.memberIdx = member.idx order by board.idx desc limit 0,5;
 	</select>
 	<select id="boardContent" resultType = "com.spring.javaProjectS13.vo.BoardVO">
-		select board.*, member.profile, member.level from board join member on board.idx = #{idx} and board.memberIdx = member.idx;
+		select board.*, member.profile, member.level, 
+		(select b.idx from board b where <![CDATA[b.idx < board.idx]]> order by b.idx desc limit 1) as nextIdx, 
+		(select b.idx from board b where <![CDATA[b.idx > board.idx]]> limit 1) as prevIdx 
+		from board join member 
+		on board.idx = #{idx} and board.memberIdx = member.idx;
 	</select>
 	<select id="contentReply" resultType = "com.spring.javaProjectS13.vo.ReplyVO">
 		select reply.*,member.profile from reply join member on reply.boardType = 'board' and reply.boardIdx = #{idx} and member.idx = reply.memberIdx;
+	</select>
+	<select id="getReply" resultType = "com.spring.javaProjectS13.vo.ReplyVO">
+		select * from reply where idx = #{idx}
+	</select>
+	<select id="getViewNum" resultType = "com.spring.javaProjectS13.vo.ViewNumVO">
+		select * from viewNum where boardType = 'board' and boardIdx = #{idx} and memberIdx = #{memberIdx}
+	</select>
+	<select id="getRecommend" resultType = "com.spring.javaProjectS13.vo.RecommendVO">
+		select * from recommend where boardType = 'board' and boardIdx = #{boardIdx} and memberIdx = #{memberIdx}
 	</select>
 	
 	
@@ -56,11 +69,43 @@
 	<insert id="inputReply">
 		insert into reply values (default,#{vo.memberIdx},#{vo.nickName},'board',#{vo.boardIdx},#{vo.content},default,#{vo.replyIdx})
 	</insert>
+	<insert id="setViewNum">
+		insert into viewNum values (default,'board',#{boardIdx},#{memberIdx},now())
+	</insert>
+	<insert id="setRecommend">
+		insert into recommend values (default,'board',#{idx},#{memberIdx},#{flag})
+	</insert>
 	
 	
 	<update id="boardUpdate">
 		update board set nickName = #{vo.nickName}, title = #{vo.title}, content = #{vo.content}, contentText = #{vo.contentText}, part = #{vo.part}, writeDate = now() where idx = #{vo.idx}
 	</update>
+	<update id="updateReply">
+		update reply set content = #{vo.content}, writeDate = now() where idx = #{vo.idx};
+	</update>
+	<update id="ViewNumPlus">
+		update board set viewNum = viewNum + 1 where idx = #{idx}
+	</update>
+	<update id="updateViewNum">
+		update viewNum set viewDate = now() where idx = #{idx}
+	</update>
+	<update id="updateRecommend">
+		update recommend set flag = #{flag} where idx = #{idx}
+	</update>
+	<update id="boardRecommendUpdate">
+		update board set ${field} = ${field} <if test="flag==1">+1</if> <if test="flag==-1">-1</if> where idx = #{idx}
+	</update>
+	
+	
+	<delete id="boardDelete">
+		delete from board where idx = #{idx}
+	</delete>
+	<delete id="deleteReply">
+		delete from reply where idx = #{idx}
+	</delete>
+	<delete id="cancelRecommend">
+		delete from recommend where boardType = 'board' and boardIdx = #{idx} and memberIdx = #{memberIdx}
+	</delete>
 	
 	
 </mapper>

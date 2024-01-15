@@ -11,7 +11,7 @@
 	<script>
 		'use strict';
 		let contextPath = '${ctp}';
-		let exp = '${vo.exp}';
+		let exp = '${mVo.exp}';
 		let maxExp = '${maxExp}';
 	</script>
 	<script src = "${ctp}/js/home.js"></script>

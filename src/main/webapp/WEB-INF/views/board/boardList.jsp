@@ -106,7 +106,8 @@
 							<c:if test="${vo.good>=10}">
 								<img src="${ctp}/icon/goodBoard.png" />
 							</c:if>
-							<span onclick = "location.href='boardContent?idx=${vo.idx}'" class = "boardTitle">${vo.title}</span>
+							<%-- <span onclick = "location.href='boardContent?idx=${vo.idx}'" class = "boardTitle">${vo.title}</span> --%>
+							<span onclick = "boardContent('${vo.idx}')" class = "boardTitle">${vo.title}</span>
 							<c:if test="${vo.replyCnt!=0}">
 								<span class = "replyCnt">[${vo.replyCnt}]</span>
 							</c:if>
@@ -149,6 +150,7 @@
 				</div>
 			</div>
 			
+			<!-- 게시판 리스트로 페이지이동시나 게시판컨텐츠페이지로 갈때 데이터를 가져갈 폼이다. -->
 			<form name = "pagingForm">
 				<input type = "hidden" name = "pag" id = "pag" value = "${pageVO.pag}" />
 				<input type = "hidden" name = "pageSize" id = "pageSize" value = "${pageVO.pageSize}" />
@@ -156,6 +158,7 @@
 				<input type = "hidden" name = "searchString" id = "searchString" value = "${pageVO.searchString}" />
 				<input type = "hidden" name = "part" id = "part" value = "${pageVO.part}" />
 				<input type = "hidden" name = "scope" id = "scope" value = "${pageVO.scope}" />
+				<input type = "hidden" name = "idx" id = "idx" value = "0" />
 			</form>
 			
 		</div>

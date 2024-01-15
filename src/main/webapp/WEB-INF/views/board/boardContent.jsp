@@ -22,15 +22,20 @@
 	<div class = "boardContentContainer">
 	
 		<div class = "btnContainer">
-			<div class = "btn">
-				<img src = "${ctp}/icon/arrowT.png" />
-				<span>이전글</span>
-			</div>
-			<div class = "btn">
-				<img src = "${ctp}/icon/arrowB.png" />
-				<span>다음글</span>
-			</div>
-			<div class = "btn">목록</div>
+			<c:if test="${bVo.prevIdx!=0}">
+				<div class = "btn" onclick = "location.href='boardContent?pag=${pageVO.pag}&pageSize=${pageVO.pageSize}&searchType=${pageVO.searchType}&searchString=${pageVO.searchString}&part=${pageVO.part}&scope=${pageVO.scope}&idx=${bVo.prevIdx}'">
+					<img src = "${ctp}/icon/arrowT.png" />
+					<span>이전글</span>
+				</div>
+			</c:if>
+			<c:if test="${bVo.nextIdx!=0}">
+				<div class = "btn" onclick = "location.href='boardContent?pag=${pageVO.pag}&pageSize=${pageVO.pageSize}&searchType=${pageVO.searchType}&searchString=${pageVO.searchString}&part=${pageVO.part}&scope=${pageVO.scope}&idx=${bVo.nextIdx}'">
+					<img src = "${ctp}/icon/arrowB.png" />
+					<span>다음글</span>
+				</div>
+			</c:if>
+			<!-- 게시판리스트에서 페이지 정보를 그대로 가져와서 목록이동시 이전 페이지 정보대로 리스트로 이동함 -->
+			<div class = "btn" onclick = "location.href='boardList?pag=${pageVO.pag}&pageSize=${pageVO.pageSize}&searchType=${pageVO.searchType}&searchString=${pageVO.searchString}&part=${pageVO.part}&scope=${pageVO.scope}'">목록</div>
 		</div>
 	
 		<div class = "contentContainer">
@@ -51,13 +56,18 @@
 					</div>
 					<div>
 						<span class = "date">${fn:substring(bVo.writeDate,0,16)}</span>
+						<span class = "viewNum">조회 ${bVo.viewNum}</span>
 					</div>
 				</div>
 				<div class = "option">
-					<img src = "${ctp}/icon/option.png" onclick = "optionFormShow(this)" />
+					<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
 					<div class = "optionForm">
-						<div onclick = "location.href='boardUpdate?idx=${bVo.idx}'">수정</div>
-						<div>삭제</div>
+						<c:if test="${sIdx==bVo.memberIdx}">
+							<div onclick = "location.href='boardUpdate?idx=${bVo.idx}'">수정</div>
+						</c:if>
+						<c:if test="${sLevel==77 || sIdx==bVo.memberIdx}">
+							<div onclick = "location.href='boardDelete?idx=${bVo.idx}'">삭제</div>
+						</c:if>
 						<div>신고</div>
 					</div>
 				</div>
@@ -68,16 +78,20 @@
 			</div>
 			<div class = "goodBadinfo">
 				<div>
-					<img src = "${ctp}/icon/like.png" />
-					<span>추천</span><span>33</span>
+					<img src = "${ctp}/icon/liked.png" class = "recommend ${recommend==1?'selected':''}" onclick = "cancelRecommend('${bVo.idx}')" />
+					<img src = "${ctp}/icon/like.png" class = "recommend ${recommend!=1?'selected':''}" onclick = "setGood(${bVo.idx})" />
+					<span>추천</span>
+					<span>${bVo.good}</span>
 				</div>
 				<div>
-					<img src = "${ctp}/icon/dislike.png" />
-					<span>비추천</span><span>2</span>
+					<img src = "${ctp}/icon/disliked.png" class = "recommend ${recommend==2?'selected':''}" onclick = "cancelRecommend('${bVo.idx}')" />
+					<img src = "${ctp}/icon/dislike.png" class = "recommend ${recommend!=2?'selected':''}" onclick = "setBad('${bVo.idx}')" />
+					<span>비추천</span>
+					<span>${bVo.bad}</span>
 				</div>
 				<div>
 					<img src = "${ctp}/icon/comment.png" />
-					<span>댓글</span><span>5</span>
+					<span>댓글</span><span>${fn:length(replyVos)}</span>
 				</div>
 			</div>
 			<div class = "line"></div>
@@ -98,6 +112,7 @@
 				<input type = "hidden" name = "nickName" value = "${sNickName}" />
 				<input type = "hidden" name = "memberIdx" value = "${sIdx}" />
 			</form>
+			<div class = "line"></div>
 			
 			<c:forEach var = "vo" items = "${replyVos}" varStatus = "st">
 				<c:if test="${vo.replyIdx==0}">
@@ -107,10 +122,19 @@
 								<img src = "${ctp}/profile/${vo.profile}" />
 							</div>
 							<div class = "replContent">
-								<div class = "row1">
+								<div class = "row1 option">
 									<span>${vo.nickName}</span>
 									<span>${fn:substring(vo.writeDate,0,16)}</span>
-									<img src = "${ctp}/icon/option.png" />
+									<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
+									<div class = "optionForm">
+										<c:if test="${sIdx==vo.memberIdx}">
+											<div onclick = "updateReply(this,'${vo.nickName}','${vo.idx}','${bVo.idx}')">수정</div>
+										</c:if>
+										<c:if test="${sLevel==77 || sIdx==vo.memberIdx || sIdx==bVo.memberIdx}">
+											<div onclick = "deleteReply(this,'${vo.idx}','${bVo.idx}')">삭제</div>
+										</c:if>
+										<div>신고</div>
+									</div>
 								</div>
 								<div class = "row2">${vo.content}</div>
 								<div class = "row3">
@@ -144,9 +168,19 @@
 											<img src = "${ctp}/profile/${reVo.profile}" />
 										</div>
 										<div class = "replContent">
-											<div class = "row1">
+											<div class = "row1 option">
 												<span>${reVo.nickName}</span>
 												<span>${fn:substring(reVo.writeDate,0,16)}</span>
+												<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
+												<div class = "optionForm">
+													<c:if test="${sIdx==reVo.memberIdx}">
+														<div onclick = "updateRereply(this,'${reVo.nickName}','${reVo.idx}','${bVo.idx}')">수정</div>
+													</c:if>
+													<c:if test="${sLevel==77 || sIdx==vo.memberIdx || sIdx==bVo.memberIdx}">
+														<div onclick = "deleteReply(this,'${reVo.idx}','${bVo.idx}')">삭제</div>
+													</c:if>
+													<div>신고</div>
+												</div>
 											</div>
 											<div class = "row2">${reVo.content}</div>
 										</div>

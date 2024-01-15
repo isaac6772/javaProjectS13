@@ -17,12 +17,28 @@ public interface BoardService {
 
 	public List<BoardVO> informList();
 
-	public BoardVO boardContent(int idx);
+	public BoardVO boardContent(int idx, int memberIdx);
 
 	public List<ReplyVO> contentReply(int idx);
 
 	public int inputReply(ReplyVO vo);
 
 	public int boardUpdate(BoardVO vo, HttpSession session, HttpServletRequest request);
+
+	public int boardDelete(int idx, HttpSession session);
+
+	public int deleteReply(int idx, int boardIdx, HttpSession session);
+
+	public int updateReply(ReplyVO vo, HttpSession session);
+
+	public BoardVO boardContent(int idx);
+
+	public int getRecommend(int idx, int memberIdx);
+
+	public int cancelRecommend(int idx, HttpSession session);
+
+	public int setGood(int idx, HttpSession session);
+
+	public int setBad(int idx, HttpSession session);
 
 }

@@ -23,3 +23,6 @@ select REGEXP_REPLACE(content,'<[^>]+>', '') from board;
 
 -- 이미지 파일을 포함하는지 여부를 추가해 제공
 select *,case when content like '%<img src=%' then 1 else 0 end as result from board b;
+
+-- 다음 게시물의 idx
+select *,(select bb.idx from board bb where bb.idx < b.idx order by idx desc limit 1) as nextIdx from board b;

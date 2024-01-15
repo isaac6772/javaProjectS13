@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 import com.spring.javaProjectS13.dao.BoardDAO;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.RecommendVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ViewNumVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -93,10 +96,33 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> informList() {
 		return boardDAO.informList();
 	}
-
+	
+	// 메소드 오버로딩(조회수 계산 없이 단순 개별 boardContent자료가 필요할시)
 	@Override
 	public BoardVO boardContent(int idx) {
 		return boardDAO.boardContent(idx);
+	}
+	
+	@Override
+	public BoardVO boardContent(int boardIdx, int memberIdx) {
+		ViewNumVO vo = boardDAO.getViewNum(boardIdx,memberIdx);
+		if(vo != null) {
+			String viewDate = vo.getViewDate().substring(0,10);
+			String today = LocalDate.now().toString();
+			if(!viewDate.equals(today)) {
+				boardDAO.updateViewNum(vo.getIdx());
+				boardDAO.ViewNumPlus(boardIdx);
+			}
+			else {
+				boardDAO.updateViewNum(vo.getIdx());
+			}
+		}
+		else {
+			boardDAO.setViewNum(boardIdx,memberIdx);
+			boardDAO.ViewNumPlus(boardIdx);
+		}
+				
+		return boardDAO.boardContent(boardIdx);
 	}
 
 	@Override
@@ -171,4 +197,96 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return boardDAO.boardUpdate(vo);
 	}
+
+	@Override
+	public int boardDelete(int idx, HttpSession session) {
+		int loginIdx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		int level = session.getAttribute("sLevel") == null ? 0 : (int) session.getAttribute("sLevel");
+		int memberIdx = boardDAO.boardContent(idx).getMemberIdx();
+		
+		// 관리자가 아니거나 자기 게시물이 아닌경우 삭제할 수 없도록 백엔드 체크(get방식으로 요청을 보내는 것이기때문에 필요한 듯 하다)
+		if(level!=77 && loginIdx!=memberIdx) return 0;
+		
+		return boardDAO.boardDelete(idx);
+	}
+
+	@Override
+	public int deleteReply(int idx, int boardIdx, HttpSession session) {
+		int loginIdx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		int level = session.getAttribute("sLevel") == null ? 0 : (int) session.getAttribute("sLevel");
+		int memberIdx = boardDAO.boardContent(boardIdx).getMemberIdx();
+		int replyMemberIdx = boardDAO.getReply(idx).getMemberIdx();
+		
+		if(level!=77 && loginIdx!=memberIdx && loginIdx!=replyMemberIdx) return 0;
+		
+		return boardDAO.deleteReply(idx);
+	}
+
+	@Override
+	public int updateReply(ReplyVO vo, HttpSession session) {
+		int loginIdx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		int replyMemberIdx = boardDAO.getReply(vo.getIdx()).getMemberIdx();
+		
+		if(replyMemberIdx != loginIdx) return 0;
+		return boardDAO.updateReply(vo);
+	}
+
+	@Override
+	public int getRecommend(int idx, int memberIdx) {
+		if(boardDAO.getRecommend(idx, memberIdx) != null) return boardDAO.getRecommend(idx, memberIdx).getFlag();
+		else return 0;
+	}
+
+	@Override
+	public int cancelRecommend(int idx, HttpSession session) {
+		int memberIdx = session.getAttribute("sIdx")==null ? 0 : (int) session.getAttribute("sIdx");
+		RecommendVO vo = boardDAO.getRecommend(idx, memberIdx);
+		// 기존에 추천상태였다면 그 게시물의 추천수 다운시키는 처리
+		if(vo.getFlag()==1) {
+			boardDAO.boardRecommendUpdate(idx,"good",-1);
+		}
+		else if(vo.getFlag()==2) {
+			boardDAO.boardRecommendUpdate(idx,"bad",-1);
+		}
+		return boardDAO.cancelRecommend(idx, memberIdx);
+	}
+
+	@Override
+	public int setGood(int idx, HttpSession session) {
+		int memberIdx = session.getAttribute("sIdx")==null ? 0 : (int) session.getAttribute("sIdx");
+		RecommendVO vo = boardDAO.getRecommend(idx, memberIdx);
+		
+		if(vo != null && vo.getFlag() == 2) {
+			int res = boardDAO.boardRecommendUpdate(idx,"bad",-1);
+			res *= boardDAO.boardRecommendUpdate(idx,"good",1);
+			res *= boardDAO.updateRecommend(vo.getIdx(), 1);
+			return res;
+		}
+		else if(vo == null) {
+			int res = boardDAO.boardRecommendUpdate(idx,"good",1);
+			res *= boardDAO.setRecommend(idx, memberIdx, 1);
+			return res;
+		}
+		else return 0;
+	}
+
+	@Override
+	public int setBad(int idx, HttpSession session) {
+		int memberIdx = session.getAttribute("sIdx")==null ? 0 : (int) session.getAttribute("sIdx");
+		RecommendVO vo = boardDAO.getRecommend(idx, memberIdx);
+		
+		if(vo != null && vo.getFlag() == 1) {
+			int res = boardDAO.boardRecommendUpdate(idx,"bad",1);
+			res *= boardDAO.boardRecommendUpdate(idx,"good",-1);
+			res *= boardDAO.updateRecommend(vo.getIdx(), 2);
+			return res;
+		}
+		else if(vo == null) {
+			int res = boardDAO.boardRecommendUpdate(idx,"bad",1);
+			res *= boardDAO.setRecommend(idx, memberIdx, 2);
+			return res;
+		}
+		else return 0;
+	}
+
 }

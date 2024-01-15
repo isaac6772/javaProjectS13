@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.vo.BoardVO;
@@ -48,10 +49,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/boardContent", method = RequestMethod.GET)
-	public String boardContentGet(int idx, Model model) {
-		BoardVO bVo = boardService.boardContent(idx);
+	public String boardContentGet(int idx, PageVO pageVO, Model model, HttpSession session) {
+		int memberIdx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		BoardVO bVo = boardService.boardContent(idx, memberIdx);
 		List<ReplyVO> replyVos = boardService.contentReply(idx);
+		int recommend = boardService.getRecommend(idx, memberIdx);
 		
+		model.addAttribute("recommend",recommend);
+		model.addAttribute("pageVO",pageVO);
 		model.addAttribute("replyVos",replyVos);
 		model.addAttribute("bVo",bVo);
 		return "board/boardContent";
@@ -61,7 +66,7 @@ public class BoardController {
 	public String inputReplyPost(ReplyVO vo) {
 		int res = boardService.inputReply(vo);
 		
-		if(res==1) return "redirect:/board/boardContent?idx=" + vo.getBoardIdx();
+		if(res==1) return "redirect:/message/board/inputReplyOk?idx=" + vo.getBoardIdx();
 		else return "redirect:/message/board/inputReplyNo?idx=" + vo.getBoardIdx();
 	}
 	
@@ -78,5 +83,53 @@ public class BoardController {
 		
 		if(res==1) return "redirect:/message/board/boardUpdateOk?idx=" + vo.getIdx();
 		else return "redirect:/message/board/boardUpdateNo?idx=" + vo.getIdx();
+	}
+	
+	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
+	public String boardDeleteGet(int idx, HttpSession session) {
+		int res = boardService.boardDelete(idx, session);
+		
+		if(res==1) return "redirect:/message/board/boardDeleteOk";
+		else return "redirect:/message/board/boardDeleteNo?idx=" + idx;
+	}
+	
+	@RequestMapping(value = "/deleteReply", method = RequestMethod.GET)
+	public String deleteReplyGet(int idx, int boardIdx, HttpSession session) {
+		int res = boardService.deleteReply(idx, boardIdx, session);
+		
+		if(res==1) return "redirect:/message/board/deleteReplyOk?idx=" + boardIdx;
+		else return "redirect:/message/board/deleteReplyNo?idx=" + boardIdx;
+	}
+	
+	@RequestMapping(value = "/updateReply", method = RequestMethod.POST)
+	public String updateReplyPost(ReplyVO vo, HttpSession session) {
+		int res = boardService.updateReply(vo, session);
+		
+		if(res==1) return "redirect:/message/board/updateReplyOk?idx=" + vo.getBoardIdx();
+		else return "redirect:/message/board/updateReplyNo?idx=" + vo.getBoardIdx();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cancelRecommend", method = RequestMethod.POST)
+	public String cancelRecommendPost(int idx, HttpSession session) {
+		int res = boardService.cancelRecommend(idx, session);
+		
+		return res + "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/setGood", method = RequestMethod.POST)
+	public String setGoodPost(int idx, HttpSession session) {
+		int res = boardService.setGood(idx, session);
+		
+		return res + "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/setBad", method = RequestMethod.POST)
+	public String setBadPost(int idx, HttpSession session) {
+		int res = boardService.setBad(idx, session);
+		
+		return res + "";
 	}
 }

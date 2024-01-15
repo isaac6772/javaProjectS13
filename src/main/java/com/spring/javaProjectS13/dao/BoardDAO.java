@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
+import com.spring.javaProjectS13.vo.RecommendVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ViewNumVO;
 
 public interface BoardDAO {
 
@@ -25,5 +27,31 @@ public interface BoardDAO {
 	public int inputReply(@Param("vo") ReplyVO vo);
 
 	public int boardUpdate(@Param("vo") BoardVO vo);
+
+	public int boardDelete(@Param("idx") int idx);
+
+	public ReplyVO getReply(@Param("idx") int idx);
+
+	public int deleteReply(@Param("idx") int idx);
+
+	public int updateReply(@Param("vo") ReplyVO vo);
+
+	public ViewNumVO getViewNum(@Param("idx") int idx, @Param("memberIdx") int memberIdx);
+
+	public void setViewNum(@Param("boardIdx") int boardIdx, @Param("memberIdx") int memberIdx);
+
+	public void ViewNumPlus(@Param("idx") int boardIdx);
+
+	public void updateViewNum(@Param("idx") int idx);
+
+	public RecommendVO getRecommend(@Param("boardIdx") int idx, @Param("memberIdx") int memberIdx);
+
+	public int cancelRecommend(@Param("idx") int idx, @Param("memberIdx") int memberIdx);
+
+	public int updateRecommend(@Param("idx") int idx, @Param("flag") int flag);
+
+	public int setRecommend(@Param("idx") int idx, @Param("memberIdx") int memberIdx, @Param("flag") int flag);
+
+	public int boardRecommendUpdate(@Param("idx") int idx, @Param("field") String field, @Param("flag") int flag);
 
 }

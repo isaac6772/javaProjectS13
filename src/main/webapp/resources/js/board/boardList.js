@@ -32,3 +32,9 @@ function partChange(part) {
 	
 	pagingForm.submit();
 }
+
+function boardContent(idx) {
+	$('#idx').val(idx);
+	pagingForm.action = "boardContent";
+	pagingForm.submit();
+}
