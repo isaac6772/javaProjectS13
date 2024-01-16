@@ -286,4 +286,57 @@ public class MemberServiceImpl implements MemberService {
 		
 		return res;
 	}
+
+	@Override
+	public String memberIdFind(String name, String email) {
+		String mid = "0";
+		MemberVO vo = memberDAO.memberEmailCheck(email);
+		if(vo!=null) {
+			if(vo.getName().equals(name)) {
+				mid = vo.getMid();
+				String formattedMid = "";
+				for(int i=1; i<=mid.length(); i++) {
+					if(i%3==0) formattedMid += "*";
+					else formattedMid += mid.charAt(i-1);
+				}
+				return formattedMid;
+			}
+			else return mid;
+		}
+		else return mid;
+	}
+
+	@Override
+	public String memberPwdFind(String mid, String email, HttpSession session) {
+		MemberVO vo = memberDAO.memberMidCheck(mid);
+		if(vo!=null) {
+			if(vo.getEmail().equals(email)) {
+				String code = UUID.randomUUID().toString().substring(0,8);
+				try {
+					if(mailSend(email, "비밀번호 찾기를 위한 인증코드 전송메일 입니다.", code)) {
+						session.setAttribute("mailCode", code);
+						return "1";
+					}
+					else return "0";
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+			}
+			else return "0";
+		}
+		return "0";
+	}
+
+	@Override
+	public int memberPwdReset(String pwd, String email) {
+		MemberVO vo = memberDAO.memberEmailCheck(email);
+		pwd = passwordEncoder.encode(pwd);
+		
+		return memberDAO.memberPwdChange(vo.getMid(), pwd);
+	}
+
+	@Override
+	public List<MemberVO> friendList(int idx) {
+		return memberDAO.friendList(idx);
+	}
 }

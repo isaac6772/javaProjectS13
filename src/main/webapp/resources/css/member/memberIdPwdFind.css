@@ -66,8 +66,12 @@
     border: 1px solid #dddddd;
     border-radius: 5px;
 }
+.idPwdFindContainer .btnBox {
+	display : flex;
+	position : relative;
+	justify-content: center;
+}
 .idPwdFindContainer .btnBox .btn {
-	margin : auto;
 	width : 76px;
 	background-color : skyblue;
 	color: white;
@@ -75,8 +79,34 @@
     padding: 14px 20px;
     cursor : pointer;
 }
-.idPwdFindContainer .pwdFindBox .btnBox .btn {
+.idPwdFindContainer .pwdFindBox .btnBox .btn1 {
 	width : 95px;
+}
+.idPwdFindContainer .pwdFindBox .btnBox .btn2 {
+	width : 46px;
+	display : none;
+	margin-right : 10px;
+	background-color : #e5eb87;
+}
+.idPwdFindContainer .pwdFindBox .btnBox .btn3 {
+	width : 61px;
+	display : none;
+}
+.idPwdFindContainer .pwdFindBox .btnBox #loading {
+	display : none;
+	position : absolute;
+	left: 58%;
+    top: 2px;
+}
+.idPwdFindContainer .pwdFindBox .btnBox #loading img {
+	width : 43px;
+}
+.idPwdFindContainer .pwdFindBox .btnBox #timer {
+	display : none;
+	position : absolute;
+	left : 63%;
+	top : 8px;
+	font-size : 25px;
 }
 
 
@@ -107,5 +137,30 @@
 	border-bottom: 2px solid #1469ad;
 }
 .pwdFindBox .table .row3 {
+	display : none;
+}
+.pwdFindBox .pwdResetForm {
+	display : none;
+}
+.pwdFindBox .pwdResetForm .btn {
+	margin : 22px auto;
+    background-color: #8383eb;
+    padding: 13px 31px;
+    border-radius: 35px;
+    width: 34px;
+    color : white;
+    cursor : pointer;
+}
+.pwdResetForm .col2 {
+	position : relative;
+}
+.pwdResetForm .col2 .msg {
+	position : absolute;
+	color : red;
+	font-size : 14px;
+	left : 0px;
+	top : 52px;
+	user-select : none;
+	line-height: normal;
 	display : none;
 }

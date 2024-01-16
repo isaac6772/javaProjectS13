@@ -15,12 +15,18 @@
 		<interceptor>
 			<mapping path="/member/**" />
 			<mapping path="/service/**" />
+			<mapping path="/board/**" />
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberJoin/**"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberIdPwdFind"/>
+			<exclude-mapping path="/member/memberIdFind"/>
+			<exclude-mapping path="/member/memberPwdFind"/>
+			<exclude-mapping path="/member/memberPwdReset"/>
 			<exclude-mapping path="/service/serviceList"/>
 			<exclude-mapping path="/service/serviceContent"/>
+			<exclude-mapping path="/board/boardList"/>
+			<exclude-mapping path="/board/boardContent"/>
 			<beans:ref bean = "level0Interceptor"/>
 		</interceptor>
 		

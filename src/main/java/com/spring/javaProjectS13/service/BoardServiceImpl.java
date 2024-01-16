@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		// vo에 저장된 경로명바꾸기(ckeditor -> board)
 		String contextPath = request.getContextPath();
-		vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/board/"));
+		vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/data/board/"));
 		
 		// 태그를 제외한 문자 저장하기
 		String reg = "<[^>]+>";
@@ -146,7 +146,7 @@ public class BoardServiceImpl implements BoardService {
 			String oContent = originalVO.getContent();
 			while(true) {
 				if(oContent.indexOf("src=\"")!=-1) {
-					oContent = oContent.substring(oContent.indexOf("src=\"") + 27);
+					oContent = oContent.substring(oContent.indexOf("src=\"") + 32);
 					String fileName = oContent.substring(0,oContent.indexOf("\""));
 					
 					FileInputStream fis = new FileInputStream(realPath + "board/board/" + fileName);
@@ -168,7 +168,7 @@ public class BoardServiceImpl implements BoardService {
 			
 			// 2. 실제로 업데이트 할 파일을 ckeditor 폴더에서 찾아서 board 폴더로 옮겨준다.
 			String uContent = vo.getContent();
-			uContent = uContent.replace("src=\""+contextPath+"/board/", "src=\""+contextPath+"/data/ckeditor/");
+			uContent = uContent.replace("src=\""+contextPath+"/data/board/", "src=\""+contextPath+"/data/ckeditor/");
 			while(true) {
 				if(uContent.indexOf("src=\"")!=-1) {
 					uContent = uContent.substring(uContent.indexOf("src=\"") + 35);
@@ -190,7 +190,7 @@ public class BoardServiceImpl implements BoardService {
 				}
 				else break;
 			}
-			vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/board/"));
+			vo.setContent(vo.getContent().replace("src=\""+contextPath+"/data/ckeditor/", "src=\""+contextPath+"/data/board/"));
 			vo.setContentText(vo.getContent().replaceAll("<[^>]+>", ""));
 		} catch (IOException e) {
 			e.printStackTrace();

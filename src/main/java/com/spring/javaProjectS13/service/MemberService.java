@@ -48,4 +48,12 @@ public interface MemberService {
 
 	public int selectedMemberDelete(String memberIdxArray);
 
+	public String memberIdFind(String name, String email);
+
+	public String memberPwdFind(String mid, String email, HttpSession session);
+
+	public int memberPwdReset(String pwd, String email);
+
+	public List<MemberVO> friendList(int idx);
+
 }

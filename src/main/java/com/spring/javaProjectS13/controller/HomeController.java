@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.service.LevelCalculator;
 import com.spring.javaProjectS13.service.MemberService;
 import com.spring.javaProjectS13.service.ServiceService;
 import com.spring.javaProjectS13.vo.AdVO;
+import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.MemberVO;
+import com.spring.javaProjectS13.vo.PageVO;
 
 @Controller
 public class HomeController {
@@ -32,12 +34,12 @@ public class HomeController {
 	@Autowired
 	ServiceService serviceService;
 	@Autowired
-	MemberDAO memberDAO;
+	BoardService boardService;
 	@Autowired
 	LevelCalculator levelCalculator;
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
-	public String home(Model model, HttpSession session) {
+	public String home(Model model, HttpSession session, PageVO pageVO) {
 		
 		int maxExp = 0;
 		String mid = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
@@ -50,13 +52,25 @@ public class HomeController {
 			maxExp = levelCalculator.calcMaxExp(mVo.getLevel());
 			
 			// 홈화면에 띄우는 친구 목록 불러오기
-			friendList = memberDAO.friendList(mVo.getIdx());
+			friendList = memberService.friendList(mVo.getIdx());
 			model.addAttribute("friendList",friendList);
 		}
 		
 		// 광고리스트 불러오기
 		List<AdVO> adVos = serviceService.adList();
 		
+		// 게시판(추천글) 불러오기
+		pageVO.setPageSize(30);
+		pageVO.setScope("추천글");
+		List<BoardVO> b1Vos = boardService.boardList(pageVO);
+		
+		// 게시판(최신글) 불러오기
+		pageVO.setPageSize(10);
+		pageVO.setScope("전체글");
+		List<BoardVO> b2Vos = boardService.boardList(pageVO);
+		
+		model.addAttribute("b1Vos",b1Vos);
+		model.addAttribute("b2Vos",b2Vos);
 		model.addAttribute("adVos",adVos);
 		model.addAttribute("mVo",mVo);
 		model.addAttribute("maxExp",maxExp);

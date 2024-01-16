@@ -199,6 +199,7 @@
 	height : 33px;
 	border-radius: 17px;
     border: 1px solid #ededed;
+    background-color : #7db4f5;
 }
 .replyGroup .replyBox .replContent {
 	flex : 1;

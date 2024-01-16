@@ -18,11 +18,13 @@
 	height : 300px;
 }
 .boardBox {
-	border: 1px solid black;
+	border: 1px solid #e1e1e1;
 	padding : 20px;
-	height : 300px;
+	border-radius: 10px;
+	margin-top: 20px;
+	display : flex;
 }
-.debateBox {
+.newsBox {
 	border: 1px solid black;
 	padding : 20px;
 	height : 300px 
@@ -33,6 +35,11 @@
 	padding : 20px;
 	margin-bottom : 15px;
 }
+
+
+
+
+
 .loginBox a {
 	color : black;
 	text-decoration: none;
@@ -124,6 +131,10 @@
 	font-size: 13px;
 	color : gray;
 }
+
+
+
+
 .memberBox {
 	border: 1px solid #e1e1e1;
 	border-radius : 10px;
@@ -240,6 +251,10 @@
 	line-height: 40px;
 	cursor : pointer;
 }
+
+
+
+
 .adBox {
 	margin-bottom : 15px;
     margin-top: 20px;
@@ -269,6 +284,11 @@
 .adBox .adImgBox img {
 	border-radius: 5px;
 }
+
+
+
+
+
 .comunityBox {
 	border: 1px solid #e1e1e1;
 	border-radius : 10px;
@@ -341,4 +361,32 @@
 .comunityBox .loginRequired {
     text-align: center;
     line-height: 250px;
+}
+
+
+
+
+.boardBox .hot {
+	flex : 1;
+	padding-right : 8px;
+}
+.boardBox .title {
+	margin-bottom : 6px;
+}
+.boardBox .title .text {
+	font-size : 18px;
+}
+.boardBox .recent {
+	flex : 1;
+	padding-left : 8px;
+}
+.boardBox .boardList {
+	display : flex;
+	margin-top : 6px;
+}
+.boardBox .boardList .board {
+	/* display : flex; */
+}
+.boardBox .boardList .board .subject {
+	flex : 1;
 }

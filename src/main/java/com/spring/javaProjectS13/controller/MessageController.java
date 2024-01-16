@@ -82,6 +82,14 @@ public class MessageController {
 			model.addAttribute("msg","프로필 사진 변경에 실패하였습니다.");
 			model.addAttribute("url","member/myPageIframe?myPage=myPage1");
 		}
+		else if(msgFlag.equals("memberPwdResetOk")) {
+			model.addAttribute("msg","비밀번호가 변경되었습니다.");
+			model.addAttribute("url","home");
+		}
+		else if(msgFlag.equals("memberPwdResetNo")) {
+			model.addAttribute("msg","비밀번호 변경에 실패하였습니다.");
+			model.addAttribute("url","member/memberIdPwdFind");
+		}
 		
 		return "include/message";
 	}

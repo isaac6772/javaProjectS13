@@ -205,4 +205,28 @@ public class MemberController {
 		
 		return "member/myPageIframe";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
+	public String memberIdFindPost(String name, String email) {
+		String mid = memberService.memberIdFind(name, email);
+		
+		return mid;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/memberPwdFind", method = RequestMethod.POST)
+	public String memberPwdFindPost(String mid, String email, HttpSession session) {
+		String res = memberService.memberPwdFind(mid, email, session);
+		
+		return res;
+	}
+	
+	@RequestMapping(value = "/memberPwdReset", method = RequestMethod.POST)
+	public String memberPwdResetPost(String pwd, String email) {
+		int res = memberService.memberPwdReset(pwd, email);
+		
+		if(res==1) return "redirect:/message/member/memberPwdResetOk";
+		else return "redirect:/message/member/memberPwdResetNo";
+	}
 }

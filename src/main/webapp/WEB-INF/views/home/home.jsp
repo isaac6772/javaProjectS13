@@ -25,12 +25,10 @@
 			<div class = "wordCloudBox">
 				${param.maxExp}
 			</div>
-			<div class = "boardBox">
+			<div class = "newsBox">
 			
 			</div>
-			<div class = "debateBox">
-			
-			</div>
+			<jsp:include page="/WEB-INF/views/home/board.jsp" />
 		</div>
 		<div class = "rightSide">
 			<jsp:include page="/WEB-INF/views/home/login.jsp" />
