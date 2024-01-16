@@ -38,3 +38,8 @@ function boardContent(idx) {
 	pagingForm.action = "boardContent";
 	pagingForm.submit();
 }
+
+function settingFormShow() {
+	if($('.settingForm').is(':hidden')) $('.settingForm').show();
+	else $('.settingForm').hide();
+}

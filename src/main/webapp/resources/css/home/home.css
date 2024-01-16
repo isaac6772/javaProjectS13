@@ -393,8 +393,6 @@
 }
 .boardBox .title .page {
 	display : flex;
-	border : 1px solid #a7a7a7;
-    padding: 5px 7px;
     border-radius: 5px;
     user-select : none;
 }
@@ -402,13 +400,29 @@
 	font-size : 15px;
 	font-weight: bolder;
     color: #959595;
-    width : 20px;
+    height: 29px;
+    line-height: 25px;
+    width: 26px;
     text-align: center;
     cursor : pointer;
+    border : 1px solid #a7a7a7;
+    transition : 0.2s;
+}
+.boardBox .page .btn1 {
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-right: 1px solid #a7a7a7;
+}
+.boardBox .page .btn2 {
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-left: 0px;
+}
+.boardBox .page .btn:hover {
+	background-color : #ededed;
 }
 .boardBox .page .line {
 	color : gray;
-	margin : 0px 5px;
     line-height: 17px;
     border-right : 1px solid #b9b9b9;
 }
@@ -437,6 +451,10 @@
 .boardBox .boardList .board .subject {
 	flex : 1;
 }
+.boardBox .boardList .board .subject .text1:hover {
+	cursor : pointer;
+	text-decoration: underline;
+}
 .boardBox .hot .boardList .board .subject img {
     width: 17px;
     vertical-align: bottom;
@@ -461,8 +479,13 @@
 	margin-left : 5px;
 	padding: 4px 6px;
 	cursor : pointer;
+	transition : 0.3s;
 }
 .boardBox .recent .title .part > div.selected {
+	color : white;
+	background-color : #7289ab;
+}
+.boardBox .recent .title .part > div:hover {
 	color : white;
 	background-color : #7289ab;
 }

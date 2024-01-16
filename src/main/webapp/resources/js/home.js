@@ -89,5 +89,5 @@ function nextBoard() {
 }
 
 function partChange(part) {
-	$('.boardBox').load("http://localhost:9090/javaProjectS13/home?part="+part+' .boardBox');
+	$('#recentBoard').load("http://localhost:9090/javaProjectS13/home?part="+part+' #boardLoad');
 }
