@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.service.BoardService;
@@ -39,7 +40,8 @@ public class HomeController {
 	LevelCalculator levelCalculator;
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
-	public String home(Model model, HttpSession session, PageVO pageVO) {
+	public String home(Model model, HttpSession session, PageVO pageVO, 
+			@RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
 		
 		int maxExp = 0;
 		String mid = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
@@ -61,14 +63,17 @@ public class HomeController {
 		
 		// 게시판(추천글) 불러오기
 		pageVO.setPageSize(30);
+		pageVO.setPart("전체");
 		pageVO.setScope("추천글");
 		List<BoardVO> b1Vos = boardService.boardList(pageVO);
 		
 		// 게시판(최신글) 불러오기
 		pageVO.setPageSize(10);
 		pageVO.setScope("전체글");
+		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
 		
+		model.addAttribute("part",part);
 		model.addAttribute("b1Vos",b1Vos);
 		model.addAttribute("b2Vos",b2Vos);
 		model.addAttribute("adVos",adVos);

@@ -79,13 +79,13 @@ function deletePosting() {
 function selectBox(e) {
 	$('#adList1 div.imgName.selected').removeClass('selected');
 	$(e).addClass('selected');
-	$('#frame1').html('<img src='+contextPath+'/service/'+$(e).find('.name').html()+'/>');
+	$('#frame1').html('<img src='+contextPath+'/data/service/'+$(e).find('.name').html()+'/>');
 }
 
 function selectBox2(e) {
 	$('#adList2 .box.selected').removeClass('selected');
 	$(e).addClass('selected');
-	$('#frame2').html('<img src='+contextPath+'/service/'+$(e).find('.fileName').val()+'/>');
+	$('#frame2').html('<img src='+contextPath+'/data/service/'+$(e).find('.fileName').val()+'/>');
 }
 
 function moveDown() {

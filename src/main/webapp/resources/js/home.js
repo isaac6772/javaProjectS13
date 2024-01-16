@@ -71,3 +71,23 @@ $(function() {
 	let loginFriendCnt = $('.friendList .friend .login').length;
 	$('#loginFriendCnt').html(loginFriendCnt);
 });
+
+function prevBoard() {
+	let index = $('#hotPag').html() - 1;
+	if(index>=1) {
+		$('.slideBox').css("transform","translateX(-"+(index-1)*100+"%)");
+		$('#hotPag').html(index);
+	}
+}
+
+function nextBoard() {
+	let index = $('#hotPag').html() - 1;
+	if(index<=1) {
+		$('.slideBox').css("transform","translateX(-"+(Number(index)+1)*100+"%)");
+		$('#hotPag').html(index+2);
+	}
+}
+
+function partChange(part) {
+	$('.boardBox').load("http://localhost:9090/javaProjectS13/home?part="+part+' .boardBox');
+}
