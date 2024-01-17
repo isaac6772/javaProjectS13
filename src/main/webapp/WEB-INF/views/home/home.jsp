@@ -22,11 +22,9 @@
 	
 	<div class = "homeContainer">
 		<div class = "leftSide">
+			<%-- <jsp:include page="/WEB-INF/views/home/news.jsp" /> --%>
 			<div class = "wordCloudBox">
-				${param.maxExp}
-			</div>
-			<div class = "newsBox">
-			
+				
 			</div>
 			<jsp:include page="/WEB-INF/views/home/board.jsp" />
 		</div>

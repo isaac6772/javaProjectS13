@@ -45,4 +45,8 @@
 	<!-- 트랜잭션을 어노테이션으로 처리하기위해 설정 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<beans:bean id = "restTemplate" class = "org.springframework.web.client.RestTemplate" />
+	
+	<beans:bean id = "objectMapper" class = "com.fasterxml.jackson.databind.ObjectMapper" />
+	
 </beans:beans>

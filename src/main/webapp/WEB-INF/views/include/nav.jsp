@@ -11,6 +11,7 @@
 <body>
 	<div class = "navContainer">
 		<div class = "mainMenu">
+			<%-- 
 			<div class = "menuItem">
 				<div class = "row1">
 					<img src = "${ctp}/icon/news.png" />
@@ -19,6 +20,7 @@
 					<span>뉴스</span>
 				</div>
 			</div>
+			 --%>
 			<div class = "menuItem">
 				<div class = "row1">
 					<img src = "${ctp}/icon/debate.png" />

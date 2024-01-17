@@ -21,10 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.service.LevelCalculator;
 import com.spring.javaProjectS13.service.MemberService;
+import com.spring.javaProjectS13.service.NewsService;
 import com.spring.javaProjectS13.service.ServiceService;
 import com.spring.javaProjectS13.vo.AdVO;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.MemberVO;
+import com.spring.javaProjectS13.vo.News;
 import com.spring.javaProjectS13.vo.PageVO;
 
 @Controller
@@ -37,10 +39,12 @@ public class HomeController {
 	@Autowired
 	BoardService boardService;
 	@Autowired
+	NewsService newsService;
+	@Autowired
 	LevelCalculator levelCalculator;
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
-	public String home(Model model, HttpSession session, PageVO pageVO, 
+	public String home(Model model, HttpSession session, PageVO pageVO, String keyword,
 			@RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
 		
 		int maxExp = 0;
@@ -72,7 +76,19 @@ public class HomeController {
 		pageVO.setScope("전체글");
 		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
-		
+		/*
+		// 키워들별 최신 뉴스 불러오기
+		List<News> nVos = null;
+		if(keyword==null) {
+			if(mVo==null) nVos = newsService.keywordNews("정치");
+			else {
+				if(mVo.getKeyword()==null) nVos = newsService.keywordNews("정치");
+				else nVos = newsService.keywordNews(mVo.getKeyword().split("/")[0]);
+			}
+		}
+		else nVos = newsService.keywordNews(keyword);
+		*/
+		//model.addAttribute("nVos",nVos);
 		model.addAttribute("part",part);
 		model.addAttribute("b1Vos",b1Vos);
 		model.addAttribute("b2Vos",b2Vos);
