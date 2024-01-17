@@ -12,6 +12,10 @@
 .rightSide {
 	flex : 1;
 }
+.rightSide .stickBox {
+	position : sticky;
+	top : 0px;
+}
 .wordCloudBox {
 	border: 1px solid black;
 	padding : 20px;
@@ -29,6 +33,7 @@
     border-radius: 10px;
 	padding : 20px;
 	margin-bottom : 15px;
+	box-sizing: border-box;
 }
 .loginBox {
 	border: 3px solid #99abc0;
@@ -462,7 +467,6 @@
 }
 .boardBox .recent .boardList .board .subject img {
     width: 13px;
-    vertical-align: bottom;
 }
 .boardBox .boardList .board .subject .replyCnt {
 	color : #ff5b00;
@@ -502,7 +506,7 @@
 .newsBox .keyword .item {
 	border-top : 1px solid #b1b1b1;
 	border-left : 1px solid #b1b1b1;
-	border-bottom : 3px solid #b1b1b1;
+	border-bottom : 1px solid #b1b1b1;
 	padding: 6px 10px;
 	color : #5a5a5a;
 	background-color: #f3f3f3;
@@ -519,10 +523,18 @@
 .newsBox .keyword .line {
 	flex : 1;
 	border-top : none;
-	border-bottom : 3px solid #b1b1b1;
+	border-bottom : 1px solid #b1b1b1;
 }
 .newsBox .newsList {
 	margin-top : 15px;
+	position : relative;
+}
+.newsBox .newsList #loadingImg {
+    left: 46.7%;
+    top: 72%;
+    width : 50px;
+    height : 50px;
+    position: absolute;
 }
 .newsBox .newsList .imgNewsBox {
 	display : flex;
@@ -531,6 +543,9 @@
 .newsBox .newsList .imgNewsBox .imgNews {
 	width : 30%;
 	cursor : pointer;
+}
+.newsBox .newsList .imgNewsBox .imgNews:hover .title {
+	text-decoration: underline;
 }
 .newsBox .newsList .imgNewsBox .imgNews img {
 	border-radius: 10px;
@@ -575,6 +590,6 @@
 .newsBox .newsList .textNews .article .text2 {
 	font-size : 14px;
 	color :gray;
-	flex : 1.2;
+	width : 70px;
 	text-align : right;
 }

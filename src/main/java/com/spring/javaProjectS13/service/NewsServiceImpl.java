@@ -44,7 +44,7 @@ public class NewsServiceImpl implements NewsService {
 		String clientId = "7erLyg8itVAhwffeUQXr";
 	    String clientSecret = "dg3CN4LESE";
 
-	    String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+keyword+"&display=13";
+	    String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+keyword+"&display=30";
 
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.add("X-Naver-Client-Id", clientId);
@@ -55,12 +55,11 @@ public class NewsServiceImpl implements NewsService {
 		
 	    NewsResponse newsResponse = null;
 	    
-	    // 네이버 뉴스만 10개 뽑기
-	    
     	ArrayList<News> newsList = new ArrayList<News>();
 	    int cnt = 0;
 	    
 	    try {
+	    	// 네이버 뉴스만 13개 뽑기
 	    	newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 			while(true) {
 				for(News news : newsResponse.getItems()) {
@@ -71,18 +70,14 @@ public class NewsServiceImpl implements NewsService {
 					}
 				}
 				if(cnt<13) {
-					start += 13;
+					start += 30;
 					response = restTemplate.exchange(apiURL + "&start="+start, HttpMethod.GET, entity, String.class);
 					newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 				}
 				else break;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		    
-		// 뽑은 뉴스의 링크를 기반으로 크롤링해서 newsVO에 넣어주기
-		try {
+			
+			// 뽑은 뉴스의 링크를 기반으로 크롤링해서 newsVO에 넣어주기
 			for(News news : newsList) {
 				Document document = Jsoup.connect(news.getLink()).get();
 				//String content = document.select("article").first().text();
@@ -106,7 +101,7 @@ public class NewsServiceImpl implements NewsService {
 				String timeDiff;
 				if((diff/60)<1) timeDiff = diff%60 + "초";
 				else if(diff/(60*60)<1) timeDiff = (diff/60) + "분";
-				else if(diff/(60*60*24)<1) timeDiff = (diff/60*60) + "시간";
+				else if(diff/(60*60*24)<1) timeDiff = (diff/(60*60)) + "시간";
 				else timeDiff = (diff/(60*60*24)) + "일";
 				news.setTimeDiff(timeDiff);
 			}
@@ -115,7 +110,7 @@ public class NewsServiceImpl implements NewsService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		    
 		return newsList;
 	}
 	

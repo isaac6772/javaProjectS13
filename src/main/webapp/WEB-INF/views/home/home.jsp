@@ -13,6 +13,7 @@
 		let contextPath = '${ctp}';
 		let exp = '${mVo.exp}';
 		let maxExp = '${maxExp}';
+		let keyword = '${keyword}';
 	</script>
 	<script src = "${ctp}/js/home.js"></script>
 </head>
@@ -22,16 +23,18 @@
 	
 	<div class = "homeContainer">
 		<div class = "leftSide">
-			<%-- <jsp:include page="/WEB-INF/views/home/news.jsp" /> --%>
+			<jsp:include page="/WEB-INF/views/home/news.jsp" />
 			<div class = "wordCloudBox">
 				
 			</div>
 			<jsp:include page="/WEB-INF/views/home/board.jsp" />
 		</div>
 		<div class = "rightSide">
-			<jsp:include page="/WEB-INF/views/home/login.jsp" />
-			<jsp:include page="/WEB-INF/views/home/community.jsp" />
-			<jsp:include page="/WEB-INF/views/home/ad.jsp" />
+			<div class = "stickBox">
+				<jsp:include page="/WEB-INF/views/home/login.jsp" />
+				<jsp:include page="/WEB-INF/views/home/community.jsp" />
+				<jsp:include page="/WEB-INF/views/home/ad.jsp" />
+			</div>
 		</div>
 	</div>
 	

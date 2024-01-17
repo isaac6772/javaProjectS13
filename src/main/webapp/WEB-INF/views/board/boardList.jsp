@@ -126,7 +126,6 @@
 							<c:if test="${vo.good>=10}">
 								<img src="${ctp}/icon/goodBoard.png" />
 							</c:if>
-							<%-- <span onclick = "location.href='boardContent?idx=${vo.idx}'" class = "boardTitle">${vo.title}</span> --%>
 							<span onclick = "boardContent('${vo.idx}')" class = "boardTitle">${vo.title}</span>
 							<c:if test="${vo.replyCnt!=0}">
 								<span class = "replyCnt">[${vo.replyCnt}]</span>

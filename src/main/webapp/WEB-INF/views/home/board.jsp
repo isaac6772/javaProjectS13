@@ -62,6 +62,8 @@
 					<c:forEach var = "vo" items = "${b2Vos}" varStatus = "st">
 						<div class = "board">
 							<div class = "subject">
+								<c:if test="${vo.imgCheck==1}"><img src="${ctp}/icon/imgIcon.png" /></c:if>
+								<c:if test="${vo.imgCheck!=1}"><img src="${ctp}/icon/noImgIcon.png" /></c:if>
 								<span class = "text1" onclick = "location.href='board/boardContent?idx=${vo.idx}'">${vo.title}</span>
 								<img src = "${ctp}/icon/new.png" />
 								<c:if test="${vo.replyCnt!=0}">

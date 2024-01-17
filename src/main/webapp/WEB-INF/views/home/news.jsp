@@ -28,51 +28,54 @@
 			</c:if>
 		</div>
 		
-		<div class = "newsList">
-			<div class = "imgNewsBox">
-				<c:forEach var = "i" begin = "0" end = "2">
-					<div class = "imgNews">
-						<c:if test="${empty nVos[i].fileName}">
-							<img src = "${ctp}/util/noImage.jpg" width = "100%" height = "200px" />
-						</c:if>
-						<c:if test="${!empty nVos[i].fileName}">
-							<img src = "${nVos[i].fileName}" width = "100%" height = "200px" />
-						</c:if>
-						<div class = "title">
-							<span>${nVos[i].title}</span>
-						</div>
-					</div>	
-				</c:forEach>
-			</div>
-			<div class = "textNews">
-				<div class = "left">
-					<c:forEach var = "i" begin = "3" end = "7">
-						<div class = "article">
-							<div class = "text1">
-								<%-- <c:if test="${fn:length(nVos[i].title)>45}">
-									${fn:substring(nVos[i].title,0,45)}...
-								</c:if>
-								<c:if test="${fn:length(nVos[i].title)<=45}">
+		<div id = "loadLayer">
+			<div class = "newsList" id = "newsList">
+				<c:if test="${empty nVos}">
+					<img src = "${ctp}/util/loading2.gif" id = "loadingImg" />
+				</c:if>
+				<div class = "imgNewsBox">
+					<c:forEach var = "i" begin = "0" end = "2">
+						<div class = "imgNews">
+							<c:if test="${empty nVos[i].fileName}">
+								<img src = "${ctp}/util/noImage.jpg" width = "100%" height = "200px" />
+							</c:if>
+							<c:if test="${!empty nVos[i].fileName}">
+								<img src = "${nVos[i].fileName}" width = "100%" height = "200px" />
+							</c:if>
+							<div class = "title">
+								<span>${nVos[i].title}</span>
+							</div>
+						</div>	
+					</c:forEach>
+				</div>
+				<div class = "textNews">
+					<div class = "left">
+						<c:forEach var = "i" begin = "3" end = "7">
+							<div class = "article">
+								<div class = "text1">
 									${nVos[i].title}
-								</c:if> --%>
-								${nVos[i].title}
+								</div>
+								<div class = "text2">
+									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>
+								</div>
 							</div>
-							<div class = "text2">[${nVos[i].timeDiff}전]</div>
-						</div>
-					</c:forEach>
-				</div>
-				<div class = "right">
-					<c:forEach var = "i" begin = "8" end = "12">
-						<div class = "article">
-							<div class = "text1">
-								${nVos[i].title}
+						</c:forEach>
+					</div>
+					<div class = "right">
+						<c:forEach var = "i" begin = "8" end = "12">
+							<div class = "article">
+								<div class = "text1">
+									${nVos[i].title}
+								</div>
+								<div class = "text2">
+									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>
+								</div>
 							</div>
-							<div class = "text2">[${nVos[i].timeDiff}전]</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 				</div>
-			</div>
-		</div>
+			</div>	<!-- newsList -->
+		</div>	<!-- loadLayer -->
 		
 	</div>
 </body>

@@ -70,7 +70,14 @@ $(function() {
 	// 현재 접속 중인 친구의 수
 	let loginFriendCnt = $('.friendList .friend .login').length;
 	$('#loginFriendCnt').html(loginFriendCnt);
+	
+	// 뉴스 리스트 불러오기(문서가 모두 로딩된후)
+	loadKeywordNews(keyword);
 });
+
+function loadKeywordNews(keyword) {
+	$('#loadLayer').load(contextPath + "/keywordNews?keyword=" + keyword + " #newsList");
+}
 
 function prevBoard() {
 	let index = $('#hotPag').html() - 1;
@@ -89,5 +96,5 @@ function nextBoard() {
 }
 
 function partChange(part) {
-	$('#recentBoard').load("http://localhost:9090/javaProjectS13/home?part="+part+' #boardLoad');
+	$('#recentBoard').load(contextPath + "/recentBoard?part="+part+' #boardLoad');
 }

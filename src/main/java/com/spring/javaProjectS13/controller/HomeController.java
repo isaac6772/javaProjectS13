@@ -45,7 +45,8 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public String home(Model model, HttpSession session, PageVO pageVO, String keyword,
-			@RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
+			@RequestParam(name = "part", defaultValue = "전체", required = false) String part
+			) {
 		
 		int maxExp = 0;
 		String mid = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
@@ -76,19 +77,16 @@ public class HomeController {
 		pageVO.setScope("전체글");
 		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
-		/*
-		// 키워들별 최신 뉴스 불러오기
-		List<News> nVos = null;
-		if(keyword==null) {
-			if(mVo==null) nVos = newsService.keywordNews("정치");
+		
+		if(keyword == null) {
+			if(mVo==null) keyword = "정치";
 			else {
-				if(mVo.getKeyword()==null) nVos = newsService.keywordNews("정치");
-				else nVos = newsService.keywordNews(mVo.getKeyword().split("/")[0]);
+				if(mVo.getKeyword()==null) keyword = "정치";
+				else keyword = mVo.getKeyword().split("/")[0];
 			}
 		}
-		else nVos = newsService.keywordNews(keyword);
-		*/
-		//model.addAttribute("nVos",nVos);
+		
+		model.addAttribute("keyword",keyword);
 		model.addAttribute("part",part);
 		model.addAttribute("b1Vos",b1Vos);
 		model.addAttribute("b2Vos",b2Vos);
@@ -114,8 +112,27 @@ public class HomeController {
 		String fileUrl = request.getContextPath() + "/data/ckeditor/" + fileName;
 		out.println("{\"originalFilename\":\"" + fileName + "\",\"uploaded\":1,\"url\":\"" + fileUrl + "\"}");
 		
-//		out.close();
+		out.close();
 		fos.close();
+	}
+	
+	// 최근게시물 부분load하는 컨트롤러
+	@RequestMapping(value = "/recentBoard", method = RequestMethod.GET)
+	public String recentBoardGet(Model model, PageVO pageVO, @RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
+		pageVO.setPageSize(10);
+		pageVO.setScope("전체글");
+		pageVO.setPart(part);
+		List<BoardVO> b2Vos = boardService.boardList(pageVO);
+		model.addAttribute("b2Vos",b2Vos);
+		return "home/home";
+	}
+	
+	// 뉴스 부분load하는 컨트롤러
+	@RequestMapping(value = "/keywordNews", method = RequestMethod.GET)
+	public String keywordNewsGet(Model model, String keyword) {
+		List<News> nVos = newsService.keywordNews(keyword);
+		model.addAttribute("nVos",nVos);
+		return "home/home";
 	}
 	
 }
