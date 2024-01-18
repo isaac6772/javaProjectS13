@@ -608,10 +608,10 @@
 }
 .newsModalContainer .newsContent {
 	position : relative;
-	margin : 100px auto;
+	margin : 70px auto;
 	background-color : white;
 	width : 700px;
-	height : 900px;
+	height : 800px;
 	border-radius: 12px;
 	animation : slideIn 0.3s;
 	box-sizing: border-box;

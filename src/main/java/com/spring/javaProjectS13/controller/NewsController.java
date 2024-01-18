@@ -36,10 +36,17 @@ public class NewsController {
 				else keyword = mVo.getKeyword().split("/")[0];
 			}
 		}
-		List<News> nVos = newsService.keywordNews(keyword, 20);
 		
-		model.addAttribute("nVos",nVos);
+		model.addAttribute("keyword",keyword);
 		model.addAttribute("mVo",mVo);
+		return "news/news";
+	}
+	
+	// 비동기적으로 뉴스데이터 가져오기
+	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
+	public String newsList(String keyword, Model model) {
+		List<News> nVos = newsService.keywordNews(keyword, 20);
+		model.addAttribute("nVos",nVos);
 		return "news/news";
 	}
 }

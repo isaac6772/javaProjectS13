@@ -45,7 +45,11 @@
 							<div class = "title">
 								<span>${nVos[i].title}</span>
 							</div>
-							<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
+							<div class = "articleContent" style = "display : none">
+								${nVos[i].article}
+								<br>
+								원본링크 : <a href = "${nVos[i].link}" target ="_blank">${nVos[i].link}</a>
+							</div>
 						</div>	
 					</c:forEach>
 				</div>
@@ -55,7 +59,11 @@
 							<div class = "article">
 								<div class = "text1" onclick = "newsModalShow(this)">
 									<span>${nVos[i].title}</span>
-									<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
+									<div class = "articleContent" style = "display : none">
+										${nVos[i].article}
+										<br>
+										원본링크 : <a href = "${nVos[i].link}" target ="_blank">${nVos[i].link}</a>
+									</div>
 								</div>
 								<div class = "text2">
 									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>
@@ -68,7 +76,11 @@
 							<div class = "article">
 								<div class = "text1" onclick = "newsModalShow(this)">
 									<span>${nVos[i].title}</span>
-									<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
+									<div class = "articleContent" style = "display : none">
+										${nVos[i].article}
+										<br>
+										원본링크 : <a href = "${nVos[i].link}" target ="_blank">${nVos[i].link}</a>
+									</div>
 								</div>
 								<div class = "text2">
 									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>

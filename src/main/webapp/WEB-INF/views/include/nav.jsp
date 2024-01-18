@@ -11,9 +11,9 @@
 <body>
 	<div class = "navContainer">
 		<div class = "mainMenu">
-			<div class = "menuItem">
+			<div class = "menuItem" onclick = "location.href = '${ctp}/news/news'">
 				<div class = "row1">
-					<img src = "${ctp}/icon/news.png" onclick = "location.href = '${ctp}/news/news'"/>
+					<img src = "${ctp}/icon/news.png" />
 				</div>
 				<div class = "row2">
 					<span>뉴스</span>
