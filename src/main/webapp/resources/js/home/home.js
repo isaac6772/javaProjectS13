@@ -73,6 +73,79 @@ $(function() {
 	
 	// 뉴스 리스트 불러오기(문서가 모두 로딩된후)
 	loadKeywordNews(keyword);
+	
+	// 뉴스 모달 닫기
+	$('.newsModalContainer').click(function(e) {
+		if(e.target == document.getElementById("newsModal")) $('.newsModalContainer').hide();
+	});
+	
+	// 뉴스 모달 닫기
+	$(document).keydown(function(e) {
+		if(e.keyCode=='27') {
+			$('.newsModalContainer').hide();
+		}
+	})
+	
+	// 워드클라우드 모듈불러오기
+	zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/';
+	
+	//워드클라우드 환경설정
+	var myConfig = {
+		type: 'wordcloud',
+		options: {
+		    words: [
+			    {text: "테슬라",count: 80},
+			    {text: "애플",count: 70},
+			    {text: "아마존",count: 60},
+			    {text: "월마트",count: 50},
+			    {text: "삼성",count: 40},
+			    {text: "현대차",count: 30},
+			    {text: "구글",count: 20},
+		  	],
+			minLength: 5,
+		 	ignore: [""],
+		 	maxItems: 40,
+		 	aspect: 'spiral', // 'flow-top' | 'flow-center'
+		  
+		 	colorType: 'palette',
+		 	palette: ['#D32F2F', '#5D4037', '#1976D2', '#E53935', '#6D4C41', '#1E88E5', '#F44336', '#795548', '#2196F3', '#EF5350', '#8D6E63', '#42A5F5'],
+		  
+		 	style: {
+		  		fontFamily: 'Crete Round',
+				tooltip: {
+					text: '%text: %hits',
+			 		visible: false,
+			        alpha: 0.9,
+			        backgroundColor: '#1976D2',
+			        borderRadius: 2,
+			        borderColor: 'none',
+			        fontColor: 'white',
+			        fontFamily: 'Georgia',
+			        textAlpha: 1
+				}
+			}
+		},
+	  
+		source: {
+	    	//text: '--President Barack Obama<br> Selma 50th anniversary speech<br>March 7, 2015',
+	    	//Source: https://obamawhitehouse.archives.gov/the-press-office/2015/03/07/remarks-president-50th-anniversary-selma-montgomery-marches
+	    	fontColor: '#64B5F6',
+	    	fontSize: 10,
+	    	fontFamily: 'Georgia',
+	    	fontWeight: 'normal',
+	    	marginBottom: '10%'
+	 	}
+	};
+	
+	//워드클라우드 렌더링
+	zingchart.render({
+		id: 'myChart',
+		data: myConfig,
+	    height: 400,
+	    width: '100%'
+	});
+	
+	//myConfig.options.words = [{text:"사랑",count:1}];
 });
 
 function loadKeywordNews(keyword) {
@@ -98,3 +171,10 @@ function nextBoard() {
 function partChange(part) {
 	$('#recentBoard').load(contextPath + "/recentBoard?part="+part+' #boardLoad');
 }
+
+function newsModalShow(e) {
+	let content = $(e).find('.articleContent').html();
+	$('#newsModalContent').html(content);
+	$('.newsModalContainer').show();
+}
+

@@ -127,6 +127,20 @@ public class MemberController {
 		return "member/myPage1";
 	}
 	
+	@RequestMapping(value = "/myPage2", method = RequestMethod.GET)
+	public String myPage2Get() {
+		return "member/myPage2";
+	}
+	
+	@RequestMapping(value = "/myPage3", method = RequestMethod.GET)
+	public String myPage3Get(Model model, HttpSession session) {
+		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
+		MemberVO mVo = memberService.memberMidCheck(mid);
+		
+		model.addAttribute("mVo",mVo);
+		return "member/myPage3";
+	}
+	
 	@RequestMapping(value = "/memberUpdate", method = RequestMethod.GET)
 	public String memberUpdateGet(HttpSession session, Model model) {
 		MemberVO vo = memberService.memberUpdate(session);
@@ -228,5 +242,19 @@ public class MemberController {
 		
 		if(res==1) return "redirect:/message/member/memberPwdResetOk";
 		else return "redirect:/message/member/memberPwdResetNo";
+	}
+	
+	// 키워드 추가
+	@ResponseBody
+	@RequestMapping(value = "/inputKeyword", method = RequestMethod.POST)
+	public String inputKeywordPost(String keyword, HttpSession session) {
+		int res = memberService.inputKeyword(keyword, session);
+		return res + ""; 
+	}
+	// 키워드 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteKeyword", method = RequestMethod.POST)
+	public void deleteKeywordPost(String keyword, HttpSession session) {
+		memberService.deleteKeyword(keyword, session);
 	}
 }

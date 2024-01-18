@@ -22,24 +22,7 @@
 	
 	<div class = "serviceContainer">
 	
-		<div class = "userInfo">
-			<c:if test="${!empty sMid}">
-				<div class = "box">
-					<img src = "${ctp}/icon/alarm.png" />
-				</div>
-				<div class = "box">
-					<img src = "${ctp}/icon/chat2.png" />
-				</div>
-				<div class = "box" onclick = "settingFormShow()">
-					<img src = "${ctp}/icon/setting.png" />
-					<div class = "settingForm">
-						<div class = "arrow"></div>
-						<div class = "item" onclick = "location.href='${ctp}/member/myPageIframe?myPage=myPage1'">내정보</div>
-						<div class = "item" onclick = "location.href='${ctp}/member/memberLogout'">로그아웃</div>
-					</div>
-				</div>
-			</c:if>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 		
 		<div class = "title">
 			<div class = "text">

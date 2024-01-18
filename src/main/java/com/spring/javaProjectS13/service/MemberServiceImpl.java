@@ -339,4 +339,53 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> friendList(int idx) {
 		return memberDAO.friendList(idx);
 	}
+
+	@Override
+	public int inputKeyword(String keyword, HttpSession session) {
+		int idx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		MemberVO vo = memberDAO.memberIdxSearch(idx);
+		
+		if(vo!=null && vo.getKeyword()!=null) {
+			String[] keywords = vo.getKeyword().split("/");
+
+			int sw = 1;
+			for(String key : keywords) {
+				if(key.equals(keyword)) {
+					sw = 0;
+					break;
+				}
+			}
+			
+			if(sw==0) return 0;
+			else {
+				keyword = vo.getKeyword() + keyword + "/";
+				return memberDAO.inputKeyword(idx, keyword);
+			}
+		}
+		else return memberDAO.inputKeyword(idx, keyword + "/");
+	}
+
+	@Override
+	public void deleteKeyword(String keyword, HttpSession session) {
+		int idx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
+		MemberVO vo = memberDAO.memberIdxSearch(idx);
+		
+		if(vo.getKeyword()!=null) {
+			String[] keywords = vo.getKeyword().split("/");
+			String newKeyword = "";
+			for(String key : keywords) {
+				if(!key.equals(keyword)) {
+					newKeyword += key + "/";
+				}
+			}
+			memberDAO.inputKeyword(idx, newKeyword);
+		}
+	}
+
+	@Override
+	public String wordCloud() {
+		
+		
+		return null;
+	}
 }

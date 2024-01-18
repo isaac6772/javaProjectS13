@@ -56,4 +56,10 @@ public interface MemberService {
 
 	public List<MemberVO> friendList(int idx);
 
+	public int inputKeyword(String keyword, HttpSession session);
+
+	public void deleteKeyword(String keyword, HttpSession session);
+
+	public String wordCloud();
+
 }

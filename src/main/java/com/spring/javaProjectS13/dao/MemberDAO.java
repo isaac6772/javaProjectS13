@@ -51,4 +51,6 @@ public interface MemberDAO {
 
 	public int selectedMemberDelete(String idxArray);
 
+	public int inputKeyword(@Param("idx") int idx, @Param("keyword") String keyword);
+
 }

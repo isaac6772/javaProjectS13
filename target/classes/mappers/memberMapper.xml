@@ -74,6 +74,14 @@
 	<update id="memberUpdate">
 		update member set mid = #{vo.mid}, nickName = #{vo.nickName}, name = #{vo.name}, email = #{vo.email}, level = #{vo.level}, point = #{vo.point} where idx = #{vo.idx};
 	</update>
+	<update id="inputKeyword">
+		<if test="keyword==''">
+			update member set keyword = null where idx = #{idx}
+		</if>
+		<if test="keyword!=''">
+			update member set keyword = #{keyword} where idx = #{idx}
+		</if>
+	</update>
 		
 	
 	<delete id="memberLogoutOk">

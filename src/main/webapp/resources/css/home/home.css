@@ -19,7 +19,6 @@
 .wordCloudBox {
 	border: 1px solid black;
 	padding : 20px;
-	height : 300px;
 }
 .boardBox {
 	border: 3px solid #99abc0;
@@ -592,4 +591,46 @@
 	color :gray;
 	width : 70px;
 	text-align : right;
+}
+
+
+
+
+.newsModalContainer {
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.4);
+    display : none;
+}
+.newsModalContainer .newsContent {
+	position : relative;
+	margin : 100px auto;
+	background-color : white;
+	width : 700px;
+	height : 900px;
+	border-radius: 12px;
+	animation : slideIn 0.3s;
+	box-sizing: border-box;
+    padding: 40px 0px 30px 30px;
+}
+.newsModalContainer .newsContent #newsModalContent {
+	height : 100%;
+	overflow-y : scroll;
+	padding-right: 20px;
+}
+@keyframes slideIn {
+	from {top : -50%}
+	to {top : 0%}
+}
+
+
+
+
+
+.wordCloudBox {
+	
 }

@@ -35,7 +35,7 @@
 				</c:if>
 				<div class = "imgNewsBox">
 					<c:forEach var = "i" begin = "0" end = "2">
-						<div class = "imgNews">
+						<div class = "imgNews" onclick = "newsModalShow(this)">
 							<c:if test="${empty nVos[i].fileName}">
 								<img src = "${ctp}/util/noImage.jpg" width = "100%" height = "200px" />
 							</c:if>
@@ -45,6 +45,7 @@
 							<div class = "title">
 								<span>${nVos[i].title}</span>
 							</div>
+							<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
 						</div>	
 					</c:forEach>
 				</div>
@@ -52,8 +53,9 @@
 					<div class = "left">
 						<c:forEach var = "i" begin = "3" end = "7">
 							<div class = "article">
-								<div class = "text1">
-									${nVos[i].title}
+								<div class = "text1" onclick = "newsModalShow(this)">
+									<span>${nVos[i].title}</span>
+									<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
 								</div>
 								<div class = "text2">
 									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>
@@ -64,8 +66,9 @@
 					<div class = "right">
 						<c:forEach var = "i" begin = "8" end = "12">
 							<div class = "article">
-								<div class = "text1">
-									${nVos[i].title}
+								<div class = "text1" onclick = "newsModalShow(this)">
+									<span>${nVos[i].title}</span>
+									<div class = "articleContent" style = "display : none">${nVos[i].article}</div>
 								</div>
 								<div class = "text2">
 									<c:if test="${!empty nVos[i].timeDiff}">[${nVos[i].timeDiff}전]</c:if>
@@ -77,6 +80,12 @@
 			</div>	<!-- newsList -->
 		</div>	<!-- loadLayer -->
 		
+	</div>	<!-- newsBox -->
+	
+	<div class = "newsModalContainer" id = "newsModal">
+		<div class = "newsContent">
+			<div id = "newsModalContent"></div>
+		</div>
 	</div>
 </body>
 </html>

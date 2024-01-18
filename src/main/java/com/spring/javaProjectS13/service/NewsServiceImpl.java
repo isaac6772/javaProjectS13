@@ -39,12 +39,12 @@ public class NewsServiceImpl implements NewsService {
 	ObjectMapper objectMapper;
 
 	@Override
-	public List<News> keywordNews(String keyword) {
+	public List<News> keywordNews(String keyword, int length) {
 		int start = 1;
 		String clientId = "7erLyg8itVAhwffeUQXr";
 	    String clientSecret = "dg3CN4LESE";
 
-	    String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+keyword+"&display=30";
+	    String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+keyword+"&display=100";
 
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.add("X-Naver-Client-Id", clientId);
@@ -59,18 +59,18 @@ public class NewsServiceImpl implements NewsService {
 	    int cnt = 0;
 	    
 	    try {
-	    	// 네이버 뉴스만 13개 뽑기
 	    	newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 			while(true) {
 				for(News news : newsResponse.getItems()) {
 					if(news.getLink().contains("//n.news.naver.com/")) {
 						cnt++;
 						newsList.add(news);
-						if(cnt>=13) break;
+						if(cnt>=length) break;
 					}
 				}
-				if(cnt<13) {
-					start += 30;
+				if(cnt<length) {
+					start += 100;
+					if(start>=1000) return null;		// 무한정 검색하지 않도록 처리했음
 					response = restTemplate.exchange(apiURL + "&start="+start, HttpMethod.GET, entity, String.class);
 					newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 				}
@@ -80,19 +80,34 @@ public class NewsServiceImpl implements NewsService {
 			// 뽑은 뉴스의 링크를 기반으로 크롤링해서 newsVO에 넣어주기
 			for(News news : newsList) {
 				Document document = Jsoup.connect(news.getLink()).get();
-				//String content = document.select("article").first().text();
-				String fileName = "";
 				
-				Elements images = document.select("article img");
-				if(images.size() != 0) {
-					for(Element image : images) {
-						fileName += image.attr("data-src") + ",";
+				if(document.select("article").first() != null) {
+					String article = document.select("article").html();
+					String fileName = "";
+					
+					Elements images = document.select("article img");
+					if(images.size() != 0) {
+						fileName = images.first().attr("data-src");
 					}
-					fileName = fileName.substring(0,fileName.length()-1);
+					article = article.replace("data-src=\"", "src=\"");
+					news.setArticle(article);
+					news.setFileName(fileName);
+					news.setTitle(news.getTitle().replaceAll("<[^>]+>", ""));
 				}
-				//news.setContent(content);
-				news.setFileName(fileName);
-				news.setTitle(news.getTitle().replaceAll("<[^>]+>", ""));
+				else {
+					String article = document.select("#articeBody").first().html();
+					String fileName = "";
+					
+					Elements images = document.select("#articeBody img");
+					if(images.size() != 0) {
+						fileName = images.first().attr("src");
+					}
+					news.setArticle(article);
+					news.setFileName(fileName);
+					news.setTitle(news.getTitle().replaceAll("<[^>]+>", ""));
+				}
+				
+				
 				
 				// 날짜 차이 계산하기
 				SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z",Locale.ENGLISH);

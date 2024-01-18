@@ -15,7 +15,7 @@
 		let maxExp = '${maxExp}';
 		let keyword = '${keyword}';
 	</script>
-	<script src = "${ctp}/js/home.js"></script>
+	<script src = "${ctp}/js/home/home.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -24,9 +24,7 @@
 	<div class = "homeContainer">
 		<div class = "leftSide">
 			<jsp:include page="/WEB-INF/views/home/news.jsp" />
-			<div class = "wordCloudBox">
-				
-			</div>
+			<jsp:include page="/WEB-INF/views/home/wordCloud.jsp" />
 			<jsp:include page="/WEB-INF/views/home/board.jsp" />
 		</div>
 		<div class = "rightSide">

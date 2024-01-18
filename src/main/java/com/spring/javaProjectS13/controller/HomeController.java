@@ -78,6 +78,7 @@ public class HomeController {
 		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
 		
+		// 홈페이지 접속시 무슨 키워드로 뉴스를 검색할지 처리
 		if(keyword == null) {
 			if(mVo==null) keyword = "정치";
 			else {
@@ -85,6 +86,9 @@ public class HomeController {
 				else keyword = mVo.getKeyword().split("/")[0];
 			}
 		}
+		
+		// 워드클라우드 데이터 불러오기
+		String wordCloud = memberService.wordCloud();
 		
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("part",part);
@@ -130,7 +134,7 @@ public class HomeController {
 	// 뉴스 부분load하는 컨트롤러
 	@RequestMapping(value = "/keywordNews", method = RequestMethod.GET)
 	public String keywordNewsGet(Model model, String keyword) {
-		List<News> nVos = newsService.keywordNews(keyword);
+		List<News> nVos = newsService.keywordNews(keyword, 13);
 		model.addAttribute("nVos",nVos);
 		return "home/home";
 	}

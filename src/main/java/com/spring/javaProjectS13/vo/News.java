@@ -13,6 +13,6 @@ public class News {
 	
 	// 추가로 크롤링을 통해 저장할 필드
 	private String fileName;
-	private String content;
 	private String timeDiff;
+	private String article;
 }

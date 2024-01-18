@@ -6,6 +6,6 @@ import com.spring.javaProjectS13.vo.News;
 
 public interface NewsService {
 
-	public List<News> keywordNews(String keyword);
+	public List<News> keywordNews(String keyword, int length);
 
 }
