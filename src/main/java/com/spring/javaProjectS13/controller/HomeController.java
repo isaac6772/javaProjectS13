@@ -3,6 +3,7 @@ package com.spring.javaProjectS13.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ import com.spring.javaProjectS13.service.NewsService;
 import com.spring.javaProjectS13.service.ServiceService;
 import com.spring.javaProjectS13.vo.AdVO;
 import com.spring.javaProjectS13.vo.BoardVO;
+import com.spring.javaProjectS13.vo.Keyword;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.News;
 import com.spring.javaProjectS13.vo.PageVO;
@@ -88,8 +90,9 @@ public class HomeController {
 		}
 		
 		// 워드클라우드 데이터 불러오기
-		String wordCloud = memberService.wordCloud();
+		String wordCloud = newsService.keywordList(20, 0);
 		
+		model.addAttribute("wordCloud",wordCloud);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("part",part);
 		model.addAttribute("b1Vos",b1Vos);
@@ -134,7 +137,7 @@ public class HomeController {
 	// 뉴스 부분load하는 컨트롤러
 	@RequestMapping(value = "/keywordNews", method = RequestMethod.GET)
 	public String keywordNewsGet(Model model, String keyword) {
-		List<News> nVos = newsService.keywordNews(keyword, 13);
+		List<News> nVos = newsService.keywordNews(keyword, 1, 13, false);
 		model.addAttribute("nVos",nVos);
 		return "home/home";
 	}

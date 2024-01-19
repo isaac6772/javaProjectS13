@@ -8,6 +8,7 @@
 	<title>header.jsp</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/header.css" />
+	<script src= "${ctp}/js/home/header.js"></script>
 </head>
 <body>
 	<div class = "headerContainer">
@@ -22,7 +23,7 @@
 					<img src = "${ctp}/icon/search.png" />
 				</div>
 				<div class = "search">
-					<input type = "text" name = "search" id = "search" autofocus />
+					<input type = "text" name = "search" id = "search" placeholder = "뉴스를 검색할 수 있어요" autofocus />
 				</div>
 			</div>
 		</div>

@@ -60,6 +60,4 @@ public interface MemberService {
 
 	public void deleteKeyword(String keyword, HttpSession session);
 
-	public String wordCloud();
-
 }

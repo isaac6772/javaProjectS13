@@ -17,13 +17,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 	
 	<div class = "boardListContainer">
 		
 		<div class = "listContainer">
 			
-			<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
-		
 			<div class = "line"></div>
 			
 			<div class = "optionBox">
@@ -167,6 +166,6 @@
 		
 	</div>
 	
-	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

@@ -381,11 +381,4 @@ public class MemberServiceImpl implements MemberService {
 			memberDAO.inputKeyword(idx, newKeyword);
 		}
 	}
-
-	@Override
-	public String wordCloud() {
-		
-		
-		return null;
-	}
 }

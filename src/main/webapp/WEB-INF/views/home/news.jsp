@@ -13,16 +13,16 @@
 		
 		<div class = "keyword">
 			<c:if test="${empty mVo.keyword}">
-				<div class = "item" onclick = "location.href='home?keyword=정치'">정치</div>
-				<div class = "item" onclick = "location.href='home?keyword=경제'">경제</div>
-				<div class = "item" onclick = "location.href='home?keyword=사회'">사회</div>
-				<div class = "item" onclick = "location.href='home?keyword=세계'">세계</div>
-				<div class = "item" onclick = "location.href='home?keyword=연예'">연예</div>
+				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=정치'">정치</div>
+				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=경제'">경제</div>
+				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=사회'">사회</div>
+				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=세계'">세계</div>
+				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=연예'">연예</div>
 				<span class = "line"></span>
 			</c:if>
 			<c:if test="${!empty mVo.keyword}">
 				<c:forEach var = "item" items = "${fn:split(mVo.keyword,'/')}">
-					<div class = "item" onclick = "location.href='home?keyword=${item}'">${item}</div>
+					<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=${item}'">${item}</div>
 				</c:forEach>
 				<span class = "line"></span>
 			</c:if>
@@ -42,9 +42,12 @@
 							<c:if test="${!empty nVos[i].fileName}">
 								<img src = "${nVos[i].fileName}" width = "100%" height = "200px" />
 							</c:if>
-							<div class = "title">
-								<span>${nVos[i].title}</span>
-							</div>
+							<c:if test="${nVos[i].title != '0'}">
+								<div class = "title"><span>${nVos[i].title}</span></div>
+							</c:if>
+							<c:if test="${nVos[i].title == '0'}">
+								<div class = "noResult">검색결과가 없습니다.</div>
+							</c:if>
 							<div class = "articleContent" style = "display : none">
 								${nVos[i].article}
 								<br>

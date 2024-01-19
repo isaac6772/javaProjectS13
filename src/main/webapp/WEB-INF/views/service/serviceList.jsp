@@ -19,10 +19,9 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 	
 	<div class = "serviceContainer">
-	
-		<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 		
 		<div class = "title">
 			<div class = "text">

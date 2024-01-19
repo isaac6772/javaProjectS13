@@ -7,6 +7,7 @@
 	<title>Home.jsp</title>
 	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/home.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	<script src="https://kit.fontawesome.com/0989d78570.js" crossorigin="anonymous"></script>
 	<script>
 		'use strict';
@@ -14,6 +15,7 @@
 		let exp = '${mVo.exp}';
 		let maxExp = '${maxExp}';
 		let keyword = '${keyword}';
+		let wordCloud = '${wordCloud}';
 	</script>
 	<script src = "${ctp}/js/home/home.js"></script>
 </head>

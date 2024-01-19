@@ -19,7 +19,7 @@
 					<span>뉴스</span>
 				</div>
 			</div>
-			<div class = "menuItem">
+			<div class = "menuItem" onclick = "location.href = '${ctp}/discussion/discussionList'">
 				<div class = "row1">
 					<img src = "${ctp}/icon/debate.png" />
 				</div>

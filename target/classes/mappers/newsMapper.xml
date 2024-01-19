@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spring.javaProjectS13.dao.newsDAO">
+<mapper namespace="com.spring.javaProjectS13.dao.NewsDAO">
+	
+	
+	<select id="keywordList" resultType = "com.spring.javaProjectS13.vo.Keyword">
+		select keyword as text, count(*) as count from keyword where 
+		<![CDATA[searchDate >= date_sub(curdate(),interval #{time} day)]]> 
+		group by keyword order by count desc <if test="limit!=0">limit #{limit}</if>
+	</select>
+	
+	
+	<update id="keywordInput">
+		insert into keyword values(default,#{keyword},now())
+	</update>
+	
 	
 </mapper>

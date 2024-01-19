@@ -1,8 +1,8 @@
 .userInfo {
 	position : absolute;
     display : flex;
-	right: 0px;
-    top: -257px;
+	top : 0px;
+	right : 20%;
 }
 .userInfo .box {
 	border-radius: 25px;

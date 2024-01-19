@@ -86,6 +86,8 @@ $(function() {
 		}
 	})
 	
+	console.log(JSON.parse(wordCloud));
+	
 	// 워드클라우드 모듈불러오기
 	zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/';
 	
@@ -93,15 +95,7 @@ $(function() {
 	var myConfig = {
 		type: 'wordcloud',
 		options: {
-		    words: [
-			    {text: "테슬라",count: 80},
-			    {text: "애플",count: 70},
-			    {text: "아마존",count: 60},
-			    {text: "월마트",count: 50},
-			    {text: "삼성",count: 40},
-			    {text: "현대차",count: 30},
-			    {text: "구글",count: 20},
-		  	],
+		    words: JSON.parse(wordCloud),
 			minLength: 5,
 		 	ignore: [""],
 		 	maxItems: 40,

@@ -18,11 +18,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.dao.NewsDAO;
+import com.spring.javaProjectS13.vo.Keyword;
+import com.spring.javaProjectS13.vo.KeywordVO;
 import com.spring.javaProjectS13.vo.News;
 import com.spring.javaProjectS13.vo.NewsResponse;
 
@@ -39,8 +43,9 @@ public class NewsServiceImpl implements NewsService {
 	ObjectMapper objectMapper;
 
 	@Override
-	public List<News> keywordNews(String keyword, int length) {
-		int start = 1;
+	public List<News> keywordNews(String keyword, int offset, int length, boolean flag) {
+		int start = offset;
+		
 		String clientId = "7erLyg8itVAhwffeUQXr";
 	    String clientSecret = "dg3CN4LESE";
 
@@ -51,17 +56,20 @@ public class NewsServiceImpl implements NewsService {
 	    headers.add("X-Naver-Client-Secret", clientSecret);
 
 	    HttpEntity<String> entity = new HttpEntity<>(headers);
+	    
 	    ResponseEntity<String> response = restTemplate.exchange(apiURL + "&start="+start, HttpMethod.GET, entity, String.class);
 		
 	    NewsResponse newsResponse = null;
 	    
     	ArrayList<News> newsList = new ArrayList<News>();
-	    int cnt = 0;
+	    int cnt = 0;	// 뷰에 쀼려줄 실 데이터의 수
+	    int repeatNum = 0;		// api의 응답으로 받아온 데이터의 수
 	    
 	    try {
 	    	newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 			while(true) {
 				for(News news : newsResponse.getItems()) {
+					repeatNum++;
 					if(news.getLink().contains("//n.news.naver.com/")) {
 						cnt++;
 						newsList.add(news);
@@ -70,7 +78,7 @@ public class NewsServiceImpl implements NewsService {
 				}
 				if(cnt<length) {
 					start += 100;
-					if(start>=1000) return null;		// 무한정 검색하지 않도록 처리했음
+					if(start>=1000) break;		// 무한정 검색하지 않도록 처리했음
 					response = restTemplate.exchange(apiURL + "&start="+start, HttpMethod.GET, entity, String.class);
 					newsResponse = objectMapper.readValue(response.getBody(), NewsResponse.class);
 				}
@@ -125,8 +133,37 @@ public class NewsServiceImpl implements NewsService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		    
+		
+	    // 키워드 테이블 업데이트(검색바에서 검색을 했을 경우에만)
+	    if(flag) newsDAO.keywordInput(keyword);
+	    
+	    // news 임시 객체를 생성해서 api 검색의 결과가 아무것도 없을시(repeatNum==0),
+	    // 다음 startLocation=0 으로 설정해서 프론트쪽에서 stratLocation을 0으로 반환받았을시 더이상 검색결과가 없다는 창을 띄우도록 처리
+	    News temp = new News();
+	    if(repeatNum==0) temp.setTitle("0");
+	    else temp.setTitle(repeatNum + offset + ""); 
+	    newsList.add(temp);
 		return newsList;
+	}
+
+	@Override
+	public String keywordList(int time, int limit) {
+		ArrayList<Keyword> keywords = newsDAO.keywordList(time, limit);
+		String wordCloud = "";
+		
+		try {
+			wordCloud = objectMapper.writeValueAsString(keywords);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return wordCloud;
+	}
+
+	@Override
+	public ArrayList<Keyword> keywordListString(int time, int limit) {
+		ArrayList<Keyword> keywords = newsDAO.keywordList(20, limit);
+		return keywords;
 	}
 	
 }

@@ -4,13 +4,27 @@
     position: relative;
     min-height : 560px;
 }
+.newsContainer .newsGroup {
+	box-shadow : 0px 0px 23px 0px rgba(0,0,0,.16);
+	border-radius: 8px;
+}
 .newsContainer .newsLoaderLayer {
 	display : none;
+	padding-top : 20px;
+}
+.newsLoaderLayer .noResult {
+	padding-bottom: 20px;
+	font-size : 20px;
+	font-weight : bolder;
+	text-align: center;
 }
 .newsContainer .mainLoading {
-	position : absolute;
-    left: 44%;
-    top: 30%;
+	text-align : center;
+	margin-top : 150px;
+}
+.newsContainer .mainLoading img {
+	width : 50px;
+    height : 50px;
 }
 .newsContainer .keywordContainer {
 	margin : 35px 0px;
@@ -28,6 +42,11 @@
 	flex-wrap: wrap;
 	box-shadow : 0px 0px 23px 0px rgba(0,0,0,.16);
 }
+.keywordContainer .description {
+	padding-left : 20px;
+	font-size : 14px;
+	color : gray;
+}
 .keywordBox .keyword {
 	border-radius: 6px;
 	padding : 8px 14px;
@@ -37,34 +56,31 @@
 	margin : 0px 10px 10px 0px;
 	cursor : pointer;
 }
-.newsList {
+.newsGroup .newsList {
 	display : flex;
 	flex-wrap: wrap;
-	box-shadow : 0px 0px 23px 0px rgba(0,0,0,.16);
-	padding : 20px 0px 0px 0px;
-	border-radius: 8px;
 }
-.article {
+.newsList .article {
 	width : 46%;
 	display : flex;
     margin-bottom: 17px;
 }
-.article:nth-of-type(2n-1) {
+.newsList .article:nth-of-type(2n-1) {
 	margin-right : 2%;
 	margin-left : 2%;
 }
-.article:nth-of-type(2n) {
+.newsList .article:nth-of-type(2n) {
 	margin-left : 2%;
 	margin-right : 2%;
 }
-.article .img img {
+.newsList .article .img img {
 	border-radius: 6px;
 	border : 1px solid lightgray;
 	width : 65px;
 	height : 65px;
 	cursor : pointer;
 }
-.article .title {
+.newsList .article .title {
 	flex : 1;
 	display : flex;
 	flex-direction : column;
@@ -73,18 +89,18 @@
 	padding : 3px 0px;
 	margin-left : 10px;
 }
-.article .title .text1:hover {
+.newsList .article .title .text1:hover {
 	text-decoration: underline;
 	cursor : pointer;
 }
-.article .title .text2 {
+.newsList .article .title .text2 {
 	font-size : 14px;
 	color : gray;
 }
 .newsList .articleContent {
 	display : none;
 }
-.newsList .newsMore {
+.newsGroup .newsMore {
 	flex : 1;
 	text-align: center;
 	border-top : 1px solid lightgray;
@@ -93,14 +109,23 @@
 	color : gray;
 	display : none;
 }
-.newsList .newsMore img {
+.newsGroup .newsMore img {
 	width : 17px;
 	vertical-align: bottom;
 }
-.newsList .newsMore .set {
+.newsGroup .newsMore .set {
 	display : inline-block;
 	cursor : pointer;
 	user-select : none;
+}
+.newsContainer .newsMoreLoading {
+	display : none;
+	text-align : center;
+	margin-top : 20px;
+}
+.newsContainer .newsMoreLoading img {
+	width : 38px;
+	height : 38px;
 }
 
 

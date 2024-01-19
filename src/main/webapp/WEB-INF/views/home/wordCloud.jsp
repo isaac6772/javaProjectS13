@@ -6,7 +6,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>wordCloud.jsp</title>
-	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
 	<div class = "wordCloudBox">
