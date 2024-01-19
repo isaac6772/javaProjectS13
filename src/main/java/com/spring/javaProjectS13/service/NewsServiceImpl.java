@@ -8,9 +8,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -18,15 +19,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.dao.NewsDAO;
 import com.spring.javaProjectS13.vo.Keyword;
-import com.spring.javaProjectS13.vo.KeywordVO;
 import com.spring.javaProjectS13.vo.News;
 import com.spring.javaProjectS13.vo.NewsResponse;
 
@@ -149,6 +150,12 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public String keywordList(int time, int limit) {
 		ArrayList<Keyword> keywords = newsDAO.keywordList(time, limit);
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		
+		for(Keyword keyword : keywords) {
+			keyword.setUrl(request.getContextPath() + "/news/news?keyword=" + keyword.getText());
+		}
+		
 		String wordCloud = "";
 		
 		try {

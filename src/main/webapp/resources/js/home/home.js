@@ -102,7 +102,7 @@ $(function() {
 		 	aspect: 'spiral', // 'flow-top' | 'flow-center'
 		  
 		 	colorType: 'palette',
-		 	palette: ['#D32F2F', '#5D4037', '#1976D2', '#E53935', '#6D4C41', '#1E88E5', '#F44336', '#795548', '#2196F3', '#EF5350', '#8D6E63', '#42A5F5'],
+		 	palette: ['#8BC34A','#673AB7','#FF9800','#4CAF50','#D32F2F', '#5D4037', '#1976D2', '#E53935', '#6D4C41', '#1E88E5', '#F44336', '#795548', '#2196F3', '#EF5350', '#8D6E63', '#42A5F5'],
 		  
 		 	style: {
 		  		fontFamily: 'Crete Round',

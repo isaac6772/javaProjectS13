@@ -89,7 +89,7 @@ public class HomeController {
 			}
 		}
 		
-		// 워드클라우드 데이터 불러오기
+		// 워드클라우드 데이터 불러오기(json형식의 문자열)
 		String wordCloud = newsService.keywordList(20, 0);
 		
 		model.addAttribute("wordCloud",wordCloud);

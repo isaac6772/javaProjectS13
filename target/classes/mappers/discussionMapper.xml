@@ -3,7 +3,9 @@
 <mapper namespace="com.spring.javaProjectS13.dao.DiscussionDAO">
 	
 	
-	
+	<select id="discussionList" resultType = "com.spring.javaProjectS13.vo.DiscussionVO">
+		select * from discussion
+	</select>
 	
 	
 </mapper>

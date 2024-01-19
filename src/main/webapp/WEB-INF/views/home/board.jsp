@@ -13,7 +13,7 @@
 		<div class = "hot">
 			<div class = "title">
 				<div class = "icon"><img src = "${ctp}/icon/recommend.png" /></div>
-				<div class = "text">추천글</div>
+				<div class = "text" onclick = "location.href='${ctp}/board/boardList?scope=추천글'">추천글</div>
 				<div class = "pag">
 					<span id = "hotPag">1</span>
 					<span>/</span>
@@ -49,7 +49,7 @@
 			<div id = "boardLoad">
 				<div class = "title">
 					<div class = "icon"><img src = "${ctp}/icon/newBoard.png" /></div>
-					<div class = "text">최신글</div>
+					<div class = "text" onclick = "location.href='${ctp}/board/boardList?scope=전체글'">최신글</div>
 					<div class = "part">
 						<div class = "${part=='전체'?'selected':''}" onclick = "partChange('전체')">전체</div>
 						<div class = "${part=='일상'?'selected':''}"  onclick = "partChange('일상')">일상</div>
