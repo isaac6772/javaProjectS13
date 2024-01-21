@@ -98,7 +98,7 @@ $(function() {
 		    words: JSON.parse(wordCloud),
 			minLength: 5,
 		 	ignore: [""],
-		 	maxItems: 40,
+		 	maxItems: 70,
 		 	aspect: 'spiral', // 'flow-top' | 'flow-center'
 		  
 		 	colorType: 'palette',
