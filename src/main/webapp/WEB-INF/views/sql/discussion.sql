@@ -7,8 +7,9 @@ create table discussion(
 	part			varchar(20) not null,			/* 토론 종류(뉴스,자유) */
 	createdDate		datetime not null,				/* 토론 게시 날짜 */
 	discussionDate	datetime not null,				/* 토론 예정일 */
-	participant     varchar(200) not null,			/* 토론 참가자 */
+	participant     varchar(200),					/* 토론 참가자 */
 	headCount		int not null,					/* 토론 참가자 인원수 */
+	discussionTime	int not null,					/* 토론이 진행되는 시간 */
 	content			text,							/* 토론 내용 */
 	state			varchar(20) not null,			/* 토론 상태(신청중,토론중,종료) */
 	fileName		varchar(200),					/* 사진 파일 이름 */
@@ -20,3 +21,7 @@ create table discussion(
 drop table discussion;
 
 insert into discussion values (default,1,'고양이는 귀여운가?','뉴스',now(),'2024-01-20 12:00','1/2/5/',3,null,'신청중','noImage.jpg',null);
+
+update discussion set state = '토론중' where discussionDate <= now() and state != '종료'
+
+select count(*) from discussion where idx = 3 and now() < date_sub(discussionDate, interval 10 minute)

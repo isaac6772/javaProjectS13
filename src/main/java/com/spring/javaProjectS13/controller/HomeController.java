@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaProjectS13.common.LevelCalculator;
 import com.spring.javaProjectS13.service.BoardService;
-import com.spring.javaProjectS13.service.LevelCalculator;
 import com.spring.javaProjectS13.service.MemberService;
 import com.spring.javaProjectS13.service.NewsService;
 import com.spring.javaProjectS13.service.ServiceService;

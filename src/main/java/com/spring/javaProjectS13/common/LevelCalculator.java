@@ -1,4 +1,4 @@
-package com.spring.javaProjectS13.service;
+package com.spring.javaProjectS13.common;
 
 import org.springframework.stereotype.Service;
 

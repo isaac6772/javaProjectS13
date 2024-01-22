@@ -1,9 +1,16 @@
 package com.spring.javaProjectS13.service;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.dao.DiscussionDAO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
@@ -14,7 +21,60 @@ public class DiscussionServiceImpl implements DiscussionService {
 	DiscussionDAO discussionDAO;
 
 	@Override
-	public List<DiscussionVO> discussionList() {
-		return discussionDAO.discussionList();
+	public List<DiscussionVO> discussionList(int memberIdx) {
+		// 리스트를 가져올때 신청시간이 지났는지 여부를 체크해서 DB업데이트
+		discussionDAO.updateDiscussionState();
+		
+		List<DiscussionVO> vos = discussionDAO.discussionList();
+		for(DiscussionVO vo : vos) {
+			for(String str : vo.getParticipant().split("/")) {
+				if(str.equals(memberIdx + "")) {
+					vo.setReservationOk(true);
+					break;
+				}
+			}
+		}
+		return vos;
+	}
+
+	@Override
+	public int makeDiscussion(MultipartFile file, DiscussionVO vo, HttpSession session) {
+		if(vo.getHeadCount()<3) return 0;
+		
+		int res = 0;
+		int memberIdx = (int)session.getAttribute("sIdx");
+		String fileName = file.getOriginalFilename();
+		fileName = UUID.randomUUID().toString().substring(0,12) + "_" + fileName;
+		String realPath = session.getServletContext().getRealPath("/resources/data/board/discussion/");
+		
+		try {
+			FileOutputStream fos = new FileOutputStream(realPath + fileName);
+			fos.write(file.getBytes());
+			vo.setMemberIdx(memberIdx);
+			vo.setFileName(fileName);
+			res = discussionDAO.makeDiscussion(vo);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int reservation(int idx, HttpSession session) {
+		int memberIdx = (int)session.getAttribute("sIdx");
+		int res = discussionDAO.reservationTimeCheck(idx);
+		
+		if(res!=0) discussionDAO.addParticipant(idx ,memberIdx);
+		
+		return res;
+	}
+
+	@Override
+	public int enterDiscussion(int idx) {
+		// 입장가능한 토론인지 검사해서, 종료된 토론이면 종료페이지로 아니면 정상페이지로
+		return discussionDAO.enterTimeCheck(idx);
 	}
 }

@@ -1,4 +1,4 @@
-package com.spring.javaProjectS13.service;
+package com.spring.javaProjectS13.common;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

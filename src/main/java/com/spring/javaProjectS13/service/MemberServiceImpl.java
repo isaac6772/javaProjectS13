@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaProjectS13.common.LevelCalculator;
 import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;

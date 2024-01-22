@@ -11,6 +11,12 @@ public class DiscussionVO {
 	private String createdDate;
 	private String discussionDate;
 	private String participant;
+	private int headCount;
+	private int discussionTime;
 	private String content;
 	private String state;
+	private String fileName;
+	private String link;
+	
+	private boolean reservationOk;
 }

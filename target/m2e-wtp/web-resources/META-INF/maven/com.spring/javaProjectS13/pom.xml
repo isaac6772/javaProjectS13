@@ -270,6 +270,15 @@
 		    <version>1.16.1</version>
 		</dependency>
 		
+		<!-- 실시간 채팅을 위한 websocket 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>4.3.14.RELEASE</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
         <plugins>

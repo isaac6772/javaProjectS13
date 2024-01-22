@@ -246,4 +246,22 @@ public class MessageController {
 		
 		return "include/message";
 	}
+	
+	@RequestMapping("/discussion/{flag}")
+	public String discussionMessage(Model model, @PathVariable String flag) {
+		if(flag.equals("makeDiscussionOk")) {
+			model.addAttribute("msg","등록되었습니다.");
+			model.addAttribute("url","discussion/discussionList");
+		}
+		else if(flag.equals("makeDiscussionNo")) {
+			model.addAttribute("msg","토론 등록에 실패하였습니다.");
+			model.addAttribute("url","discussion/discussionList");
+		}
+		else if(flag.equals("enterDiscussionNo")) {
+			model.addAttribute("msg","이미 종료된 토론입니다.");
+			model.addAttribute("url","discussion/discussionList");
+		}
+		
+		return "include/message";
+	}
 }

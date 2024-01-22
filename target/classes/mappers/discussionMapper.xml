@@ -4,8 +4,32 @@
 	
 	
 	<select id="discussionList" resultType = "com.spring.javaProjectS13.vo.DiscussionVO">
-		select * from discussion
+		select * from discussion mainD order by idx desc
 	</select>
+	<select id ="discussion" resultType = "com.spring.javaProjectS13.vo.DiscussionVO">
+		select * from discussion where idx = #{idx}
+	</select>
+	<select id="reservationTimeCheck" resultType = "int">
+		select count(*) from discussion where idx = #{idx} and <![CDATA[now() < date_sub(discussionDate, interval 10 minute)]]> 
+	</select>
+	<select id="enterTimeCheck" resultType = "int">
+		select count(*) from discussion where idx = #{idx} and <![CDATA[discussionDate <= date_add(now(), interval 10 minute)]]> and state != '종료';
+	</select>
+	
+	
+	<insert id="makeDiscussion">
+		insert into discussion values (default, #{vo.memberIdx}, #{vo.subject}, #{vo.part}, now(), #{vo.discussionDate}, 
+		'${vo.memberIdx}/', #{vo.headCount}, #{vo.discussionTime}, null, '신청중', #{vo.fileName}, #{vo.link})
+	</insert>
+	
+	
+	<update id="updateDiscussionState">
+		update discussion set state = '토론중' where <![CDATA[discussionDate < now()]]> and state != '종료';
+		update discussion set state = '입장대기' where <![CDATA[discussionDate >= now() and discussionDate <= date_add(now(),interval 10 minute)]]>;
+	</update>
+	<update id="addParticipant">
+		update discussion set participant = concat(participant,'${memberIdx}/') where idx = #{idx}
+	</update>
 	
 	
 </mapper>

@@ -16,6 +16,7 @@
 			<mapping path="/member/**" />
 			<mapping path="/service/**" />
 			<mapping path="/board/**" />
+			<mapping path="/discussion/**" />
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberJoin/**"/>
 			<exclude-mapping path="/member/memberLogin"/>
@@ -27,6 +28,7 @@
 			<exclude-mapping path="/service/serviceContent"/>
 			<exclude-mapping path="/board/boardList"/>
 			<exclude-mapping path="/board/boardContent"/>
+			<exclude-mapping path="/discussion/discussionList"/>
 			<beans:ref bean = "level0Interceptor"/>
 		</interceptor>
 		
