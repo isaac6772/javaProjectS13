@@ -54,10 +54,4 @@
 	  <property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<websocket:handlers>
-        <websocket:mapping path="/chat" handler="chatHandler"/>
-    </websocket:handlers>	
-	
-	<bean id = "chatHandler" class = "com.spring.javaProjectS13.common.ChatHandler" />
-	
 </beans>

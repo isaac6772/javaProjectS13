@@ -7,14 +7,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>discussion.jsp</title>
-	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/discussion/discussion.css" />
+	<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/discussion/discussionList.css" />
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		'use strict';
 		let contextPath = "${ctp}";
 		let level = "${sLevel}";
 	</script>
-	<script src = "${ctp}/js/discussion/discussion.js"></script>
+	<script src = "${ctp}/js/discussion/discussionList.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -77,8 +77,8 @@
 							</div>
 						</c:if>
 						<c:if test="${vo.state=='토론중'}">
-							<div class = "btn btn3">
-								<div class = "group" onclick = "location.href = '${ctp}/discussion/enterDiscussion?idx=${vo.idx}'">
+							<div class = "btn btn3" onclick = "location.href = '${ctp}/discussion/enterDiscussion?idx=${vo.idx}'">
+								<div class = "group">
 									<span>토론중</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<span>관전</span>
 								</div>
