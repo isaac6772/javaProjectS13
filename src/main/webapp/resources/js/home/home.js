@@ -86,8 +86,6 @@ $(function() {
 		}
 	})
 	
-	console.log(JSON.parse(wordCloud));
-	
 	// 워드클라우드 모듈불러오기
 	zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/';
 	
@@ -138,8 +136,6 @@ $(function() {
 	    height: 400,
 	    width: '100%'
 	});
-	
-	//myConfig.options.words = [{text:"사랑",count:1}];
 });
 
 function loadKeywordNews(keyword) {

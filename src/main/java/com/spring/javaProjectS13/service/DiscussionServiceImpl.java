@@ -3,6 +3,7 @@ package com.spring.javaProjectS13.service;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,13 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.javaProjectS13.dao.DiscussionDAO;
+import com.spring.javaProjectS13.dao.MemberDAO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
+import com.spring.javaProjectS13.vo.MemberVO;
 
 @Service
 public class DiscussionServiceImpl implements DiscussionService {
 	@Autowired
 	DiscussionDAO discussionDAO;
+	@Autowired
+	MemberDAO memberDAO;
+	@Autowired
+	ObjectMapper objectMapper;
 
 	@Override
 	public List<DiscussionVO> discussionList(int memberIdx) {
@@ -77,4 +86,27 @@ public class DiscussionServiceImpl implements DiscussionService {
 		// 입장가능한 토론인지 검사해서, 종료된 토론이면 종료페이지로 아니면 정상페이지로
 		return discussionDAO.enterTimeCheck(idx);
 	}
+
+	@Override
+	public DiscussionVO discussion(int idx) {
+		return discussionDAO.discussion(idx);
+	}
+
+	@Override
+	public String participantCheck(DiscussionVO vo, HttpSession session) {
+		String userIdx = (int)session.getAttribute("sIdx") + "";
+		String[] participants = vo.getParticipant().split("/");
+		
+		int sw = 0;
+		for(String participant : participants) {
+			if(participant.equals(userIdx)) {
+				sw = 1;
+				break;
+			}
+		}
+		
+		if(sw==0) return "관전자";
+		else return "참가자";
+	}
+
 }

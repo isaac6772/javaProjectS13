@@ -1,5 +1,6 @@
 package com.spring.javaProjectS13.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,5 +18,9 @@ public interface DiscussionService {
 	public int reservation(int idx, HttpSession session);
 
 	public int enterDiscussion(int idx);
+
+	public DiscussionVO discussion(int idx);
+
+	public String participantCheck(DiscussionVO dVo, HttpSession session);
 
 }

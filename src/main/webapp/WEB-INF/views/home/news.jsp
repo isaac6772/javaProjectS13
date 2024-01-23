@@ -13,11 +13,11 @@
 		
 		<div class = "keyword">
 			<c:if test="${empty mVo.keyword}">
-				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=정치'">정치</div>
-				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=경제'">경제</div>
-				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=사회'">사회</div>
-				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=세계'">세계</div>
-				<div class = "item ${keyword==item?'selected':''}" onclick = "location.href='home?keyword=연예'">연예</div>
+				<div class = "item ${keyword=='정치'?'selected':''}" onclick = "location.href='home?keyword=정치'">정치</div>
+				<div class = "item ${keyword=='경제'?'selected':''}" onclick = "location.href='home?keyword=경제'">경제</div>
+				<div class = "item ${keyword=='사회'?'selected':''}" onclick = "location.href='home?keyword=사회'">사회</div>
+				<div class = "item ${keyword=='세계'?'selected':''}" onclick = "location.href='home?keyword=세계'">세계</div>
+				<div class = "item ${keyword=='연예'?'selected':''}" onclick = "location.href='home?keyword=연예'">연예</div>
 				<span class = "line"></span>
 			</c:if>
 			<c:if test="${!empty mVo.keyword}">

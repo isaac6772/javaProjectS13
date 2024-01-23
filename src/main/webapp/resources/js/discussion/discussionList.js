@@ -85,7 +85,7 @@ function reservation(idx) {
 		type : "post",
 		success : function(res) {
 			if(res==0) {
-				alert("입장 10분전에는 예약하실 수 없습니다.");
+				alert("입장 30분전에는 예약하실 수 없습니다.");
 				location.reload();
 			}
 			else if(res==1){

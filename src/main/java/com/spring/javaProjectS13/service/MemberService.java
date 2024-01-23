@@ -1,5 +1,6 @@
 package com.spring.javaProjectS13.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -59,5 +60,11 @@ public interface MemberService {
 	public int inputKeyword(String keyword, HttpSession session);
 
 	public void deleteKeyword(String keyword, HttpSession session);
+
+	public MemberVO memberIdxSearch(int idx);
+
+	public String memberIdxSearchJson(int memberIdx, int discussionIdx);
+
+	public String memberListIterator(Iterator<Integer> iterator, int discussionIdx);
 
 }

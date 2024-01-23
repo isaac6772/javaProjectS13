@@ -53,4 +53,6 @@ public interface MemberDAO {
 
 	public int inputKeyword(@Param("idx") int idx, @Param("keyword") String keyword);
 
+	public List<MemberVO> memberListIdx(String idxArray);
+
 }

@@ -31,6 +31,9 @@
 		<if test="vo.toDate!=''">and <![CDATA[date_format(joinDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
 		<if test="vo.level!=-1"> and level = #{vo.level}; </if>
 	</select>
+	<select id="memberListIdx" resultType = "com.spring.javaProjectS13.vo.MemberVO">
+		select * from member where idx in (${idxArray})
+	</select>
 		
 	
 	<insert id="memberJoin">

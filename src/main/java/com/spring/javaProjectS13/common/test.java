@@ -1,23 +1,9 @@
 package com.spring.javaProjectS13.common;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 public class test {
 	public static void main(String[] args) {
-		String str = "Wed, 17 Jan 2024 15:12:00 +0900";
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z",Locale.ENGLISH);
-		Date date = null;
-		try {
-			date = sdf.parse(str);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		long res = new Date().getTime() - date.getTime();
-		System.out.println(res/1000);
+		String query = "idx=7&memberIdx=21";
+    	int discussionIdx = Integer.parseInt(query.substring(query.indexOf("=") + 1,query.indexOf("&")));	// discussion테이블의 idx이자 방을 구분하는 key값
+    	int memberIdx = Integer.parseInt(query.substring(query.lastIndexOf("=") + 1));
 	}
 }

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,8 +23,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.spring.javaProjectS13.common.LevelCalculator;
+import com.spring.javaProjectS13.dao.DiscussionDAO;
 import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.vo.DiscussionVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
 
@@ -37,6 +44,11 @@ public class MemberServiceImpl implements MemberService {
 	BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	LevelCalculator levelCalculator;
+	@Autowired
+	ObjectMapper objectMapper;
+	@Autowired
+	DiscussionDAO discussionDAO;
+
 
 	@Override
 	public boolean mailSend(String email, String title, String content) throws MessagingException {
@@ -381,5 +393,71 @@ public class MemberServiceImpl implements MemberService {
 			}
 			memberDAO.inputKeyword(idx, newKeyword);
 		}
+	}
+
+	@Override
+	public MemberVO memberIdxSearch(int idx) {
+		return memberDAO.memberIdxSearch(idx);
+	}
+
+	@Override
+	public String memberIdxSearchJson(int memberIdx, int discussionIdx) {
+		MemberVO vo = memberDAO.memberIdxSearch(memberIdx);
+		String mVo = null;
+		
+		DiscussionVO dVo = discussionDAO.discussion(discussionIdx);
+		String[] participants = dVo.getParticipant().split("/");
+		
+		for(String participant : participants) {
+			if(vo.getIdx()==Integer.parseInt(participant)) {
+				vo.setParticipant(1);
+				break;
+			}
+		}
+		
+		try {
+			mVo = objectMapper.writeValueAsString(vo);
+			JsonNode jsonNode = objectMapper.readTree(mVo);
+			((ObjectNode)jsonNode).put("msgType", "member");	// 자바스크립트에서 서버의 응답을 받을때 메세지 타입을 구분하기 위해 필드 추가
+			mVo = objectMapper.writeValueAsString(jsonNode);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mVo;
+	}
+
+	@Override
+	public String memberListIterator(Iterator<Integer> iterator, int discussionIdx) {
+		String idxArray = "";
+		String mVos = null;
+		
+		while(iterator.hasNext()) {
+			idxArray += iterator.next() + ",";
+		}
+		idxArray = idxArray.substring(0,idxArray.length()-1);
+		
+		List<MemberVO> vos = memberDAO.memberListIdx(idxArray);
+		DiscussionVO dVo = discussionDAO.discussion(discussionIdx);
+		String[] participants = dVo.getParticipant().split("/");
+		
+		for(MemberVO vo : vos) {									// 참가자 여부를 판별해서 각 vo에 저장
+			for(String participant : participants) {
+				if(vo.getIdx()==Integer.parseInt(participant)) {
+					vo.setParticipant(1);
+					break;
+				}
+			}
+		}
+		
+		try {
+			mVos = objectMapper.writeValueAsString(vos);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		mVos = "{\"data\":"+mVos+",\"msgType\":\"memberList\"}";
+		System.out.println(mVos);
+		return mVos;
 	}
 }
