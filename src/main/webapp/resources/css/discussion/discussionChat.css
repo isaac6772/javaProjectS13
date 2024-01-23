@@ -97,6 +97,24 @@
 	margin-left : 15px;
 	border-radius: 10px;
 }
+.rowGroup .memberBox .member {
+	padding : 1px 6px;
+}
+.rowGroup .memberBox .member img {
+    background-color: #8dbcff;
+    width: 21px;
+    height : 21px;
+    border-radius: 7px;
+    margin-right : 5px;
+}
+.rowGroup .memberBox .member span {
+    vertical-align: super;
+    font-size : 15px;
+}
+.rowGroup .memberBox .participant {
+	overflow : auto;
+	height : 50%;
+}
 .rowGroup .memberBox .participant .title {
 	text-align: center;
 	background: linear-gradient(to right,#acc0ed,#9f84ff);
@@ -104,6 +122,11 @@
 	border-top-right-radius: 7px;
 	color : #525252;
     padding: 2px 0px;
+    margin-bottom : 3px;
+}
+.rowGroup .memberBox .spectator {
+	overflow : auto;
+	height : 50%;
 }
 .rowGroup .memberBox .spectator .title {
 	text-align: center;
@@ -112,4 +135,5 @@
 	border-bottom: 1px solid #d1d1d1;
 	border-top: 1px solid #d1d1d1;
     padding: 2px 0px;
+    margin-bottom : 3px;
 }

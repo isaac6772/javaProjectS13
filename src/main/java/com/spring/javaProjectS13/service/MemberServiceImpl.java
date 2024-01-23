@@ -457,7 +457,6 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 		mVos = "{\"data\":"+mVos+",\"msgType\":\"memberList\"}";
-		System.out.println(mVos);
 		return mVos;
 	}
 }

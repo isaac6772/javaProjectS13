@@ -17,6 +17,8 @@ public class ChatHandler extends TextWebSocketHandler {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	MyScheduler scheduler;
 	
 	private static final Map<Integer, Map<WebSocketSession, Integer>> sessionRoom = new ConcurrentHashMap<>();	// 채팅방을 discussion테이블의 idx로 나눠서 관리한다.
 	private static final Map<String, Integer> roomInfo = new ConcurrentHashMap<>();	// 누가 어떤 방에 들어갔는지를 저장하기 위한 map(접속이 끊겼을때 대비)
@@ -62,9 +64,16 @@ public class ChatHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         int discussionIdx = roomInfo.get(session.getId());		// 접속이 끊어진 사용자의 방번호를 구한다.
-        sessionRoom.get(discussionIdx).remove(session);			// map에서 그 방번호로 찾아가서 해당 session을 제거한다.
+        int memberIdx = sessionRoom.get(discussionIdx).get(session);	// 제거할 멤버의 idx
         
-        // 뷰로 접속자 수 업데이트
+        sessionRoom.get(discussionIdx).remove(session);			// map에서 그 방번호로 찾아가서 해당 session을 제거한다.
+        if(sessionRoom.get(discussionIdx).size()==0) sessionRoom.remove(discussionIdx);		// 세션삭제후 방이 비어있다면 방을 삭제처리
+        else {
+        	for(WebSocketSession users : sessionRoom.get(discussionIdx).keySet()) {		// 방에 남아있는 유저들에게 삭제된 세션을 리스트에서 없애도록 메시지보냄
+        		String jsonMessage = "{\"idx\":\""+memberIdx+"\",\"msgType\":\"remove\"}";
+        		users.sendMessage(new TextMessage(jsonMessage));						
+        	}
+        }
     }
 
 	@Override

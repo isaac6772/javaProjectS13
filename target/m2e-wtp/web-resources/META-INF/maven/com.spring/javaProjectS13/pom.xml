@@ -278,6 +278,13 @@
 		    <version>4.3.14.RELEASE</version>
 		</dependency>
 		
+		<!-- 스케줄링을 위한 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+	    <groupId>org.quartz-scheduler</groupId>
+	    <artifactId>quartz</artifactId>
+	    <version>2.3.2</version>
+		</dependency>
 		
 	</dependencies>
     <build>

@@ -16,22 +16,21 @@ $(function () {
 		let msgType = JSON.parse(e.data).msgType;
 		
         if(msgType=='member') {
+			let str = '<div class = "member member'+data.idx+'"><img src='+appCtx+'/profile/'+data.profile+' /><span>'+data.nickName+'</span></div>';
 			if(data.participant==1) {
-				$('.memberBox .participant').append('<div>'+data.nickName+'</div>');
+				$('.memberBox .participant').append(str);	
 			}
-			else {
-				$('.memberBox .spectator').append('<div>'+data.nickName+'</div>');
-			}
-			console.log(data.participant);
+			else $('.memberBox .spectator').append(str);
 		}
 		else if(msgType=='memberList') {
-			if(data.participant==1) {
-				
+			for(let member of data.data) {
+				let str = '<div class = "member member'+data.idx+'"><img src='+appCtx+'/profile/'+member.profile+' /><span>'+member.nickName+'</span></div>';
+				if(member.participant==1) $('.memberBox .participant').append(str);
+				else $('.memberBox .spectator').append(str);
 			}
-			else {
-				
-			}
-			console.log("왜여기로 왔지?");
+		}
+		else if(msgType=='remove') {
+			$('.memberBox .member' + data.idx).remove();
 		}
     };
     ws.onclose = function() {
