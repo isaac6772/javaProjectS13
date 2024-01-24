@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.javaProjectS13.dao.DiscussionDAO;
 import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 
@@ -36,12 +37,16 @@ public class DiscussionServiceImpl implements DiscussionService {
 		
 		List<DiscussionVO> vos = discussionDAO.discussionList();
 		for(DiscussionVO vo : vos) {
-			for(String str : vo.getParticipant().split("/")) {
+			String participants = "";
+			for(String str : vo.getParticipant().split("/")) {			// 현재 접속자가 예약했는지 여부를 체크, idx를 nickName으로 변환
 				if(str.equals(memberIdx + "")) {
 					vo.setReservationOk(true);
-					break;
 				}
+				participants += memberDAO.memberIdxSearch(Integer.parseInt(str)).getNickName() + "/";
 			}
+			participants = participants.substring(0,participants.length()-1);
+			vo.setParticipant(participants);
+			vo.setNickName(memberDAO.memberIdxSearch(vo.getMemberIdx()).getNickName());
 		}
 		return vos;
 	}
@@ -107,6 +112,23 @@ public class DiscussionServiceImpl implements DiscussionService {
 		
 		if(sw==0) return "관전자";
 		else return "참가자";
+	}
+
+	@Override
+	public void saveChat(int memberIdx, int discussionIdx, String text) {
+		discussionDAO.saveChat(memberIdx,discussionIdx,text);
+	}
+
+	@Override
+	public List<ChatVO> chatList(int idx) {
+		List<ChatVO> vos = discussionDAO.chatList(idx);
+		
+		for(ChatVO vo : vos) {
+			String profile = memberDAO.memberIdxSearch(vo.getMemberIdx()).getProfile();		// 채팅한 각 사람의 프로필 사진 등록
+			vo.setProfile(profile);
+		}
+		
+		return vos;
 	}
 
 }

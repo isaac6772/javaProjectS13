@@ -1,0 +1,91 @@
+.discussionRecordContainer {
+	width : 60%;
+	margin : auto;
+}
+.discussionRecordContainer .btnBox {
+	width : 60%;
+	margin : auto;
+}
+.discussionRecordContainer .outIcon {
+    margin-left: auto;
+    margin-top : 10px;
+    position : relative;
+    width: 65px;
+    height : 65px;
+    border-radius: 50px;
+    transition : 0.3s;
+}
+.discussionRecordContainer .outIcon:hover {
+	background-color : #e0dfdf;
+	cursor : pointer;
+}
+.discussionRecordContainer .outIcon img {
+	width : 44px;
+	position : absolute;
+	left: 13px;
+    top: 10px;
+}
+
+
+
+.chatBox {
+	display : flex;
+	width : 60%;
+	margin : auto;
+	margin-top : 40px;
+	flex-direction : column;
+	flex : 2;
+	height : 550px;
+	border : 1px solid #b9b7b7;
+	border-radius: 10px;
+	box-sizing: border-box;
+}
+.chatBox .subject {
+	display : flex;
+	justify-content : space-between;
+	background: linear-gradient(to right,#acc0ed,#9f84ff);
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	padding: 5px 6px;
+}
+.chatBox .subject .text {
+	font-weight: 700;
+	color : #454545;
+}
+.chatBox .chatArea {
+	flex : 1;
+	margin : 13px 13px 10px 13px;
+	overflow : auto;
+}
+.chatBox .chatArea::-webkit-scrollbar{
+  	display:none;
+}
+.chatBox .chatArea .chat {
+	display : flex;
+	margin-bottom : 10px;
+	width : 85%;
+}
+.chatBox .chatArea .chat .profile {
+	height : 22px;
+}
+.chatBox .chatArea .chat .profile .box {
+	margin-top : 4px;
+}
+.chatBox .chatArea .chat .profile span {
+	line-height : 22px;
+	font-size : 15px;
+}
+.chatBox .chatArea .chat .profile img {
+	vertical-align: bottom;
+	width : 20px;
+	height : 20px;
+	border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+.chatBox .chatArea .chat .text {
+	margin-left : 7px;
+	padding: 7px;
+    border-radius: 9px;
+    background-color: #dddddd;
+    font-size : 15px;
+}

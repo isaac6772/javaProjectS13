@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.service.DiscussionService;
 import com.spring.javaProjectS13.service.MemberService;
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 
@@ -61,12 +62,17 @@ public class DiscussionController {
 	@RequestMapping(value = "/discussionChat", method = RequestMethod.GET)
 	public String discussionChatGet(Model model, int idx, HttpSession session) {
 		DiscussionVO dVo = discussionService.discussion(idx);
-		//String participantCheck = discussionService.participantCheck(dVo, session);
-		//String mVo = discussionService.memberIdxSearch((int)session.getAttribute("sIdx"));
-		
-		//model.addAttribute("mVo",mVo);
-		//model.addAttribute("participantCheck",participantCheck);
 		model.addAttribute("dVo",dVo);
 		return "discussion/discussionChat";
+	}
+	
+	@RequestMapping(value = "/discussionRecord", method = RequestMethod.GET)
+	public String discussionRecordGet(Model model, int idx) {
+		List<ChatVO> cVos = discussionService.chatList(idx);
+		DiscussionVO dVo = discussionService.discussion(idx);
+		
+		model.addAttribute("dVo",dVo);
+		model.addAttribute("cVos",cVos);
+		return "discussion/discussionRecord";
 	}
 }

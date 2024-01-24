@@ -19,4 +19,5 @@ public class DiscussionVO {
 	private String link;
 	
 	private boolean reservationOk;
+	private String nickName;
 }

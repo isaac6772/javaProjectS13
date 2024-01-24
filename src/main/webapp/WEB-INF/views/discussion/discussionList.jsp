@@ -47,7 +47,7 @@
 						<div class = "line line1"></div>
 						<div class = "row">
 							<div class = "col1">개설자</div>
-							<div class = "col2">${vo.memberIdx}</div>
+							<div class = "col2">${vo.nickName}</div>
 						</div>
 						<div class = "row">
 							<div class = "col1">시작시간</div>
@@ -85,7 +85,7 @@
 							</div>
 						</c:if>
 						<c:if test="${vo.state=='종료'}">
-							<div class = "btn btn4">
+							<div class = "btn btn4" onclick = "location.href = '${ctp}/discussion/discussionRecord?idx=${vo.idx}'">
 								<div class = "group">
 									<span>종료</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<span>보기</span>

@@ -37,22 +37,73 @@
 	box-sizing: border-box;
 }
 .rowGroup .chatBox .subject {
+	display : flex;
+	justify-content : space-between;
 	background: linear-gradient(to right,#acc0ed,#9f84ff);
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 	padding: 5px 6px;
+}
+.rowGroup .chatBox .subject .text {
 	font-weight: 700;
 	color : #454545;
 }
 .rowGroup .chatBox .chatArea {
 	flex : 1;
 	margin : 13px 13px 10px 13px;
+	overflow : auto;
+}
+.rowGroup .chatBox .chatArea::-webkit-scrollbar{
+  	display:none;
+}
+.rowGroup .chatBox .chatArea .chat {
+	display : flex;
+	margin-bottom : 10px;
+	width : 85%;
+}
+.rowGroup .chatBox .chatArea .chat .profile {
+	height : 22px;
+}
+.rowGroup .chatBox .chatArea .chat .profile .box {
+	margin-top : 4px;
+}
+.rowGroup .chatBox .chatArea .chat .profile span {
+	line-height : 22px;
+	font-size : 15px;
+}
+.rowGroup .chatBox .chatArea .chat .profile img {
+	vertical-align: bottom;
+	width : 20px;
+	height : 20px;
+	border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+.rowGroup .chatBox .chatArea .chat .text {
+	margin-left : 7px;
+	padding: 7px;
+    border-radius: 9px;
+    background-color: #dddddd;
+    font-size : 15px;
+}
+.rowGroup .chatBox .chatArea .myChat {
+	text-align : right;
+	margin-bottom : 10px;
+}
+.rowGroup .chatBox .chatArea .myChat .text {
+	display : inline-block;
+	max-width : 75%;
+	background-color : #b0dcfb;
+	padding : 7px;
+	border-radius: 9px;
+	font-size : 15px;
 }
 .rowGroup .chatBox .typing {
 	border : 1px solid #989898;
 	border-radius: 7px;
 	padding : 7px;
 	margin : 0px 13px 13px 13px;
+	background-color: #dbdbdb;
+	transition : 0.3s;
 }
 .rowGroup .chatBox .typing textarea {
 	width : 100%;
@@ -62,9 +113,11 @@
 	font-size : 18px;
 	border : none;
 	color : #393939;
+	background-color: #dbdbdb;
+	transition : 0.3s;
 }
 .rowGroup .chatBox .typing textarea::-webkit-scrollbar{
-  display:none;
+  	display:none;
 }
 .rowGroup .chatBox .typing .submit {
 	display : flex;

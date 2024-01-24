@@ -1,12 +1,12 @@
 package com.spring.javaProjectS13.service;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
 
 public interface DiscussionService {
@@ -22,5 +22,9 @@ public interface DiscussionService {
 	public DiscussionVO discussion(int idx);
 
 	public String participantCheck(DiscussionVO dVo, HttpSession session);
+
+	public void saveChat(int memberIdx, int discussionIdx, String text);
+
+	public List<ChatVO> chatList(int idx);
 
 }

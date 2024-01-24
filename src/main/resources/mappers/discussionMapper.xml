@@ -13,7 +13,10 @@
 		select count(*) from discussion where idx = #{idx} and <![CDATA[now() < date_sub(discussionDate, interval 30 minute)]]> 
 	</select>
 	<select id="enterTimeCheck" resultType = "int">
-		select count(*) from discussion where idx = #{idx} and <![CDATA[discussionDate <= date_add(now(), interval 30 minute)]]> and state != '종료';
+		select count(*) from discussion where idx = #{idx} and <![CDATA[now() < date_add(discussionDate,interval discussionTime minute) and discussionDate <= date_add(now(), interval 30 minute)]]> and state != '종료';
+	</select>
+	<select id="chatList" resultType = "com.spring.javaProjectS13.vo.ChatVO">
+		select * from chat where discussionIdx = #{idx}
 	</select>
 	
 	
@@ -21,11 +24,15 @@
 		insert into discussion values (default, #{vo.memberIdx}, #{vo.subject}, #{vo.part}, now(), #{vo.discussionDate}, 
 		'${vo.memberIdx}/', #{vo.headCount}, #{vo.discussionTime}, null, '신청중', #{vo.fileName}, #{vo.link})
 	</insert>
+	<insert id="saveChat">
+		insert into chat values (default,#{memberIdx},null,'토론',#{discussionIdx},#{text},now())
+	</insert>
 	
 	
 	<update id="updateDiscussionState">
 		update discussion set state = '토론중' where <![CDATA[discussionDate < now()]]> and state != '종료';
 		update discussion set state = '입장대기' where <![CDATA[discussionDate >= now() and discussionDate <= date_add(now(),interval 30 minute)]]>;
+		update discussion set state = '종료' where <![CDATA[discussionDate <= date_sub(now(),interval discussionTime minute)]]>
 	</update>
 	<update id="addParticipant">
 		update discussion set participant = concat(participant,'${memberIdx}/') where idx = #{idx}

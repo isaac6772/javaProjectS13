@@ -60,7 +60,7 @@
 	
 	<beans:bean id = "chatHandler" class = "com.spring.javaProjectS13.common.ChatHandler" />
 	
-	<task:scheduler id="gsScheduler" pool-size="10"/>
-	<task:annotation-driven scheduler="gsScheduler" />
+	<task:scheduler id="taskScheduler" pool-size="10"/>
+	<task:annotation-driven scheduler="taskScheduler" />
 	
 </beans:beans>

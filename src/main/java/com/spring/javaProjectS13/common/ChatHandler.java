@@ -2,7 +2,6 @@ package com.spring.javaProjectS13.common;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +10,43 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.spring.javaProjectS13.service.DiscussionService;
 import com.spring.javaProjectS13.service.MemberService;
+import com.spring.javaProjectS13.vo.MemberVO;
 
 public class ChatHandler extends TextWebSocketHandler {
 	
 	@Autowired
 	MemberService memberService;
 	@Autowired
-	MyScheduler scheduler;
+	DiscussionService discussionService;
+	@Autowired
+	DynamicScheduler dynamicScheduler;
+	@Autowired
+	ObjectMapper objectMapper;
 	
 	private static final Map<Integer, Map<WebSocketSession, Integer>> sessionRoom = new ConcurrentHashMap<>();	// 채팅방을 discussion테이블의 idx로 나눠서 관리한다.
 	private static final Map<String, Integer> roomInfo = new ConcurrentHashMap<>();	// 누가 어떤 방에 들어갔는지를 저장하기 위한 map(접속이 끊겼을때 대비)
 	
     @Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    	String payloadMessage = (String) message.getPayload();
-        System.out.println("서버에 도착한 메시지:"+payloadMessage);
-        //session.sendMessage(new TextMessage("ECHO : " + payloadMessage));
+    	String payLoadMessage = message.getPayload();
+        Map<String, String> tempMap = objectMapper.readValue(payLoadMessage, Map.class);
+        int discussionIdx = Integer.parseInt(tempMap.get("discussionIdx"));
+        MemberVO mVo = memberService.memberIdxSearch(Integer.parseInt(tempMap.get("memberIdx")));
         
+        JsonNode jsonNode = objectMapper.readTree(payLoadMessage);
+		((ObjectNode)jsonNode).put("nickName", mVo.getNickName());
+		((ObjectNode)jsonNode).put("profile", mVo.getProfile());	
+		payLoadMessage = objectMapper.writeValueAsString(jsonNode);
+        
+        for(WebSocketSession user : sessionRoom.get(discussionIdx).keySet()) {
+        	user.sendMessage(new TextMessage(payLoadMessage));
+        }
+        discussionService.saveChat(mVo.getIdx(),discussionIdx,tempMap.get("data"));		// 메시지 전송후 db에 저장
 	}
 
     @Override
@@ -59,6 +77,8 @@ public class ChatHandler extends TextWebSocketHandler {
     		
     		session.sendMessage(new TextMessage(mVo));		// 나에게 나의 정보를 보냄
     	}
+    	
+    	dynamicScheduler.scheduleTask(memberIdx, discussionIdx, session);	// 시간을 계산해서 사용자에게 반복적으로 뿌려줌
     }
 
     @Override
@@ -74,6 +94,7 @@ public class ChatHandler extends TextWebSocketHandler {
         		users.sendMessage(new TextMessage(jsonMessage));						
         	}
         }
+        dynamicScheduler.cancelScheduledTask(memberIdx);
     }
 
 	@Override

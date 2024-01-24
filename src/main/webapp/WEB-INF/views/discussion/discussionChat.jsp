@@ -26,18 +26,17 @@
 		<div class = "rowGroup">
 			<div class = "chatBox">
 				<div class = "subject">
-					<span>${dVo.subject}</span>
+					<div class = "text">${dVo.subject}</div>
+					<div class = "time"></div>
 				</div>
-				<div class = "chatArea">
-				
-				</div>
+				<div class = "chatArea" id = "chatArea"></div>
 				<div class = "typing">	
-					<textarea rows = "3" maxlength="500" onkeyup="textCheck(this)"></textarea>
+					<textarea rows = "3" maxlength="500" id = "textMsg" onkeyup="textCheck(this)" readonly ></textarea>
 					<div class = "submit">
 						<div class = "length">
 							<span id = "textLength">0</span>/500
 						</div>
-						<div class = "btn" id = "submitBtn">전송</div>
+						<div class = "btn" id = "submitBtn" onclick = "textSend(this)">전송</div>
 					</div>
 				</div>
 			</div>
