@@ -89,11 +89,32 @@ function reservation(idx) {
 				location.reload();
 			}
 			else if(res==1){
-				alert("에약되었습니다.");
+				alert("에약되었습니다. 토론시간 10분전부터 입장가능합니다.");
 				location.reload();
 			}
 			else {
 				alert("로그인 후 이용바랍니다.");
+			}
+		},
+		error : function() {
+			alert("전송오류");
+		}
+	});
+}
+
+function cancelReservation(idx) {
+	$.ajax({
+		url : contextPath + "/discussion/cancelReservation",
+		data : {idx : idx},
+		type : "post",
+		success : function(res) {
+			if(res==1) {
+				alert("예약이 취소되었습니다.");
+				location.reload();	
+			}
+			else {
+				alert("예약취소에 실패하였습니다.");
+				location.reload();
 			}
 		},
 		error : function() {

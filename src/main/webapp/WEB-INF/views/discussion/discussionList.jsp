@@ -30,11 +30,13 @@
 			</div>
 		</div>
 		
+		<%-- 
 		<div>
 			<div class = "calendarBtn">
 				<img src = "${ctp}/icon/calendar.png" />
 			</div>
 		</div>
+		 --%>
 		
 		<div class = "discussionList">
 			<c:forEach var = "vo" items = "${dVos}" varStatus = "">

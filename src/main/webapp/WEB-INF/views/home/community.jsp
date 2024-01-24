@@ -34,6 +34,9 @@
 							<span class = "text2">${vo.introduce}</span>
 						</div>
 					</div>
+					<div class = "chat">
+						<img src = "${ctp}/icon/chat3.png" />
+					</div>
 				</div>
 			</c:forEach>
 		</div>

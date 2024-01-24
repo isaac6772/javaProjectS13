@@ -13,4 +13,5 @@ public class ChatVO {
 	private String msgDate;
 	
 	private String profile;		// chatting한 사람들의 프로필
+	private String nickName;
 }

@@ -75,4 +75,12 @@ public class DiscussionController {
 		model.addAttribute("cVos",cVos);
 		return "discussion/discussionRecord";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cancelReservation", method = RequestMethod.POST)
+	public String cancelReservationPost(int idx, HttpSession session) {
+		int res = discussionService.cancelReservation(idx, session);
+		
+		return res + "";
+	}
 }

@@ -54,28 +54,26 @@
 }
 .chatBox .chatArea {
 	flex : 1;
-	margin : 13px 13px 10px 13px;
+	margin : 13px 0px 10px 13px;
 	overflow : auto;
-}
-.chatBox .chatArea::-webkit-scrollbar{
-  	display:none;
 }
 .chatBox .chatArea .chat {
 	display : flex;
 	margin-bottom : 10px;
 	width : 85%;
 }
-.chatBox .chatArea .chat .profile {
+.chatBox .chatArea .profile {
 	height : 22px;
+	margin-bottom : 3px;
 }
-.chatBox .chatArea .chat .profile .box {
+.chatBox .chatArea .profile .box {
 	margin-top : 4px;
 }
-.chatBox .chatArea .chat .profile span {
+.chatBox .chatArea .profile span {
 	line-height : 22px;
 	font-size : 15px;
 }
-.chatBox .chatArea .chat .profile img {
+.chatBox .chatArea .profile img {
 	vertical-align: bottom;
 	width : 20px;
 	height : 20px;
@@ -83,9 +81,27 @@
     border-radius: 6px;
 }
 .chatBox .chatArea .chat .text {
-	margin-left : 7px;
 	padding: 7px;
     border-radius: 9px;
     background-color: #dddddd;
     font-size : 15px;
+}
+.chatBox .chatArea .chat .time {
+	font-size : 14px;
+	color : gray;
+	margin-left : 5px;
+    line-height: 31px;
+}
+.chatBox .chatArea .myChat {
+	text-align : right;
+	margin-bottom : 10px;
+}
+.chatBox .chatArea .myChat .text {
+	display : inline-block;
+	max-width : 75%;
+	background-color : #b0dcfb;
+	padding : 7px;
+	border-radius: 9px;
+	font-size : 15px;
+	margin-right : 13px;
 }

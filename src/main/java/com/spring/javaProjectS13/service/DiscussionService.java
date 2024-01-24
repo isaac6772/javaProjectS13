@@ -27,4 +27,6 @@ public interface DiscussionService {
 
 	public List<ChatVO> chatList(int idx);
 
+	public int cancelReservation(int idx, HttpSession session);
+
 }

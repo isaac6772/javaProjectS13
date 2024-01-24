@@ -363,10 +363,29 @@
 	font-size : 12px;
 	color : gray;
 }
+.comunityBox .friend .chat {
+	flex : 1;
+	text-align: right;
+	display : none;
+}
+.comunityBox .friend .chat img {
+	width : 30px;
+	cursor : pointer;
+}
+.comunityBox .friend:hover {
+	background-color : whitesmoke;
+}
+.comunityBox .friend:hover .chat {
+	display : block;
+}
 .comunityBox .loginRequired {
     text-align: center;
     line-height: 250px;
 }
+
+
+
+
 
 
 

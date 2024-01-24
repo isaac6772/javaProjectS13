@@ -25,7 +25,7 @@
 		'${vo.memberIdx}/', #{vo.headCount}, #{vo.discussionTime}, null, '신청중', #{vo.fileName}, #{vo.link})
 	</insert>
 	<insert id="saveChat">
-		insert into chat values (default,#{memberIdx},null,'토론',#{discussionIdx},#{text},now())
+		insert into chat values (default,#{memberIdx},null,#{discussionIdx},#{text},now())
 	</insert>
 	
 	
@@ -36,6 +36,9 @@
 	</update>
 	<update id="addParticipant">
 		update discussion set participant = concat(participant,'${memberIdx}/') where idx = #{idx}
+	</update>
+	<update id="updateDiscussionParticipants">
+		update discussion set participant = #{vo.participant} where idx = #{vo.idx}
 	</update>
 	
 	

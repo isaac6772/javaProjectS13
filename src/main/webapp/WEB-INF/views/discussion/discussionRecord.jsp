@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var = "ctp" value = "${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -26,19 +28,29 @@
 		<div class = "chatBox">
 			<div class = "subject">
 				<div class = "text">${dVo.subject}</div>
-				<div class = "time"></div>
+				<div class = "time">
+					<fmt:parseDate var = "parsedDate" value = "${dVo.discussionDate}" pattern = "yyyy-MM-dd HH:mm:ss" />
+					<fmt:formatDate var = "formattedDate" value = "${parsedDate}" pattern = "yyyy년MM월dd일 hh시mm분" />
+					${formattedDate}
+				</div>
 			</div>
 			<div class = "chatArea" id = "chatArea">
 				<c:forEach var = "vo" items = "${cVos}" varStatus = "st">
-					<div class = "chat">
+					<c:if test="${vo.memberIdx==sIdx}">
+						<div class = "myChat"><div class = "text">${vo.message}</div></div>
+					</c:if>
+					<c:if test="${vo.memberIdx!=sIdx}">
 						<div class = "profile">
 							<div class = "box">
 								<img src = "${ctp}/profile/${vo.profile}" />
-								<span></span>
+								<span>${vo.nickName}</span>
 							</div>
 						</div>
-						<div class = "text">${vo.message}</div>
-					</div>
+						<div class = "chat">
+							<div class = "text">${vo.message}</div>
+							<div class = "time">${fn:substring(vo.msgDate,11,16)}</div>
+						</div>
+					</c:if>
 				</c:forEach>
 			</div>
 		</div>

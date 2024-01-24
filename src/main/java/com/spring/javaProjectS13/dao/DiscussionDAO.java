@@ -27,4 +27,6 @@ public interface DiscussionDAO {
 
 	public List<ChatVO> chatList(@Param("idx") int idx);
 
+	public int updateDiscussionParticipants(@Param("vo") DiscussionVO vo);
+
 }

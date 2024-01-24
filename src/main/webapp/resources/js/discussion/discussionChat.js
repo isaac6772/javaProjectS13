@@ -24,7 +24,10 @@ $(function () {
 			if(data.participant==1) {
 				$('.memberBox .participant').append(str);	
 			}
-			else $('.memberBox .spectator').append(str);
+			else {
+				$('.memberBox .spectator').append(str);
+				$('.chatBox .typing').hide();	
+			}
 		}
 		else if(msgType=='memberList') {
 			for(let member of data.data) {

@@ -124,11 +124,27 @@ public class DiscussionServiceImpl implements DiscussionService {
 		List<ChatVO> vos = discussionDAO.chatList(idx);
 		
 		for(ChatVO vo : vos) {
-			String profile = memberDAO.memberIdxSearch(vo.getMemberIdx()).getProfile();		// 채팅한 각 사람의 프로필 사진 등록
-			vo.setProfile(profile);
+			MemberVO mVo = memberDAO.memberIdxSearch(vo.getMemberIdx()); 
+			vo.setProfile(mVo.getProfile());
+			vo.setNickName(mVo.getNickName());
 		}
 		
 		return vos;
+	}
+
+	@Override
+	public int cancelReservation(int idx, HttpSession session) {
+		DiscussionVO dVo = discussionDAO.discussion(idx);
+		int memberIdx = (int)session.getAttribute("sIdx");
+		
+		String newParticipants = "";
+		
+		for(String str : dVo.getParticipant().split("/")) {
+			if(Integer.parseInt(str)!=memberIdx) newParticipants += str + "/";
+		}
+		dVo.setParticipant(newParticipants);
+		
+		return discussionDAO.updateDiscussionParticipants(dVo);
 	}
 
 }
