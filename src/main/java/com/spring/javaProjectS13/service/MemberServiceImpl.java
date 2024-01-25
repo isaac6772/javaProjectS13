@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,6 +33,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.spring.javaProjectS13.common.LevelCalculator;
 import com.spring.javaProjectS13.dao.DiscussionDAO;
 import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
@@ -458,5 +462,25 @@ public class MemberServiceImpl implements MemberService {
 		}
 		mVos = "{\"data\":"+mVos+",\"msgType\":\"memberList\"}";
 		return mVos;
+	}
+
+	@Override
+	public void saveChat(int memberIdx, String roomNumber, String payload) {
+		memberDAO.saveChat(memberIdx,roomNumber,payload);
+	}
+
+	@Override
+	public List<ChatVO> chatList(String roomNumber) {
+		return memberDAO.chatList(roomNumber);
+	}
+
+	@Override
+	public void inputAlarm(int memberIdx, String alarmType, String roomNumber) {
+		memberDAO.inputAlarm(memberIdx, alarmType, roomNumber);
+	}
+
+	@Override
+	public void readAlarm(String roomNumber, int memberIdx) {
+		memberDAO.readAlarm(roomNumber, memberIdx);
 	}
 }

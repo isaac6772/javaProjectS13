@@ -11,11 +11,11 @@
 	<script src="https://kit.fontawesome.com/0989d78570.js" crossorigin="anonymous"></script>
 	<script>
 		'use strict';
-		let contextPath = '${ctp}';
 		let exp = '${mVo.exp}';
 		let maxExp = '${maxExp}';
 		let keyword = '${keyword}';
 		let wordCloud = '${wordCloud}';
+		let memberIdx = '${sIdx}';
 	</script>
 	<script src = "${ctp}/js/home/home.js"></script>
 </head>

@@ -15,7 +15,7 @@
 .userInfo .box:hover {
 	background-color: #f3f3f3;
 }
-.userInfo .box img {
+.userInfo .box > img {
 	width : 29px;
 	cursor : pointer;
 	position : absolute;
@@ -52,4 +52,181 @@
 }
 .userInfo .box .settingForm .item:hover {
 	font-weight : bolder;
+}
+
+
+
+.userInfo .box .chatAlarmTotal {
+	position : absolute;
+	background-color : #ff3c00;
+	color : white;
+	right: -4px;
+    top: 3px;
+    border-radius: 40px;
+    font-size: 12px;
+    padding: 4px;
+}
+.userInfo .chattingForm .arrow {
+	border-left : 3px solid #677ef1;
+	border-top : 3px solid #677ef1;
+	top : -9px;
+}
+.userInfo .chattingForm {
+	position : absolute;
+	border : 2px solid #677ef1;
+	border-radius : 6px;
+    top: 54px;
+    right: 3px;
+    display : none;
+    width: 240px;
+    background-color: white;
+    z-index: 10;
+}
+.userInfo .chattingForm .title {
+	display : flex;
+	justify-content: space-between;
+}
+.userInfo .chattingForm .title .empty {
+	flex : 1;
+}
+.userInfo .chattingForm .title .friendNickName span {
+	line-height: 31px;
+	font-weight : bolder;
+}
+.userInfo .return {
+	flex : 1;
+	text-align : right;
+	display : none;
+}
+.userInfo .return img {
+	cursor : pointer;
+}
+.userInfo .chattingForm .title .return img {
+	width : 20px;
+	margin-top: 7px;
+    margin-right: 5px;
+}
+.chattingForm .friendList {
+	overflow: auto;
+}
+.chattingForm .friendList .friend {
+	display : flex;
+	padding: 8px 8px 8px 12px;
+}
+.chattingForm .friend .profile {
+	position : relative;
+}
+.chattingForm .friend .profile .loginState {
+	position : absolute;
+	top : 24px;
+	right : -2px;
+	width : 12px;
+	height : 12px;
+}
+.chattingForm .friend .profile img {
+	width : 35px;
+	height : 35px;
+	border-radius: 20px;
+	border : 1px solid #f1f1f1;
+	background-color: #7db4f5;
+}
+.chattingForm .friend .info {
+	margin-left: 10px;
+}
+.chattingForm .friend .info .text1 {
+	font-size : 14px;
+	font-weight : bolder;
+}
+.chattingForm .friend .info .text2 {
+	font-size : 12px;
+	color : gray;
+}
+.chattingForm .friend .chat {
+	flex : 1;
+	text-align: right;
+	display : none;
+}
+.chattingForm .friend .chat img {
+	width : 24px;
+	cursor : pointer;
+	margin-top: 3px;
+}
+.chattingForm .friend:hover {
+	background-color : whitesmoke;
+}
+.chattingForm .friend:hover .chat {
+	display : block;
+}
+.chattingForm .friend .chatAlarm {
+	flex : 1;
+	text-align : right;
+}
+.chattingForm .friend .chatAlarm .chatAlarmCnt {
+	display : inline-block;
+	background-color: #ff3c00;
+    color: white;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 31px;
+    cursor : pointer;
+    margin-top: 3px;
+}
+.chattingForm .loginRequired {
+    text-align: center;
+    line-height: 250px;
+}
+.chattingForm .privateChat {
+	flex : 1;
+	display : flex;
+	flex-direction: column;
+	display : none;
+	font-size : 14px;
+}
+.chattingForm .privateChat #chatLoadLayer {
+	flex : 1;
+}
+.chattingForm .privateChat .typing {
+	padding: 5px 5px 3px 5px;
+}
+.chattingForm .privateChat .typing textarea {
+	resize : none;
+	width : 100%;
+	outline : none;
+	box-sizing: border-box;
+	height : 30px;
+	border : 1px solid #7289ab;
+	border-radius: 5px;
+	font-size: 17px;
+    line-height: 23px;
+}
+.chattingForm .privateChat .typing textarea::-webkit-scrollbar {
+	display : none;
+}
+.chattingForm .privateChat .chatRecord {
+	height : 268px;
+	overflow : auto;
+}
+.chattingForm .privateChat .chatRecord::-webkit-scrollbar {
+	display : none;
+}
+.chattingForm .privateChat .chatRecord .me {
+	text-align : right;
+}
+.chattingForm .privateChat .chatRecord .me .chat {
+	background-color : skyblue;
+	margin-right : 4px;
+	text-align : left;
+}
+.chattingForm .privateChat .chatRecord .you .chat {
+	background-color : lightgray;
+	margin-left : 5px;
+}
+.chattingForm .chatRecord .chat {
+	display : inline-block;
+	padding: 5px;
+    border-radius: 7px;
+    max-width : 80%;
+    margin-top: 7px;
 }

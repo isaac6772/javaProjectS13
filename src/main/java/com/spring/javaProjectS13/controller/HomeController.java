@@ -26,6 +26,7 @@ import com.spring.javaProjectS13.service.NewsService;
 import com.spring.javaProjectS13.service.ServiceService;
 import com.spring.javaProjectS13.vo.AdVO;
 import com.spring.javaProjectS13.vo.BoardVO;
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.Keyword;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.News;
@@ -142,4 +143,23 @@ public class HomeController {
 		return "home/home";
 	}
 	
+	// 채팅 기록 불러오기
+	@RequestMapping(value = "/chatRecord", method = RequestMethod.GET)
+	public String chatRecordGet(Model model, String roomNumber, HttpSession session) {
+		int memberIdx = (int)session.getAttribute("sIdx");
+		List<ChatVO> cVos = memberService.chatList(roomNumber);
+		memberService.readAlarm(roomNumber,memberIdx);
+		
+		model.addAttribute("cVos",cVos);
+		return "home/home";
+	}
+	
+	// 친구 목록 비동기적 호출
+	@RequestMapping(value = "/friendList", method = RequestMethod.GET)
+	public String friendListGet(Model model, int idx) {
+		List<MemberVO> friendList = memberService.friendList(idx);
+		
+		model.addAttribute("friendList",friendList);
+		return "home/home";
+	}
 }

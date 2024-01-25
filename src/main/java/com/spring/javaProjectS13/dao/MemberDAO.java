@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
 
@@ -54,5 +55,13 @@ public interface MemberDAO {
 	public int inputKeyword(@Param("idx") int idx, @Param("keyword") String keyword);
 
 	public List<MemberVO> memberListIdx(String idxArray);
+
+	public void saveChat(@Param("memberIdx") int memberIdx, @Param("roomNumber") String roomNumber, @Param("message") String payload);
+
+	public List<ChatVO> chatList(@Param("roomNumber") String roomNumber);
+
+	public void inputAlarm(@Param("memberIdx") int memberIdx, @Param("alarmType") String alarmType, @Param("alarmTypeIdx") String alarmTypeIdx);
+
+	public void readAlarm(@Param("alarmTypeIdx") String alarmTypeIdx, @Param("memberIdx") int memberIdx);
 
 }

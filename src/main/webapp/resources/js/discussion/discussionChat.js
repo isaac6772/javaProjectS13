@@ -99,6 +99,10 @@ function textCheck(e) {
 function textSend(e) {
 	if($(e).hasClass('clickBtn')) {
 		let text = $('#textMsg').val().trim();
+		if(text=='') {
+			$('#textMsg').val('');
+			return false;
+		}
 		text = text.replace(/\n|\r/g,"");
 		let msg = "{\"msgType\":\"msg\",\"data\":\""+text+"\",\"memberIdx\":\""+memberIdx+"\",\"discussionIdx\":\""+idx+"\"}";
 		ws.send(msg);

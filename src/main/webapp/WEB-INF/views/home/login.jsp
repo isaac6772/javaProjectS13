@@ -60,7 +60,7 @@
 		</c:if>
 		<div class = "row4">
 			<div>
-				<span>알림</span>
+				<!-- <span>알림</span> -->
 			</div>
 			<div>
 				<c:if test="${mVo.level==77}">

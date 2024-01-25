@@ -8,7 +8,7 @@ public class ChatVO {
 	private int memberIdx;
 	private int receiver;
 	private String chatType;
-	private int discussionIdx;
+	private String roomNumber;
 	private String message;
 	private String msgDate;
 	

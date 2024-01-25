@@ -328,12 +328,21 @@
 	font-size: 13px;
     color: #676767;
 }
+.comunityBox .return {
+	display : none;
+}
+.comunityBox .return img {
+	cursor : pointer;
+}
+.comunityBox .friendNickName {
+	display : none;
+}
 .comunityBox .friendList {
 	overflow: auto;
 }
 .comunityBox .friendList .friend {
 	display : flex;
-	padding : 8px 12px;
+	padding: 8px 8px 8px 12px;
 }
 .comunityBox .friend .profile {
 	position : relative;
@@ -369,8 +378,9 @@
 	display : none;
 }
 .comunityBox .friend .chat img {
-	width : 30px;
+	width : 24px;
 	cursor : pointer;
+	margin-top: 3px;
 }
 .comunityBox .friend:hover {
 	background-color : whitesmoke;
@@ -378,9 +388,77 @@
 .comunityBox .friend:hover .chat {
 	display : block;
 }
+.comunityBox .friend .chatAlarm {
+	flex : 1;
+	text-align : right;
+}
+.comunityBox .friend .chatAlarm .chatAlarmCnt {
+	display : inline-block;
+	background-color: #ff3c00;
+    color: white;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 31px;
+    cursor : pointer;
+    margin-top: 3px;
+}
 .comunityBox .loginRequired {
     text-align: center;
     line-height: 250px;
+}
+.comunityBox .privateChat {
+	flex : 1;
+	display : flex;
+	flex-direction: column;
+	display : none;
+}
+.comunityBox .privateChat #chatLoadLayer {
+	flex : 1;
+}
+.comunityBox .privateChat .typing {
+	padding: 5px 5px 3px 5px;
+}
+.comunityBox .privateChat .typing textarea {
+	resize : none;
+	width : 100%;
+	outline : none;
+	box-sizing: border-box;
+	height : 30px;
+	border : 1px solid #7289ab;
+	border-radius: 5px;
+	font-size: 17px;
+    line-height: 23px;
+}
+.comunityBox .privateChat .typing textarea::-webkit-scrollbar {
+	display : none;
+}
+.comunityBox .privateChat .chatRecord {
+	height : 268px;
+	overflow : auto;
+}
+.comunityBox .privateChat .chatRecord::-webkit-scrollbar {
+	display : none;
+}
+.comunityBox .privateChat .chatRecord .me {
+	text-align : right;
+}
+.comunityBox .privateChat .chatRecord .me .chat {
+	background-color : skyblue;
+	margin-right : 4px;
+	text-align : left;
+}
+.comunityBox .privateChat .chatRecord .you .chat {
+	background-color : lightgray;
+	margin-left : 5px;
+}
+.comunityBox .chatRecord .chat {
+	display : inline-block;
+	padding: 5px;
+    border-radius: 7px;
+    max-width : 80%;
+    margin-top: 7px;
 }
 
 

@@ -1,5 +1,11 @@
 'use strict';
-		
+
+let url = window.location.host;	//		웹브라우저의 주소창의 포트까지 가져옴(localhost:9090)
+let pathname = window.location.pathname; //		 '/'부터 오른쪽에 있는 모든 경로(/javaProjectS13)
+let appCtx = pathname.substring(0, pathname.indexOf("/",2));
+let root = url+appCtx;
+let ws;
+
 $(function() {
 	$('#login').on('click',function() {
 		let mid = $('#mid').val().trim();
@@ -12,7 +18,7 @@ $(function() {
 		loginForm.submit();
 	});
 	$('#logout').click(function() {
-		location.href = contextPath + "/member/memberLogout";
+		location.href = appCtx + "/member/memberLogout";
 	});
 	$('.loginToggleBox').click(function() {
 		if($('.loginToggleBox').hasClass('checked')) {
@@ -25,13 +31,13 @@ $(function() {
 		}
 	});
 	$('#myPage1').click(function() {
-		location.href = contextPath + "/member/myPageIframe?myPage=memberUpdate";
+		location.href = appCtx + "/member/myPageIframe?myPage=memberUpdate";
 	});
 	$('#myPage2').click(function() {
-		location.href = contextPath + "/member/myPageIframe?myPage=myPage1";
+		location.href = appCtx + "/member/myPageIframe?myPage=myPage1";
 	});
 	$('#adminPage').click(function() {
-		location.href = contextPath + "/admin/adminMain?src=dashboard";
+		location.href = appCtx + "/admin/adminMain?src=dashboard";
 	});
 	
 	// 레벨 진행도 계산
@@ -136,10 +142,24 @@ $(function() {
 	    height: 400,
 	    width: '100%'
 	});
+	
+	$('#chatInput').keyup(function(e) {
+		if(e.keyCode==13) {
+			let text = $('#chatInput').val().trim();
+			if(text=='') {
+				$('#chatInput').val('');
+				return false;
+			}
+			text = text.replace(/\n|\r/g,"");
+			ws.send(text);
+			$('#chatInput').val('');
+		}
+	})
+	
 });
 
 function loadKeywordNews(keyword) {
-	$('#loadLayer').load(contextPath + "/keywordNews?keyword=" + keyword + " #newsList");
+	$('#loadLayer').load(appCtx + "/keywordNews?keyword=" + keyword + " #newsList");
 }
 
 function prevBoard() {
@@ -159,7 +179,7 @@ function nextBoard() {
 }
 
 function partChange(part) {
-	$('#recentBoard').load(contextPath + "/recentBoard?part="+part+' #boardLoad');
+	$('#recentBoard').load(appCtx + "/recentBoard?part="+part+' #boardLoad');
 }
 
 function newsModalShow(e) {
@@ -168,3 +188,42 @@ function newsModalShow(e) {
 	$('.newsModalContainer').show();
 }
 
+function privateChat(friendIdx, myIdx, friendNickName) {
+	$('.comunityBox .listGroup').hide();
+	$('.comunityBox .chatGroup').show();
+	$('.comunityBox .privateChat').css('display','flex');
+	$('#friendNickName').html(friendNickName);
+	$('#chatInput').val('');
+	$('#chatInput').focus();
+	
+	let roomNumber = Math.min(friendIdx,myIdx) + "/" + Math.max(friendIdx,myIdx);
+	$('#chatLoadLayer').load(appCtx + "/chatRecord?roomNumber=" + roomNumber + " #chatRecord", function() {		// 채팅기록불러오기
+		document.getElementById("chatRecord").scrollTop = document.getElementById("chatRecord").scrollHeight;
+	});	
+	
+	
+	ws = new WebSocket("ws://"+root+"/chat2?myIdx="+myIdx+"&friendIdx="+friendIdx);
+	
+	ws.onmessage = function(e) {
+		let myIdx = e.data.substring(0,e.data.indexOf("/"));
+		let msg = e.data.substring(e.data.indexOf("/") + 1);
+		
+		if(myIdx==memberIdx) {
+			$('.privateChat .chatRecord').append('<div class = "me"><div class = "chat">'+msg+'</div></div>');
+		}
+		else {
+			$('.privateChat .chatRecord').append('<div class = "you"><div class = "chat">'+msg+'</div></div>');
+		}
+		document.getElementById("chatRecord").scrollTop = document.getElementById("chatRecord").scrollHeight;
+	}
+}
+
+function returnFriendList() {
+	$('.comunityBox .listGroup').show();
+	$('.comunityBox .chatGroup').hide();
+	$('.comunityBox .privateChat').hide();
+	
+	$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend");
+	
+	ws.close();
+}

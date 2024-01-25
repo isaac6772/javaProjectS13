@@ -56,9 +56,11 @@
 	
 	<websocket:handlers>
         <websocket:mapping path="/chat" handler="chatHandler"/>
+        <websocket:mapping path="/chat2" handler="chatHandler2"/>
     </websocket:handlers>	
 	
 	<beans:bean id = "chatHandler" class = "com.spring.javaProjectS13.common.ChatHandler" />
+	<beans:bean id = "chatHandler2" class = "com.spring.javaProjectS13.common.ChatHandler2" />
 	
 	<task:scheduler id="taskScheduler" pool-size="10"/>
 	<task:annotation-driven scheduler="taskScheduler" />

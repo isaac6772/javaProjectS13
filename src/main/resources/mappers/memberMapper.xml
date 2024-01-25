@@ -13,7 +13,9 @@
 		select * from member where email = #{email};
 	</select>
 	<select id="friendList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
-		select *,(select count(*) from login where memberIdx = member.idx) as login from member where idx in (select member2idx from relation where member1idx = #{idx}) order by login desc, nickName;
+		select *,(select count(*) from login where memberIdx = member.idx) as login, 
+		(select count(*) from alarm where memberIdx = #{idx} and alarmType = 'chat' and alarmTypeIdx = concat(least(#{idx},member.idx),'/',greatest(#{idx},member.idx)) and readCheck = '안읽음') as alarmCnt 
+		from member where idx in (select member2idx from relation where member1idx = #{idx} and state = 2) order by login desc, nickName;
 	</select>
 	<select id="memberList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select *,(select count(*) from login where memberIdx = member.idx) as login from member where ${vo.searchType} like '%${vo.searchString}%' 
@@ -34,6 +36,9 @@
 	<select id="memberListIdx" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select * from member where idx in (${idxArray})
 	</select>
+	<select id="chatList" resultType = "com.spring.javaProjectS13.vo.ChatVO">
+		select * from chat where roomNumber = #{roomNumber}
+	</select>
 		
 	
 	<insert id="memberJoin">
@@ -42,6 +47,12 @@
 	</insert>
 	<insert id="memberLoginOk">
 		insert into login (memberIdx) values(#{idx});
+	</insert>
+	<insert id="saveChat">
+		insert into chat values (default,#{memberIdx},null,#{roomNumber},#{message},now())
+	</insert>
+	<insert id="inputAlarm">
+		insert into alarm values (default,#{memberIdx},#{alarmType},#{alarmTypeIdx},now(),default)
 	</insert>
 	
 	
@@ -84,6 +95,9 @@
 		<if test="keyword!=''">
 			update member set keyword = #{keyword} where idx = #{idx}
 		</if>
+	</update>
+	<update id="readAlarm">
+		update alarm set readCheck = '읽음' where alarmType = 'chat' and memberIdx = #{memberIdx} and alarmTypeIdx = #{alarmTypeIdx}
 	</update>
 		
 	

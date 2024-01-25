@@ -16,7 +16,7 @@
 		select count(*) from discussion where idx = #{idx} and <![CDATA[now() < date_add(discussionDate,interval discussionTime minute) and discussionDate <= date_add(now(), interval 30 minute)]]> and state != '종료';
 	</select>
 	<select id="chatList" resultType = "com.spring.javaProjectS13.vo.ChatVO">
-		select * from chat where discussionIdx = #{idx}
+		select * from chat where roomNumber = #{idx}
 	</select>
 	
 	
