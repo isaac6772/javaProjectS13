@@ -8,7 +8,7 @@ body {
 	border-top : 1px solid rgb(241 241 241);
 }
 .rightSide {
-	padding : 20px;
+    padding: 20px 30% 20px 20px;
 }
 .rightSide .header {
 	display : flex;
@@ -19,7 +19,8 @@ body {
 }
 .rightSide .header .section {
 	flex : 1;
-	display : flex;	
+	display : flex;
+	position : relative;
 }
 .rightSide .header .section .text {
 	margin-left : 10px;
@@ -92,4 +93,11 @@ body {
 	border-radius: 3px;
 	color: #777676;
 	cursor : pointer;
+}
+
+
+
+.userInfo {
+    top: -14px !important;
+    right: -9px !important;
 }

@@ -8,7 +8,7 @@ body {
 	border-top : 1px solid rgb(241 241 241);
 }
 .memberUpdateContainer {
-	padding : 20px;
+	padding: 20px 30% 20px 20px;
 }
 .header {
 	display : flex;
@@ -19,7 +19,8 @@ body {
 }
 .header .section {
 	flex : 1;
-	display : flex;	
+	display : flex;
+	position : relative;
 }
 .header .section .text {
 	margin-left : 10px;
@@ -59,7 +60,7 @@ body {
 	font-size : 10px;
 	color : gray;
 }
-.memberUpdateContainer .box{
+.memberUpdateContainer > .box{
 	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
 	/* border : 1px solid #cfcccc; */
 	border-radius : 5px;
@@ -167,4 +168,11 @@ body {
 .row #timer {
 	margin-left: 45px;
 	font-size : 14px;
+}
+
+
+
+.userInfo {
+    top: -14px !important;
+    right: -9px !important;
 }

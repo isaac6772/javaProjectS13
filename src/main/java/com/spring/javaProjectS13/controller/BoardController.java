@@ -63,8 +63,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/inputReply", method = RequestMethod.POST)
-	public String inputReplyPost(ReplyVO vo) {
-		int res = boardService.inputReply(vo);
+	public String inputReplyPost(ReplyVO vo, HttpSession session) {
+		int res = boardService.inputReply(vo, session);
 		
 		if(res==1) return "redirect:/message/board/inputReplyOk?idx=" + vo.getBoardIdx();
 		else return "redirect:/message/board/inputReplyNo?idx=" + vo.getBoardIdx();

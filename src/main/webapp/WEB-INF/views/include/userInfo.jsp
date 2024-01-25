@@ -12,13 +12,45 @@
 	<c:if test="${!empty sMid}">
 	
 		<div class = "box">
-			<img src = "${ctp}/icon/alarm.png" />
+			<img src = "${ctp}/icon/alarm.png" onclick = "alarmFormShow()" />
+			
+			<div class = "alarmTotal" id = "alarmTotal"></div>
+			
+			<div class = "alarmForm optionForm">
+				<div class = "arrow"></div>
+				
+				<div class = "alarmLoadLayer" id = "alarmLoadLayer">
+					<c:forEach var = "alarm" items = "${aVos}" varStatus = "st">
+					
+						<c:if test="${alarm.alarmType=='boardReply'}">
+							<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+								<div class = "alarmText">
+									<span>${alarm.nickName}</span>
+									<span>님이</span>
+									<span>내 글</span><span>에 댓글을 남기셨습니다.</span>
+								</div>
+								<div class = "timeDiff">
+									<span>${alarm.timeDiff} 전</span>
+								</div>
+								<div class = "imgBox">
+									<img src = "${ctp}/icon/delete.png" />
+								</div>
+							</div>
+						</c:if>
+						
+						
+						
+					</c:forEach>
+				</div>
+				
+			</div>
+			
 		</div>
 		
 		<div class = "box">
 			<img src = "${ctp}/icon/chat2.png" onclick = "chattingFormShow()" />
 			
-			<div class = "chatAlarmTotal" id = "chatAlarmTotal"></div>
+			<div class = "chatAlarmTotal alarmTotal" id = "chatAlarmTotal"></div>
 			
 			<div class = "chattingForm optionForm">
 				<div class = "arrow"></div>

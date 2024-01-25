@@ -1,5 +1,6 @@
 package com.spring.javaProjectS13.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.service.MemberService;
+import com.spring.javaProjectS13.vo.AlarmVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 
 @Controller
@@ -256,5 +258,21 @@ public class MemberController {
 	@RequestMapping(value = "/deleteKeyword", method = RequestMethod.POST)
 	public void deleteKeywordPost(String keyword, HttpSession session) {
 		memberService.deleteKeyword(keyword, session);
+	}
+	
+	// 알람 리스트 비동기로 불러오기
+	@RequestMapping(value = "/alarmList", method = RequestMethod.GET)
+	public String alarmListGet(Model model, HttpSession session) {
+		List<AlarmVO> aVos = memberService.alarmList((int)session.getAttribute("sIdx"));
+		
+		model.addAttribute("aVos",aVos);
+		return "include/userInfo";
+	}
+	
+	// 알람 읽음 처리
+	@ResponseBody
+	@RequestMapping(value = "/alarmRead", method = RequestMethod.GET)
+	public void alarmReadGet(HttpSession session) {
+		memberService.alarmRead((int)session.getAttribute("sIdx"));
 	}
 }

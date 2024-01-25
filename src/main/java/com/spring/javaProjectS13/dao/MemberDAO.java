@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.javaProjectS13.vo.AlarmVO;
 import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
@@ -60,8 +61,12 @@ public interface MemberDAO {
 
 	public List<ChatVO> chatList(@Param("roomNumber") String roomNumber);
 
-	public void inputAlarm(@Param("memberIdx") int memberIdx, @Param("alarmType") String alarmType, @Param("alarmTypeIdx") String alarmTypeIdx);
+	public void inputAlarm(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho, @Param("alarmType") String alarmType, @Param("alarmTypeIdx") String alarmTypeIdx);
 
 	public void readAlarm(@Param("alarmTypeIdx") String alarmTypeIdx, @Param("memberIdx") int memberIdx);
+
+	public List<AlarmVO> alarmList(@Param("idx") int idx);
+
+	public void alarmRead(@Param("memberIdx") int memberIdx);
 
 }

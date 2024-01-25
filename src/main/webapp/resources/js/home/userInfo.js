@@ -4,16 +4,8 @@ let appCtx = pathname.substring(0, pathname.indexOf("/",2));
 let root = url+appCtx;
 
 $(function() {
-	$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend");
-	$('#chatAlarmTotal').html('33');
-	
-	let sum = 0;
-	let elements = $('.chatAlarmCnt');
-	console.log(elements);
-	for(let e of elements) {
-		sum += $(e).html();
-		console.log($(e).html());
-	}
+	$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend", chatAlarmTotCntCalc);
+	$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
 	
 	$('#chatInput').keyup(function(e) {
 		if(e.keyCode==13) {
@@ -26,7 +18,7 @@ $(function() {
 			ws.send(text);
 			$('#chatInput').val('');
 		}
-	})
+	});
 });
 
 function settingFormShow() {
@@ -37,7 +29,7 @@ function settingFormShow() {
 	else $('.userInfo .settingForm').hide();
 }
 
-function chattingFormShow(e) {
+function chattingFormShow() {
 	if($('.userInfo .chattingForm').is(':hidden')) {
 		$('.userInfo .optionForm').hide();
 		$('.userInfo .chattingForm').show();
@@ -45,6 +37,29 @@ function chattingFormShow(e) {
 		$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend");
 	}
 	else $('.userInfo .chattingForm').hide();
+}
+
+function alarmFormShow() {
+	if($('.userInfo .alarmForm').is(':hidden')) {
+		$('.userInfo .optionForm').hide();
+		$('.userInfo .alarmForm').show();
+		
+		$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", function() {
+			$.ajax({
+				url : appCtx + "/member/alarmRead",
+				success : function() {
+					alarmTotCntCalc();
+				},
+				error : function() {
+					alert("전송오류");
+				}
+			});
+		});
+	}
+	else {
+		$('.userInfo .alarmForm').hide();
+		$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
+	}
 }
 
 function privateChat(friendIdx, myIdx, friendNickName) {
@@ -58,6 +73,7 @@ function privateChat(friendIdx, myIdx, friendNickName) {
 	let roomNumber = Math.min(friendIdx,myIdx) + "/" + Math.max(friendIdx,myIdx);
 	$('#chatLoadLayer').load(appCtx + "/chatRecord?roomNumber=" + roomNumber + " #chatRecord", function() {		// 채팅기록불러오기
 		document.getElementById("chatRecord").scrollTop = document.getElementById("chatRecord").scrollHeight;
+		$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend", chatAlarmTotCntCalc);
 	});	
 	
 	
@@ -75,6 +91,7 @@ function privateChat(friendIdx, myIdx, friendNickName) {
 		}
 		document.getElementById("chatRecord").scrollTop = document.getElementById("chatRecord").scrollHeight;
 	}
+	
 }
 
 function returnFriendList() {
@@ -85,4 +102,26 @@ function returnFriendList() {
 	$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend");
 	
 	ws.close();
+}
+
+function chatAlarmTotCntCalc() {
+	let sum = 0;
+	for(let e of $('.chatAlarmCnt')) {
+		sum += Number($(e).html());
+	}
+	if(sum != 0) {
+		$('#chatAlarmTotal').show();
+		$('#chatAlarmTotal').html(sum);	
+	}
+	else $('#chatAlarmTotal').hide();
+}
+
+function alarmTotCntCalc() {
+	let length = 0;
+	length = $('.alarm.noRead').length;
+	if(length != 0) {
+		$('#alarmTotal').show();
+		$('#alarmTotal').html(length);	
+	}
+	else $('#alarmTotal').hide();
 }

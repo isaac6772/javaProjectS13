@@ -8,15 +8,15 @@ body {
 	border-top : 1px solid rgb(243 243 243);
 }
 .myPageContainer {
-	width : 65%;
+	width : 100vw;
 	height : 100vh;
-	margin : 0 auto;
 	display : flex;
 }
 .leftSide {
 	width : 300px;
 	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
 	padding : 20px;
+	margin-left : 270px;
 }
 .leftSide a {
 	color : black;

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaProjectS13.vo.AlarmVO;
 import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
@@ -72,8 +73,12 @@ public interface MemberService {
 
 	public List<ChatVO> chatList(String roomNumber);
 
-	public void inputAlarm(int memberIdx, String string, String roomNumber);
+	public void inputAlarm(int memberIdx, int memberIdxWho, String string, String roomNumber);
 
 	public void readAlarm(String roomNumber, int memberIdx);
+
+	public List<AlarmVO> alarmList(int idx);
+
+	public void alarmRead(int attribute);
 
 }

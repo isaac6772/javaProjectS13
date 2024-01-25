@@ -44,7 +44,7 @@ public class ChatHandler2 extends TextWebSocketHandler {
     		for(String str : roomNumber.split("/")) {
     			if(memberIdx != Integer.parseInt(str)) otherIdx = Integer.parseInt(str);
     		}
-    		memberService.inputAlarm(otherIdx,"chat",roomNumber);	// 읽지 않았으면 알람 발생
+    		memberService.inputAlarm(otherIdx,memberIdx,"chat",roomNumber);	// 읽지 않았으면 알람 발생
     	}
     	memberService.saveChat(memberIdx, roomNumber, message.getPayload());
 	}

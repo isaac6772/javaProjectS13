@@ -75,6 +75,9 @@
 	<insert id="setRecommend">
 		insert into recommend values (default,'board',#{idx},#{memberIdx},#{flag})
 	</insert>
+	<insert id="replyAlarm">
+		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'boardReply',#{idx},now(),default)
+	</insert>
 	
 	
 	<update id="boardUpdate">

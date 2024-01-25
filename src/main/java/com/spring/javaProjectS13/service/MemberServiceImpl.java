@@ -3,10 +3,12 @@ package com.spring.javaProjectS13.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -33,6 +35,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.spring.javaProjectS13.common.LevelCalculator;
 import com.spring.javaProjectS13.dao.DiscussionDAO;
 import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.vo.AlarmVO;
 import com.spring.javaProjectS13.vo.ChatVO;
 import com.spring.javaProjectS13.vo.DiscussionVO;
 import com.spring.javaProjectS13.vo.MemberVO;
@@ -475,12 +478,42 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void inputAlarm(int memberIdx, String alarmType, String roomNumber) {
-		memberDAO.inputAlarm(memberIdx, alarmType, roomNumber);
+	public void inputAlarm(int memberIdx, int memberIdxWho, String alarmType, String roomNumber) {
+		memberDAO.inputAlarm(memberIdx, memberIdxWho, alarmType, roomNumber);
 	}
 
 	@Override
 	public void readAlarm(String roomNumber, int memberIdx) {
 		memberDAO.readAlarm(roomNumber, memberIdx);
+	}
+
+	@Override
+	public List<AlarmVO> alarmList(int idx) {
+		List<AlarmVO> vos = memberDAO.alarmList(idx);
+		
+		try {
+			for(AlarmVO vo : vos) {
+				// 날짜 차이 계산하기
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+				Date date;
+				date = sdf.parse(vo.getAlarmDate());
+				long diff = (new Date().getTime() - date.getTime())/1000;
+				String timeDiff;
+				if((diff/60)<1) timeDiff = diff%60 + "초";
+				else if(diff/(60*60)<1) timeDiff = (diff/60) + "분";
+				else if(diff/(60*60*24)<1) timeDiff = (diff/(60*60)) + "시간";
+				else timeDiff = (diff/(60*60*24)) + "일";
+				vo.setTimeDiff(timeDiff);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return vos;
+	}
+
+	@Override
+	public void alarmRead(int memberIdx) {
+		memberDAO.alarmRead(memberIdx);
 	}
 }

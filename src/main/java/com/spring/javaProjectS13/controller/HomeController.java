@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaProjectS13.common.LevelCalculator;
@@ -48,8 +49,7 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public String home(Model model, HttpSession session, PageVO pageVO, String keyword,
-			@RequestParam(name = "part", defaultValue = "전체", required = false) String part
-			) {
+			@RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
 		
 		int maxExp = 0;
 		String mid = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
@@ -126,13 +126,12 @@ public class HomeController {
 	
 	// 최근게시물 부분load하는 컨트롤러
 	@RequestMapping(value = "/recentBoard", method = RequestMethod.GET)
-	public String recentBoardGet(Model model, PageVO pageVO, @RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
+	public void recentBoardGet(Model model, PageVO pageVO, @RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
 		pageVO.setPageSize(10);
 		pageVO.setScope("전체글");
 		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
 		model.addAttribute("b2Vos",b2Vos);
-		return "home/home";
 	}
 	
 	// 뉴스 부분load하는 컨트롤러
@@ -140,7 +139,7 @@ public class HomeController {
 	public String keywordNewsGet(Model model, String keyword) {
 		List<News> nVos = newsService.keywordNews(keyword, 1, 13, false);
 		model.addAttribute("nVos",nVos);
-		return "home/home";
+		return "home/news";
 	}
 	
 	// 채팅 기록 불러오기
@@ -151,7 +150,7 @@ public class HomeController {
 		memberService.readAlarm(roomNumber,memberIdx);
 		
 		model.addAttribute("cVos",cVos);
-		return "home/home";
+		return "home/community";
 	}
 	
 	// 친구 목록 비동기적 호출
@@ -160,6 +159,6 @@ public class HomeController {
 		List<MemberVO> friendList = memberService.friendList(idx);
 		
 		model.addAttribute("friendList",friendList);
-		return "home/home";
+		return "home/community";
 	}
 }

@@ -54,4 +54,6 @@ public interface BoardDAO {
 
 	public int boardRecommendUpdate(@Param("idx") int idx, @Param("field") String field, @Param("flag") int flag);
 
+	public void replyAlarm(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho, @Param("idx") int idx);
+
 }

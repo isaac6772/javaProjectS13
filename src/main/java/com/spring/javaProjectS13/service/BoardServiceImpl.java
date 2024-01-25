@@ -131,7 +131,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int inputReply(ReplyVO vo) {
+	public int inputReply(ReplyVO vo, HttpSession session) {
+		BoardVO bVo = boardDAO.boardContent(vo.getBoardIdx());
+		boardDAO.replyAlarm(bVo.getMemberIdx(), (int)session.getAttribute("sIdx"), bVo.getIdx());
+		
 		return boardDAO.inputReply(vo);
 	}
 

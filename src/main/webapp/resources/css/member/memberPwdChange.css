@@ -8,7 +8,7 @@ body {
 	border-top : 1px solid rgb(241 241 241);
 }
 .rightSide {
-	padding : 20px;
+	padding: 20px 30% 20px 20px;
 }
 .rightSide .header {
 	display : flex;
@@ -32,32 +32,6 @@ body {
 .rightSide .header .section .text a {
 	text-decoration: none;
 	color : #727272;
-}
-.rightSide .header .myInfo {
-	display : flex;
-}
-.rightSide .header .myInfo .col {
-	margin-left : 14px;
-	cursor : pointer;
-}
-.rightSide .header .myInfo .col1 img {
-	background-color: #7db4f5;
-	width : 25px;
-	height : 25px;
-	border-radius: 13px;
-}
-.rightSide .header .myInfo .col2 {
-	margin-left : 3px;
-}
-.rightSide .header .myInfo .col2:hover .text1 {
-	text-decoration: underline;
-}
-.rightSide .header .myInfo .col2 .text1 {
-	line-height : 23px;
-}
-.rightSide .header .myInfo .col2 .text2 {
-	font-size : 10px;
-	color : gray;
 }
 .rightSide .submenu1 {
 	border-radius: 10px;
@@ -147,4 +121,12 @@ body {
 }
 .pwdChangeForm .pwdChangeBtn {
 	cursor : pointer;
+}
+
+
+
+
+.userInfo {
+    top: 6px !important;
+    right: 29px !important;
 }

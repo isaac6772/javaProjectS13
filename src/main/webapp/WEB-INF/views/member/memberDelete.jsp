@@ -56,18 +56,7 @@
 				</div>
 				<div class = "text symbol">></div>
 				<div class = "text">회원 탈퇴</div>
-			</div>
-			<div class = "myInfo">
-				<div class = "col1 col">
-					<img src = "${ctp}/profile/${sProfile}" />
-				</div>
-				<div class = "col2 col">
-					<span class = "text1">${sNickName}</span>
-					<span class = "text2">▼</span>
-				</div>
-				<div class = "col3 col"><img src = "${ctp}/icon/bell.png" width = 24px height = 22px/></div>
-				<div class = "col4 col"><img src = "${ctp}/icon/message.png" width = 25px height = 20px/></div>
-				<div class = "col5 col"><img src = "${ctp}/icon/menu.png" width = 20px /></div>
+				<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 			</div>
 		</div>
 		<div class = "submenu1">

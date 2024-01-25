@@ -15,7 +15,7 @@
 	<select id="friendList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select *,(select count(*) from login where memberIdx = member.idx) as login, 
 		(select count(*) from alarm where memberIdx = #{idx} and alarmType = 'chat' and alarmTypeIdx = concat(least(#{idx},member.idx),'/',greatest(#{idx},member.idx)) and readCheck = '안읽음') as alarmCnt 
-		from member where idx in (select member2idx from relation where member1idx = #{idx} and state = 2) order by login desc, nickName;
+		from member where idx in (select member2idx from relation where member1idx = #{idx} and state = 2) order by alarmCnt desc, login desc, nickName;
 	</select>
 	<select id="memberList" resultType = "com.spring.javaProjectS13.vo.MemberVO">
 		select *,(select count(*) from login where memberIdx = member.idx) as login from member where ${vo.searchType} like '%${vo.searchString}%' 
@@ -39,6 +39,9 @@
 	<select id="chatList" resultType = "com.spring.javaProjectS13.vo.ChatVO">
 		select * from chat where roomNumber = #{roomNumber}
 	</select>
+	<select id="alarmList" resultType = "com.spring.javaProjectS13.vo.AlarmVO">
+		select alarm.*,member.nickName from alarm join member on alarm.memberIdxWho = member.idx and alarmType != 'chat' and memberIdx = #{idx} order by alarm.idx desc limit 100
+	</select>
 		
 	
 	<insert id="memberJoin">
@@ -52,7 +55,7 @@
 		insert into chat values (default,#{memberIdx},null,#{roomNumber},#{message},now())
 	</insert>
 	<insert id="inputAlarm">
-		insert into alarm values (default,#{memberIdx},#{alarmType},#{alarmTypeIdx},now(),default)
+		insert into alarm values (default,#{memberIdx},#{memberIdxWho},#{alarmType},#{alarmTypeIdx},now(),default)
 	</insert>
 	
 	
@@ -98,6 +101,9 @@
 	</update>
 	<update id="readAlarm">
 		update alarm set readCheck = '읽음' where alarmType = 'chat' and memberIdx = #{memberIdx} and alarmTypeIdx = #{alarmTypeIdx}
+	</update>
+	<update id="alarmRead">
+		update alarm set readCheck = '읽음' where alarmType != 'chat' and memberIdx = #{memberIdx}
 	</update>
 		
 	

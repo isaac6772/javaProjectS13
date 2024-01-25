@@ -18,6 +18,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<jsp:include page="/WEB-INF/views/include/userInfo.jsp" />
 	
 	<div class = "boardUpdateContainer">
 		

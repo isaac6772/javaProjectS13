@@ -21,7 +21,7 @@ public interface BoardService {
 
 	public List<ReplyVO> contentReply(int idx);
 
-	public int inputReply(ReplyVO vo);
+	public int inputReply(ReplyVO vo, HttpSession session);
 
 	public int boardUpdate(BoardVO vo, HttpSession session, HttpServletRequest request);
 
