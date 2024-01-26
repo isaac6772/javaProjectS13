@@ -12,8 +12,18 @@ $(function() {
 	
 	$(document).click(function(e) {
 		if(!$(e.target).hasClass('optionIcon')) {
-			$('.optionForm').hide();
+			$('.optionModal').hide();
 		}
+	});
+	
+	$('.reportModalContainer').click(function(e) {
+		console.log("1");
+		console.log(e);
+		console.log(e.target);
+		console.log($('.reportModal'));
+		console.log($('.reportModal')[0]);
+		console.log(document.getElementById('reportModal'));
+		if(e.target != $('.reportModal')[0]) $('.reportModalContainer').hide();
 	});
 });
 
@@ -25,12 +35,12 @@ function reReplyFormShow(e) {
 	else $(e).closest('.replyGroup').find('.reReplyForm').hide();
 }
 
-function optionFormShow(e) {
-	if($(e).parent().find('.optionForm').is(':hidden')) {
-		$('.optionForm').hide();
-		$(e).parent().find('.optionForm').show();
+function optionModalShow(e) {
+	if($(e).parent().find('.optionModal').is(':hidden')) {
+		$('.optionModal').hide();
+		$(e).parent().find('.optionModal').show();
 	}
-	else $(e).parent().find('.optionForm').hide();
+	else $(e).parent().find('.optionModal').hide();
 }
 
 function updateReply(e,nickName,idx,boardIdx) {
@@ -76,13 +86,13 @@ function updateCancel(e) {
 	$(e).closest('.replyBox').find('.profile').show();
 	$(e).closest('.replyBox').find('.replContent').show();
 	$(e).closest('.replyBox').find('form.inputReply.update').hide();
-	$(e).closest('.replyBox').find('.optionForm').hide();
+	$(e).closest('.replyBox').find('.optionModal').hide();
 }
 
 function deleteReply(e,idx, boardIdx) {
 	let ans = confirm("댓글을 삭제할까요?");
 	if(!ans) {
-		$(e).closest('.optionForm').hide();
+		$(e).closest('.optionModal').hide();
 		return false;
 	}
 	
@@ -147,4 +157,39 @@ function cancelRecommend(idx) {
 			alert("전송오류");
 		}
 	})
+}
+
+function memberOptionModalShow(e) {
+	if($(e).parent().find('.memberOptionModal').is(':hidden')) {
+		$('.memberOptionModal').hide();
+		$(e).parent().find('.memberOptionModal').show();	
+	}
+	else $(e).parent().find('.memberOptionModal').hide();
+}
+
+function requestFriend(idx,e) {
+	$(e).parent().hide();
+	$.ajax({
+		url : contextPath + "/member/requestFriend",
+		data : {idx : idx},
+		type : "post",
+		success : function(res) {
+			if(res==1) {
+				alert("친구요청되었습니다. 상대방이 수락하면 친구가 될 수 있습니다.");
+			}
+			else if(res==0) {
+				alert("이미 요청 처리중입니다.");
+			}
+			else if(res==-1) {
+				alert("이미 친구 상태입니다.");
+			}
+		},
+		error : function() {
+			alert("전송오류");
+		}
+	});
+}
+
+function report() {
+	$('.reportModalContainer').show();
 }

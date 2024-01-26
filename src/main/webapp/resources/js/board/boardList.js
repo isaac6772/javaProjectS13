@@ -43,3 +43,34 @@ function settingFormShow() {
 	if($('.settingForm').is(':hidden')) $('.settingForm').show();
 	else $('.settingForm').hide();
 }
+
+function memberOptionModalShow(e) {
+	if($(e).parent().find('.memberOptionModal').is(':hidden')) {
+		$('.memberOptionModal').hide();
+		$(e).parent().find('.memberOptionModal').show();	
+	}
+	else $(e).parent().find('.memberOptionModal').hide();
+}
+
+function requestFriend(idx,e) {
+	$(e).parent().hide();
+	$.ajax({
+		url : contextPath + "/member/requestFriend",
+		data : {idx : idx},
+		type : "post",
+		success : function(res) {
+			if(res==1) {
+				alert("친구요청되었습니다. 상대방이 수락하면 친구가 될 수 있습니다.");
+			}
+			else if(res==0) {
+				alert("이미 요청 처리중입니다.");
+			}
+			else if(res==-1) {
+				alert("이미 친구 상태입니다.");
+			}
+		},
+		error : function() {
+			alert("전송오류");
+		}
+	});
+}

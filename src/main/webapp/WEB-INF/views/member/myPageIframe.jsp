@@ -57,7 +57,7 @@
 				</div>
 				<div class = "item2">|</div>
 				<div class = "item3">
-					<a href = "#">고객센터</a>
+					<a href = "${ctp}/service/serviceList">고객센터</a>
 				</div>
 			</div>
 			<div class = "footerLogo">

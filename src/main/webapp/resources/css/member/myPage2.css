@@ -94,7 +94,154 @@ body {
 	color: #777676;
 	cursor : pointer;
 }
-
+.friendListBox .searchBar {
+	margin-top : 50px;
+	text-align : center;
+}
+.friendListBox .searchBar input[type=text] {
+	border : none;
+	background-color : #e5e5e5;
+	border-radius: 4px;
+    font-size: 17px;
+    padding: 13px 5px 12px 5px;
+    outline : none;
+}
+.friendListBox .listBox {
+	width : 400px;
+	height : 550px;
+	margin : 50px auto;
+	border: 1px solid #b1b1b1;
+    border-radius: 7px;
+}
+.friendListBox .listBox .section {
+	display : flex;
+}
+.friendListBox .listBox .section > div{
+	flex : 1;
+	text-align : center;
+	padding : 6px 0px;
+	border-bottom : 4px solid #dfdfdf;
+	cursor : pointer;
+}
+.friendListBox .listBox .section > div img{
+	width : 46px;
+}
+.friendListBox .listBox .section .listMenu {
+	border-top-left-radius: 7px;
+}
+.friendListBox .listBox .section .listMenu:hover {
+	background-color : #dbdbff;
+	border-bottom: 4px solid #7575d3;
+}
+.friendListBox .listBox .section .listMenu.selected {
+	background-color : #dbdbff;
+	border-bottom: 4px solid #7575d3;
+}
+.friendListBox .listBox .section .requestMenu {
+	border-top-right-radius: 7px;
+}
+.friendListBox .listBox .section .requestMenu:hover {
+	background-color : #ffff9e;
+	border-bottom: 4px solid #ffc900;
+}
+.friendListBox .listBox .section .requestMenu.selected {
+	background-color : #ffff9e;
+	border-bottom: 4px solid #ffc900;
+}
+.friendListBox .myfriendList {
+	display : none;
+	height : 484px;
+	overflow: auto;
+}
+.friendListBox .myfriendList.selected {
+	display : block;
+}
+.friendListBox .myfriendList .friend {
+	display : flex;
+	padding: 8px 8px 8px 12px;
+}
+.friendListBox .friend .profile {
+	position : relative;
+}
+.friendListBox .friend .profile .loginState {
+	position : absolute;
+	top : 24px;
+	right : -2px;
+	width : 12px;
+	height : 12px;
+}
+.friendListBox .friend .profile img {
+	width : 35px;
+	height : 35px;
+	border-radius: 20px;
+	border : 1px solid #f1f1f1;
+	background-color: #7db4f5;
+}
+.friendListBox .friend .info {
+	margin-left: 10px;
+}
+.friendListBox .friend .info .text1 {
+	font-size : 14px;
+	font-weight : bolder;
+}
+.friendListBox .friend .info .text2 {
+	font-size : 12px;
+	color : gray;
+}
+.friendListBox .friend .option {
+	flex : 1;
+	text-align: right;
+	display : none;
+	position : relative;
+}
+.friendListBox .friend .option .deleteFriend {
+	display : inline-block;
+	padding : 3px 8px;
+	background-color : red;
+	color : white;
+	border-radius: 5px;
+	cursor : pointer;
+	margin-top: 6px;
+	font-size : 12px;
+}
+.friendListBox .friend:hover {
+	background-color : whitesmoke;
+}
+.friendListBox .friend:hover .option {
+	display : block;
+}
+.friendListBox .friendRequest {
+	display : none;
+}
+.friendListBox .friendRequest.selected {
+	display : block;
+}
+.friendListBox .friendRequest .request {
+	display : flex;
+	border-bottom : 1px solid #b9b9b9;
+	padding : 7px 5px;
+}
+.friendListBox .friendRequest .request .text {
+	font-size : 14px;
+	line-height: 24px;
+}
+.friendListBox .friendRequest .request .empty {
+	flex : 1;
+}
+.friendListBox .friendRequest .request .btn {
+	color : white;
+	padding : 5px 10px;
+	border-radius: 5px;
+	cursor : pointer;
+	font-size : 12px;
+}
+.friendListBox .friendRequest .request .accept {
+	background-color : #0cd07f;
+}
+.friendListBox .friendRequest .request .deny {
+	background-color : #ff9c00;
+	margin-left : 6px;
+}
 
 
 .userInfo {

@@ -8,10 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spring.javaProjectS13.dao.MemberDAO;
+import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.service.MemberService;
 import com.spring.javaProjectS13.service.ServiceService;
 import com.spring.javaProjectS13.vo.AdVO;
+import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.MemberVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.ServiceVO;
@@ -21,9 +22,9 @@ import com.spring.javaProjectS13.vo.ServiceVO;
 public class AdminController {
 	
 	@Autowired
-	MemberDAO memberDAO;
-	@Autowired
 	MemberService memberService;
+	@Autowired
+	BoardService boardService;
 	@Autowired
 	ServiceService serviceService;
 	
@@ -89,5 +90,19 @@ public class AdminController {
 		
 		if(res!=0) return "redirect:/message/admin/adServiceDeleteOk";
 		else return "redirect:/message/admin/adServiceDeleteNo";
+	}
+	
+	@RequestMapping(value = "/boardManager", method = RequestMethod.GET)
+	public String boardManagerGet(Model model, PageVO pageVO) {
+		List<BoardVO> bVos = boardService.boardList(pageVO);
+		
+		model.addAttribute("pageVO",pageVO);
+		model.addAttribute("bVos",bVos);
+		return "admin/boardManager";
+	}
+	
+	@RequestMapping(value = "/reportManager", method = RequestMethod.GET)
+	public String reportManagerGet(Model model) {
+		return "admin/reportManager";
 	}
 }

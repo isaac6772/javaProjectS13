@@ -69,4 +69,22 @@ public interface MemberDAO {
 
 	public void alarmRead(@Param("memberIdx") int memberIdx);
 
+	public int deleteAlarm(@Param("idx") int idx);
+
+	public void memberUserInfoChange(@Param("idx") int idx, @Param("userInfo") String userInfo);
+
+	public int requestFriend(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho);
+
+	public List<AlarmVO> friendRequests(@Param("memberIdx") int idx);
+
+	public int acceptFriend(@Param("idxWho") int idxWho, @Param("myIdx") int myIdx);
+
+	public int findFriendRequest(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho);
+
+	public void deleteAlarm2(@Param("idxWho") int idxWho, @Param("myIdx") int myIdx);
+
+	public void deleteFriend(@Param("idx") int idx, @Param("myIdx") int myIdx);
+
+	public int friendCheck(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho);
+
 }

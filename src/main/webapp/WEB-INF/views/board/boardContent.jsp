@@ -51,9 +51,15 @@
 					<img src = "${ctp}/profile/${bVo.profile}" />
 				</div>
 				<div class = "profileInfo">
-					<div>
-						<span class = "nickName">${bVo.nickName}</span>
+					<div class = "memberName">
+						<span class = "nickName" onclick = "memberOptionModalShow(this)">${bVo.nickName}</span>
 						<img src = "${ctp}/icon/level${bVo.level}.png" class = "level" />
+						<div class = "memberOptionModal">
+							<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${bVo.memberIdx}'">회원정보</div>
+							<c:if test="${sIdx!=vo.memberIdx}">
+								<div class = "item" onclick = "requestFriend('${bVo.memberIdx}',this)">친구추가</div>
+							</c:if>
+						</div>
 					</div>
 					<div>
 						<span class = "date">${fn:substring(bVo.writeDate,0,16)}</span>
@@ -61,15 +67,15 @@
 					</div>
 				</div>
 				<div class = "option">
-					<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
-					<div class = "optionForm">
+					<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionModalShow(this)" />
+					<div class = "optionModal">
 						<c:if test="${sIdx==bVo.memberIdx}">
 							<div onclick = "location.href='boardUpdate?idx=${bVo.idx}'">수정</div>
 						</c:if>
 						<c:if test="${sLevel==77 || sIdx==bVo.memberIdx}">
 							<div onclick = "location.href='boardDelete?idx=${bVo.idx}'">삭제</div>
 						</c:if>
-						<div>신고</div>
+						<div onclick = "report()">신고</div>
 					</div>
 				</div>
 			</div>
@@ -124,10 +130,10 @@
 							</div>
 							<div class = "replContent">
 								<div class = "row1 option">
-									<span>${vo.nickName}</span>
+									<span class = "nickNameText"  onclick = "memberOptionModalShow(this)">${vo.nickName}</span>
 									<span>${fn:substring(vo.writeDate,0,16)}</span>
-									<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
-									<div class = "optionForm">
+									<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionModalShow(this)" />
+									<div class = "optionModal">
 										<c:if test="${sIdx==vo.memberIdx}">
 											<div onclick = "updateReply(this,'${vo.nickName}','${vo.idx}','${bVo.idx}')">수정</div>
 										</c:if>
@@ -135,6 +141,12 @@
 											<div onclick = "deleteReply(this,'${vo.idx}','${bVo.idx}')">삭제</div>
 										</c:if>
 										<div>신고</div>
+									</div>
+									<div class = "memberOptionModal">
+										<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${vo.memberIdx}'">회원정보</div>
+										<c:if test="${sIdx!=vo.memberIdx}">
+											<div class = "item" onclick = "requestFriend('${vo.memberIdx}',this)">친구추가</div>
+										</c:if>
 									</div>
 								</div>
 								<div class = "row2">${vo.content}</div>
@@ -170,10 +182,10 @@
 										</div>
 										<div class = "replContent">
 											<div class = "row1 option">
-												<span>${reVo.nickName}</span>
+												<span class = "nickNameText" onclick = "memberOptionModalShow(this)">${reVo.nickName}</span>
 												<span>${fn:substring(reVo.writeDate,0,16)}</span>
-												<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionFormShow(this)" />
-												<div class = "optionForm">
+												<img src = "${ctp}/icon/option.png" class = "optionIcon" onclick = "optionModalShow(this)" />
+												<div class = "optionModal">
 													<c:if test="${sIdx==reVo.memberIdx}">
 														<div onclick = "updateRereply(this,'${reVo.nickName}','${reVo.idx}','${bVo.idx}')">수정</div>
 													</c:if>
@@ -181,6 +193,12 @@
 														<div onclick = "deleteReply(this,'${reVo.idx}','${bVo.idx}')">삭제</div>
 													</c:if>
 													<div>신고</div>
+												</div>
+												<div class = "memberOptionModal">
+													<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${reVo.memberIdx}'">회원정보</div>
+													<c:if test="${sIdx!=vo.memberIdx}">
+														<div class = "item" onclick = "requestFriend('${reVo.memberIdx}',this)">친구추가</div>
+													</c:if>
 												</div>
 											</div>
 											<div class = "row2">${reVo.content}</div>
@@ -195,6 +213,15 @@
 		</div>	<!-- contentContainer-end -->
 		
 	</div>	<!-- boardContentContainer-end -->
+	
+	<div class = "reportModalContainer">
+		<div class = "reportModal" id = "reportModal">
+			<div class = "title">
+				<img src = "${ctp}/icon/alert.png" />
+				<span>신고하기</span>
+			</div>
+		</div>
+	</div>
 	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

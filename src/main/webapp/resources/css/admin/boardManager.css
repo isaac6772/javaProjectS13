@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+body {
+	padding : 0px;
+	margin : 0px;
+	font-family: 'Nanum Gothic';
+}
+.memberManagerContainer {
+	width : 100%;
+	box-sizing: border-box;
+	padding : 30px;
+}
+.memberManagerContainer .conditionBox {
+	display : flex;
+	border : 1px solid #c2c2c2;
+	border-radius : 3px;
+	width : 100%;
+	margin-top : 20px;
+	margin-bottom : 100px;
+	padding : 15px 27px;
+	box-sizing: border-box;
+}
+.memberManagerContainer .conditionBox .searchBtn {
+	flex : 1;
+	display : flex;
+	align-items: center;
+}
+.memberManagerContainer .conditionBox .searchBtn .btn {
+	width : 76px;
+	height : 50px;
+	margin-left : auto;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 5px;
+	background-color: #25b7df;
+    color: white;
+    cursor : pointer;
+}
+.memberManagerContainer .conditionBox .condition .row {
+	display : flex;
+	padding : 8px 0px;
+}
+.memberManagerContainer .conditionBox .condition .row .col1 {
+	width : 150px;
+}
+.memberManagerContainer .conditionBox .condition .row .col1 img {
+	width : 17px;
+	margin-top : 1px;
+}
+.memberManagerContainer .conditionBox .condition .row .col1 .text1 {
+	vertical-align: top;
+}
+.memberManagerContainer .conditionBox .condition .row1 .col2 select {
+    width: 55px;
+    border-radius: 5px ;
+    height: 22px;
+    border: 1px solid #c1c1c1;
+}
+.memberManagerContainer .conditionBox .condition .row2 .col2 input {
+	width: 100px;
+    border-radius: 5px ;
+    height: 22px;
+    border: 1px solid #c1c1c1;
+}
+.memberManagerContainer .conditionBox .condition .row3 .col2 input {
+	width: 250px;
+    border-radius: 5px ;
+    height: 24px;
+    border: 1px solid #c1c1c1;
+    padding : 0px 0px 0px 4px;
+}
+.memberManagerContainer .conditionBox .condition .row3 .col2 select {
+	width: 80px;
+    border-radius: 5px ;
+    height: 26px;
+    border: 1px solid #c1c1c1;
+    vertical-align: top;
+}
+.memberManagerContainer .title {
+	font-size : 22px;
+	font-weight : bolder;
+}
+.memberManagerContainer .title img {
+    width: 24px;
+    vertical-align: bottom;
+}
+.memberManagerContainer .result {
+	margin-bottom : 20px;
+	display : flex;
+}
+.memberManagerContainer .result select {
+    border-radius: 3px;
+    height: 23px;
+    border: 1px solid #b6b6b6;
+}
+.memberManagerContainer .result .text {
+	flex : 0.5;
+}
+.memberManagerContainer .result .text .text1 {
+	font-weight : bolder;
+}
+.memberManagerContainer .result .text .text2 {
+	font-size : 14px;
+}
+.memberManagerContainer .result .text .text3 {
+	color : red;
+	font-size : 14px;
+}
+.memberManagerContainer .result .text .text4 {
+	font-size : 14px;
+}
+.memberManagerContainer .result .pageSizeBox {
+	flex : 0.5;
+	text-align : right;
+}
+.memberManagerContainer .memberListBox {
+	width : 100%;
+	border : 1px solid #c2c2c2;
+	border-radius : 3px;
+    padding: 25px 17px;
+    box-sizing: border-box;
+    margin-bottom : 20px;
+}
+.memberManagerContainer .memberListBox .tableHeader {
+	display : flex;
+	margin-bottom: 10px;
+}
+.memberManagerContainer .memberListBox .memberList {
+	display : flex;
+	padding : 10px 0px;
+	line-height: 23px;
+	height: 44px;
+    box-sizing: border-box;
+}
+.memberManagerContainer .memberListBox .memberList:hover {
+	background-color : #f3f3f3;
+}
+.memberManagerContainer .memberListBox .line {
+	border-top : 1px solid #dcdbdb;
+}
+.tableHeader .col {
+	text-align : center;
+	font-size : 15px;
+	font-weight: bolder;
+	color : #4e4e4e;
+}
+.memberList .col {
+	text-align : center;
+	color : #4e4e4e;
+	font-size : 14px;
+    box-sizing: border-box;
+}
+.memberList .col input.update {
+	border: 1px solid #c3bdbd;
+    border-radius: 3px;
+    outline: none;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.memberList .col3 input.update {
+	width : 110px;
+}
+.memberList .col4 input.update {
+	width : 110px;
+}
+.memberList .col5 input.update {
+	width : 110px;
+}
+.memberList .col6 input.update {
+	width : 150px;
+}
+.memberList .col7 select.update {
+	width : 50px;
+}
+.memberList .col8 input.update {
+	width : 50px;
+}
+.memberList .col select.update {
+	border: 1px solid #c3bdbd;
+    border-radius: 3px;
+}
+.memberListBox .col1 {
+	width : 50px;
+}
+.memberListBox .col2 {
+	width : 50px;
+}
+.memberListBox .col3 {
+	width : 120px;
+}
+.memberListBox .col4 {
+	flex : 1;
+}
+.memberListBox .memberList .col4 {
+	text-align : left;
+}
+.memberListBox .col5 {
+	width : 80px;
+}
+.memberListBox .col6 {
+	width : 80px;
+}
+.memberListBox .col7 {
+	width : 80px;
+}
+.memberListBox .col8 {
+	width : 80px;
+}
+.memberListBox .col9 {
+	width : 150px;
+}
+.memberListBox .col10 {
+	flex: 0.3;
+}
+.memberListBox .col10 img {
+	width: 23px;
+    vertical-align: top;
+    cursor : pointer;
+}
+.memberListBox .col10 .btn {
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 0px 4px;
+    width: 32px;
+    height: 23px;
+	font-size: 12px;
+    font-weight: bolder;
+    color : white;
+    display : none;
+    cursor : pointer;
+}
+.memberListBox .col10 .btnSave {
+	background-color: #25b7df;
+}
+.memberListBox .col10 .btnCancel {
+	background-color : #ff9f00;
+}
+.memberManagerContainer .pagingBox {
+	display : flex;
+	justify-content : center;
+	margin : auto;
+}
+.memberManagerContainer .pagingBox .item {
+	cursor : pointer;
+	border : 1px solid #8d8989;
+	border-radius : 3px;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    margin-right : 4px;
+    padding : 2px;
+    font-size : 13px;
+    color: #2d2d2d;
+}
+.memberManagerContainer .pagingBox .item img {
+	width : 50%;
+	height : 50%;
+}
+.memberManagerContainer .pagingBox .number.selected {
+	background-color: gray;
+	color : white;
+	font-weight : bolder;
+}
+.memberManagerContainer .managerFooter {
+	display : flex;	
+}
+.memberManagerContainer .managerFooter .btnContainer {
+	flex : 1;
+}
+.memberManagerContainer .managerFooter .col3 {
+	flex : 1;
+}
+.memberManagerContainer .managerFooter .btnContainer .btn {
+	background-color : red;
+	font-size : 14px;
+	color : white;
+	border-radius: 4px;
+	display : inline-block;
+	padding: 5px 10px;
+	cursor : pointer;
+}

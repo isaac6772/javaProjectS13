@@ -113,7 +113,7 @@
 }
 .chattingForm .friendList {
 	overflow: auto;
-	height: 300px;
+	max-height: 300px;
 }
 .chattingForm .friendList::-webkit-scrollbar {
 	display : none;

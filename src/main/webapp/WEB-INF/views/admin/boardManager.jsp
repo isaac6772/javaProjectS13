@@ -7,45 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>memberManager.jsp</title>
-<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/admin/memberManager.css" />
+<link rel = "stylesheet" type = "text/css" href = "${ctp}/css/admin/boardManager.css" />
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 	'use strict';
 	let contextPath = "${ctp}";
 	let sw = 0;		// 체크박스 해제할지 체크할지를 정할 스위치 전역변수
 </script>
-<script src = "${ctp}/js/admin/memberManager.js"></script>
+<script src = "${ctp}/js/admin/boardManager.js"></script>
 </head>
 <body>
 	<div class = "memberManagerContainer">
 		<div class = "title">
 			<img src = "${ctp}/icon/list.png" />
-			<span>회원 리스트</span>
+			<span>게시판 관리</span>
 		</div>
 		<form class = "conditionBox" name = "searchForm">
 			<div class = "condition">
 				<div class = "row row1">
 					<div class = "col1">
 						<img src = "${ctp}/icon/dot.png" />
-						<span class = "text1">회원등급</span>
+						<span class = "text1">분류</span>
 					</div>
 					<div class = "col2">
-						<select name = "level">
-							<option value = "-1" ${pageVO.level==-1?'selected':''}>전체</option>
-							<option ${pageVO.level==1?'selected':''}>1</option>
-							<option ${pageVO.level==2?'selected':''}>2</option>
-							<option ${pageVO.level==3?'selected':''}>3</option>
-							<option ${pageVO.level==4?'selected':''}>4</option>
-							<option ${pageVO.level==5?'selected':''}>5</option>
-							<option ${pageVO.level==6?'selected':''}>6</option>
-							<option value = "0" ${pageVO.level==0?'selected':''}>탈퇴</option>
+						<select name = "part">
+							<option ${pageVO.part=='전체'?'selected':''}>전체</option>
+							<option ${pageVO.part=='일반'?'selected':''}>일반</option>
+							<option ${pageVO.part=='일상'?'selected':''}>일상</option>
+							<option ${pageVO.part=='스포츠'?'selected':''}>스포츠</option>
+							<option ${pageVO.part=='연예'?'selected':''}>연예</option>
 						</select>
 					</div>
 				</div>
 				<div class = "row row2">
 					<div class = "col1">
 						<img src = "${ctp}/icon/dot.png" />
-						<span class = "text1">가입일자</span>
+						<span class = "text1">검색일자</span>
 					</div>
 					<div class = "col2">
 						<input type = "date" name = "fromDate" value = "${pageVO.fromDate}" /> ~ <input type = "date" name = "toDate" value = "${pageVO.toDate}" />
@@ -59,16 +56,15 @@
 					<div class = "col2">
 						<input type = "text" name = "searchString" value = "${pageVO.searchString}" />
 						<select name = "searchType">
-							<option value = "mid" ${pageVO.searchType=='mid'?'selected':''}>아이디</option>
+							<option value = "content" ${pageVO.searchType=='content'?'selected':''}>내용</option>
+							<option value = "title" ${pageVO.searchType=='title'?'selected':''}>제목</option>
 							<option value = "nickName" ${pageVO.searchType=='nickName'?'selected':''}>닉네임</option>
-							<option value = "name" ${pageVO.searchType=='name'?'selected':''}>이름</option>
-							<option value = "email" ${pageVO.searchType=='email'?'selected':''}>이메일</option>
 						</select>
 					</div>
 				</div>
 			</div>
 			<div class = "searchBtn">
-				<div class = "btn" onclick = "memberSearch()">검색</div>
+				<div class = "btn" onclick = "boardSearch()">검색</div>
 			</div>
 			<input type = "hidden" name = "pageSize" id = "pageSize" />
 			<input type = "hidden" name = "pag" id = "pag" />
@@ -79,7 +75,7 @@
 			<div class = "text">
 				<span class = "text1">검색결과 :</span>
 				<span class = "text2">총</span>
-				 <span class = "text3">${pageVO.totRecCnt}</span><span class = "text4">명 검색되었습니다.</span>
+				 <span class = "text3">${pageVO.totRecCnt}</span><span class = "text4">개 검색되었습니다.</span>
 			</div>
 			
 			<div class = "pagingContainer">
@@ -99,8 +95,8 @@
 			</div>
 			
 			<div class = "pageSizeBox">
-				<select id = "pageSizeSelect" onchange = "memberSearch()">
-					<option value = "10" ${pageVO.pageSize==10?'selected':''}>10명씩보기</option>
+				<select id = "pageSizeSelect" onchange = "boardSearch()">
+					<option value = "10" ${pageVO.pageSize==10?'selected':''}>10개씩보기</option>
 					<option value = "20" ${pageVO.pageSize==20?'selected':''}>20명씩보기</option>
 					<option value = "30" ${pageVO.pageSize==30?'selected':''}>30명씩보기</option>
 				</select>
@@ -117,39 +113,27 @@
 					<span>번호</span>
 				</div>
 				<div class = "col col3">
-					<span>아이디</span>
-				</div>
-				<div class = "col col4">
 					<span>닉네임</span>
 				</div>
+				<div class = "col col4">
+					<span>제목</span>
+				</div>
 				<div class = "col col5">
-					<span>이름</span>
+					<span>조회수</span>
 				</div>
 				<div class = "col col6">
-					<span>이메일</span>
+					<span>댓글수</span>
 				</div>
 				<div class = "col col7">
-					<span>등급</span>
+					<span>추천수</span>
 				</div>
 				<div class = "col col8">
-					<span>포인트</span>
+					<span>비추천수</span>
 				</div>
 				<div class = "col col9">
-					<span>방문횟수</span>
+					<span>작성일자</span>
 				</div>
 				<div class = "col col10">
-					<span>성별</span>
-				</div>
-				<div class = "col col11">
-					<span>상태</span>
-				</div>
-				<div class = "col col12">
-					<span>가입일자</span>
-				</div>
-				<div class = "col col13">
-					<span>최근방문일자</span>
-				</div>
-				<div class = "col col14">
 					<span>비고</span>
 				</div>
 			</div>
@@ -157,7 +141,7 @@
 			<div class = "line"></div>
 			
 			<c:set var = "scrStartNo" value = "${pageVO.scrStartNo}" />
-			<c:forEach var = "vo" items = "${vos}" varStatus = "st">
+			<c:forEach var = "vo" items = "${bVos}" varStatus = "st">
 				<form class = "memberList" id = "memberListForm${vo.idx}" action = "memberUpdate">
 					<div class = "col col1">
 						<input type = "checkbox" />
@@ -166,48 +150,28 @@
 						<span>${scrStartNo}</span>
 					</div>
 					<div class = "col col3">
-						<span>${vo.mid}</span>
-					</div>
-					<div class = "col col4">
 						<span>${vo.nickName}</span>
 					</div>
+					<div class = "col col4">
+						<span>${vo.title}</span>
+					</div>
 					<div class = "col col5">
-						<span>${vo.name}</span>
+						<span>${vo.viewNum}</span>
 					</div>
 					<div class = "col col6">
-						<span>${vo.email}</span>
+						<span>${vo.replyCnt}</span>
 					</div>
 					<div class = "col col7">
-						<span>${vo.level}</span>
+						<span>${vo.good}</span>
 					</div>
 					<div class = "col col8">
-						<span>${vo.point}</span>
+						<span>${vo.bad}</span>
 					</div>
 					<div class = "col col9">
-						<span>${vo.visitCnt}</span>
+						<span>${fn:substring(vo.writeDate,0,16)}</span>
 					</div>
 					<div class = "col col10">
-						<span>${vo.gender}</span>
-					</div>
-					<div class = "col col11">
-						<c:if test="${vo.level==0}"><span class = "level0">탈퇴</span></c:if>
-						<c:if test="${vo.level!=0}">
-							<c:if test="${vo.login!=0}"><span class = "login">접속중</span></c:if>
-							<c:if test="${vo.login==0}"><span class = "logout">로그아웃</span></c:if>
-						</c:if>
-					</div>
-					<div class = "col col12">
-						<span>${fn:substring(vo.joinDate,0,10)}</span>
-					</div>
-					<div class = "col col13">
-						<span>${fn:substring(vo.lastDate,0,10)}</span>
-					</div>
-					<div class = "col col14">
-						<img src = "${ctp}/icon/edit.png" title = "회원정보수정" onclick = "memberUpdate(this,'${vo.mid}','${vo.nickName}','${vo.name}','${vo.email}','${vo.level}','${vo.point}')" />
-						<%-- <img src = "${ctp}/icon/chat.png" title = "1:1채팅" /> --%>
-						<img src = "${ctp}/icon/memberDelete.png" title = "회원탈퇴" onclick = "memberDelete('${vo.idx}')" />
-						<div class = "btn btnSave" onclick = "saveUpdate('${vo.idx}')">저장</div>
-						<div class = "btn btnCancel" onclick = "cancelUpdate(this,'${vo.mid}','${vo.nickName}','${vo.name}','${vo.email}','${vo.level}','${vo.point}')">취소</div>
+						${vo.part}
 					</div>
 					<input type = "hidden" name = "idx" value = "${vo.idx}" class = "hiddenIdx" />
 				</form>

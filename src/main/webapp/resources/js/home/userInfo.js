@@ -125,3 +125,20 @@ function alarmTotCntCalc() {
 	}
 	else $('#alarmTotal').hide();
 }
+
+function deleteAlarm(idx) {
+	$.ajax({
+		url : appCtx + "/member/deleteAlarm",
+		data : {idx : idx},
+		type : "post",
+		success : function(res) {
+			if(res==1) {
+				$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
+			}
+			else alert("삭제실패");
+		},
+		error : function() {
+			alert("전송오류");
+		}
+	});
+}

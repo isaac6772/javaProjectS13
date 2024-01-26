@@ -60,6 +60,31 @@
 	border-radius: 18px;
 	border : 1px solid #ededed;
 }
+.contentContainer .profile .profileInfo .memberName {
+	position : relative;
+}
+.contentContainer .profile .profileInfo .memberName .nickName {
+	cursor : pointer;
+	user-select : none;
+}
+.contentContainer .memberOptionModal {
+	position : absolute;
+	width : 92px;
+    top: 23px;
+	box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.3);
+	background-color : white;
+    z-index: 5;
+    border-radius: 5px;
+    text-align: center;
+    display : none;
+}
+.contentContainer .memberOptionModal .item {
+	padding : 6px 0px;
+	cursor : pointer;
+}
+.contentContainer .memberOptionModal .item:hover {
+	background-color : whitesmoke;
+}
 .contentContainer .profile .profileInfo .level {
 	width : 12px;
 }
@@ -80,7 +105,7 @@
 	width : 17px;
 	cursor : pointer;
 }
-.contentContainer .option .optionForm {
+.contentContainer .option .optionModal {
 	position : absolute;
 	right : 0px;
 	padding : 2px 0px;
@@ -90,13 +115,13 @@
     display : none;
     z-index : 2;
 }
-.contentContainer .option .optionForm div {
+.contentContainer .option .optionModal div {
 	text-align : center;
 	font-size: 15px;
     padding: 5px 22px;
     cursor : pointer;
 }
-.contentContainer .option .optionForm div:hover {
+.contentContainer .option .optionModal div:hover {
 	background-color : #f1f1f1;
 }
 .contentContainer > .content {
@@ -208,6 +233,10 @@
 .replyGroup .replyBox .replContent .row1 {
 	position : relative;
 	margin-bottom : 8px;
+	user-select : none;
+}
+.replyGroup .replyBox .replContent .row1 .nickNameText {
+	cursor : pointer;
 }
 .replyGroup .replyBox .replContent .row1 img {
 	position : absolute;
@@ -236,4 +265,48 @@
 }
 .replyGroup .replyBox .replContent .row3 span.reReplyCnt {
 	font-weight : bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.reportModalContainer {
+	position : fixed;
+	width : 100vw;
+	height : 100vh;
+	left : 0px;
+	top : 0px;
+	background-color : rgba(0,0,0,.35);
+	display : none;
+}
+.reportModalContainer .reportModal {
+	position : relative;
+	background-color : white;
+	width : 230px;
+	height : 250px;
+	border-radius: 10px;
+	margin : 100px auto;
+	animation : slideIn 0.2s;
+}
+@keyframes slideIn {
+	from {top : -200px}
+	to {top : 0px;}
+}
+.reportModal .title {
+	text-align: center;
+	font-size : 20px;
+	font-weight : bolder;
+	line-height: 35px;
+}
+.reportModal .title img {
+	position : absolute;
+    left: 46px;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var = "ctp" value = "${pageContext.request.contextPath}"/>
 <div class = "comunityBox">
 	<div class = "title">
@@ -21,37 +22,45 @@
 	<div class = "line"></div>
 	<c:if test="${!empty sMid}">
 		<div class = "friendList listGroup">
-			<c:forEach var = "vo" items = "${friendList}" varStatus = "st">
-				<div class = "friend">
-					<div class = "profile">
-						<img src = "${ctp}/profile/${vo.profile}" />
-						<c:if test="${vo.login!=0}">
-							<img src = "${ctp}/icon/loginCircle.png" class = "loginState login" />
+			<c:if test="${fn:length(friendList)!=0}">
+				<c:forEach var = "vo" items = "${friendList}" varStatus = "st">
+					<div class = "friend">
+						<div class = "profile">
+							<img src = "${ctp}/profile/${vo.profile}" />
+							<c:if test="${vo.login!=0}">
+								<img src = "${ctp}/icon/loginCircle.png" class = "loginState login" />
+							</c:if>
+							<c:if test="${vo.login==0}">
+								<img src = "${ctp}/icon/logoutCircle.png" class = "loginState logout" />
+							</c:if>
+						</div>
+						<div class = "info">
+							<div>
+								<span class = "text1">${vo.nickName}</span>
+							</div>
+							<div>
+								<span class = "text2">${vo.introduce}</span>
+							</div>
+						</div>
+						<c:if test="${vo.alarmCnt!=0}">
+							<div class = "chatAlarm">
+								<div class = "chatAlarmCnt" onclick = "privateChat('${vo.idx}','${sIdx}','${vo.nickName}')">${vo.alarmCnt}</div>
+							</div>
 						</c:if>
-						<c:if test="${vo.login==0}">
-							<img src = "${ctp}/icon/logoutCircle.png" class = "loginState logout" />
+						<c:if test="${vo.alarmCnt==0}">
+							<div class = "chat">
+								<img src = "${ctp}/icon/chat3.png" onclick = "privateChat('${vo.idx}','${sIdx}','${vo.nickName}')" />
+							</div>
 						</c:if>
 					</div>
-					<div class = "info">
-						<div>
-							<span class = "text1">${vo.nickName}</span>
-						</div>
-						<div>
-							<span class = "text2">${vo.introduce}</span>
-						</div>
-					</div>
-					<c:if test="${vo.alarmCnt!=0}">
-						<div class = "chatAlarm">
-							<div class = "chatAlarmCnt" onclick = "privateChat('${vo.idx}','${sIdx}','${vo.nickName}')">${vo.alarmCnt}</div>
-						</div>
-					</c:if>
-					<c:if test="${vo.alarmCnt==0}">
-						<div class = "chat">
-							<img src = "${ctp}/icon/chat3.png" onclick = "privateChat('${vo.idx}','${sIdx}','${vo.nickName}')" />
-						</div>
-					</c:if>
+				</c:forEach>
+			</c:if>
+			<c:if test="${fn:length(friendList)==0}">
+				<div class = "friend noFriend">
+					<span style = "line-height: 25px;">친구가 없어요.</span>
+					<img src = "${ctp}/icon/cry.png" width = "25px" />
 				</div>
-			</c:forEach>
+			</c:if>
 		</div>
 		<div class = "privateChat">
 			<div id = "chatLoadLayer">

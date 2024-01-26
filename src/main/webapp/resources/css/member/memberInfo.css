@@ -7,60 +7,11 @@ body {
 .line {
 	border-top : 1px solid rgb(241 241 241);
 }
-.memberUpdateContainer {
-	padding: 20px 30% 20px 20px;
+.memberInfoContainer {
+	width : 40%;
+	margin : 30px auto;
 }
-.header {
-	display : flex;
-	justify-content: space-between;
-	width : 93%;
-	margin : 0 auto;
-	margin-bottom : 10px;
-}
-.header .section {
-	flex : 1;
-	display : flex;
-	position : relative;
-}
-.header .section .text {
-	margin-left : 10px;
-	color: #727272;
-    font-size: 14px;
-}
-.header .section .text a {
-	text-decoration: none;
-	color : #727272;
-}
-.header .section .symbol {
-	font-weight : bolder;
-}
-.header .myInfo {
-	display : flex;
-}
-.header .myInfo .col {
-	margin-left : 14px;
-	cursor : pointer;
-}
-.header .myInfo .col1 img {
-	background-color: #7db4f5;
-	width : 25px;
-	height : 25px;
-	border-radius: 13px;
-}
-.header .myInfo .col2 {
-	margin-left : 3px;
-}
-.header .myInfo .col2:hover .text1 {
-	text-decoration: underline;
-}
-.header .myInfo .col2 .text1 {
-	line-height : 23px;
-}
-.header .myInfo .col2 .text2 {
-	font-size : 10px;
-	color : gray;
-}
-.memberUpdateContainer > .box{
+.memberInfoContainer > .box{
 	box-shadow: 1px 1px 16px 0 rgba(0,0,0,.16);
 	/* border : 1px solid #cfcccc; */
 	border-radius : 5px;
@@ -70,59 +21,51 @@ body {
 	margin-bottom : 30px;
 	padding : 15px 0px;
 }
-.memberUpdateContainer .title {
-	display : flex;
-	justify-content : space-between;
+.memberInfoContainer .title {
 	width : 93%;
 	margin : 12px auto;
-	margin-top : 30px;
-}
-.memberUpdateContainer .title .text {
 	font-size : 22px;
 	font-weight : bolder;
 	color: #424242;
 }
-.memberUpdateContainer .title .checkbox {
-    margin-top: 5px;
-}
-.box .row {
+.memberInfoContainer .box .row {
 	display : flex;
 	padding : 0px 25px;
 	box-sizing: border-box;
 	height : 50px;
 	line-height : 50px;
 }
-.box .row:hover {
+.memberInfoContainer .box .row:hover {
 	background-color : #f2f0f0;
 }
-.box .row .col1 {
+.memberInfoContainer .box .row .col1 {
 	width : 150px;
 	font-size : 13px;
 	color : #5b5b5b;
 }
-.box .row .col2 {
+.memberInfoContainer .box .row .col2 {
 	font-size : 16px;
 }
-.box .row .col3 {
+.memberInfoContainer .box .row .col3 {
 	flex : 1;
 	text-align : right;
 }
-.box .row .col3 img {
+.memberInfoContainer .box .row .col3 img {
 	cursor : pointer;
 }
-.box .row .update input {
+.memberInfoContainer .box .row .update input {
 	height: 27px;
     border-radius: 5px;
     border: 1px solid #bfbebe;
     display : none;
     outline : none;
 }
-.box .row .save {
+.memberInfoContainer .box .row .save {
 	flex : 1;
 	text-align : right;
 	display : none;
 }
-.box .row .save img {
+.memberInfoContainer .box .row .save img {
 	cursor : pointer;
 }
 .update .inValidMsg {
@@ -178,9 +121,3 @@ body {
 	font-size : 14px;
 }
 
-
-
-.userInfo {
-    top: -14px !important;
-    right: -9px !important;
-}

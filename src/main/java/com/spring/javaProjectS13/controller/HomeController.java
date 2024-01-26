@@ -126,12 +126,15 @@ public class HomeController {
 	
 	// 최근게시물 부분load하는 컨트롤러
 	@RequestMapping(value = "/recentBoard", method = RequestMethod.GET)
-	public void recentBoardGet(Model model, PageVO pageVO, @RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
+	public String recentBoardGet(Model model, PageVO pageVO, @RequestParam(name = "part", defaultValue = "전체", required = false) String part) {
 		pageVO.setPageSize(10);
 		pageVO.setScope("전체글");
 		pageVO.setPart(part);
 		List<BoardVO> b2Vos = boardService.boardList(pageVO);
+		
+		model.addAttribute("part",part);
 		model.addAttribute("b2Vos",b2Vos);
+		return "home/board";
 	}
 	
 	// 뉴스 부분load하는 컨트롤러

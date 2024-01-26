@@ -22,7 +22,11 @@ public class MemberVO {
 	private String userInfo;
 	private String introduce;
 	
-	private int login;	// 로그인 정보를 저장하는 추가된 vo필드
+	private int login;			// 로그인 정보를 저장하는 추가된 vo필드
 	private int Participant;	// 토론채팅창에서 참가자인지 관전자인지를 판별하는 필드
 	private int alarmCnt;		// 이 회원에게서 온 읽지 않은 채팅 메시지의 개수
+	private int boardCnt;		// 작성글 개수
+	private int replyCnt;		// 작성댓글 개수
+	private int totGood;		// 받은 추천수
+	private int totBad;			// 받은 비추천수
 }

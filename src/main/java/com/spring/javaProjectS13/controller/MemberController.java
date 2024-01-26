@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,6 +115,21 @@ public class MemberController {
 		return "redirect:/message/member/memberLogoutOk";
 	}
 	
+	@RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
+	public String memberInfoGet(Model model, int idx) {
+		MemberVO vo = memberService.memberIdxSearch(idx);
+		System.out.println(vo);
+		model.addAttribute("vo",vo);
+		return "member/memberInfo";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/memberUserInfoChange", method = RequestMethod.POST)
+	public void memberUserInfoChangePost(String userInfo, HttpSession session) {
+		int idx = (int)session.getAttribute("sIdx");
+		memberService.memberUserInfoChange(idx,userInfo);
+	}
+	
 	@RequestMapping(value = "/memberIdPwdFind", method = RequestMethod.GET)
 	public String memberIdPwdFindGet() {
 		return "member/memberIdPwdFind";
@@ -130,7 +146,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/myPage2", method = RequestMethod.GET)
-	public String myPage2Get() {
+	public String myPage2Get(Model model, HttpSession session, 
+			@RequestParam(name = "pag", defaultValue = "0", required = false) int pag) {
+		int idx = session.getAttribute("sIdx") == null ? 0 : (int)session.getAttribute("sIdx");
+		List<MemberVO> friends = memberService.friendList(idx);
+		List<AlarmVO> friendRequests = memberService.friendRequests(idx);
+		
+		model.addAttribute("pag",pag);
+		model.addAttribute("friendRequests",friendRequests);
+		model.addAttribute("friends",friends);
 		return "member/myPage2";
 	}
 	
@@ -274,5 +298,44 @@ public class MemberController {
 	@RequestMapping(value = "/alarmRead", method = RequestMethod.GET)
 	public void alarmReadGet(HttpSession session) {
 		memberService.alarmRead((int)session.getAttribute("sIdx"));
+	}
+	
+	// 알람 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteAlarm", method = RequestMethod.POST)
+	public String deleteAlarmPost(int idx) {
+		int res = memberService.deleteAlarm(idx);
+		
+		return res + "";
+	}
+	
+	// 친구 요청
+	@ResponseBody
+	@RequestMapping(value = "/requestFriend", method = RequestMethod.POST)
+	public String requestFriendPost(int idx, HttpSession session) {
+		int res = memberService.requestFriend(idx, (int)session.getAttribute("sIdx"));
+		
+		return res + "";
+	}
+	
+	// 친구 수락
+	@ResponseBody
+	@RequestMapping(value = "/acceptFriend", method = RequestMethod.POST)
+	public void acceptFriendPost(int idxWho, HttpSession session) {
+		memberService.acceptFriend(idxWho, (int)session.getAttribute("sIdx"));
+	}
+	
+	// 친구 요청 거절
+	@ResponseBody
+	@RequestMapping(value = "/denyFriend", method = RequestMethod.POST)
+	public void denyFriendPost(int idx) {
+		memberService.denyFriend(idx);
+	}
+	
+	// 친구 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteFriend", method = RequestMethod.POST)
+	public void deleteFriendPost(int idx, HttpSession session) {
+		memberService.deleteFriend(idx, (int)session.getAttribute("sIdx"));
 	}
 }

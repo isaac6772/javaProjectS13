@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var = "ctp" value = "${pageContext.request.contextPath}"/>
 <link rel = "stylesheet" type = "text/css" href = "${ctp}/css/home/userInfo.css" />
 <script>
@@ -20,27 +21,45 @@
 				<div class = "arrow"></div>
 				
 				<div class = "alarmLoadLayer" id = "alarmLoadLayer">
-					<c:forEach var = "alarm" items = "${aVos}" varStatus = "st">
-					
-						<c:if test="${alarm.alarmType=='boardReply'}">
-							<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
-								<div class = "alarmText">
-									<span>${alarm.nickName}</span>
-									<span>님이</span>
-									<span>내 글</span><span>에 댓글을 남기셨습니다.</span>
-								</div>
-								<div class = "timeDiff">
-									<span>${alarm.timeDiff} 전</span>
-								</div>
-								<div class = "imgBox">
-									<img src = "${ctp}/icon/delete.png" />
-								</div>
-							</div>
-						</c:if>
+					<c:if test="${fn:length(aVos)!=0}">
+						<c:forEach var = "alarm" items = "${aVos}" varStatus = "st">
 						
-						
-						
-					</c:forEach>
+							<c:if test="${alarm.alarmType=='boardReply'}">
+								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+									<div class = "alarmText">
+										<span>${alarm.nickName}</span>
+										<span>님이</span>
+										<span>내 글</span><span>에 댓글을 남기셨습니다.</span>
+									</div>
+									<div class = "timeDiff">
+										<span>${alarm.timeDiff} 전</span>
+									</div>
+									<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+										<img src = "${ctp}/icon/delete.png" />
+									</div>
+								</div>
+							</c:if>
+							 
+							<c:if test="${alarm.alarmType=='friendRequest'}">
+								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+									<div class = "alarmText">
+										<span>${alarm.nickName}</span>
+										<span>님이 친구요청을 보내셨습니다.</span>
+									</div>
+									<div class = "timeDiff">
+										<span>${alarm.timeDiff} 전</span>
+									</div>
+									<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+										<img src = "${ctp}/icon/delete.png" />
+									</div>
+								</div>
+							</c:if>
+							
+						</c:forEach>
+					</c:if>
+					<c:if test="${fn:length(aVos)==0}">
+						<div class = "alarm"><span>알람이 없습니다</span></div>
+					</c:if>
 				</div>
 				
 			</div>

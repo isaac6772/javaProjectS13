@@ -107,6 +107,7 @@
 	flex : 1;
 }
 .table .col3 {
+	position : relative;
 	width : 120px;
 }
 .table .col4 {
@@ -141,6 +142,29 @@
 }
 .tableContent .col3 img {
 	width : 12px;
+}
+.tableContent .col3 .nickNameText {
+	cursor : pointer;
+	user-select : none;
+}
+.tableContent .col3 .memberOptionModal {
+	position : absolute;
+	width : 80%;
+    left: 9%;
+    top: 23px;
+	box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.3);
+	background-color : white;
+    z-index: 5;
+    border-radius: 5px;
+    display : none;
+}
+.tableContent .col3 .memberOptionModal .item {
+	padding : 6px 0px;
+	cursor : pointer;
+	user-select : none;
+}
+.tableContent .col3 .memberOptionModal .item:hover {
+	background-color : whitesmoke;
 }
 .boardList > div:last-child {
 	border-bottom : 1px solid #1b176b;

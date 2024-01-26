@@ -61,6 +61,23 @@ function saveEmail() {
 	location.href = contextPath + "/member/emailUpdate?email=" + $('#email').val().trim();
 }
 
+function userInfoChange(e) {
+	let checkFlag;
+	if($(e).prop('checked')==true) {
+		checkFlag = 'y';
+	}
+	else checkFlag = 'n';
+	
+	$.ajax({
+		url : contextPath + "/member/memberUserInfoChange",
+		data : {userInfo : checkFlag},
+		type : "post",
+		error : function() {
+			alert("전송오류");
+		}
+	});
+}
+
 $(function() {
 	$('#nickName').keyup(function() {
 		if($('#nickName').val().trim()==nickName) {
@@ -213,3 +230,4 @@ $(function() {
 		}
 	}
 });
+

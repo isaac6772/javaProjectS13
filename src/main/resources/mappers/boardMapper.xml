@@ -11,6 +11,9 @@
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
 			<if test="vo.scope=='공지'">and part = '공지' </if>  
+			<if test="vo.fromDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+			<if test="vo.toDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+			<if test="vo.level!=-1"> and level = #{vo.level} </if>
 			order by idx desc limit #{vo.startIndexNo},#{vo.pageSize} 
 		</if>
 		<if test="vo.searchType!='all'">
@@ -20,6 +23,9 @@
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
 			<if test="vo.scope=='공지'">and part = '공지' </if> 
+			<if test="vo.fromDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+			<if test="vo.toDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+			<if test="vo.level!=-1"> and level = #{vo.level} </if>
 			order by idx desc limit #{vo.startIndexNo},#{vo.pageSize} 
 		</if>
 	</select>
@@ -29,6 +35,9 @@
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
 			<if test="vo.scope=='공지'">and part = '공지' </if>  
+			<if test="vo.fromDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+			<if test="vo.toDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+			<if test="vo.level!=-1"> and level = #{vo.level} </if>
 			order by idx desc 
 		</if>
 		<if test="vo.searchType!='all'">
@@ -36,6 +45,9 @@
 			<if test="vo.part!='전체'">and part = #{vo.part} </if> 
 			<if test="vo.scope=='추천글'">and <![CDATA[good >= 10]]> </if> 
 			<if test="vo.scope=='공지'">and part = '공지' </if> 
+			<if test="vo.fromDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+			<if test="vo.toDate!=''">and <![CDATA[date_format(writeDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+			<if test="vo.level!=-1"> and level = #{vo.level} </if>
 			order by idx desc 
 		</if>
 	</select>

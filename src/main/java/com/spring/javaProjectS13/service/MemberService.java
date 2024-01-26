@@ -81,4 +81,18 @@ public interface MemberService {
 
 	public void alarmRead(int attribute);
 
+	public int deleteAlarm(int idx);
+
+	public void memberUserInfoChange(int idx, String userInfo);
+
+	public int requestFriend(int memberIdx, int idx);
+
+	public List<AlarmVO> friendRequests(int idx);
+
+	public void acceptFriend(int idxWho, int attribute);
+
+	public void denyFriend(int idx);
+
+	public void deleteFriend(int idx, int myIdx);
+
 }

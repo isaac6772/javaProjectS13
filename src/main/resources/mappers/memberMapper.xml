@@ -25,7 +25,11 @@
 		order by idx desc limit #{vo.startIndexNo},#{vo.pageSize};
 	</select>
 	<select id="memberIdxSearch" resultType = "com.spring.javaProjectS13.vo.MemberVO">
-		select * from member where idx = #{idx};
+		select *,(select count(*) from board where member.idx = board.memberIdx) as boardCnt,  
+		(select count(*) from reply where reply.memberIdx = member.idx) as replyCnt,
+		(select sum(good) from board where board.memberIdx = member.idx) as totGood,
+		(select sum(bad) from board where board.memberIdx = member.idx) as totBad
+		from member where idx = #{idx};
 	</select>
 	<select id="memberTotRecCnt" resultType = "int">
 		select count(*) from member where ${vo.searchType} like '%${vo.searchString}%' 
@@ -42,6 +46,15 @@
 	<select id="alarmList" resultType = "com.spring.javaProjectS13.vo.AlarmVO">
 		select alarm.*,member.nickName from alarm join member on alarm.memberIdxWho = member.idx and alarmType != 'chat' and memberIdx = #{idx} order by alarm.idx desc limit 100
 	</select>
+	<select id="friendRequests" resultType = "com.spring.javaProjectS13.vo.AlarmVO">
+		select alarm.*,member.nickName from alarm join member on alarm.memberIdxWho = member.idx and alarmType = 'friendRequest' and memberIdx = #{memberIdx} order by alarm.idx desc
+	</select>
+	<select id="findFriendRequest" resultType = "int">
+		select count(*) from alarm where memberIdx = #{memberIdx} and memberIdxWho = #{memberIdxWho} and alarmType = 'friendRequest'
+	</select>
+	<select id="friendCheck" resultType = "int">
+		select count(*) from relation where member1Idx = #{memberIdx} and member2Idx = #{memberIdxWho}
+	</select>
 		
 	
 	<insert id="memberJoin">
@@ -56,6 +69,13 @@
 	</insert>
 	<insert id="inputAlarm">
 		insert into alarm values (default,#{memberIdx},#{memberIdxWho},#{alarmType},#{alarmTypeIdx},now(),default)
+	</insert>
+	<insert id="requestFriend">
+		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'friendRequest',null,now(),default)
+	</insert>
+	<insert id="acceptFriend">
+		insert into relation values (default,#{myIdx},#{idxWho},2);
+		insert into relation values (default,#{idxWho},#{myIdx},2);
 	</insert>
 	
 	
@@ -105,6 +125,9 @@
 	<update id="alarmRead">
 		update alarm set readCheck = '읽음' where alarmType != 'chat' and memberIdx = #{memberIdx}
 	</update>
+	<update id="memberUserInfoChange">
+		update member set userInfo = #{userInfo} where idx = #{idx}
+	</update>
 		
 	
 	<delete id="memberLogoutOk">
@@ -115,6 +138,17 @@
 	</delete>
 	<delete id="selectedMemberDelete">
 		delete from member where idx in (${idxArray});
+	</delete>
+	<delete id="deleteAlarm">
+		delete from alarm where idx = #{idx}
+	</delete>
+	<delete id="deleteAlarm2">
+		delete from alarm where memberIdx = #{myIdx} and memberIdxWho = #{idxWho};
+		delete from alarm where memberIdx = #{idxWho} and memberIdxWho = #{myIdx};
+	</delete>
+	<delete id="deleteFriend">
+		delete from relation where member1Idx = #{idx} and member2Idx = #{myIdx};
+		delete from relation where member1Idx = #{myIdx} and member2Idx = #{idx};
 	</delete>
 	
 	

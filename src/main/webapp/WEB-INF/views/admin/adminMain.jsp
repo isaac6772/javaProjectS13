@@ -42,7 +42,9 @@
 					<img src = "${ctp}/icon/boardW.png" />
 				</div>
 				<div class = "col2">
-					<span class = "text1">게시판관리</span>
+					<a href = "boardManager" target = "mainContent">
+						<span class = "text1">게시판관리</span>
+					</a>
 				</div>
 			</div>
 			<div class = "menu">
@@ -50,7 +52,9 @@
 					<img src = "${ctp}/icon/reportW.png" />
 				</div>
 				<div class = "col2">
-					<span class = "text1">신고관리</span>
+					<a href = "reportManager" target = "mainContent">
+						<span class = "text1">신고관리</span>
+					</a>
 				</div>
 			</div>
 			<div class = "menu">

@@ -150,8 +150,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO memberUpdate(HttpSession session) {
-		String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");
-		MemberVO vo = memberDAO.memberMidCheck(mid);
+		int idx = (int)session.getAttribute("sIdx");
+		MemberVO vo = memberDAO.memberIdxSearch(idx);
 		return vo;
 	}
 
@@ -515,5 +515,45 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void alarmRead(int memberIdx) {
 		memberDAO.alarmRead(memberIdx);
+	}
+
+	@Override
+	public int deleteAlarm(int idx) {
+		return memberDAO.deleteAlarm(idx);
+	}
+
+	@Override
+	public void memberUserInfoChange(int idx, String userInfo) {
+		memberDAO.memberUserInfoChange(idx, userInfo);
+	}
+
+	@Override
+	public int requestFriend(int memberIdx, int memberIdxWho) {
+		int sw = memberDAO.findFriendRequest(memberIdx, memberIdxWho);
+		if(sw>=1) return 0;
+		sw = memberDAO.friendCheck(memberIdx,memberIdxWho);
+		if(sw>=1) return -1;
+		return memberDAO.requestFriend(memberIdx, memberIdxWho);
+	}
+
+	@Override
+	public List<AlarmVO> friendRequests(int idx) {
+		return memberDAO.friendRequests(idx);
+	}
+
+	@Override
+	public void acceptFriend(int idxWho, int myIdx) {
+		memberDAO.deleteAlarm2(idxWho, myIdx);	// 내가 요청한것이나 상대방이 나에게 요청한 것을 둘다 삭제
+		memberDAO.acceptFriend(idxWho, myIdx);		// 관계설정
+	}
+
+	@Override
+	public void denyFriend(int idx) {
+		memberDAO.deleteAlarm(idx);
+	}
+
+	@Override
+	public void deleteFriend(int idx, int myIdx) {
+		memberDAO.deleteFriend(idx, myIdx);
 	}
 }

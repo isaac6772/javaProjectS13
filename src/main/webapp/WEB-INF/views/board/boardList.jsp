@@ -77,8 +77,14 @@
 							</c:if>
 						</div>
 						<div class = "col col3">
-							<span>${vo.nickName}</span>
+							<span class = "nickNameText" onclick = "memberOptionModalShow(this)">${vo.nickName}</span>
 							<img src = "${ctp}/icon/level${vo.level}.png" />
+							<div class = "memberOptionModal">
+								<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${vo.memberIdx}'">회원정보</div>
+								<c:if test="${sIdx!=vo.memberIdx}">
+									<div class = "item" onclick = "requestFriend('${vo.memberIdx}',this)">친구추가</div>
+								</c:if>
+							</div>
 						</div>
 						<div class = "col col4">
 							<c:if test="${vo.dateDiff==0}">
@@ -117,8 +123,14 @@
 							</c:if>
 						</div>
 						<div class = "col col3">
-							<span>${vo.nickName}</span>
+							<span class = "nickNameText" onclick = "memberOptionModalShow(this)">${vo.nickName}</span>
 							<img src = "${ctp}/icon/level${vo.level}.png" />
+							<div class = "memberOptionModal">
+								<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${vo.memberIdx}'">회원정보</div>
+								<c:if test="${sIdx!=vo.memberIdx}">
+									<div class = "item" onclick = "requestFriend('${vo.memberIdx}',this)">친구추가</div>
+								</c:if>
+							</div>
 						</div>
 						<div class = "col col4">
 							<c:if test="${vo.dateDiff==0}">
