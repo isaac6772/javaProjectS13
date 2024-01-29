@@ -52,21 +52,21 @@ function saveUpdate(idx) {
 
 function checkAll() {
 	if(sw==0) {
-		$('.memberList .col1 input[type=checkbox]').prop('checked',true);
+		$('.boardList .col1 input[type=checkbox]').prop('checked',true);
 		sw = 1;		
 	}
 	else {
-		$('.memberList .col1 input[type=checkbox]').prop('checked',false);
+		$('.boardList .col1 input[type=checkbox]').prop('checked',false);
 		sw = 0;
 	}
 }
 
-function deleteSelectedMember() {
-	let memberIdxArray = '';
-	let cnt = $('.memberList').length;
+function deleteSelectedBoard() {
+	let boardIdxArray = '';
+	let cnt = $('.boardList').length;
 
-	if($('.memberList .col1 input[type=checkbox]:checked').length==0) {
-		alert("회원을 선택해주세요");
+	if($('.boardList .col1 input[type=checkbox]:checked').length==0) {
+		alert("게시물을 선택해주세요");
 		return false;
 	}
 	
@@ -74,15 +74,15 @@ function deleteSelectedMember() {
 	if(!ans) return false;
 	
 	for(let i=0; i<cnt; i++) {
-		if($('.memberList:eq('+i+') .col1 input[type=checkbox]').is(':checked')) {
-			memberIdxArray += $('.memberList:eq('+i+') .hiddenIdx').val() + ',';
+		if($('.boardList:eq('+i+') .col1 input[type=checkbox]').is(':checked')) {
+			boardIdxArray += $('.boardList:eq('+i+') .hiddenIdx').val() + ',';
 		}
 	}
-	memberIdxArray = memberIdxArray.substring(0,memberIdxArray.length-1);
+	boardIdxArray = boardIdxArray.substring(0,boardIdxArray.length-1);
 	
-	$('#deleteMemberIdx').val(memberIdxArray);
-	memberDeleteForm.action = "selectedMemberDelete";
-	memberDeleteForm.submit();
+	$('#deleteBoardIdx').val(boardIdxArray);
+	boardDeleteForm.action = "selectedBoardDelete";
+	boardDeleteForm.submit();
 }
 
 function memberDelete(idx) {

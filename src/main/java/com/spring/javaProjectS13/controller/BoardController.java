@@ -16,6 +16,7 @@ import com.spring.javaProjectS13.service.BoardService;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ReportVO;
 
 @Controller
 @RequestMapping("/board")
@@ -52,6 +53,9 @@ public class BoardController {
 	public String boardContentGet(int idx, PageVO pageVO, Model model, HttpSession session) {
 		int memberIdx = session.getAttribute("sIdx") == null ? 0 : (int) session.getAttribute("sIdx");
 		BoardVO bVo = boardService.boardContent(idx, memberIdx);
+		
+		if(bVo==null) return "redirect:/message/board/boardContentNo";
+		
 		List<ReplyVO> replyVos = boardService.contentReply(idx);
 		int recommend = boardService.getRecommend(idx, memberIdx);
 		
@@ -131,5 +135,28 @@ public class BoardController {
 		int res = boardService.setBad(idx, session);
 		
 		return res + "";
+	}
+	
+	@RequestMapping(value = "/report", method = RequestMethod.POST)
+	public String reportPost(ReportVO vo) {
+		int res = boardService.report(vo);
+		int returnIdx = 0;
+		
+		if(vo.getReportType().equals("boardReply")) {
+			returnIdx = boardService.getReply(vo.getReportIdx()).getBoardIdx();
+		}
+		else if(vo.getReportType().equals("board")) {
+			returnIdx = vo.getReportIdx();
+		}
+		
+		if(res==1) return "redirect:/message/board/reportOk?idx=" + returnIdx;
+		else return "redirect:/message/board/reportNo?idx=" + returnIdx;
+	}
+	
+	@RequestMapping(value = "/findContentByReply", method = RequestMethod.GET)
+	public String findContentGet(int replyIdx) {
+		int idx = boardService.getReply(replyIdx) != null ? boardService.getReply(replyIdx).getBoardIdx() : 0;
+		
+		return "redirect:/board/boardContent?idx=" + idx;
 	}
 }

@@ -295,6 +295,8 @@
 	border-radius: 10px;
 	margin : 100px auto;
 	animation : slideIn 0.2s;
+    box-sizing: border-box;
+    padding: 10px;
 }
 @keyframes slideIn {
 	from {top : -200px}
@@ -309,4 +311,27 @@
 .reportModal .title img {
 	position : absolute;
     left: 46px;
+}
+.reportModal .content .comboBox {
+	margin-top : 15px;
+	width : 100%;
+}
+.reportModal .content textarea {
+	margin-top : 15px;
+    margin-bottom: 5px;
+	width : 100%;
+	resize : none;
+    box-sizing: border-box;
+}
+.reportModal .btnBox {
+	text-align: center;
+}
+.reportModal .btnBox .btn {
+	display : inline-block;
+	padding : 5px 10px;
+	color : white;
+	background-color: orange;
+	font-size : 14px;
+	cursor : pointer;
+	border-radius: 4px;
 }

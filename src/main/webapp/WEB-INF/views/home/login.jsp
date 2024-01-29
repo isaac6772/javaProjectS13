@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var = "ctp" value = "${pageContext.request.contextPath}"/>
 <c:if test="${empty sMid}">
 	<form class = "loginBox" name = "loginForm" method = "post" action = "${ctp}/member/memberLogin">
@@ -59,9 +60,86 @@
 			</div>
 		</c:if>
 		<div class = "row4">
-			<div>
-				<!-- <span>알림</span> -->
-			</div>
+			<div class = "box">
+				<span onclick = "alarmFormShow()">
+					알림
+					<span class = "alarmTotal" id = "alarmTotal"></span>
+				</span>
+			
+				<div class = "alarmForm optionForm">
+					<div class = "arrow"></div>
+					
+					<div class = "alarmLoadLayer" id = "alarmLoadLayer">
+						<c:if test="${fn:length(aVos)!=0}">
+							<c:forEach var = "alarm" items = "${aVos}" varStatus = "st">
+							
+								<c:if test="${alarm.alarmType=='boardReply'}">
+									<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+										<div class = "alarmText" onclick = "location.href='${ctp}/board/boardContent?idx=${alarm.alarmTypeIdx}'">
+											<span>${alarm.nickName}</span>
+											<span>님이</span>
+											<span>내 글</span><span>에 댓글을 남기셨습니다.</span>
+										</div>
+										<div class = "timeDiff">
+											<span>${alarm.timeDiff} 전</span>
+										</div>
+										<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+											<img src = "${ctp}/icon/delete.png" />
+										</div>
+									</div>
+								</c:if>
+								 
+								<c:if test="${alarm.alarmType=='friendRequest'}">
+									<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+										<div class = "alarmText" onclick = "location.href='${ctp}/member/myPageIframe?myPage=myPage2&pag=1'">
+											<span>${alarm.nickName}</span>
+											<span>님이 친구요청을 보내셨습니다.</span>
+										</div>
+										<div class = "timeDiff">
+											<span>${alarm.timeDiff} 전</span>
+										</div>
+										<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+											<img src = "${ctp}/icon/delete.png" />
+										</div>
+									</div>
+								</c:if>
+								 
+								<c:if test="${alarm.alarmType=='reportContentDeleteDone'}">
+									<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+										<div class = "alarmText" style = "cursor : text;">
+											<span>신고하신 글이 접수되어 삭제처리되었습니다.</span>
+										</div>
+										<div class = "timeDiff">
+											<span>${alarm.timeDiff} 전</span>
+										</div>
+										<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+											<img src = "${ctp}/icon/delete.png" />
+										</div>
+									</div>
+								</c:if>
+								 
+								<c:if test="${alarm.alarmType=='reportContentDelete'}">
+									<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+										<div class = "alarmText" style = "cursor : text;">
+											<span>회원님의 게시글이 신고접수되어 삭제되었습니다.</span>
+										</div>
+										<div class = "timeDiff">
+											<span>${alarm.timeDiff} 전</span>
+										</div>
+										<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+											<img src = "${ctp}/icon/delete.png" />
+										</div>
+									</div>
+								</c:if>
+								
+							</c:forEach>
+						</c:if>
+						<c:if test="${fn:length(aVos)==0}">
+							<div class = "alarm"><span>알람이 없습니다</span></div>
+						</c:if>
+					</div>
+				</div>		<!-- alarmForm -->
+			</div>	<!-- box -->
 			<div>
 				<c:if test="${mVo.level==77}">
 					<span class = "text1" id = "adminPage">관리자페이지</span>

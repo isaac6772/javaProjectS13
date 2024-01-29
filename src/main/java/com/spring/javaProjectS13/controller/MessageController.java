@@ -153,6 +153,30 @@ public class MessageController {
 			model.addAttribute("msg","저장에 실패하였습니다.");
 			model.addAttribute("url","/admin/adminMain?src=adManager");
 		}
+		else if(adminFlag.equals("boardDeleteOk")) {
+			model.addAttribute("msg","선택하신 게시물이 삭제되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=boardManager");
+		}
+		else if(adminFlag.equals("boardDeleteNo")) {
+			model.addAttribute("msg","게시물 삭제에 실패하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=boardManager");
+		}
+		else if(adminFlag.equals("reportDeleteOk")) {
+			model.addAttribute("msg","해당 신고글이 삭제되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=reportManager");
+		}
+		else if(adminFlag.equals("reportDeleteNo")) {
+			model.addAttribute("msg","삭제에 실패하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=reportManager");
+		}
+		else if(adminFlag.equals("reportContentDeleteOk")) {
+			model.addAttribute("msg","해당 글이 삭제되었습니다.");
+			model.addAttribute("url","/admin/adminMain?src=reportManager");
+		}
+		else if(adminFlag.equals("reportContentDeleteNo")) {
+			model.addAttribute("msg","삭제에 실패하였습니다.");
+			model.addAttribute("url","/admin/adminMain?src=reportManager");
+		}
 		
 		return "include/message";
 	}
@@ -203,6 +227,10 @@ public class MessageController {
 			model.addAttribute("msg","글 등록에 실패하였습니다.");
 			model.addAttribute("url","board/boardInput");
 		}
+		else if(boardFlag.equals("boardContentNo")) {
+			model.addAttribute("msg","존재하지 않는 게시물입니다.");
+			model.addAttribute("url","board/boardList");
+		}
 		else if(boardFlag.equals("inputReplyOk")) {
 			model.addAttribute("msg","댓글이 등록되었습니다.");
 			model.addAttribute("url","board/boardContent?idx=" + idx);
@@ -241,6 +269,14 @@ public class MessageController {
 		}
 		else if(boardFlag.equals("updateReplyNo")) {
 			model.addAttribute("msg","댓글 수정에 실패하였습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("reportOk")) {
+			model.addAttribute("msg","신고가 접수되었습니다.");
+			model.addAttribute("url","board/boardContent?idx=" + idx);
+		}
+		else if(boardFlag.equals("reportNo")) {
+			model.addAttribute("msg","이미 신고접수된 글입니다.");
 			model.addAttribute("url","board/boardContent?idx=" + idx);
 		}
 		

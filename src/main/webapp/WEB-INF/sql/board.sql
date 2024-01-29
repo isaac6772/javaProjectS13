@@ -28,3 +28,5 @@ select *,case when content like '%<img src=%' then 1 else 0 end as result from b
 select *,(select bb.idx from board bb where bb.idx < b.idx order by idx desc limit 1) as nextIdx from board b;
 
 select * from board where idx < 20 limit 30;
+
+select count(*) from board where date(writeDate) = '2024-01-22'

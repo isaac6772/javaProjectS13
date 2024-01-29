@@ -104,7 +104,7 @@
 			
 		</div>
 		
-		<div class = "memberListBox">
+		<div class = "boardListBox">
 			<div class = "tableHeader">
 				<div class = "col col1">
 					<input type = "checkbox" onchange = "checkAll()" />
@@ -142,7 +142,7 @@
 			
 			<c:set var = "scrStartNo" value = "${pageVO.scrStartNo}" />
 			<c:forEach var = "vo" items = "${bVos}" varStatus = "st">
-				<form class = "memberList" id = "memberListForm${vo.idx}" action = "memberUpdate">
+				<form class = "boardList" id = "boardListForm${vo.idx}">
 					<div class = "col col1">
 						<input type = "checkbox" />
 					</div>
@@ -181,10 +181,10 @@
 		
 		<div class = "managerFooter">
 			<div class = "btnContainer">
-				<div class = "btn" onclick = "deleteSelectedMember()">선택삭제</div>
+				<div class = "btn" onclick = "deleteSelectedBoard()">선택삭제</div>
 				<!-- 선택 삭제할 회원 전체의 idx를 저장하는 폼태그 -->
-				<form name = "memberDeleteForm">
-					<input type = "hidden" id = "deleteMemberIdx" name = "memberIdxArray" />
+				<form name = "boardDeleteForm">
+					<input type = "hidden" id = "deleteBoardIdx" name = "boardIdxArray" />
 				</form>
 			</div>
 			<div class = "pagingContainer">

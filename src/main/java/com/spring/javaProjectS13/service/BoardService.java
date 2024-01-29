@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ReportVO;
 
 public interface BoardService {
 
@@ -40,5 +41,9 @@ public interface BoardService {
 	public int setGood(int idx, HttpSession session);
 
 	public int setBad(int idx, HttpSession session);
+
+	public int report(ReportVO vo);
+
+	public ReplyVO getReply(int reportIdx);
 
 }

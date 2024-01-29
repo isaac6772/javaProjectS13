@@ -73,6 +73,9 @@
 	<select id="getRecommend" resultType = "com.spring.javaProjectS13.vo.RecommendVO">
 		select * from recommend where boardType = 'board' and boardIdx = #{boardIdx} and memberIdx = #{memberIdx}
 	</select>
+	<select id="reportConfirm" resultType = "int">
+		select count(*) from report where reportType = #{reportType} and reportIdx = #{reportIdx} and reporter = #{reporter}
+	</select>
 	
 	
 	<insert id="boardInput">
@@ -89,6 +92,9 @@
 	</insert>
 	<insert id="replyAlarm">
 		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'boardReply',#{idx},now(),default)
+	</insert>
+	<insert id="report">
+		insert into report values (default,#{vo.reportType},#{vo.reportIdx},#{vo.memberIdx},#{vo.part},#{vo.content},now(),#{vo.reporter},null)
 	</insert>
 	
 	
@@ -121,6 +127,8 @@
 	<delete id="cancelRecommend">
 		delete from recommend where boardType = 'board' and boardIdx = #{idx} and memberIdx = #{memberIdx}
 	</delete>
-	
+	<delete id="deleteBoardReply">
+		delete from reply where boardType = 'board' and boardIdx = #{idx}
+	</delete>
 	
 </mapper>

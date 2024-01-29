@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaProjectS13.dao.AdminDAO">
+	
+	
+	<select id="reportList" resultType = "com.spring.javaProjectS13.vo.ReportVO">
+		select r.*,concat(m.nickName,'(',m.mid,')') as nickName,(select nickName from member where idx = r.reporter) as reporterNickName from report r join member m on 
+		r.memberIdx = m.idx 
+		<if test="vo.searchType=='content'">
+			and r.content like '%${vo.searchString}%'
+		</if>
+		<if test="vo.searchType!='content'">
+			and m.${vo.searchType} like '%${vo.searchString}%'
+		</if>
+		<if test="vo.part!='전체'">and part = #{vo.part} </if> 
+		<if test="vo.fromDate!=''">and <![CDATA[date_format(reportDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+		<if test="vo.toDate!=''">and <![CDATA[date_format(reportDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+		order by r.idx desc limit #{vo.startIndexNo},#{vo.pageSize} 
+	</select>
+	<select id="totRecCnt" resultType = "int">
+		select count(*) from report r join member m on 
+		r.memberIdx = m.idx 
+		<if test="vo.searchType=='content'">
+			and r.content like '%${vo.searchString}%'
+		</if>
+		<if test="vo.searchType!='content'">
+			and m.${vo.searchType} like '%${vo.searchString}%'
+		</if>
+		<if test="vo.part!='전체'">and part = #{vo.part} </if> 
+		<if test="vo.fromDate!=''">and <![CDATA[date_format(reportDate,'%Y-%m-%d') >= #{vo.fromDate}]]> </if>
+		<if test="vo.toDate!=''">and <![CDATA[date_format(reportDate,'%Y-%m-%d') <= #{vo.toDate}]]> </if>
+		order by r.idx desc 
+	</select>
+	<select id="serviceCnt" resultType = "int">
+		select count(*) from service where date(writeDate) = #{date}
+	</select>
+	<select id="boardCnt" resultType = "int">
+		select count(*) from board where date(writeDate) = #{date}
+	</select>
+	<select id="discussionCnt" resultType = "int">
+		select count(*) from discussion where date(createdDate) = #{date}
+	</select>
+	<select id="joinData" resultType = "int">
+		select count(*) from member where date(joinDate) = #{date}
+	</select>
+	<select id="keywordData" resultType = "com.spring.javaProjectS13.vo.KeywordVO">
+		select keyword,count(*) as cnt from keyword where <![CDATA[searchDate >= date_sub(now(), interval 30 day)]]> group by keyword order by cnt desc
+	</select>
+	<select id="boardAllCnt" resultType = "int">
+		select count(*) from board
+	</select>
+	<select id="getReplyCnt" resultType = "int">
+		select count(*) from reply
+	</select>
+	<select id="getMemberCnt" resultType = "int">
+		select count(*) from member
+	</select>
+	<select id="getVisitCnt" resultType = "int">
+		select sum(visitCnt) from member
+	</select>
+	
+	
+	<insert id="reportContentDeleteAlarm">
+		insert into alarm values (default,#{reporter},#{idxWho},'reportContentDeleteDone',null,now(),default);
+		insert into alarm values (default,#{memberIdx},#{idxWho},'reportContentDelete',null,now(),default);
+	</insert>
+	
+	
+	<update id="reportCheckChange">
+		update report set checkField = '삭제됨' where idx = #{idx}
+	</update>
+	
+	
+	<delete id="selectedBoardDelete">
+		delete from board where idx in (${boardIdxArray})
+	</delete>	
+	<delete id="selectedReportDelete">
+		delete from report where idx in (${reportIdxArray})
+	</delete>	
+	
+	
+</mapper>

@@ -67,7 +67,12 @@
 			</div>
 		</div>
 		<div class = "rightSide">
-			<iframe src = "${!empty param.myPage ? param.myPage : 'myPage1'}" name = "rightSide" id = "myPage"></iframe>
+			<c:if test="${pag==0}">
+				<iframe src = "${param.myPage!='myPage2' ? param.myPage : 'myPage2?pag=0'}" name = "rightSide" id = "myPage"></iframe>
+			</c:if>
+			<c:if test="${pag==1}">
+				<iframe src = "${param.myPage!='myPage2' ? param.myPage : 'myPage2?pag=1'}" name = "rightSide" id = "myPage"></iframe>
+			</c:if>
 		</div>
 	</div>
 </body>

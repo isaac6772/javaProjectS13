@@ -136,7 +136,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/myPageIframe", method = RequestMethod.GET)
-	public String myPageGet() {
+	public String myPageGet(Model model, @RequestParam(name = "pag", defaultValue = "0", required = false) int pag) {
+		model.addAttribute("pag",pag);
 		return "member/myPageIframe";
 	}
 	

@@ -75,7 +75,7 @@
 						<c:if test="${sLevel==77 || sIdx==bVo.memberIdx}">
 							<div onclick = "location.href='boardDelete?idx=${bVo.idx}'">삭제</div>
 						</c:if>
-						<div onclick = "report()">신고</div>
+						<div onclick = "report('${bVo.idx}','${bVo.memberIdx}','board')">신고</div>
 					</div>
 				</div>
 			</div>
@@ -140,7 +140,7 @@
 										<c:if test="${sLevel==77 || sIdx==vo.memberIdx || sIdx==bVo.memberIdx}">
 											<div onclick = "deleteReply(this,'${vo.idx}','${bVo.idx}')">삭제</div>
 										</c:if>
-										<div>신고</div>
+										<div onclick = "report('${vo.idx}','${vo.memberIdx}','boardReply')">신고</div>
 									</div>
 									<div class = "memberOptionModal">
 										<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${vo.memberIdx}'">회원정보</div>
@@ -192,7 +192,7 @@
 													<c:if test="${sLevel==77 || sIdx==vo.memberIdx || sIdx==bVo.memberIdx}">
 														<div onclick = "deleteReply(this,'${reVo.idx}','${bVo.idx}')">삭제</div>
 													</c:if>
-													<div>신고</div>
+													<div onclick = "report('${reVo.idx}','${reVo.memberIdx}','boardReply')">신고</div>
 												</div>
 												<div class = "memberOptionModal">
 													<div class = "item" onclick = "location.href='${ctp}/member/memberInfo?idx=${reVo.memberIdx}'">회원정보</div>
@@ -215,12 +215,27 @@
 	</div>	<!-- boardContentContainer-end -->
 	
 	<div class = "reportModalContainer">
-		<div class = "reportModal" id = "reportModal">
+		<form class = "reportModal" action = "report" method = "post" name = "reportModal" id = "reportModal">
 			<div class = "title">
 				<img src = "${ctp}/icon/alert.png" />
 				<span>신고하기</span>
 			</div>
-		</div>
+			<div class = "content">
+				<select class=  "comboBox" name = "part">
+					<option>욕설/비방</option>
+					<option>성희롱</option>
+					<option>기타</option>
+				</select>
+				<textarea rows="7" placeholder = "상세 사유를 입력해주세요" name = "content" id = "reportContent"></textarea>
+			</div>
+			<div class = "btnBox">
+				<div class = "btn" onclick = "submitReport()">제출</div>
+			</div>
+			<input type = "hidden" name = "reportType" id = "reportType" />
+			<input type = "hidden" name = "reportIdx" id = "reportIdx" />
+			<input type = "hidden" name = "memberIdx" id = "memberIdx" />
+			<input type = "hidden" name = "reporter" value = "${sIdx}" />
+		</form>
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

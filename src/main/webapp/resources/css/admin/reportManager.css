@@ -4,12 +4,12 @@ body {
 	margin : 0px;
 	font-family: 'Nanum Gothic';
 }
-.memberManagerContainer {
+.reportManagerContainer {
 	width : 100%;
 	box-sizing: border-box;
 	padding : 30px;
 }
-.memberManagerContainer .conditionBox {
+.reportManagerContainer .conditionBox {
 	display : flex;
 	border : 1px solid #c2c2c2;
 	border-radius : 3px;
@@ -19,12 +19,12 @@ body {
 	padding : 15px 27px;
 	box-sizing: border-box;
 }
-.memberManagerContainer .conditionBox .searchBtn {
+.reportManagerContainer .conditionBox .searchBtn {
 	flex : 1;
 	display : flex;
 	align-items: center;
 }
-.memberManagerContainer .conditionBox .searchBtn .btn {
+.reportManagerContainer .conditionBox .searchBtn .btn {
 	width : 76px;
 	height : 50px;
 	margin-left : auto;
@@ -35,84 +35,84 @@ body {
     color: white;
     cursor : pointer;
 }
-.memberManagerContainer .conditionBox .condition .row {
+.reportManagerContainer .conditionBox .condition .row {
 	display : flex;
 	padding : 8px 0px;
 }
-.memberManagerContainer .conditionBox .condition .row .col1 {
+.reportManagerContainer .conditionBox .condition .row .col1 {
 	width : 150px;
 }
-.memberManagerContainer .conditionBox .condition .row .col1 img {
+.reportManagerContainer .conditionBox .condition .row .col1 img {
 	width : 17px;
 	margin-top : 1px;
 }
-.memberManagerContainer .conditionBox .condition .row .col1 .text1 {
+.reportManagerContainer .conditionBox .condition .row .col1 .text1 {
 	vertical-align: top;
 }
-.memberManagerContainer .conditionBox .condition .row1 .col2 select {
+.reportManagerContainer .conditionBox .condition .row1 .col2 select {
     width: 55px;
     border-radius: 5px ;
     height: 22px;
     border: 1px solid #c1c1c1;
 }
-.memberManagerContainer .conditionBox .condition .row2 .col2 input {
+.reportManagerContainer .conditionBox .condition .row2 .col2 input {
 	width: 100px;
     border-radius: 5px ;
     height: 22px;
     border: 1px solid #c1c1c1;
 }
-.memberManagerContainer .conditionBox .condition .row3 .col2 input {
+.reportManagerContainer .conditionBox .condition .row3 .col2 input {
 	width: 250px;
     border-radius: 5px ;
     height: 24px;
     border: 1px solid #c1c1c1;
     padding : 0px 0px 0px 4px;
 }
-.memberManagerContainer .conditionBox .condition .row3 .col2 select {
+.reportManagerContainer .conditionBox .condition .row3 .col2 select {
 	width: 80px;
     border-radius: 5px ;
     height: 26px;
     border: 1px solid #c1c1c1;
     vertical-align: top;
 }
-.memberManagerContainer .title {
+.reportManagerContainer .title {
 	font-size : 22px;
 	font-weight : bolder;
 }
-.memberManagerContainer .title img {
+.reportManagerContainer .title img {
     width: 24px;
     vertical-align: bottom;
 }
-.memberManagerContainer .result {
+.reportManagerContainer .result {
 	margin-bottom : 20px;
 	display : flex;
 }
-.memberManagerContainer .result select {
+.reportManagerContainer .result select {
     border-radius: 3px;
     height: 23px;
     border: 1px solid #b6b6b6;
 }
-.memberManagerContainer .result .text {
+.reportManagerContainer .result .text {
 	flex : 0.5;
 }
-.memberManagerContainer .result .text .text1 {
+.reportManagerContainer .result .text .text1 {
 	font-weight : bolder;
 }
-.memberManagerContainer .result .text .text2 {
+.reportManagerContainer .result .text .text2 {
 	font-size : 14px;
 }
-.memberManagerContainer .result .text .text3 {
+.reportManagerContainer .result .text .text3 {
 	color : red;
 	font-size : 14px;
 }
-.memberManagerContainer .result .text .text4 {
+.reportManagerContainer .result .text .text4 {
 	font-size : 14px;
 }
-.memberManagerContainer .result .pageSizeBox {
+.reportManagerContainer .result .pageSizeBox {
 	flex : 0.5;
 	text-align : right;
 }
-.memberManagerContainer .boardListBox {
+.reportManagerContainer .reportListBox {
 	width : 100%;
 	border : 1px solid #c2c2c2;
 	border-radius : 3px;
@@ -120,21 +120,21 @@ body {
     box-sizing: border-box;
     margin-bottom : 20px;
 }
-.memberManagerContainer .boardListBox .tableHeader {
+.reportManagerContainer .reportListBox .tableHeader {
 	display : flex;
 	margin-bottom: 10px;
 }
-.memberManagerContainer .boardListBox .boardList {
+.reportManagerContainer .reportListBox .reportList {
 	display : flex;
 	padding : 10px 0px;
 	line-height: 23px;
 	height: 44px;
     box-sizing: border-box;
 }
-.memberManagerContainer .boardListBox .boardList:hover {
+.reportManagerContainer .reportListBox .reportList:hover {
 	background-color : #f3f3f3;
 }
-.memberManagerContainer .boardListBox .line {
+.reportManagerContainer .reportListBox .line {
 	border-top : 1px solid #dcdbdb;
 }
 .tableHeader .col {
@@ -143,80 +143,45 @@ body {
 	font-weight: bolder;
 	color : #4e4e4e;
 }
-.boardList .col {
+.reportList .col {
 	text-align : center;
 	color : #4e4e4e;
 	font-size : 14px;
     box-sizing: border-box;
 }
-.boardList .col input.update {
-	border: 1px solid #c3bdbd;
-    border-radius: 3px;
-    outline: none;
-    padding-left: 5px;
-    box-sizing: border-box;
-}
-.boardList .col3 input.update {
-	width : 110px;
-}
-.boardList .col4 input.update {
-	width : 110px;
-}
-.boardList .col5 input.update {
-	width : 110px;
-}
-.boardList .col6 input.update {
-	width : 150px;
-}
-.boardList .col7 select.update {
+.reportListBox .col1 {
 	width : 50px;
 }
-.boardList .col8 input.update {
-	width : 50px;
+.reportListBox .col2 {
+	width : 60px;
 }
-.boardList .col select.update {
-	border: 1px solid #c3bdbd;
-    border-radius: 3px;
+.reportListBox .col3 {
+	width : 200px;
 }
-.boardListBox .col1 {
-	width : 50px;
+.reportListBox .col4 {
+	width : 100px;
 }
-.boardListBox .col2 {
-	width : 50px;
-}
-.boardListBox .col3 {
+.reportListBox .col5 {
 	width : 120px;
 }
-.boardListBox .col4 {
-	flex : 1;
+.reportListBox .col6 {
+	width : 120px;
 }
-.boardListBox .boardList .col4 {
-	text-align : left;
+.reportListBox .col7 {
+	flex : 1.2;
 }
-.boardListBox .col5 {
-	width : 80px;
+.reportListBox .col8 {
+	width : 130px;
 }
-.boardListBox .col6 {
-	width : 80px;
+.reportListBox .col9 {
+	flex : 0.8;
 }
-.boardListBox .col7 {
-	width : 80px;
-}
-.boardListBox .col8 {
-	width : 80px;
-}
-.boardListBox .col9 {
-	width : 150px;
-}
-.boardListBox .col10 {
-	flex: 0.3;
-}
-.boardListBox .col10 img {
+.reportListBox .col9 img {
 	width: 23px;
     vertical-align: top;
     cursor : pointer;
 }
-.boardListBox .col10 .btn {
+.reportListBox .col9 .btn {
     border-radius: 3px;
     box-sizing: border-box;
     padding: 0px 4px;
@@ -228,18 +193,18 @@ body {
     display : none;
     cursor : pointer;
 }
-.boardListBox .col10 .btnSave {
+.reportListBox .col9 .btnSave {
 	background-color: #25b7df;
 }
-.boardListBox .col10 .btnCancel {
+.reportListBox .col9 .btnCancel {
 	background-color : #ff9f00;
 }
-.memberManagerContainer .pagingBox {
+.reportManagerContainer .pagingBox {
 	display : flex;
 	justify-content : center;
 	margin : auto;
 }
-.memberManagerContainer .pagingBox .item {
+.reportManagerContainer .pagingBox .item {
 	cursor : pointer;
 	border : 1px solid #8d8989;
 	border-radius : 3px;
@@ -251,25 +216,25 @@ body {
     font-size : 13px;
     color: #2d2d2d;
 }
-.memberManagerContainer .pagingBox .item img {
+.reportManagerContainer .pagingBox .item img {
 	width : 50%;
 	height : 50%;
 }
-.memberManagerContainer .pagingBox .number.selected {
+.reportManagerContainer .pagingBox .number.selected {
 	background-color: gray;
 	color : white;
 	font-weight : bolder;
 }
-.memberManagerContainer .managerFooter {
+.reportManagerContainer .managerFooter {
 	display : flex;	
 }
-.memberManagerContainer .managerFooter .btnContainer {
+.reportManagerContainer .managerFooter .btnContainer {
 	flex : 1;
 }
-.memberManagerContainer .managerFooter .col3 {
+.reportManagerContainer .managerFooter .col3 {
 	flex : 1;
 }
-.memberManagerContainer .managerFooter .btnContainer .btn {
+.reportManagerContainer .managerFooter .btnContainer .btn {
 	background-color : red;
 	font-size : 14px;
 	color : white;

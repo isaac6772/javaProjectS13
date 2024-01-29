@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+body {
+	margin : 0px;
+	padding : 0px;
+	font-family: 'Nanum Gothic';
+}
+.dashboardContainer {
+	padding : 25px 35px;
+}
+.dashboardContainer > .title {
+	font-size : 35px;
+	font-weight: bolder;
+    margin-bottom: 22px;
+}
+.dashboardContainer .row {
+	display : flex;
+	justify-content: space-between;
+	margin-bottom : 25px;
+}
+.dashboardContainer .row > .box {
+	padding : 20px;
+	box-shadow: 0px 0px 7px 0px rgba(0,0,0,.14);
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+.row1 .box {
+	width : 24%;
+	position : relative;
+}
+.row1 .box .part {
+	font-size: 15px;
+    font-weight: 700;
+    color: #969696;
+}
+.row1 .box .cnt {
+    margin-top: 12px;
+    font-size: 27px;
+    font-weight: bolder;
+    color : #5a5a5a;
+}
+.row1 .box .icon {
+	position : absolute;
+	right : 8px;
+	top : 34px;
+	width : 45px;
+}
+.row1 .box1 {
+	border-bottom : 5px solid #2f89ff;
+}
+.row1 .box2 {
+	border-bottom : 5px solid #FF9800;
+}
+.row1 .box3 {
+	border-bottom : 5px solid #58dc86;
+}
+.row1 .box4 {
+	border-bottom : 5px solid #fff700;
+}
+
+
+
+
+
+.row2 .box .title {
+	font-size : 21px;
+	font-weight: 700;
+}
+.row2 .box1 {
+	width : 49.2%;
+}
+.row2 .box2 {
+	width : 49.2%;
+}
+
+
+
+
+
+
+.row3 .box .title {
+	font-size : 21px;
+	font-weight: 700;
+}
+.row3 .box1 {
+	width : 31.3%;
+}
+.row3 .box2 {
+	width : 67.3%;
+}

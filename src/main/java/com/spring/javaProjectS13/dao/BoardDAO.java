@@ -8,6 +8,7 @@ import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.RecommendVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ReportVO;
 import com.spring.javaProjectS13.vo.ViewNumVO;
 
 public interface BoardDAO {
@@ -55,5 +56,11 @@ public interface BoardDAO {
 	public int boardRecommendUpdate(@Param("idx") int idx, @Param("field") String field, @Param("flag") int flag);
 
 	public void replyAlarm(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho, @Param("idx") int idx);
+
+	public int reportConfirm(@Param("reportType") String reportType, @Param("reportIdx") int reportIdx, @Param("reporter") int reporter);
+
+	public int report(@Param("vo") ReportVO vo);
+
+	public void deleteBoardReply(@Param("idx") int idx);
 
 }

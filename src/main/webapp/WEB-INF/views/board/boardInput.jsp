@@ -31,6 +31,9 @@
 						<option>일상</option>
 						<option>스포츠</option>
 						<option>연예</option>
+						<c:if test="${sLevel==77}">
+							<option style = "color : red;font-weight : bolder">공지</option>
+						</c:if>
 					</select>
 				</div>
 				<div class = "row2">

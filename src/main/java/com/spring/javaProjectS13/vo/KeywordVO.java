@@ -7,4 +7,6 @@ public class KeywordVO {
 	private int idx;
 	private String keyword;
 	private String searchDate;
+	
+	private int cnt;
 }

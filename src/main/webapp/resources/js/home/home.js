@@ -7,6 +7,8 @@ let root = url+appCtx;
 let ws;
 
 $(function() {
+	$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
+	
 	$('#login').on('click',function() {
 		let mid = $('#mid').val().trim();
 		let pwd = $('#pwd').val().trim();
@@ -226,4 +228,53 @@ function returnFriendList() {
 	$('.friendList').load(appCtx + "/friendList?idx=" + memberIdx + " .friend");
 	
 	ws.close();
+}
+
+function alarmFormShow() {
+	if($('.memberBox .alarmForm').is(':hidden')) {
+		$('.memberBox .alarmForm').show();
+		
+		$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", function() {
+			$.ajax({
+				url : appCtx + "/member/alarmRead",
+				success : function() {
+					alarmTotCntCalc();
+				},
+				error : function() {
+					alert("전송오류");
+				}
+			});
+		});
+	}
+	else {
+		$('.memberBox .alarmForm').hide();
+		$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
+	}
+}
+
+function alarmTotCntCalc() {
+	let length = 0;
+	length = $('.alarm.noRead').length;
+	if(length != 0) {
+		$('#alarmTotal').show();
+		$('#alarmTotal').html(length);	
+	}
+	else $('#alarmTotal').hide();
+}
+
+function deleteAlarm(idx) {
+	$.ajax({
+		url : appCtx + "/member/deleteAlarm",
+		data : {idx : idx},
+		type : "post",
+		success : function(res) {
+			if(res==1) {
+				$('#alarmLoadLayer').load(appCtx + "/member/alarmList" + " .alarm", alarmTotCntCalc);
+			}
+			else alert("삭제실패");
+		},
+		error : function() {
+			alert("전송오류");
+		}
+	});
 }

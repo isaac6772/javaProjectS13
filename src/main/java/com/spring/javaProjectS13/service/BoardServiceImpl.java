@@ -20,6 +20,7 @@ import com.spring.javaProjectS13.vo.BoardVO;
 import com.spring.javaProjectS13.vo.PageVO;
 import com.spring.javaProjectS13.vo.RecommendVO;
 import com.spring.javaProjectS13.vo.ReplyVO;
+import com.spring.javaProjectS13.vo.ReportVO;
 import com.spring.javaProjectS13.vo.ViewNumVO;
 
 @Service
@@ -133,7 +134,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int inputReply(ReplyVO vo, HttpSession session) {
 		BoardVO bVo = boardDAO.boardContent(vo.getBoardIdx());
-		boardDAO.replyAlarm(bVo.getMemberIdx(), (int)session.getAttribute("sIdx"), bVo.getIdx());
+		
+		if(bVo.getMemberIdx() != (int)session.getAttribute("sIdx")) {	// 자기 게시물에 자기가 단 댓글은 알람이 오지 않음
+			boardDAO.replyAlarm(bVo.getMemberIdx(), (int)session.getAttribute("sIdx"), bVo.getIdx());
+		}
 		
 		return boardDAO.inputReply(vo);
 	}
@@ -210,6 +214,7 @@ public class BoardServiceImpl implements BoardService {
 		// 관리자가 아니거나 자기 게시물이 아닌경우 삭제할 수 없도록 백엔드 체크(get방식으로 요청을 보내는 것이기때문에 필요한 듯 하다)
 		if(level!=77 && loginIdx!=memberIdx) return 0;
 		
+		boardDAO.deleteBoardReply(idx);
 		return boardDAO.boardDelete(idx);
 	}
 
@@ -298,6 +303,19 @@ public class BoardServiceImpl implements BoardService {
 			return res;
 		}
 		else return 0;
+	}
+
+	@Override
+	public int report(ReportVO vo) {
+		int res = boardDAO.reportConfirm(vo.getReportType(), vo.getReportIdx(), vo.getReporter());	// 중복된 신고인지 확인 후 신고접수해야됨
+		if(res >= 1) return 0;
+		
+		return boardDAO.report(vo);
+	}
+
+	@Override
+	public ReplyVO getReply(int reportIdx) {
+		return boardDAO.getReply(reportIdx);
 	}
 
 }

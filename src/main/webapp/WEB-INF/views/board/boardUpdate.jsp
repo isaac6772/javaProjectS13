@@ -31,6 +31,9 @@
 						<option ${vo.part=='일상'?'selected':''}>일상</option>
 						<option ${vo.part=='스포츠'?'selected':''}>스포츠</option>
 						<option ${vo.part=='연예'?'selected':''}>연예</option>
+						<c:if test="${sLevel==77}">
+							<option ${vo.part=='공지'?'selected':''} style = "color : red;font-weight : bolder">공지</option>
+						</c:if>
 					</select>
 				</div>
 				<div class = "row2">

@@ -17,13 +17,10 @@ $(function() {
 	});
 	
 	$('.reportModalContainer').click(function(e) {
-		console.log("1");
-		console.log(e);
-		console.log(e.target);
-		console.log($('.reportModal'));
-		console.log($('.reportModal')[0]);
-		console.log(document.getElementById('reportModal'));
-		if(e.target != $('.reportModal')[0]) $('.reportModalContainer').hide();
+		if(e.target == $('.reportModalContainer')[0]) {
+			$('.reportModalContainer').hide();
+			reportModal.reset();
+		}
 	});
 });
 
@@ -190,6 +187,17 @@ function requestFriend(idx,e) {
 	});
 }
 
-function report() {
+function report(reportIdx, memberIdx, reportType) {
+	$('#reportType').val(reportType);
+	$('#reportIdx').val(reportIdx);
+	$('#memberIdx').val(memberIdx);
 	$('.reportModalContainer').show();
+}
+
+function submitReport() {
+	if($('#reportContent').val().trim()=='') {
+		alert("상세 사유를 입력해주세요");
+		return false;
+	}
+	reportModal.submit();
 }

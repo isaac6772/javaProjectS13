@@ -276,6 +276,9 @@
 	border-bottom : 1px solid #e7e7e7;
 	font-size : 13px;
 }
+.userInfo .alarmForm .alarm .alarmText {
+	cursor : pointer;
+}
 .userInfo .alarmForm .alarm.noRead .alarmText {
 	font-weight: bolder;
 	font-size : 14px;
