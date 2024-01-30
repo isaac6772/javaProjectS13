@@ -289,6 +289,10 @@ public class MessageController {
 			model.addAttribute("msg","등록되었습니다.");
 			model.addAttribute("url","discussion/discussionList");
 		}
+		else if(flag.equals("makeDiscussionNoTime")) {
+			model.addAttribute("msg","한 시간 이후 부터 개설가능합니다.");
+			model.addAttribute("url","discussion/discussionList");
+		}
 		else if(flag.equals("makeDiscussionNo")) {
 			model.addAttribute("msg","토론 등록에 실패하였습니다.");
 			model.addAttribute("url","discussion/discussionList");

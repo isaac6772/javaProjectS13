@@ -93,6 +93,9 @@
 	<insert id="replyAlarm">
 		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'boardReply',#{idx},now(),default)
 	</insert>
+	<insert id="reReplyAlarm">
+		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'boardReReply',#{boardIdx},now(),default)
+	</insert>
 	<insert id="report">
 		insert into report values (default,#{vo.reportType},#{vo.reportIdx},#{vo.memberIdx},#{vo.part},#{vo.content},now(),#{vo.reporter},null)
 	</insert>

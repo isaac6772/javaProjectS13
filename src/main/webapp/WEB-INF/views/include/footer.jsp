@@ -10,7 +10,10 @@
 </head>
 <body>
 	<div class = "footerContainer">
-		
+		<div class = "text">
+			design by 허성진<br/>
+			copyright by 허성진
+		</div>
 	</div>
 </body>
 </html>

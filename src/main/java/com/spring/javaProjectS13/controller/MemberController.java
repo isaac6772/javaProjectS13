@@ -118,7 +118,7 @@ public class MemberController {
 	@RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
 	public String memberInfoGet(Model model, int idx) {
 		MemberVO vo = memberService.memberIdxSearch(idx);
-		System.out.println(vo);
+		
 		model.addAttribute("vo",vo);
 		return "member/memberInfo";
 	}

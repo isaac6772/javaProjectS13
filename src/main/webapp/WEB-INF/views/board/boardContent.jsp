@@ -206,8 +206,8 @@
 									</div>
 								</c:if>
 							</c:forEach>
-						</div>
-					</div>
+						</div>		<!-- reReplyForm -->
+					</div>		<!-- replyGroup -->
 				</c:if>
 			</c:forEach>
 		</div>	<!-- contentContainer-end -->

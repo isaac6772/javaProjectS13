@@ -40,6 +40,7 @@ public class DiscussionController {
 		int res = discussionService.makeDiscussion(file,vo,session);
 		
 		if(res==1) return "redirect:/message/discussion/makeDiscussionOk";
+		else if(res==-1) return "redirect:/message/discussion/makeDiscussionNoTime";
 		else return "redirect:/message/discussion/makeDiscussionNo";
 	}
 	

@@ -10,7 +10,7 @@ $(function () {
  	let appCtx = pathname.substring(0, pathname.indexOf("/",2));
  	let root = url+appCtx;
  	
-	ws = new WebSocket("ws://"+root+"/chat?idx=" + idx + "&memberIdx=" + memberIdx);
+	ws = new WebSocket("ws://"+root+"/chat?idx=" + idx + "&memberIdx=" + sIdx);
 	
     ws.onopen = function() {
         
@@ -20,20 +20,38 @@ $(function () {
 		let msgType = JSON.parse(e.data).msgType;
 		
         if(msgType=='member') {
-			let str = '<div class = "member member'+data.idx+'"><img src='+appCtx+'/profile/'+data.profile+' /><span>'+data.nickName+'</span></div>';
+			let str = '<div class = "member member'+data.idx+'"><img src='+appCtx+'/profile/'+data.profile+' /><span>';
+			if(data.idx == sIdx) {
+				str += data.nickName+'(나)</span></div>';
+			}
+			else {
+				str += data.nickName+'</span></div>';
+			}
+			
 			if(data.participant==1) {
 				$('.memberBox .participant').append(str);	
 			}
 			else {
 				$('.memberBox .spectator').append(str);
-				$('.chatBox .typing').hide();	
+				if(data.idx == sIdx) $('.chatBox .typing').hide();
 			}
 		}
 		else if(msgType=='memberList') {
 			for(let member of data.data) {
-				let str = '<div class = "member member'+member.idx+'"><img src='+appCtx+'/profile/'+member.profile+' /><span>'+member.nickName+'</span></div>';
+				let str = '<div class = "member member'+member.idx+'"><img src='+appCtx+'/profile/'+member.profile+' /><span>';
+				
+				if(member.idx == sIdx) {
+					str += member.nickName+'(나)</span></div>';
+				}
+				else {
+					str += member.nickName+'</span></div>';
+				}
+				
 				if(member.participant==1) $('.memberBox .participant').append(str);
-				else $('.memberBox .spectator').append(str);
+				else {
+					$('.memberBox .spectator').append(str);
+					if(member.idx == sIdx) $('.chatBox .typing').hide();
+				}
 			}
 		}
 		else if(msgType=='remove') {
@@ -63,7 +81,7 @@ $(function () {
 			}
 		}
 		else if(msgType=='msg') {
-			if(data.memberIdx==memberIdx) {
+			if(data.memberIdx==sIdx) {
 				let str = '<div class = "myChat"><div class = "text">'+data.data+'</div></div>';
 				$('.chatBox .chatArea').append(str);
 			}
@@ -104,7 +122,7 @@ function textSend(e) {
 			return false;
 		}
 		text = text.replace(/\n|\r/g,"");
-		let msg = "{\"msgType\":\"msg\",\"data\":\""+text+"\",\"memberIdx\":\""+memberIdx+"\",\"discussionIdx\":\""+idx+"\"}";
+		let msg = "{\"msgType\":\"msg\",\"data\":\""+text+"\",\"memberIdx\":\""+sIdx+"\",\"discussionIdx\":\""+idx+"\"}";
 		ws.send(msg);
 		$('#textMsg').val('');
 	}

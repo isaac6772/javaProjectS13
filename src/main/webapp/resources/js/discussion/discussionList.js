@@ -88,9 +88,12 @@ function reservation(idx) {
 				alert("입장 30분전에는 예약하실 수 없습니다.");
 				location.reload();
 			}
-			else if(res==1){
+			else if(res==1) {
 				alert("에약되었습니다. 토론시간 10분전부터 입장가능합니다.");
 				location.reload();
+			}
+			else if(res==-1) {
+				alert("인원이 초과되었습니다.");
 			}
 			else {
 				alert("로그인 후 이용바랍니다.");

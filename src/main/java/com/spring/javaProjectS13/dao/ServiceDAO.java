@@ -32,4 +32,6 @@ public interface ServiceDAO {
 
 	public int inputAd(@Param("file") String file, @Param("serviceIdx") int serviceIdx);
 
+	public void serviceReplyAlarm(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int memberIdxWho, @Param("serviceIdx") int serviceIdx);
+
 }

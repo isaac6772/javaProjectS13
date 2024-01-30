@@ -26,7 +26,7 @@
 						
 							<c:if test="${alarm.alarmType=='boardReply'}">
 								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
-									<div class = "alarmText" onclick = "location.href='${ctp}/board/boardContent?idx=${alarm.alarmTypeIdx}'">
+									<div class = "alarmText" onclick = "window.top.location.href='${ctp}/board/boardContent?idx=${alarm.alarmTypeIdx}'">
 										<span>${alarm.nickName}</span>
 										<span>님이</span>
 										<span>내 글</span><span>에 댓글을 남기셨습니다.</span>
@@ -39,10 +39,26 @@
 									</div>
 								</div>
 							</c:if>
+						
+							<c:if test="${alarm.alarmType=='boardReReply'}">
+								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+									<div class = "alarmText" onclick = "window.top.location.href='${ctp}/board/boardContent?idx=${alarm.alarmTypeIdx}'">
+										<span>${alarm.nickName}</span>
+										<span>님이</span>
+										<span>내 댓글</span><span>에 답글을 남기셨습니다.</span>
+									</div>
+									<div class = "timeDiff">
+										<span>${alarm.timeDiff} 전</span>
+									</div>
+									<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+										<img src = "${ctp}/icon/delete.png" />
+									</div>
+								</div>
+							</c:if>
 							 
 							<c:if test="${alarm.alarmType=='friendRequest'}">
 								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
-									<div class = "alarmText" onclick = "location.href='${ctp}/member/myPageIframe?myPage=myPage2&pag=1'">
+									<div class = "alarmText" onclick = "window.top.location.href='${ctp}/member/myPageIframe?myPage=myPage2&pag=1'">
 										<span>${alarm.nickName}</span>
 										<span>님이 친구요청을 보내셨습니다.</span>
 									</div>
@@ -73,6 +89,20 @@
 								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
 									<div class = "alarmText" style = "cursor : text;">
 										<span>회원님의 게시글이 신고접수되어 삭제되었습니다.</span>
+									</div>
+									<div class = "timeDiff">
+										<span>${alarm.timeDiff} 전</span>
+									</div>
+									<div class = "imgBox" onclick = "deleteAlarm('${alarm.idx}')">
+										<img src = "${ctp}/icon/delete.png" />
+									</div>
+								</div>
+							</c:if>
+							 
+							<c:if test="${alarm.alarmType=='serviceReply'}">
+								<div class = "alarm ${alarm.readCheck == '안읽음' ? 'noRead' : ''}">
+									<div class = "alarmText" onclick = "location.href='${ctp}/service/serviceContent?idx=${alarm.alarmTypeIdx}'">
+										<span>고객센터에 문의하신 글에 관리자가 답변을 작성하였습니다.</span>
 									</div>
 									<div class = "timeDiff">
 										<span>${alarm.timeDiff} 전</span>

@@ -116,8 +116,6 @@ public class NewsServiceImpl implements NewsService {
 					news.setTitle(news.getTitle().replaceAll("<[^>]+>", ""));
 				}
 				
-				
-				
 				// 날짜 차이 계산하기
 				SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z",Locale.ENGLISH);
 				Date date = sdf.parse(news.getPubDate());

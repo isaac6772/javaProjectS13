@@ -39,6 +39,9 @@
 	<insert id="inputAd">
 		insert into ad values (default,#{serviceIdx},#{file},default);
 	</insert>
+	<insert id="serviceReplyAlarm">
+		insert into alarm values (default,#{memberIdx},#{memberIdxWho},'serviceReply',#{serviceIdx},now(),default)
+	</insert>
 	
 	
 	<delete id="deleteService">

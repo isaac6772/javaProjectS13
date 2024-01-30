@@ -157,7 +157,7 @@
 						</c:if>
 					</div>
 					<div class = "col col5">
-						<c:if test="${vo.reportType=='board'}">게시판</c:if>
+						<c:if test="${vo.reportType=='board'}">게시글</c:if>
 						<c:if test="${vo.reportType=='boardReply'}">댓글</c:if>
 					</div>
 					<div class = "col col6">

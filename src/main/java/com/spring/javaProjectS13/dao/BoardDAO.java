@@ -63,4 +63,6 @@ public interface BoardDAO {
 
 	public void deleteBoardReply(@Param("idx") int idx);
 
+	public void reReplyAlarm(@Param("memberIdx") int memberIdx, @Param("memberIdxWho") int myIdx, @Param("boardIdx") int boardIdx);
+
 }

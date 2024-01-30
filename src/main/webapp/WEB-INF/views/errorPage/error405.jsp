@@ -8,12 +8,14 @@
 	<title>error405.jsp</title>
 </head>
 <body>
-	<h2>에러 발생시 호출되는 페이지입니다.(error405.jsp)</h2>
-	<hr/>
-	<h2>현재 시스템 정비중입니다.(405에러 발생시 보이는 화면)</h2>
-	<div>(사용에 불편을 드려서 죄송합니다.)</div>
-	<div>빠른시일내에 복구되도록 하겠습니다.</div>
-	<hr/>
-	<a href = "${ctp}/errorPage/errorMain">돌아가기</a>
+	<div style = "margin : 100px auto; width : 60%;">
+		<div style = "text-align : center; font-size : 30px; font-weight : bolder;">에러가 발생하였습니다(에러코드:405)</div>
+		<div style = "text-align : center; margin-top : 50px; margin-bottom : 70px;">
+			<img src = "${ctp}/icon/error.png" />
+		</div>
+		<div style = "text-align : center;">
+			<a href = "${ctp}/home">돌아가기</a>
+		</div>
+	</div>
 </body>
 </html>

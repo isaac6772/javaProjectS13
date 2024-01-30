@@ -19,7 +19,7 @@ public interface DiscussionDAO {
 
 	public int reservationTimeCheck(@Param("idx") int idx);
 
-	public void addParticipant(@Param("idx") int idx, @Param("memberIdx") int memberIdx);
+	public int addParticipant(@Param("idx") int idx, @Param("memberIdx") int memberIdx);
 
 	public int enterTimeCheck(@Param("idx") int idx);
 

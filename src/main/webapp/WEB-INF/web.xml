@@ -55,7 +55,7 @@
 	</filter-mapping>
 	
 	<!-- 에러(400/404/405/500 등)발생시에 처리될 페이지 호출하기 -->
-	<!-- <error-page>
+	<error-page>
 		<error-code>404</error-code>
 		<location>/errorPage/error404</location>
 	</error-page>
@@ -68,17 +68,15 @@
 		<location>/errorPage/error400</location>
 	</error-page>
 	<error-page>
+		<error-code>500</error-code>
+		<location>/errorPage/error500</location>
+	</error-page>
+	<error-page>
 		<exception-type>java.lang.NumberFormatException</exception-type>
 		<location>/errorPage/errorNumberFormat</location>
 	</error-page>
 	<error-page>
 		<exception-type>java.lang.NullPointerException</exception-type>
 		<location>/errorPage/errorNullPointer</location>
-	</error-page> -->
-	<!-- 
-	<error-page>
-		<error-code>500</error-code>
-		<location>/errorPage/error500</location>
 	</error-page>
-	 -->
 </web-app>

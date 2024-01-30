@@ -118,6 +118,7 @@ public class ServiceServiceImpl implements ServiceService {
 			if(!fileList.get(0).getOriginalFilename().equals("")) {
 				vo.setFileName(fileName);
 			}
+			serviceDAO.serviceReplyAlarm(serviceDAO.serviceContent(vo.getRefIdx()).getMemberIdx(),vo.getMemberIdx(),vo.getRefIdx());	// 답변 작성후 알람보내기
 			res = serviceDAO.serviceReply(vo);
 		} catch (IOException e) {
 			e.printStackTrace();

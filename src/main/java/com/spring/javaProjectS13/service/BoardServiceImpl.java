@@ -135,6 +135,9 @@ public class BoardServiceImpl implements BoardService {
 	public int inputReply(ReplyVO vo, HttpSession session) {
 		BoardVO bVo = boardDAO.boardContent(vo.getBoardIdx());
 		
+		if(vo.getReplyIdx() != 0) {		// 대댓글인 경우 댓글게시자와 게시물작성자 둘 다에게 알람을 보냄
+			boardDAO.reReplyAlarm(boardDAO.getReply(vo.getReplyIdx()).getMemberIdx(), (int)session.getAttribute("sIdx"), bVo.getIdx());
+		}
 		if(bVo.getMemberIdx() != (int)session.getAttribute("sIdx")) {	// 자기 게시물에 자기가 단 댓글은 알람이 오지 않음
 			boardDAO.replyAlarm(bVo.getMemberIdx(), (int)session.getAttribute("sIdx"), bVo.getIdx());
 		}

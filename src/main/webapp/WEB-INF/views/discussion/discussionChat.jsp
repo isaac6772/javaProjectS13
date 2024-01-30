@@ -12,7 +12,7 @@
 		'use strict';
 		
 		let idx = '${dVo.idx}';
-		let memberIdx = '${sIdx}';
+		let sIdx = '${sIdx}';
 	</script>
 	<script src = "${ctp}/js/discussion/discussionChat.js"></script>
 </head>

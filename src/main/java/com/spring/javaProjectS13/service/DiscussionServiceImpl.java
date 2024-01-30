@@ -3,6 +3,8 @@ package com.spring.javaProjectS13.service;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +56,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Override
 	public int makeDiscussion(MultipartFile file, DiscussionVO vo, HttpSession session) {
 		if(vo.getHeadCount()<3) return 0;
+		System.out.println(vo.getDiscussionDate());
+		LocalDateTime oneHourAfter = LocalDateTime.now().plusMinutes(60);
+		LocalDateTime discussionDate = LocalDateTime.parse(vo.getDiscussionDate(),DateTimeFormatter.ISO_DATE_TIME);
+		if(discussionDate.isBefore(oneHourAfter)) return -1;
 		
 		int res = 0;
 		int memberIdx = (int)session.getAttribute("sIdx");
@@ -80,8 +86,14 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public int reservation(int idx, HttpSession session) {
 		int memberIdx = (int)session.getAttribute("sIdx");
 		int res = discussionDAO.reservationTimeCheck(idx);
+		DiscussionVO vo = discussionDAO.discussion(idx);
 		
-		if(res!=0) discussionDAO.addParticipant(idx ,memberIdx);
+		if(res!=0) {
+			if(vo.getParticipant().split("/").length < vo.getHeadCount()) {
+				res = discussionDAO.addParticipant(idx ,memberIdx);
+			}
+			else res = -1;
+		}
 		
 		return res;
 	}

@@ -58,7 +58,7 @@
 								<span>(${vo.discussionTime}분)</span>
 							</div>
 						</div>
-						<div class = "row">
+						<div class = "row" style = "display : none">
 							<div class = "col1">분류</div>
 							<div class = "col2">${vo.part}</div>
 						</div>
@@ -115,7 +115,7 @@
 					<input type = "text" name = "subject" id = "subject" />
 				</div>
 			</div>
-			<div class = "row part">
+			<div class = "row part" style = "display : none">
 				<div class = "col1">분류</div>
 				<div class = "col2">
 					<input type = "radio" name = "part" id = "partFree" value = "자유" checked>자유
