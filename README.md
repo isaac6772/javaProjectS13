@@ -3,3 +3,4 @@
 만든 사람 : 허성진<br/><br/>
 프로젝트 제목 : Talk Hub<br/><br/>
 <a href = "http://49.142.157.251:9090/javaProjectS13/">웹싸이트 바로가기</a><br/>
+<a href = "https://www.youtube.com/watch?v=8P5EWm0QjvE">ppt발표영상 유튜브 바로가기</a>
